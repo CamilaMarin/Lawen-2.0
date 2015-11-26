@@ -1,0 +1,526 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <h:outputStylesheet library="css" name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputScript library="js" name="js/jsfcrud.js"/>
+    </h:head>
+
+    <h:form id="CCVNutricionistaViewForm">
+        <h:panelGroup id="display">
+            <p:panelGrid styleClass="col-md-12 spaceGrid" layout="grid"  columns="4" rendered="#{cCVNutricionistaController.selected != null and cCVNutricionistaController.selected != null}">
+                <p:outputLabel styleClass="fa purple-text"  value=" Ficha CCV Nutricionista" style="font-weight: bold; margin-top: 10px; margin-bottom: 20px; color: #43005D;"/>
+                <p:outputLabel value=" "/>
+                <p:outputLabel value=" "/>
+                <p:outputLabel value=" "/>
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_paciente}" for="paciente" />
+                <p:outputLabel id="paciente" value="#{cCVNutricionistaController.selected.cartolaToNutri.paciente.toString()}"/>
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_fecha_control}" for="fecha_control" />
+                <h:outputText id="fecha_control" value="#{cCVNutricionistaController.selected.cartolaToNutri.fecha_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fecha_control}" ><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_edad_paciente}" for="edad_paciente" />
+                <p:outputLabel id="edad_paciente" value="#{cCVNutricionistaController.selected.cartolaToNutri.edad_paciente}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_edad_paciente}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_profesional}" for="profesional" />
+                <p:outputLabel id="profesional" value="#{cCVNutricionistaController.selected.cartolaToNutri.profesional.toString()}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaNutricionistaLabel_anamnesis_nutri}" for="anamnesis_nutri" />
+                <p:outputLabel id="anamnesis_nutri" value="#{cCVNutricionistaController.selected.fichaNutri.anamnesis_nutri}" title="#{bundle.CreateFichaNutricionistaTitle_anamnesis_nutri}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_peso}" for="peso" />
+                <p:outputLabel id="peso" value="#{cCVNutricionistaController.selected.cartolaToNutri.peso}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_peso}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_talla}" for="talla" />
+                <p:outputLabel id="talla" value="#{cCVNutricionistaController.selected.cartolaToNutri.talla}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_talla}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_imc}" for="imc" />
+                <p:outputLabel id="imc" value="#{cCVNutricionistaController.selected.cartolaToNutri.imc}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_imc}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_diagnostico_nutricional}" for="diagnostico_nutricional" />
+                <p:outputLabel id="diagnostico_nutricional" value="#{cCVNutricionistaController.selected.cartolaToNutri.diagnostico_nutricional}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_perimetro_cintura}" for="perimetro_cintura" />
+                <p:outputLabel id="perimetro_cintura" value="#{cCVNutricionistaController.selected.cartolaToNutri.perimetro_cintura}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_perimetro_cintura}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaNutricionistaLabel_perimetroCaderas_nutri}" for="perimetroCaderas_nutri" />
+                <p:outputLabel id="perimetroCaderas_nutri" value="#{cCVNutricionistaController.selected.fichaNutri.perimetroCaderas_nutri}" title="#{bundle.CreateFichaNutricionistaTitle_perimetroCaderas_nutri}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaNutricionistaLabel_indiceCC_nutri}" for="indiceCC_nutri1" />
+                <p:outputLabel id="indiceCC_nutri1" value="#{cCVNutricionistaController.selected.fichaNutri.indiceCC_nutri1}" title="#{bundle.CreateFichaNutricionistaTitle_indiceCC_nutri}"><h:outputLabel value=" / "/>
+                <p:outputLabel id="indiceCC_nutri2" value="#{cCVNutricionistaController.selected.fichaNutri.indiceCC_nutri2}" title="#{bundle.CreateFichaNutricionistaTitle_indiceCC_nutri}" />
+                </p:outputLabel>
+
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Patologías Crónicas:" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Hipertensión:" for="hipertencion" />
+                <p:outputLabel id="hipertencion" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.paciente.hipertencion)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Diabétes:" for="diabeticop" />
+                <p:outputLabel id="diabeticop" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.paciente.diabetico)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Dislipidémico:" for="dislipidemico" />
+                <p:outputLabel id="dislipidemico" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.paciente.dislipidemico)}"  style="width:60px" />
+
+
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Evaluación del PIE Según riesgo ulceración:" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Riesgo Ulceracion Pie:" for="estimacionRiesgoUlceracionPie" />
+                <p:outputLabel id="estimacionRiesgoUlceracionPie" value="#{cCVNutricionistaController.selected.cartolaToNutri.estimacionRiesgoUlceracionPie}" />                  
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Úlcera activa Pie DM:" for="ulcera_activaPieDM" />
+                <p:outputLabel id="ulcera_activaPieDM" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.ulcera_activaPieDM)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Descripción:" for="ulcera_activaPieDM_Descripcion" />
+                <p:outputLabel id="ulcera_activaPieDM_Descripcion" value="#{cCVNutricionistaController.selected.cartolaToNutri.ulcera_activaPieDM_Descripcion}" title="ulcera_activaPieDM_Descripcion" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Atención podológica:" for="atencionpodologica" />
+                <p:outputLabel id="atencionpodologica" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.atencionPodologica)}" style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Curación Pie DM:" for="curacionPie_DM" />
+                <p:outputLabel id="curacionPie_DM" value="#{cCVNutricionistaController.selected.cartolaToNutri.curacionPie_DM}" /> 
+
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Presión arterial de pie" for="pa_de_pie1" />
+                <p:outputLabel id="pa_de_pie1" value="#{cCVNutricionistaController.selected.cartolaToNutri.pa_de_pie1}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_de_pie1}"><h:outputLabel value=" / "/>
+                <p:outputLabel id="pa_de_pie2" value="#{cCVNutricionistaController.selected.cartolaToNutri.pa_de_pie2}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_de_pie2}" />
+                </p:outputLabel>
+                <p:outputLabel class="fa fa-square purple-text" value=" Presión arterial sentado" for="pa_sentado1" />
+                <p:outputLabel id="pa_sentado1" value="#{cCVNutricionistaController.selected.cartolaToNutri.pa_sentado1}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_sentado1}"><h:outputLabel value=" / "/>
+                <p:outputLabel id="pa_sentado2" value="#{cCVNutricionistaController.selected.cartolaToNutri.pa_sentado2}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_sentado2}" />
+                </p:outputLabel>
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_puslo}" for="puslo" />
+                <p:outputLabel id="puslo" value="#{cCVNutricionistaController.selected.cartolaToNutri.puslo}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_puslo}" />
+
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Fármacos:" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_sulfonilureas_texto}" for="sulfonilureas_texto" />
+                <p:outputLabel id="sulfonilureas_bool" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.sulfonilureas_bool)}"  style="width:60px" />
+                <p:outputLabel id="sulfonilureas_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.sulfonilureas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_sulfonilureas_texto}" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_biguanidas_texto}" for="biguanidas_texto" />
+                <p:outputLabel id="biguanidas_bool" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.biguanidas_bool)}"  style="width:60px" />
+                <p:outputLabel id="biguanidas_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.biguanidas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_biguanidas_texto}" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_insulina_texto}" for="insulina_texto" />
+                <p:outputLabel id="insulina_bool" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.insulina_bool)}"  style="width:60px" />                        
+                <p:outputLabel id="insulina_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.insulina_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_insulina_texto}" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_diuereticosTiazidicos_texto}" for="diuereticosTiazidicos_texto" />
+                <p:outputLabel id="diuereticosTiazidicos_bool" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.diuereticosTiazidicos_bool)}"  style="width:60px" />                       
+                <p:outputLabel id="diuereticosTiazidicos_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.diuereticosTiazidicos_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_diuereticosTiazidicos_texto}" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_diureticosDelAsa_texto}" for="diureticosDelAsa_texto" />
+                <p:outputLabel id="diureticosDelAsa_bool" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.diureticosDelAsa_bool)}"  style="width:60px" />
+                <p:outputLabel id="diureticosDelAsa_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.diureticosDelAsa_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_diureticosDelAsa_texto}" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_deiureticosAntiAldosterona_texto}" for="deiureticosAntiAldosterona_texto" />
+                <p:outputLabel id="deiureticosAntiAldosterona_bool" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.deiureticosAntiAldosterona_bool)}"  style="width:60px" />
+                <p:outputLabel id="deiureticosAntiAldosterona_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.deiureticosAntiAldosterona_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_deiureticosAntiAldosterona_texto}" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_betaBloqueadores_texto}" for="betaBloqueadores_texto" />
+                <p:outputLabel id="betaBloqueadores_bool" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.betaBloqueadores_bool)}"  style="width:60px" />
+                <p:outputLabel id="betaBloqueadores_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.betaBloqueadores_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_betaBloqueadores_texto}" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_IECA_texto}" for="IECA_texto" />
+                <p:outputLabel id="IECA_bool" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.IECA_bool)}"  style="width:60px" />
+                <p:outputLabel id="IECA_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.IECA_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_IECA_texto}" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_ARAII_texto}" for="ARAII_texto" />
+                <p:outputLabel id="ARAII_bool" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.ARAII_bool)}"  style="width:60px" />
+                <p:outputLabel id="ARAII_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.ARAII_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_ARAII_texto}" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_calcioAntagonistas_texto}" for="calcioAntagonistas_texto" />
+                <p:outputLabel id="calcioAntagonistas_bool" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.calcioAntagonistas_bool)}"  style="width:60px" />
+                <p:outputLabel id="calcioAntagonistas_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.calcioAntagonistas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_calcioAntagonistas_texto}" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Ácido Acetilsalicilico: " for="Acido_acetilsalicilico_texto" />
+                <p:outputLabel id="Acido_acetilsalicilico" value="#{utilidadesController.booleanos(ccVNutricionistaController.selected.cartolaToNutri.acido_acetilsalicilico)}"  style="width:60px" />
+                <p:outputLabel id="Acido_acetilsalicilico_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.acido_acetilsalicilico_texto}" title="Ácido Acetilsalicilico" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_esteatinas_texto}" for="esteatinas_texto" />
+                <p:outputLabel id="esteatinas_bool" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.esteatinas_bool)}"  style="width:60px" />
+                <p:outputLabel id="esteatinas_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.esteatinas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_esteatinas_texto}" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_fibratos_texto}" for="fibratos_texto" />
+                <p:outputLabel id="fibratos_bool" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.fibratos_bool)}"  style="width:60px" />
+                <p:outputLabel id="fibratos_texto" value="#{cCVNutricionistaController.selected.cartolaToNutri.fibratos_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_fibratos_texto}" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Exámenes:" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+
+
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_glicemia_estado}" for="glicemia_estado" />
+                <p:outputLabel id="glicemia_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.glicemia_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_glicemica_valor}" for="glicemica_valor" />
+                <p:outputLabel id="glicemica_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.glicemica_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_glicemica_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_estado}" for="hba1C_estado" />
+                <p:outputLabel id="hba1C_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.hba1C_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_valor}" for="hba1C_valor" />
+                <p:outputLabel id="hba1C_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.hba1C_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_hba1C_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_estado}" for="colesterolTotal_estado" />
+                <p:outputLabel id="colesterolTotal_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.colesterolTotal_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_valor}" for="colesterolTotal_valor" />
+                <p:outputLabel id="colesterolTotal_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.colesterolTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolTotal_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_estado}" for="colesterolLDL_estado" />
+                <p:outputLabel id="colesterolLDL_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.colesterolLDL_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_valor}" for="colesterolLDL_valor" />
+                <p:outputLabel id="colesterolLDL_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.colesterolLDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolLDL_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_estado}" for="colesterolHDL_estado" />
+                <p:outputLabel id="colesterolHDL_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.colesterolHDL_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_valor}" for="colesterolHDL_valor" />
+                <p:outputLabel id="colesterolHDL_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.colesterolHDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolHDL_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_estado}" for="trigliceridos_estado" />
+                <p:outputLabel id="trigliceridos_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.trigliceridos_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_valor}" for="trigliceridos_valor" />
+                <p:outputLabel id="trigliceridos_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.trigliceridos_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_trigliceridos_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_estado}" for="bilirrubinaTotal_estado" />
+                <p:outputLabel id="bilirrubinaTotal_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.bilirrubinaTotal_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_valor}" for="bilirrubinaTotal_valor" />
+                <p:outputLabel id="bilirrubinaTotal_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.bilirrubinaTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaTotal_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_estado}" for="bilirrubinaDirecta_estado" />
+                <p:outputLabel id="bilirrubinaDirecta_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.bilirrubinaDirecta_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_valor}" for="bilirrubinaDirecta_valor" />
+                <p:outputLabel id="bilirrubinaDirecta_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.bilirrubinaDirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaDirecta_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_estado}" for="bilirrubinaIndirecta_estado" />
+                <p:outputLabel id="bilirrubinaIndirecta_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.bilirrubinaIndirecta_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_valor}" for="bilirrubinaIndirecta_valor" />
+                <p:outputLabel id="bilirrubinaIndirecta_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.bilirrubinaIndirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaIndirecta_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_estado}" for="creatinina_estado" />
+                <p:outputLabel id="creatinina_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.creatinina_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_valor}" for="creatinina_valor" />
+                <p:outputLabel id="creatinina_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.creatinina_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_creatinina_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_BUN_estado}" for="BUN_estado" />
+                <p:outputLabel id="BUN_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.BUN_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_BUN_valor}" for="BUN_valor" />
+                <p:outputLabel id="BUN_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.BUN_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_BUN_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_estado}" for="MDRD_estado" />
+                <p:outputLabel id="MDRD_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.MDRD_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_valor}" for="MDRD_valor" />
+                <p:outputLabel id="MDRD_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.MDRD_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_MDRD_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_estado}" for="microALB24H_estado" />
+                <p:outputLabel id="microALB24H_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.microALB24H_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_valor}" for="microALB24H_valor" />
+                <p:outputLabel id="microALB24H_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.microALB24H_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_microALB24H_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_estado}" for="clearenceCrea_estado" />
+                <p:outputLabel id="clearenceCrea_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.clearenceCrea_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_valor}" for="clearenceCrea_valor" />
+                <p:outputLabel id="clearenceCrea_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.clearenceCrea_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_clearenceCrea_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_estado}" for="naPositivo_estado" />
+                <p:outputLabel id="naPositivo_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.naPositivo_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_valor}" for="naPositivo_valor" />
+                <p:outputLabel id="naPositivo_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.naPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_naPositivo_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_estado}" for="KPositivo_estado" />
+                <p:outputLabel id="KPositivo_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.KPositivo_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_valor}" for="KPositivo_valor" />
+                <p:outputLabel id="KPositivo_valor" value="#{vKPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_KPositivo_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_estado}" for="CLNegativo_estado" />
+                <p:outputLabel id="CLNegativo_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.CLNegativo_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_valor}" for="CLNegativo_valor" />
+                <p:outputLabel id="CLNegativo_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.CLNegativo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_CLNegativo_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_GPT_estado}" for="GPT_estado" />
+                <p:outputLabel id="GPT_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.GPT_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_GPT_valor}" for="GPT_valor" />
+                <p:outputLabel id="GPT_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.GPT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GPT_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_GOT_estado}" for="GOT_estado" />
+                <p:outputLabel id="GOT_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.GOT_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_GOT_valor}" for="GOT_valor" />
+                <p:outputLabel id="GOT_valor" value="#{cCVNutricionistaController.selected.cartolaToNutri.GOT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GOT_valor}" />
+
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Exámenes segunda parte:" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_estado}" for="orocultivo_estado" />
+                <p:outputLabel id="orocultivo_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.orocultivo_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_ejecucion}" for="orocultivo_ejecucion" />
+                <p:outputLabel id="orocultivo_ejecucion" value="#{cCVNutricionistaController.selected.cartolaToNutri.orocultivo_ejecucion}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_ECG_estado}" for="ECG_estado" />
+                <p:outputLabel id="ECG_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.ECG_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_ECG_ejecucion}" for="ECG_ejecucion" />
+                <p:outputLabel id="ECG_ejecucion" value="#{cCVNutricionistaController.selected.cartolaToNutri.ECG_ejecucion}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_estado}" for="fondoOJO_estado" />
+                <p:outputLabel id="fondoOJO_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.fondoOJO_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_ejecucion}" for="fondoOJO_ejecucion" />
+                <p:outputLabel id="fondoOJO_ejecucion" value="#{cCVNutricionistaController.selected.cartolaToNutri.fondoOJO_ejecucion}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_estado}" for="orinaCompleta_estado" />
+                <p:outputLabel id="orinaCompleta_estado" value="#{cCVNutricionistaController.selected.cartolaToNutri.orinaCompleta_estado}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_ejecucion}" for="orinaCompleta_ejecucion" />
+                <p:outputLabel id="orinaCompleta_ejecucion" value="#{cCVNutricionistaController.selected.cartolaToNutri.orinaCompleta_ejecucion}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_otros_examenes}" for="otros_examenes" />
+                <p:outputLabel id="otros_examenes" value="#{cCVNutricionistaController.selected.cartolaToNutri.otros_examenes}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_otros_examenes}" />
+
+
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Historia dietética:" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel value="Minuta" />
+                <p:outputLabel value="Horario" />
+                <p:outputLabel value="Descripción" />
+                <p:outputLabel value="" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Desayuno" />
+                <p:outputLabel id="desayuno_horario" value="#{cCVNutricionistaController.selected.fichaNutri.desayuno_horario}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_horario}" />
+                <p:outputLabel id="desayuno_descripcion" value="#{cCVNutricionistaController.selected.fichaNutri.desayuno_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_descripcion}" />
+                <p:outputLabel value="" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Colación" />
+                <p:outputLabel id="colacion_horario" value="#{cCVNutricionistaController.selected.fichaNutri.colacion_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_horario}" />
+                <p:outputLabel id="colacion_descripcion" value="#{cCVNutricionistaController.selected.fichaNutri.colacion_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_descripcion}" />
+                <p:outputLabel value="" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Almuerzo" />
+                <p:outputLabel id="almuerzo_horario" value="#{cCVNutricionistaController.selected.fichaNutri.almuerzo_horario}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_horario}" />
+                <p:outputLabel id="almuerzo_descripcion" value="#{cCVNutricionistaController.selected.fichaNutri.almuerzo_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_descripcion}" />
+                <p:outputLabel value="" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Colación Tarde" />
+                <p:outputLabel id="colaciontarde_horario" value="#{cCVNutricionistaController.selected.fichaNutri.colaciontarde_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_horario}" />
+                <p:outputLabel id="colaciontarde_descripcion" value="#{cCVNutricionistaController.selected.fichaNutri.colaciontarde_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_descripcion}" />
+                <p:outputLabel value="" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Cena" />
+                <p:outputLabel id="cena_horario" value="#{cCVNutricionistaController.selected.fichaNutri.cena_horario}" title="#{bundle.CreateFichaNutricionistaTitle_cena_horario}" />
+                <p:outputLabel id="cena_descripcion" value="#{cCVNutricionistaController.selected.fichaNutri.cena_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_cena_descripcion}" />
+                <p:outputLabel value="" />
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Frecuencia de consumo:" />
+
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="Alimentos" />
+                <p:outputLabel value="Frecuencia" />
+                <p:outputLabel value="Cantidad" />
+                <p:outputLabel value="Observaciones" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Leche y yogurt" />
+                <p:outputLabel id="consumo_lecheYogurt_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_lecheYogurt_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_lecheYogurt_frecuencia}" />
+                <p:outputLabel id="consumo_lecheYogurt_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_lecheYogurt_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_lecheYogurt_cantidad}" />
+                <p:outputLabel id="consumo_lecheYogurt_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_lecheYogurt_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_lecheYogurt_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Queso y quesillo" />
+                <p:outputLabel id="consumo_quesoQuesillo_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_quesoQuesillo_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_quesoQuesillo_frecuencia}" />
+                <p:outputLabel id="consumo_quesoQuesillo_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_quesoQuesillo_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_quesoQuesillo_cantidad}" />
+                <p:outputLabel id="consumo_quesoQuesillo_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_quesoQuesillo_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_quesoQuesillo_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Carnes" />
+                <p:outputLabel id="consumo_carnes_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_carnes_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_carnes_frecuencia}" />
+                <p:outputLabel id="consumo_carnes_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_carnes_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_carnes_cantidad}" />
+                <p:outputLabel id="consumo_carnes_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_carnes_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_carnes_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Pescados y mariscos" />
+                <p:outputLabel id="consumo_pescadosMariscos_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_pescadosMariscos_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_pescadosMariscos_frecuencia}" />
+                <p:outputLabel id="consumo_pescadosMariscos_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_pescadosMariscos_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_pescadosMariscos_cantidad}" />
+                <p:outputLabel id="consumo_pescadosMariscos_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_pescadosMariscos_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_pescadosMariscos_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Huevos" />
+                <p:outputLabel id="consumo_huevos_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_huevos_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_huevos_frecuencia}" />
+                <p:outputLabel id="consumo_huevos_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_huevos_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_huevos_cantidad}" />
+                <p:outputLabel id="consumo_huevos_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_huevos_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_huevos_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Verduras" />
+                <p:outputLabel id="consumo_verduras_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_verduras_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_verduras_frecuencia}" />
+                <p:outputLabel id="consumo_verduras_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_verduras_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_verduras_cantidad}" />
+                <p:outputLabel id="consumo_verduras_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_verduras_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_verduras_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Papas" />
+                <p:outputLabel id="consumo_papas_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_papas_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_papas_frecuencia}" />
+                <p:outputLabel id="consumo_papas_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_papas_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_papas_cantidad}" />
+                <p:outputLabel id="consumo_papas_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_papas_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_papas_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Frutas" />
+                <p:outputLabel id="consumo_frutas_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_frutas_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_frutas_frecuencia}" />
+                <p:outputLabel id="consumo_frutas_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_frutas_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_frutas_cantidad}" />
+                <p:outputLabel id="consumo_frutas_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_frutas_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_frutas_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Leguminosas" />
+                <p:outputLabel id="consumo_leguminosas_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_leguminosas_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_leguminosas_frecuencia}" />
+                <p:outputLabel id="consumo_leguminosas_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_leguminosas_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_leguminosas_cantidad}" />
+                <p:outputLabel id="consumo_leguminosas_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_leguminosas_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_leguminosas_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Cereales" />
+                <p:outputLabel id="consumo_cerealesFarinaceos_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_cerealesFarinaceos_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_cerealesFarinaceos_frecuencia}" />
+                <p:outputLabel id="consumo_cerealesFarinaceos_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_cerealesFarinaceos_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_cerealesFarinaceos_cantidad}" />
+                <p:outputLabel id="consumo_cerealesFarinaceos_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_cerealesFarinaceos_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_cerealesFarinaceos_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Sopas" />
+                <p:outputLabel id="consumo_sopas_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_sopas_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_sopas_frecuencia}" />
+                <p:outputLabel id="consumo_sopas_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_sopas_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_sopas_cantidad}" />
+                <p:outputLabel id="consumo_sopas_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_sopas_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_sopas_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Guisos" />
+                <p:outputLabel id="consumo_guisos_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_guisos_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_guisos_frecuencia}" />
+                <p:outputLabel id="consumo_guisos_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_guisos_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_guisos_cantidad}" />
+                <p:outputLabel id="consumo_guisos_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_guisos_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_guisos_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Pan" />
+                <p:outputLabel id="consumo_pan_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_pan_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_pan_frecuencia}" />
+                <p:outputLabel id="consumo_pan_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_pan_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_pan_cantidad}" />
+                <p:outputLabel id="consumo_pan_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_pan_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_pan_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Galletas" />
+                <p:outputLabel id="consumo_galletas_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_galletas_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_galletas_frecuencia}" />
+                <p:outputLabel id="consumo_galletas_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_galletas_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_galletas_cantidad}" />
+                <p:outputLabel id="consumo_galletas_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_galletas_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_galletas_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Aceite" />
+                <p:outputLabel id="consumo_aceite_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_aceite_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_aceite_frecuencia}" />
+                <p:outputLabel id="consumo_aceite_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_aceite_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_aceite_cantidad}" />
+                <p:outputLabel id="consumo_aceite_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_aceite_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_aceite_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Mantequilla" />
+                <p:outputLabel id="consumo_mantequillaMargarina_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_mantequillaMargarina_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_mantequillaMargarina_frecuencia}" />
+                <p:outputLabel id="consumo_mantequillaMargarina_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_mantequillaMargarina_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_mantequillaMargarina_cantidad}" />
+                <p:outputLabel id="consumo_mantequillaMargarina_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_mantequillaMargarina_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_mantequillaMargarina_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Azúcar" />
+                <p:outputLabel id="consumo_azucar_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_azucar_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_azucar_frecuencia}" />
+                <p:outputLabel id="consumo_azucar_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_azucar_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_azucar_cantidad}" />
+                <p:outputLabel id="consumo_azucar_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_azucar_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_azucar_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Mermeladada" />
+                <p:outputLabel id="consumo_mielMermelada_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_mielMermelada_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_mielMermelada_frecuencia}" />
+                <p:outputLabel id="consumo_mielMermelada_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_mielMermelada_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_mielMermelada_cantidad}" />
+                <p:outputLabel id="consumo_mielMermelada_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_mielMermelada_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_mielMermelada_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Bebidas" />
+                <p:outputLabel id="consumo_bedidas_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_bedidas_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_bedidas_frecuencia}" />
+                <p:outputLabel id="consumo_bebidas_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_bebidas_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_bebidas_cantidad}" />
+                <p:outputLabel id="consumo_bebidas_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_bebidas_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_bebidas_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Dulces" />
+                <p:outputLabel id="consumo_dulces_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_dulces_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_dulces_frecuencia}" />
+                <p:outputLabel id="consumo_dulces_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_dulces_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_dulces_cantidad}" />
+                <p:outputLabel id="consumo_dulces_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_dulces_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_dulces_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Embutidos" />
+                <p:outputLabel id="consumo_embutidos_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_embutidos_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_embutidos_frecuencia}" />
+                <p:outputLabel id="consumo_embutidos_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_embutidos_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_embutidos_cantidad}" />
+                <p:outputLabel id="consumo_embutidos_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_embutidos_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_embutidos_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Agua" />
+                <p:outputLabel id="consumo_agua_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_agua_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_agua_frecuencia}" />
+                <p:outputLabel id="consumo_agua_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_agua_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_agua_cantidad}" />
+                <p:outputLabel id="consumo_agua_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_agua_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_agua_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Otros Alimentos" />
+                <p:outputLabel id="consumo_otrosAlimentos_frecuencia" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_otrosAlimentos_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_otrosAlimentos_frecuencia}" />
+                <p:outputLabel id="consumo_otrosAlimentos_cantidad" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_otrosAlimentos_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_otrosAlimentos_cantidad}" />
+                <p:outputLabel id="consumo_otrosAlimentos_observaciones" value="#{cCVNutricionistaController.selected.fichaNutri.consumo_otrosAlimentos_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_otrosAlimentos_observaciones}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaNutricionistaLabel_intolerancia_alimentaria}" for="intolerancia_alimentaria" />
+                <p:outputLabel id="intolerancia_alimentaria" value="#{cCVNutricionistaController.selected.fichaNutri.intolerancia_alimentaria}" title="#{bundle.CreateFichaNutricionistaTitle_intolerancia_alimentaria}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaNutricionistaLabel_nutrientes_criticos}" for="nutrientes_criticos" />
+                <p:outputLabel id="nutrientes_criticos" value="#{cCVNutricionistaController.selected.fichaNutri.nutrientes_criticos}" title="#{bundle.CreateFichaNutricionistaTitle_nutrientes_criticos}" />
+
+
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Régimen:" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Hiposídico" for="hiposodico" />
+                <p:outputLabel id="hiposodico" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.hiposodico)}" style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Diabético" for="diabetico" />
+                <p:outputLabel id="diabetico" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.diabetico)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Hipocalórico" for="hipocalorico" />
+                <p:outputLabel id="hipocalorico" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.hipocalorico)}" style="width:60px" />
+
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_calorias}" for="calorias" />
+                <p:outputLabel id="calorias" value="#{cCVNutricionistaController.selected.cartolaToNutri.calorias}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_calorias}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaNutricionistaLabel_referencias_nutri}" for="referencias_nutri" />
+                <p:outputLabel id="referencias_nutri" value="#{cCVNutricionistaController.selected.fichaNutri.referencias_nutri}" title="#{bundle.CreateFichaNutricionistaTitle_referencias_nutri}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_punteaje_pie_dm}" for="punteaje_pie_dm" />
+                <p:outputLabel id="punteaje_pie_dm" value="#{cCVNutricionistaController.selected.cartolaToNutri.punteaje_pie_dm}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_punteaje_pie_dm}" />
+
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Antecedentes riesgo CCV" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Tabaco:" for="tabaco" />
+                <p:outputLabel id="tabaco" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.tabaco)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Prediabético:" for="prediabetico" />
+                <p:outputLabel id="prediabetico" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.paciente.prediabetes)}" style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" IAM:" for="IAM" />
+                <p:outputLabel id="IAM" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.IAM)}"  style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" ACV:" for="ACV" />
+                <p:outputLabel id="ACV" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.ACV)}"  style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Hipertrofia ventricular izquierda:" for="HVI" />
+                <p:outputLabel id="HVI" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.HVI)}"  style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" IRC:" for="IRC" />
+                <p:outputLabel id="IRC" value="#{utilidadesController.booleanos(utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.IRC))}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Nefropatía Incipiente:" for="NefroIn" />
+                <p:outputLabel id="NefroIn" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.nefropatiaInciente)}" style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Amputación no traumática:" for="amputacion_no_traumatica" />
+                <p:outputLabel id="amputacion_no_traumatica" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.amputacion_no_traumatica)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Amputación diabética:" for="amputa_diabe" />
+                <p:outputLabel id="amputa_diabe" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.amputacionDiabetica)}" style="width:60px" />
+
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Ceguera:" for="ceguera" />
+                <p:outputLabel id="ceguera" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.ceguera)}"  style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Retinopatía:" for="retinopatia" />
+                <p:outputLabel id="retinopatia" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.retinopatia)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Ceguera Post retinopatía" for="ceguera_post" />
+                <p:outputLabel id="ceguera_post" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.cegueraPostRetinopatia)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Complicación(Prevalencia)" for="Complicacion" />
+                <p:outputLabel id="Complicacion" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.complicacionPrevalencia)}" style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" QUALDIAB:" for="QUALDIAB" />
+                <p:outputLabel id="QUALDIAB" value="#{utilidadesController.booleanos(cCVNutricionistaController.selected.cartolaToNutri.QUALDIAB)}"  style="width:60px" />
+
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_riesgo_cardiovascular}" for="riesgo_cardiovascular" />
+                <p:outputLabel id="riesgo_cardiovascular" value="#{cCVNutricionistaController.selected.cartolaToNutri.riesgo_cardiovascular}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_observaciones}" for="observaciones" />
+                <p:outputLabel id="observaciones" value="#{cCVNutricionistaController.selected.cartolaToNutri.observaciones}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_observaciones}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_fechareingreso}" for="fechareingreso" />
+                <p:outputLabel id="fechareingreso"  value="#{cCVNutricionistaController.selected.cartolaToNutri.fechareingreso}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fechareingreso}" >
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+
+                </p:outputLabel>
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_proximo_control}" for="proximo_control" />
+                <p:outputLabel id="proximo_control"  value="#{cCVNutricionistaController.selected.cartolaToNutri.proximo_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_proximo_control}" />
+
+            </p:panelGrid>
+
+        </h:panelGroup>
+    </h:form>
+
+</html>

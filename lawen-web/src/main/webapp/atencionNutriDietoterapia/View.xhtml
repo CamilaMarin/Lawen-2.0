@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+       <h:form id="AtencionNutriDietoterapiaViewForm"  style="margin-top: 20px!important;">
+                <h:panelGroup id="display" >
+                    <p:panelGrid id="panel" columns="2" rendered="#{atencionNutriDietoterapiaController.selected != null}" >                      
+                        <p:outputLabel value="Tipo atención:" for="tipoDietoterapia" />
+                        <p:outputLabel id="tipoDietoterapia" value="#{atencionNutriDietoterapiaController.selected.tipoDietoterapia}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_paciente}" for="paciente" />
+                        <p:outputLabel id="paciente" value="#{atencionNutriDietoterapiaController.selected.paciente.toString()}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_fecha_control}" for="fecha_control" >
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </p:outputLabel>
+                        <h:outputText id="fecha_control" value="#{atencionNutriDietoterapiaController.selected.fecha_control}" title="#{bundle.EditAtencionNutriDietoterapiaTitle_fecha_control}" ><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_edad_paciente}" for="edad_paciente" />
+                        <p:outputLabel id="edad_paciente" value="#{atencionNutriDietoterapiaController.selected.edad_paciente}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_edad_paciente}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_profesional}" for="profesional" />
+                        <p:outputLabel id="profesional" value="#{atencionNutriDietoterapiaController.selected.profesional.toString()}" />
+                        
+                        
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_anamnesis_nutri}" for="anamnesis_nutri" />
+                        <p:outputLabel   id="anamnesis_nutri" value="#{atencionNutriDietoterapiaController.selected.anamnesis_nutri}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_anamnesis_nutri}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_peso}" for="peso" />
+                        <p:outputLabel id="peso" value="#{atencionNutriDietoterapiaController.selected.peso}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_peso}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_talla}" for="talla" />
+                        <p:outputLabel id="talla" value="#{atencionNutriDietoterapiaController.selected.talla}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_talla}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_imc}" for="imc" />
+                        <p:outputLabel id="imc" value="#{atencionNutriDietoterapiaController.selected.imc}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_imc}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_diagnostico_nutricional}" for="diagnostico_nutricional" />
+                        <p:outputLabel id="diagnostico_nutricional" value="#{atencionNutriDietoterapiaController.selected.diagnostico_nutricional}" />
+                        
+                        
+                        
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_perimetro_cintura}" for="perimetro_cintura" />
+                        <p:outputLabel id="perimetro_cintura" value="#{atencionNutriDietoterapiaController.selected.perimetro_cintura}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_perimetro_cintura}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_perimetroCaderas_nutri}" for="perimetroCaderas_nutri" />
+                        <p:outputLabel id="perimetroCaderas_nutri" value="#{atencionNutriDietoterapiaController.selected.perimetroCaderas_nutri}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_perimetroCaderas_nutri}" />
+                        
+                        <p:outputLabel value="Índice CC:" for="indiceCC_nutri1" />
+                        <p:outputLabel id="indiceCC_nutri1" value="#{atencionNutriDietoterapiaController.selected.indiceCC_nutri1}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_indiceCC_nutri1}" ><h:outputText value="/"/>
+                        <p:outputLabel id="indiceCC_nutri2" value="#{atencionNutriDietoterapiaController.selected.indiceCC_nutri2}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_indiceCC_nutri2}"/>
+                        </p:outputLabel>
+                        
+                        <p:outputLabel value="PA de pie:" for="pa_de_pie1" />
+                        <p:outputLabel id="pa_de_pie1" value="#{atencionNutriDietoterapiaController.selected.pa_de_pie1}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_pa_de_pie1}"><h:outputText value="/"/>
+                        <p:outputLabel id="pa_de_pie2" value="#{atencionNutriDietoterapiaController.selected.pa_de_pie2}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_pa_de_pie2}"/>
+                        </p:outputLabel>
+                        
+                        
+                        <p:outputLabel value="PA sentado:" for="pa_sentado1" />
+                        <p:outputLabel id="pa_sentado1" value="#{atencionNutriDietoterapiaController.selected.pa_sentado1}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_pa_sentado1}" ><h:outputText value="/"/>
+                        <p:outputLabel id="pa_sentado2" value="#{atencionNutriDietoterapiaController.selected.pa_sentado2}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_pa_sentado2}"/>
+                        </p:outputLabel>
+                        
+                        
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_puslo}" for="puslo" />
+                        <p:outputLabel id="puslo" value="#{atencionNutriDietoterapiaController.selected.puslo}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_puslo}" />
+                        <p:outputLabel value="Fármacos" class="subItem"/>
+                        <p:outputLabel value="" />
+                        
+                        <p:outputLabel value="Sulfonilureas:" for="sulfonilureas_bool" />
+                        <p:outputLabel id="sulfonilureas_bool" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.sulfonilureas_bool)}"  style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="sulfonilureas_texto" />
+                        <p:outputLabel id="sulfonilureas_texto" value="#{atencionNutriDietoterapiaController.selected.sulfonilureas_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_sulfonilureas_texto}" />
+                        
+                        <p:outputLabel value="Biguanidas:" for="biguanidas_bool" />
+                        <p:outputLabel id="biguanidas_bool" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.biguanidas_bool)}"  style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="biguanidas_texto" />
+                        <p:outputLabel id="biguanidas_texto" value="#{atencionNutriDietoterapiaController.selected.biguanidas_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_biguanidas_texto}" />
+                        
+                        <p:outputLabel value="Insulina:" for="insulina_bool" />
+                        <p:outputLabel id="insulina_bool" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.insulina_bool)}"  style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="insulina_texto" />
+                        <p:outputLabel id="insulina_texto" value="#{atencionNutriDietoterapiaController.selected.insulina_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_insulina_texto}" />
+                        
+                        
+                        <p:outputLabel value="Diuréticos Tiazídicos:" for="diuereticosTiazidicos_bool" />
+                        <p:outputLabel id="diuereticosTiazidicos_bool" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.diuereticosTiazidicos_bool)}"  style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="diuereticosTiazidicos_texto" />
+                        <p:outputLabel id="diuereticosTiazidicos_texto" value="#{atencionNutriDietoterapiaController.selected.diuereticosTiazidicos_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_diuereticosTiazidicos_texto}" />
+                        
+                        <p:outputLabel value="Diuréticos Del Asa:" for="diureticosDelAsa_bool" />
+                        <p:outputLabel id="diureticosDelAsa_bool" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.diureticosDelAsa_bool)}"  style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="diureticosDelAsa_texto" />
+                        <p:outputLabel id="diureticosDelAsa_texto" value="#{atencionNutriDietoterapiaController.selected.diureticosDelAsa_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_diureticosDelAsa_texto}" />
+                        
+                        <p:outputLabel value="Diuréticos AntiAldosterona:" for="deiureticosAntiAldosterona_bool" />
+                        <p:outputLabel id="deiureticosAntiAldosterona_bool" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.deiureticosAntiAldosterona_bool)}"  style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="deiureticosAntiAldosterona_texto" />
+                        <p:outputLabel id="deiureticosAntiAldosterona_texto" value="#{atencionNutriDietoterapiaController.selected.deiureticosAntiAldosterona_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_deiureticosAntiAldosterona_texto}" />
+                        
+                        <p:outputLabel value="Beta Bloqueadores:" for="betaBloqueadores_bool" />
+                        <p:outputLabel id="betaBloqueadores_bool" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.betaBloqueadores_bool)}"  style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="betaBloqueadores_texto" />
+                        <p:outputLabel id="betaBloqueadores_texto" value="#{atencionNutriDietoterapiaController.selected.betaBloqueadores_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_betaBloqueadores_texto}" />
+                        
+                        <p:outputLabel value="IECA:" for="IECA_bool" />
+                        <p:outputLabel id="IECA_bool" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.IECA_bool)}"  style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="IECA_texto" />
+                        <p:outputLabel id="IECA_texto" value="#{atencionNutriDietoterapiaController.selected.IECA_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_IECA_texto}" />
+                        
+                        <p:outputLabel value="ARAII:" for="ARAII_bool" />
+                        <p:outputLabel id="ARAII_bool" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.ARAII_bool)}"  style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="ARAII_texto" />
+                        <p:outputLabel id="ARAII_texto" value="#{atencionNutriDietoterapiaController.selected.ARAII_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_ARAII_texto}" />
+                        
+                        <p:outputLabel value="Calcio Antagonistas:" for="calcioAntagonistas_bool" />
+                        <p:outputLabel id="calcioAntagonistas_bool" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.calcioAntagonistas_bool)}"  style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="calcioAntagonistas_texto" />
+                        <p:outputLabel id="calcioAntagonistas_texto" value="#{atencionNutriDietoterapiaController.selected.calcioAntagonistas_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_calcioAntagonistas_texto}" />
+                        
+                        <p:outputLabel value="Estatinas:" for="esteatinas_bool" />
+                        <p:outputLabel id="esteatinas_bool" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.esteatinas_bool)}"  style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="esteatinas_texto" />
+                        <p:outputLabel id="esteatinas_texto" value="#{atencionNutriDietoterapiaController.selected.esteatinas_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_esteatinas_texto}" />
+                        
+                        <p:outputLabel value="Fibratos:" for="fibratos_bool" />
+                        <p:outputLabel id="fibratos_bool" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.fibratos_bool)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_fibratos_texto}" for="fibratos_texto" />
+                        <p:outputLabel id="fibratos_texto" value="#{atencionNutriDietoterapiaController.selected.fibratos_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_fibratos_texto}" />
+                        
+                        <p:outputLabel value="Exámenes"  class="subItem"/>
+                        <p:outputLabel value="" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_glicemia_estado}" for="glicemia_estado" />
+                        <p:outputLabel id="glicemia_estado" value="#{atencionNutriDietoterapiaController.selected.glicemia_estado}"/> 
+                             
+                                             
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_glicemica_valor}" for="glicemica_valor" />
+                        <p:outputLabel id="glicemica_valor" value="#{atencionNutriDietoterapiaController.selected.glicemica_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_glicemica_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_estado}" for="hba1C_estado" />
+                        <p:outputLabel id="hba1C_estado" value="#{atencionNutriDietoterapiaController.selected.hba1C_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_valor}" for="hba1C_valor" />
+                        <p:outputLabel id="hba1C_valor" value="#{atencionNutriDietoterapiaController.selected.hba1C_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_hba1C_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_estado}" for="colesterolTotal_estado" />
+                        <p:outputLabel id="colesterolTotal_estado" value="#{atencionNutriDietoterapiaController.selected.colesterolTotal_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_valor}" for="colesterolTotal_valor" />
+                        <p:outputLabel id="colesterolTotal_valor" value="#{atencionNutriDietoterapiaController.selected.colesterolTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolTotal_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_estado}" for="colesterolLDL_estado" />
+                        <p:outputLabel id="colesterolLDL_estado" value="#{atencionNutriDietoterapiaController.selected.colesterolLDL_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_valor}" for="colesterolLDL_valor" />
+                        <p:outputLabel id="colesterolLDL_valor" value="#{atencionNutriDietoterapiaController.selected.colesterolLDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolLDL_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_estado}" for="colesterolHDL_estado" />
+                        <p:outputLabel id="colesterolHDL_estado" value="#{atencionNutriDietoterapiaController.selected.colesterolHDL_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_valor}" for="colesterolHDL_valor" />
+                        <p:outputLabel id="colesterolHDL_valor" value="#{atencionNutriDietoterapiaController.selected.colesterolHDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolHDL_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_estado}" for="trigliceridos_estado" />
+                        <p:outputLabel id="trigliceridos_estado" value="#{atencionNutriDietoterapiaController.selected.trigliceridos_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_valor}" for="trigliceridos_valor" />
+                        <p:outputLabel id="trigliceridos_valor" value="#{atencionNutriDietoterapiaController.selected.trigliceridos_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_trigliceridos_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_estado}" for="bilirrubinaTotal_estado" />
+                        <p:outputLabel id="bilirrubinaTotal_estado" value="#{atencionNutriDietoterapiaController.selected.bilirrubinaTotal_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_valor}" for="bilirrubinaTotal_valor" />
+                        <p:outputLabel id="bilirrubinaTotal_valor" value="#{atencionNutriDietoterapiaController.selected.bilirrubinaTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaTotal_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_estado}" for="bilirrubinaDirecta_estado" />
+                        <p:outputLabel id="bilirrubinaDirecta_estado" value="#{atencionNutriDietoterapiaController.selected.bilirrubinaDirecta_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_valor}" for="bilirrubinaDirecta_valor" />
+                        <p:outputLabel id="bilirrubinaDirecta_valor" value="#{atencionNutriDietoterapiaController.selected.bilirrubinaDirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaDirecta_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_estado}" for="bilirrubinaIndirecta_estado" />
+                        <p:outputLabel id="bilirrubinaIndirecta_estado" value="#{atencionNutriDietoterapiaController.selected.bilirrubinaIndirecta_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_valor}" for="bilirrubinaIndirecta_valor" />
+                        <p:outputLabel id="bilirrubinaIndirecta_valor" value="#{atencionNutriDietoterapiaController.selected.bilirrubinaIndirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaIndirecta_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_estado}" for="creatinina_estado" />
+                        <p:outputLabel id="creatinina_estado" value="#{atencionNutriDietoterapiaController.selected.creatinina_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_valor}" for="creatinina_valor" />
+                        <p:outputLabel id="creatinina_valor" value="#{atencionNutriDietoterapiaController.selected.creatinina_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_creatinina_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_BUN_estado}" for="BUN_estado" />
+                        <p:outputLabel id="BUN_estado" value="#{atencionNutriDietoterapiaController.selected.BUN_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_BUN_valor}" for="BUN_valor" />
+                        <p:outputLabel id="BUN_valor" value="#{atencionNutriDietoterapiaController.selected.BUN_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_BUN_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_estado}" for="MDRD_estado" />
+                        <p:outputLabel id="MDRD_estado" value="#{atencionNutriDietoterapiaController.selected.MDRD_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_valor}" for="MDRD_valor" />
+                        <p:outputLabel id="MDRD_valor" value="#{atencionNutriDietoterapiaController.selected.MDRD_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_MDRD_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_estado}" for="microALB24H_estado" />
+                        <p:outputLabel id="microALB24H_estado" value="#{atencionNutriDietoterapiaController.selected.microALB24H_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_valor}" for="microALB24H_valor" />
+                        <p:outputLabel id="microALB24H_valor" value="#{atencionNutriDietoterapiaController.selected.microALB24H_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_microALB24H_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_estado}" for="clearenceCrea_estado" />
+                        <p:outputLabel id="clearenceCrea_estado" value="#{atencionNutriDietoterapiaController.selected.clearenceCrea_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_valor}" for="clearenceCrea_valor" />
+                        <p:outputLabel id="clearenceCrea_valor" value="#{atencionNutriDietoterapiaController.selected.clearenceCrea_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_clearenceCrea_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_estado}" for="naPositivo_estado" />
+                        <p:outputLabel id="naPositivo_estado" value="#{atencionNutriDietoterapiaController.selected.naPositivo_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_valor}" for="naPositivo_valor" />
+                        <p:outputLabel id="naPositivo_valor" value="#{atencionNutriDietoterapiaController.selected.naPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_naPositivo_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_estado}" for="KPositivo_estado" />
+                        <p:outputLabel id="KPositivo_estado" value="#{atencionNutriDietoterapiaController.selected.KPositivo_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_valor}" for="KPositivo_valor" />
+                        <p:outputLabel id="KPositivo_valor" value="#{atencionNutriDietoterapiaController.selected.KPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_KPositivo_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_estado}" for="CLNegativo_estado" />
+                        <p:outputLabel id="CLNegativo_estado" value="#{atencionNutriDietoterapiaController.selected.CLNegativo_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_valor}" for="CLNegativo_valor" />
+                        <p:outputLabel id="CLNegativo_valor" value="#{atencionNutriDietoterapiaController.selected.CLNegativo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_CLNegativo_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GPT_estado}" for="GPT_estado" />
+                        <p:outputLabel id="GPT_estado" value="#{atencionNutriDietoterapiaController.selected.GPT_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GPT_valor}" for="GPT_valor" />
+                        <p:outputLabel id="GPT_valor" value="#{atencionNutriDietoterapiaController.selected.GPT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GPT_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GOT_estado}" for="GOT_estado" />
+                        <p:outputLabel id="GOT_estado" value="#{atencionNutriDietoterapiaController.selected.GOT_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GOT_valor}" for="GOT_valor" />
+                        <p:outputLabel id="GOT_valor" value="#{atencionNutriDietoterapiaController.selected.GOT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GOT_valor}" />
+                                         
+                        <p:outputLabel value="Exámenes 2da parte"  class="subItem"/>
+                        <p:outputLabel value="" />
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_estado}" for="orocultivo_estado" />
+                        <p:outputLabel id="orocultivo_estado" value="#{atencionNutriDietoterapiaController.selected.orocultivo_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_ejecucion}" for="orocultivo_ejecucion" />
+                        <p:outputLabel id="orocultivo_ejecucion" value="#{atencionNutriDietoterapiaController.selected.orocultivo_ejecucion}"/> 
+                            
+                        
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_ECG_estado}" for="ECG_estado" />
+                        <p:outputLabel id="ECG_estado" value="#{atencionNutriDietoterapiaController.selected.ECG_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_ECG_ejecucion}" for="ECG_ejecucion" />
+                        <p:outputLabel id="ECG_ejecucion" value="#{atencionNutriDietoterapiaController.selected.ECG_ejecucion}"/> 
+                            
+                        
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_estado}" for="fondoOJO_estado" />
+                        <p:outputLabel id="fondoOJO_estado" value="#{atencionNutriDietoterapiaController.selected.fondoOJO_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_ejecucion}" for="fondoOJO_ejecucion" />
+                        <p:outputLabel id="fondoOJO_ejecucion" value="#{atencionNutriDietoterapiaController.selected.fondoOJO_ejecucion}"/> 
+                            
+                        
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_estado}" for="orinaCompleta_estado" />
+                        <p:outputLabel id="orinaCompleta_estado" value="#{atencionNutriDietoterapiaController.selected.orinaCompleta_estado}"/> 
+                             
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_ejecucion}" for="orinaCompleta_ejecucion" />
+                        <p:outputLabel id="orinaCompleta_ejecucion" value="#{atencionNutriDietoterapiaController.selected.orinaCompleta_ejecucion}"/> 
+                            
+                        
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_otros_examenes}" for="otros_examenes" />
+                        <p:outputLabel id="otros_examenes" value="#{atencionNutriDietoterapiaController.selected.otros_examenes}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_otros_examenes}" />
+                        <p:outputLabel value="Historia dietética"  class="subItem" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Desayuno"  class="subSubItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:outputLabel id="desayuno_horario" value="#{atencionNutriDietoterapiaController.selected.desayuno_horario}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_horario}" />
+                        <p:outputLabel value="Descripción" />
+                        <p:outputLabel id="desayuno_descripcion" value="#{atencionNutriDietoterapiaController.selected.desayuno_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_descripcion}" />
+                        <p:outputLabel value="Colación" class="subSubItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:outputLabel id="colacion_horario" value="#{atencionNutriDietoterapiaController.selected.colacion_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_horario}" />
+                        <p:outputLabel value="Descripción" />
+                        <p:outputLabel id="colacion_descripcion" value="#{atencionNutriDietoterapiaController.selected.colacion_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_descripcion}" />
+                        <p:outputLabel value="Almuerzo" class="subSubItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:outputLabel id="almuerzo_horario" value="#{atencionNutriDietoterapiaController.selected.almuerzo_horario}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_horario}" />
+                        <p:outputLabel value="Descripción" />
+                        <p:outputLabel id="almuerzo_descripcion" value="#{atencionNutriDietoterapiaController.selected.almuerzo_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_descripcion}" />
+                        <p:outputLabel value="Colación Tarde" class="subSubItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:outputLabel id="colaciontarde_horario" value="#{atencionNutriDietoterapiaController.selected.colaciontarde_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_horario}" />
+                        <p:outputLabel value="Descripción" />
+                        <p:outputLabel id="colaciontarde_descripcion" value="#{atencionNutriDietoterapiaController.selected.colaciontarde_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_descripcion}" />
+                        <p:outputLabel value="Cena" class="subSubItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:outputLabel id="cena_horario" value="#{atencionNutriDietoterapiaController.selected.cena_horario}" title="#{bundle.CreateFichaNutricionistaTitle_cena_horario}" />
+                        <p:outputLabel value="Descripción" />
+                        <p:outputLabel id="cena_descripcion" value="#{atencionNutriDietoterapiaController.selected.cena_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_cena_descripcion}" />
+                
+                        <p:outputLabel value="Frecuencia consumo:" for="frecuencia_consumo" />
+                        <p:outputLabel  id="frecuencia_consumo" value="#{atencionNutriDietoterapiaController.selected.frecuencia_consumo}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_frecuencia_consumo}" />
+                        
+                        <p:outputLabel value="Intoleracia Alimentaria:" for="intolerancia_alimentaria" />
+                        <p:outputLabel  id="intolerancia_alimentaria" value="#{atencionNutriDietoterapiaController.selected.intolerancia_alimentaria}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_intolerancia_alimentaria}" />
+                        <p:outputLabel value="Nutrientes críticos:" for="nutrientes_criticos" />
+                        <p:outputLabel  id="nutrientes_criticos" value="#{atencionNutriDietoterapiaController.selected.nutrientes_criticos}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_nutrientes_criticos}" />
+                        <p:outputLabel value="Indicaciones:" for="indicaciones" />
+                        <p:outputLabel  id="indicaciones" value="#{atencionNutriDietoterapiaController.selected.indicaciones}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_indicaciones}" />
+                        
+                        <p:outputLabel value="Régimen" class="subItem"/>
+                        <p:outputLabel value="" />
+                        
+                        
+                         <p:outputLabel value="Hiposódico" for="hiposodico" />
+                         <p:outputLabel id="hiposodico" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.hiposodico)}"  style="width:60px" />
+                         <p:outputLabel value="Diabético" for="diabetico" />
+                         <p:outputLabel id="diabetico" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.diabetico)}"  style="width:60px" />
+                         <p:outputLabel value="Hipocalórico" for="hipocalorico" />
+                         <p:outputLabel id="hipocalorico" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.hipocalorico)}"  style="width:60px" />
+                       
+                        
+                        
+                        <p:outputLabel value="Calorías:" for="calorias" />
+                        <p:outputLabel id="calorias" value="#{atencionNutriDietoterapiaController.selected.calorias}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_calorias}" />
+                        
+                        <p:outputLabel value="Referencias:" for="referencias_nutri" />
+                        <p:outputLabel  id="referencias_nutri" value="#{atencionNutriDietoterapiaController.selected.referencias_nutri}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_referencias_nutri}" />
+                        
+                        <p:outputLabel value="Puntaje Pie DM:" for="punteaje_pie_dm" />
+                        <p:outputLabel id="punteaje_pie_dm" value="#{atencionNutriDietoterapiaController.selected.punteaje_pie_dm}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_punteaje_pie_dm}" />
+                       
+                        
+                        <p:outputLabel value="Antecedentes riesgo CCV" class="subItem" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Tabaco:" for="tabaco" />
+                        <p:outputLabel id="tabaco" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.tabaco)}"  style="width:60px" />
+                        
+                        <p:outputLabel value="IAM:" for="IAM" />
+                        <p:outputLabel id="IAM" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.IAM)}"  style="width:60px" />
+                        
+                        <p:outputLabel value="ACV:" for="ACV" />
+                        <p:outputLabel id="ACV" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.ACV)}"  style="width:60px" />
+                        
+                        <p:outputLabel value="Hipertrofia ventricular izquierda:" for="HVI" />
+                        <p:outputLabel id="HVI" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.HVI)}"  style="width:60px" />
+               
+                        <p:outputLabel value="IRC:" for="IRC" />
+                        <p:outputLabel id="IRC" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.IRC)}"  style="width:60px" />
+                        
+                        <p:outputLabel value="Amputación no traumática:" for="amputacion_no_traumatica" />
+                        <p:outputLabel id="amputacion_no_traumatica" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.amputacion_no_traumatica)}"  style="width:60px" />
+               
+                        <p:outputLabel value="Ceguera:" for="ceguera" />
+                        <p:outputLabel id="ceguera" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.ceguera)}"  style="width:60px" />
+                        
+                        <p:outputLabel value="Retinopatía:" for="retinopatia" />
+                        <p:outputLabel id="retinopatia" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.retinopatia)}"  style="width:60px" />
+                        
+                        <p:outputLabel value="QUALDIAB:" for="QUALDIAB" />
+                        <p:outputLabel id="QUALDIAB" value="#{utilidadesController.booleanos(atencionNutriDietoterapiaController.selected.QUALDIAB)}"  style="width:60px" />
+                        
+                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_riesgo_cardiovascular}" for="riesgo_cardiovascular" />
+                        <p:outputLabel id="riesgo_cardiovascular" value="#{atencionNutriDietoterapiaController.selected.riesgo_cardiovascular}" /> 
+                              
+                        
+                        
+                        
+                        <p:outputLabel value="Próximo control:" for="proximo_control" />
+                        <p:outputLabel   id="proximo_control" value="#{atencionNutriDietoterapiaController.selected.proximo_control}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_proximo_control}" />
+                        <p:outputLabel value="Profesional próximo:" for="profesional_control" />
+                        <p:outputLabel   id="profesional_control" value="#{atencionNutriDietoterapiaController.selected.profesional_control}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_profesional_control}" />
+                    
+                    </p:panelGrid>
+                    <p:commandButton style="margin-top: 10px!important;" styleClass="noPrintButton" value="Imprimir" ajax="false" rendered="#{atencionNutriDietoterapiaController.selected != null}">
+                        <p:printer target="panel"/>
+                    </p:commandButton>
+                </h:panelGroup>
+            </h:form>
+</html>

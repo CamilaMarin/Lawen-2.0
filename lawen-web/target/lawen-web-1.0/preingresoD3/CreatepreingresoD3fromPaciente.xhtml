@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Crear Preingreso III"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:fragment rendered="#{pacienteController.isExistPaciente(pacienteController.selected)==false}">
+                <ui:include src="/wrong.xhtml"/>
+            </ui:fragment>
+            <ui:fragment rendered="#{pacienteController.isExistPaciente(pacienteController.selected)==true}">
+                <b:row>
+                    <b:column span="12">
+                        <p:breadCrumb>
+                            <p:menuitem value="Categories" title="Inicio"  url="/faces/index.xhtml" />
+                            <p:menuitem value="PSCV Paciente Control Cardiovascular" url="/faces/paciente/PacienteToCCV.xhtml?idUsuario=#{pacienteController.selected.id}"/>
+                            <p:menuitem value="PSCV Crear Preingreso III" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                        </p:breadCrumb>
+                    </b:column>
+                </b:row>
+                <br/>
+                <b:alert severity="info" title="Registrar Preingreso 3">
+                    <br/>
+                    <h:outputLabel value="Paciente: #{pacienteController.selected.nombres_paciente } #{pacienteController.selected.apellidoPaterno_paciente} #{pacienteController.selected.apellidoMaterno_paciente}"/> 
+                    <br/>
+                    <h:outputLabel value="Rut: #{pacienteController.selected.rut_paciente}"/>
+                </b:alert>
+
+
+                <h:form id="PreingresoD3CreateForm">
+                    <h:panelGroup id="display">
+                        <p:panelGrid styleClass="col-md-12 spaceGrid" layout="grid" columns="2" rendered="#{preingresoD3Controller.prepareCreate() != null}">
+                            <p:outputLabel value="#{bundle.CreatePreingresoD1Label_pacientes}" for="pacientes" />
+                            <p:inputText  class="obligatorio" disabled="true" id="pacientes" value="#{pacienteController.selected.rut_paciente}"/> 
+                            <p:outputLabel  class="obligatorio" value="#{bundle.CreatePreingresoD3Label_dated3}" for="dated3" />
+                            <p:calendar id="dated3" pattern="dd/MM/yyyy" value="#{preingresoD3Controller.selected.dated3}" title="#{bundle.EditPreingresoD3Title_dated3}" required="true" requiredMessage="Ingrese una fecha"  showOn="button"/>
+                            <p:outputLabel value="#{bundle.CreatePreingresoD3Label_peso}" for="peso" />
+                            <p:inputText id="peso" value="#{preingresoD3Controller.selected.peso}" title="#{bundle.CreatePreingresoD3Title_peso}" />
+                            <p:outputLabel value="#{bundle.CreatePreingresoD3Label_pass1}" for="pass1" />
+                            <p:inputText id="pass2" value="#{preingresoD3Controller.selected.pass2}" title="#{bundle.CreatePreingresoD3Title_pass2}">
+                                <p:inputText id="pass1" value="#{preingresoD3Controller.selected.pass1}" title="#{bundle.CreatePreingresoD3Title_pass1}" /><h:outputText value=" / "/>
+                            </p:inputText>
+                            <p:outputLabel value="#{bundle.CreatePreingresoD3Label_pads1}" for="pads1" />
+                            <p:inputText id="pads2" value="#{preingresoD3Controller.selected.pads2}" title="#{bundle.CreatePreingresoD3Title_pads2}">
+                                <p:inputText id="pads1" value="#{preingresoD3Controller.selected.pads1}" title="#{bundle.CreatePreingresoD3Title_pads1}" /><h:outputText value=" / "/>
+                            </p:inputText>
+                            <p:outputLabel value="#{bundle.CreatePreingresoD3Label_pasp1}" for="pasp1" />
+                            <p:inputText id="pasp2" value="#{preingresoD3Controller.selected.pasp2}" title="#{bundle.CreatePreingresoD3Title_pasp2}">
+                                <p:inputText id="pasp1" value="#{preingresoD3Controller.selected.pasp1}" title="#{bundle.CreatePreingresoD3Title_pasp1}" /><h:outputText value=" / "/>
+                            </p:inputText>
+                            <p:outputLabel value="#{bundle.CreatePreingresoD3Label_padp1}" for="padp1" />
+                            <p:inputText id="padp2" value="#{preingresoD3Controller.selected.padp2}" title="#{bundle.CreatePreingresoD3Title_padp2}">
+                                <p:inputText id="padp1" value="#{preingresoD3Controller.selected.padp1}" title="#{bundle.CreatePreingresoD3Title_padp1}" /><h:outputText value=" / "/>
+                            </p:inputText>
+                            <p:outputLabel value="#{bundle.CreatePreingresoD3Label_pulso}" for="pulso" />
+                            <p:inputText id="pulso" value="#{preingresoD3Controller.selected.pulso}" title="#{bundle.CreatePreingresoD3Title_pulso}" />
+                            <p:outputLabel value="#{bundle.CreatePreingresoD3Label_observaciones}" for="observaciones" />
+                            <p:inputText id="observaciones" value="#{preingresoD3Controller.selected.observaciones}" title="#{bundle.CreatePreingresoD3Title_observaciones}" />
+                            <p:outputLabel  class="obligatorio" value="#{bundle.CreatePreingresoD3Label_tipoprograma}" for="tipoprograma" />
+                            <p:selectOneMenu id="tipoprograma" value="#{preingresoD3Controller.selected.tipoprograma}" required="true" requiredMessage="#{bundle.EditPreingresoD3RequiredMessage_tipoprograma}">
+                                <f:selectItems value="#{tipoProgramaController.itemsAvailableSelectOne}"
+                                               var="tipoprogramaItem"  itemLabel="#{tipoprogramaItem.nombre_programa}"
+                                               itemValue="#{tipoprogramaItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel  class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_profesional}" for="profesional" />
+                            <p:selectOneMenu id="profesional" value="#{preingresoD3Controller.selected.profesional}" required="true" requiredMessage="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" panelStyle="width:180px"
+                                             effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                                <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                               var="profesionalItem"
+                                               itemValue="#{profesionalItem}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <p:commandButton style="margin-right: 10px!important;" action="#{preingresoD3Controller.create(pacienteController.selected)}" value="#{bundle.Save}" update="growl" />
+                        <p:button outcome="/paciente/PacienteToCCV" value="Volver" />
+                    </h:panelGroup>
+                </h:form>
+
+
+            </ui:fragment>
+
+        </ui:define>
+    </ui:composition>
+</html>

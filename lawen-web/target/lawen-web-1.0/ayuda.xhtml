@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Ayuda y anexos"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <b:row>
+                <b:column span="12">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories"  title="Inicio" url="/faces/index.xhtml" />
+                        <p:menuitem value="Ayuda" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                    </p:breadCrumb>
+                </b:column>
+            </b:row>
+            <b:container>
+                <br/>
+                <b:alert severity="warning">Preguntas frecuentes</b:alert>
+                <p:accordionPanel multiple="true">
+                    <p:tab title="1. ¿Cómo poder ingresar un paciente al sistema?">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputText
+                                value="Seleccione paciente desde la parte superior de la página. Luego seleccione el botón crear, con eso le aparecerá una ventana solicitando los datos a ingresar del paciente. Finalmente seleccione guardar para ingresar el paciente al sistema." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="2. ¿Cómo asocio un paciente al Programa de salud cardiovascular?">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputText
+                                value="Desde el menú paciente, seleccione al paciente que desea asociar y haga clic en ver. Luego en la parte inferior de la ventana seleccione pasar al programa cardiovascular. Con esto aparecerán todas las atenciones existentes que hay en el programa de salud cardiovascular. Ahora podrá escoger la atención que desea ingresar, introduciendo los datos necesarios, y luego guardar la información ingresada. De esta forma esta asociando ese tipo de atención a un paciente." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="3. ¿Cómo asocio un paciente al Programa de salud adulto mayor?">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputText
+                                value="Desde la página de inicio, seleccione ingreso PSAM. Luego aparecerá una nueva ventana en el que deberá seleccionar la opción crear. Una vez hecho esto, podrá ingresar los datos de una atención de este tipo de programa de salud y seleccionar que paciente desea asociar." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="4. ¿Cómo puedo cambiar el estado de un paciente?">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputText
+                                value="Debe ingresar al menú de paciente y seleccionar el paciente a modificar su estado. Luego escoja la opción editar, aparecerá una ventana con todos los datos del paciente. Diríjase a estado, ahí podrá seleccionar que estado quiere asociar a ese paciente. Luego seleccione guardar." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="5. ¿Por qué no aparece la opción de generar el censo para un programa de salud?">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputText
+                                value="Sólo los usuarios con el privilegio de administrador pueden generar los censos de los programas de salud." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="6. ¿Cómo ingresar un nuevo usuario al sistema?">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputText
+                                value="Debe ingresar con un usuario con privilegios de administrador. Luego desde el menú administración, escoja usuarios. Una vez ahí seleccione crear y podrá ingresar los datos del nuevo usuario a registrar. Debe tene en cuenta que en este proceso se asignan los privilegios de usuario y que estos no podrán ser modificados posteriormente." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="7. ¿Cómo puedo obtener un archivo excel de un censo de un programa de salud?">
+                        <h:panelGrid columns="1" cellpadding="10">                
+                            <h:outputText
+                                value="Diríjase al censo en que desea generar el achivo excel. Luego haga clic sobre el ícono con la imagen de un archivo excel, al hacer clic sobre él, se generará un archivo descargable de tipo excel asociado a ese censo." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="8. ¿Cómo poder obtener un archivo pdf de las atenciones ingresadas en el sistema?">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputText
+                                value="Diríjase a la atención que desea obtener el pdf. Luego podrá ver un icono que representa un archivo pdf, al hacer clic sobre el ícono ahí generará el archivo pdf asociado a ese censo." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="9. ¿Cómo ingresar a un paciente en una atención de un profesional?">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputText
+                                value="En la página de inicio del sistema, hay una sección llamada atenciones, haga clic en la atención que desea realizar. Una vez hecho esto, aparecerá una nueva ventana, seleccione el botón crear. Ahora podrá ingresar los datos que desee registrar según el tipo de atención escogida." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="10. ¿Puedo cambiar los privilegios a un usuario?">
+                        <h:panelGrid columns="1" cellpadding="10">                
+                            <h:outputText
+                                value="No, una vez ingresado el usuario, sus privilegios no podrán ser modificados." />
+                        </h:panelGrid>
+                    </p:tab>
+                </p:accordionPanel>
+                <br/>
+                <b:alert severity="warning">Anexos</b:alert>
+                <b:row>
+                    <b:column col-xs="12" col-md="2">
+                        <b:panel look="primary">
+                            <f:facet name="heading">Anexo EFAM</f:facet>
+                            <i class="fa fa-download"></i> <a href="resources/documents/anexos/anexo_01_psam_EFAM.pdf"> Descargar</a>
+                        </b:panel>
+                    </b:column>
+                    <b:column col-xs="12" col-md="2">
+                        <b:panel look="primary">
+                            <f:facet name="heading">Anexo BARTHEL</f:facet>
+                            <i class="fa fa-download"></i> <a href="resources/documents/anexos/anexo_02_psam_BARTHEL.pdf"> Descargar</a>
+                        </b:panel>
+                    </b:column>
+                    <b:column col-xs="12" col-md="2">    
+                        <b:panel look="primary">
+                            <f:facet name="heading">Anexo YESAVAGE</f:facet>
+                            <i class="fa fa-download"></i> <a href="resources/documents/anexos/anexo_03_psam_YESAVAGE.pdf"> Descargar</a>
+                        </b:panel>
+                    </b:column>
+                    <b:column col-xs="12" col-md="2">
+                        <b:panel look="primary">
+                            <f:facet name="heading">Anexo PFEFFER</f:facet>
+                            <i class="fa fa-download"></i> <a href="resources/documents/anexos/anexo_04_psam_PFEFFER.pdf"> Descargar</a>
+                        </b:panel>
+                    </b:column>
+                    <b:column col-xs="12" col-md="2">
+                        <b:panel look="primary">
+                            <f:facet name="heading">Anexo FOLSTEIN</f:facet>
+                            <i class="fa fa-download"></i> <a href="resources/documents/anexos/anexo_05_psam_MINIMENTAL_EXTENDIDO.pdf"> Descargar</a>
+                        </b:panel>
+                    </b:column>
+                    <b:column col-xs="12" col-md="2">
+                        <b:panel look="primary">
+                            <f:facet name="heading">Anexo FAMILIAR</f:facet>
+                            <i class="fa fa-download"></i> <a href="resources/documents/anexos/anexo_06_psam_APGAR_FAMILIAR.pdf"> Descargar</a>
+                        </b:panel>
+                    </b:column>
+                </b:row>
+                <br/>
+            </b:container>
+        </ui:define>
+    </ui:composition>
+</html>

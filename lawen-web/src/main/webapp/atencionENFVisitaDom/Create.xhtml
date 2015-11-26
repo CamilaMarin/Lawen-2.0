@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AtencionENFVisitaDomCreateDlg" widgetVar="AtencionENFVisitaDomCreateDialog" width="auto" resizable="false" modal="true" height="500px" appendTo="@(body)" header="Crear Visita Domiciliaria" >
+            <h:form id="AtencionENFVisitaDomCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{atencionENFVisitaDomController.selected != null}">
+                        <p:outputLabel  class="obligatorio" value="Paciente:" for="paciente_visita" />
+                        <p:selectOneMenu id="paciente_visita" value="#{atencionENFVisitaDomController.selected.paciente_visita}" required="true" requiredMessage="Es necesario un paciente" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItems value="#{pacienteController.itemsAvailableSelectOne}"
+                                           var="paciente_visitaItem"
+                                           itemValue="#{paciente_visitaItem}"/>
+                            <p:ajax  update="edad_paciente" listener="#{atencionENFVisitaDomController.handleKeyEvent()}" />
+                        </p:selectOneMenu>
+                        <p:outputLabel  class="obligatorio" value="Profesional:" for="profesional_visita" />
+                        <p:selectOneMenu id="profesional_visita" value="#{atencionENFVisitaDomController.selected.profesional_visita}" required="true" requiredMessage="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="profesional_visitaItem"
+                                           itemValue="#{profesional_visitaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel  class="obligatorio" value="Fecha:" for="fechaVista" />
+                        <p:calendar id="fechaVista" pattern="dd/MM/yyyy" locale="es" value="#{atencionENFVisitaDomController.selected.fechaVista}" title="#{bundle.EditAtencionENFVisitaDomTitle_fechaVista}" navigator="true" yearRange="c-100:c+10" showOn="button"/>
+                        <p:outputLabel value="Edad paciente:" for="edad_paciente" />
+                        <p:inputText disabled="true" id="edad_paciente" value="#{atencionENFVisitaDomController.edad}" title="#{bundle.CreateAtencionENFVisitaDomTitle_edad_paciente}" />
+                        <p:outputLabel value="Integrantes Grupo Familiar:" for="integrantes_grupo_familiar" />
+                        <p:inputTextarea class="textAreas" rows="10" cols="25"  id="integrantes_grupo_familiar" value="#{atencionENFVisitaDomController.selected.integrantes_grupo_familiar}" title="#{bundle.CreateAtencionENFVisitaDomTitle_integrantes_grupo_familiar}" />
+                        <p:outputLabel value="Estructura Vivienda:" for="estructura_vivienda" />
+                        <p:selectOneMenu id="estructura_vivienda" value="#{atencionENFVisitaDomController.selected.estructura_vivienda}" title="#{bundle.CreateAtencionENFVisitaDomTitle_estructura_vivienda}"  >
+                            <f:selectItems value="#{dominiosController.caracteristicas_vivienda}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Hacinamiento:" for="hacinamiento" />
+                        <p:selectBooleanButton id="hacinamiento" value="#{atencionENFVisitaDomController.selected.hacinamiento}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Condiciones medio ambiente" for="condiciones_medio_ambiente" />
+                        <p:selectOneMenu id="condiciones_medio_ambiente" value="#{atencionENFVisitaDomController.selected.condiciones_medio_ambiente}" title="#{bundle.CreateAtencionENFVisitaDomTitle_condiciones_medio_ambiente}" >
+                            <f:selectItems value="#{dominiosController.caracteristicas_ambiente}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Riesgo de accidentes:" for="riesgo_accidentes" />
+                        <p:selectBooleanButton id="riesgo_accidentes" value="#{atencionENFVisitaDomController.selected.riesgo_accidentes}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Animales en casa:" for="animales_en_casa" />
+                        <p:selectBooleanButton id="animales_en_casa" value="#{atencionENFVisitaDomController.selected.animales_en_casa}" onLabel="Si" offLabel="No" style="width:60px" />                        
+                        <p:outputLabel value="Observaciones vivienda:" for="obervaciones_vivienda" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="obervaciones_vivienda" value="#{atencionENFVisitaDomController.selected.obervaciones_vivienda}" title="#{bundle.CreateAtencionENFVisitaDomTitle_obervaciones_vivienda}" />
+                        <p:outputLabel value="Situación socioeconómica:" for="situacion_socioeconomica" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="situacion_socioeconomica" value="#{atencionENFVisitaDomController.selected.situacion_socioeconomica}" title="#{bundle.CreateAtencionENFVisitaDomTitle_situacion_socioeconomica}" />
+                        <p:outputLabel value="Factores de riesgo:" for="factores_de_riesgo" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="factores_de_riesgo" value="#{atencionENFVisitaDomController.selected.factores_de_riesgo}" title="#{bundle.CreateAtencionENFVisitaDomTitle_factores_de_riesgo}" />
+                        <p:outputLabel value="Factores protectores:" for="factores_protectores" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="factores_protectores" value="#{atencionENFVisitaDomController.selected.factores_protectores}" title="#{bundle.CreateAtencionENFVisitaDomTitle_factores_protectores}" />
+                        <p:outputLabel value="Observaciones generales:" for="observaciones_generales" />
+                        <p:inputTextarea class="textAreas" rows="10" cols="20" id="observaciones_generales" value="#{atencionENFVisitaDomController.selected.observaciones_generales}" title="#{bundle.CreateAtencionENFVisitaDomTitle_observaciones_generales}" />
+                        <p:outputLabel value="Plan de acción:" for="plan_de_accion" />
+                        <p:inputTextarea class="textAreas" rows="10" cols="20" id="plan_de_accion" value="#{atencionENFVisitaDomController.selected.plan_de_accion}" title="#{bundle.CreateAtencionENFVisitaDomTitle_plan_de_accion}" />
+
+                    </p:panelGrid>
+                    <p:commandButton style="margin-top: 10px!important; margin-bottom: 10px!important;"  actionListener="#{atencionENFVisitaDomController.create(atencionENFVisitaDomController.edad)}" value="#{bundle.Save}" update="display,:AtencionENFVisitaDomListForm:datalist,:growl,:AtencionENFVisitaDomViewForm" oncomplete="handleSubmit(args,'AtencionENFVisitaDomCreateDialog');"/>
+                    <p:commandButton style="margin-left: 10px!important; margin-top: 10px!important; margin-bottom: 10px!important;" actionListener="#{atencionENFVisitaDomController.cancel()}" value="#{bundle.Cancel}" update="display,:growl,:AtencionENFVisitaDomViewForm" onclick="AtencionENFVisitaDomCreateDialog.hide()" immediate="true" />
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

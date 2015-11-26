@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AtencionGeneralAPSECreateDlg" widgetVar="AtencionGeneralAPSECreateDialog" modal="true" resizable="false" appendTo="@(body)" >
+            <f:facet name="header">
+                           Crear Atención General Apse
+            </f:facet>
+            <h:form id="AtencionGeneralAPSECreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{atencionGeneralAPSEController.selected != null}">
+                        <p:outputLabel value="Paciente:" for="paciente" />
+                        <p:selectOneMenu id="paciente" value="#{atencionGeneralAPSEController.selected.paciente_apse}"  requiredMessage="#{bundle.EditPatologiaRequiredMessage_patologia}" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItems value="#{pacienteController.itemsAvailableSelectOne}"
+                                           var="pacienteItem"
+                                           itemValue="#{pacienteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel  class="obligatorio" value="Profesional:" for="profesional_apse" />
+                        <p:selectOneMenu id="profesional_apse" value="#{atencionGeneralAPSEController.selected.profesional_apse}" required="true" requiredMessage="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="profesional_apseItem"
+                                           itemValue="#{profesional_apseItem}"/>
+                        </p:selectOneMenu>
+        
+                        
+                     
+                        <p:outputLabel  class="obligatorio" value="Fecha atención:" for="fechaAtencion" />
+                        <p:calendar id="fechaAtencion" pattern="dd/MM/yyyy" value="#{atencionGeneralAPSEController.selected.fechaAtencion}" title="#{bundle.EditAtencionGeneralAPSETitle_fechaAtencion}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                        <p:outputLabel value="Nombre:" for="nombreApse" />
+                        <p:inputText id="nombreApse" value="#{atencionGeneralAPSEController.selected.nombreApse}" title="#{bundle.CreateAtencionGeneralAPSETitle_nombreApse}" />
+                        <p:outputLabel value="Descripción:" for="descipcionApse" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="descipcionApse" value="#{atencionGeneralAPSEController.selected.descipcionApse}" title="#{bundle.CreateAtencionGeneralAPSETitle_descipcionApse}" />
+                    </p:panelGrid>
+                    <p:commandButton style="margin-top: 10px!important; margin-bottom: 10px!important;"  actionListener="#{atencionGeneralAPSEController.create}" value="#{bundle.Save}" update="display,:AtencionGeneralAPSEListForm:datalist,:growl,:AtencionGeneralAPSEViewForm" oncomplete="handleSubmit(args,'AtencionGeneralAPSECreateDialog');"/>
+                    <p:commandButton style="margin-left: 10px!important; margin-top: 10px!important; margin-bottom: 10px!important;" actionListener="#{atencionGeneralAPSEController.cancel()}" value="#{bundle.Cancel}" update="display,:growl,:AtencionGeneralAPSEViewForm"  onclick="AtencionGeneralAPSECreateDialog.hide()" immediate="true" />
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,423 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:head>
+        <h:outputStylesheet library="css" name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputScript library="js" name="js/jsfcrud.js"/>
+    </h:head>
+
+    <h:form id="ICVMedicoViewForm">
+        <h:panelGroup id="display">
+            <p:panelGrid styleClass="col-md-12 spaceGrid" layout="grid" columns="4" rendered="#{iCVMedicoController.selected != null}">
+                <p:outputLabel styleClass="fa purple-text"  value=" Ficha iCV M&eacute;dico" style="font-weight: bold; margin-top: 10px; margin-bottom: 20px; color: #43005D;"/>
+                <p:outputLabel value=" "/>
+                <p:outputLabel value=" "/>
+                <p:outputLabel value=" "/>
+                
+                <p:outputLabel class="fa fa-square purple-text" value=" Ingreso o Reingreso:"  for="ingreso_reingreso"/>
+                <p:outputLabel id="ingreso_reingreso" value="#{iCVMedicoController.selected.cartola.ingreso_reingreso}" title="Ingreso o Reingreso" />
+                
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_paciente}" for="paciente" />
+                <p:outputLabel id="paciente" value="#{iCVMedicoController.selected.cartola.paciente.toString()}"/> 
+                
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_fecha_control}" for="fecha_control" />
+                <h:outputText id="fecha_control"  value="#{iCVMedicoController.selected.cartola.fecha_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fecha_control}" >  <f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_edad_paciente}" for="edad_paciente" />
+                <p:outputLabel id="edad_paciente" value="#{iCVMedicoController.selected.cartola.edad_paciente}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_edad_paciente}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_profesional}" for="profesional" />
+                <p:outputLabel id="profesional" value="#{iCVMedicoController.selected.cartola.profesional.toString()}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaMedicoLabel_anamnesis_medico}" for="anamnesis_medico" />
+                <p:outputLabel id="anamnesis_medico" value="#{iCVMedicoController.selected.fichaMed.anamnesis_medico}" title="#{bundle.CreateFichaMedicoTitle_anamnesis_medico}" />
+                
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" HTA" />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+                <p:outputLabel class="fa fa-square purple-text" value=" HTA cedazo" for="icv_hta_cedazo" />
+                <p:outputLabel id="icv_hta_cedazo" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_hta_cedazo)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" HTA Reingreso" for="icv_hta_reingreso" />
+                <p:outputLabel id="icv_hta_reingreso" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_hta_reingreso)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" HTA Traslado" for="icv_hta_traslado" />
+                <p:outputLabel id="icv_hta_traslado" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_hta_traslado)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" HTA extratasis personales" for="icv_hta_extrasis" />
+                <p:outputLabel id="icv_hta_extrasis" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_hta_extrasis)}" />
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" DM" />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+                <p:outputLabel class="fa fa-square purple-text" value=" DM 2 Glicemias alteradas" for="icv_dm_glicemiaalt" />
+                <p:outputLabel id="icv_dm_glicemiaalt" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_dm_glicemiaalt)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" DM PTGO" for="icv_dm_ptgo" />
+                <p:outputLabel id="icv_dm_ptgo" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_dm_ptgo)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" DM Glicemia >= 200" for="icv_dm_glicemiamayor" />
+                <p:outputLabel id="icv_dm_glicemiamayor" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_dm_glicemiamayor)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" DM otros" for="icv_dm_otros" />
+                <p:outputLabel id="icv_dm_otros" value="#{iCVMedicoController.selected.fichaMed.icv_dm_otros}" />
+                
+                <p:outputLabel class="fa fa-square purple-text" value=" Antecedentes personales" for="icv_antecedentes_personales" />
+                <p:outputLabel id="icv_antecedentes_personales" value="#{iCVMedicoController.selected.fichaMed.icv_antecedentes_personales}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Antecedentes familiares" for="icv_antecedentes_familiares" />
+                <p:outputLabel id="icv_antecedentes_familiares" value="#{iCVMedicoController.selected.fichaMed.icv_antecedentes_familiares}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_peso}" for="peso" />
+                <p:outputLabel id="peso" value="#{iCVMedicoController.selected.cartola.peso}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_peso}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_talla}" for="talla" />
+                <p:outputLabel id="talla" value="#{iCVMedicoController.selected.cartola.talla}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_talla}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_imc}" for="imc" />
+                <p:outputLabel id="imc" value="#{iCVMedicoController.selected.cartola.imc}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_imc}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_diagnostico_nutricional}" for="diagnostico_nutricional" />
+                <p:outputLabel id="diagnostico_nutricional" value="#{iCVMedicoController.selected.cartola.diagnostico_nutricional}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_perimetro_cintura}" for="perimetro_cintura" />
+                <p:outputLabel id="perimetro_cintura" value="#{iCVMedicoController.selected.cartola.perimetro_cintura}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_perimetro_cintura}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Presión arterial de pie" for="pa_de_pie1" />
+                <p:outputLabel id="pa_de_pie1" value="#{iCVMedicoController.selected.cartola.pa_de_pie1}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_de_pie1}"><h:outputLabel value=" / "/>
+                <p:outputLabel id="pa_de_pie2" value="#{iCVMedicoController.selected.cartola.pa_de_pie2}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_de_pie2}" />
+                </p:outputLabel>
+                <p:outputLabel class="fa fa-square purple-text" value=" Presión arterial sentado" for="pa_sentado1" />
+                <p:outputLabel id="pa_sentado1" value="#{iCVMedicoController.selected.cartola.pa_sentado1}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_sentado1}"><h:outputLabel value=" / "/>
+                <p:outputLabel id="pa_sentado2" value="#{iCVMedicoController.selected.cartola.pa_sentado2}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_sentado2}" />
+                </p:outputLabel>
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_puslo}" for="puslo" />
+                <p:outputLabel id="puslo" value="#{iCVMedicoController.selected.cartola.puslo}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_puslo}" />
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Patologías Crónicas:" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Hipertensión:" for="hipertencion" />
+                <p:outputLabel id="hipertencion" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.paciente.hipertencion)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Diabétes:" for="diabeticop" />
+                <p:outputLabel id="diabeticop" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.paciente.diabetico)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Dislipidemia:" for="dislipidemico" />
+                <p:outputLabel id="dislipidemico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.paciente.dislipidemico)}"  style="width:60px" />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Evaluación del PIE Según riesgo ulceración:" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Riesgo Ulceración Pie:" for="estimacionRiesgoUlceracionPie" />
+                <p:outputLabel id="estimacionRiesgoUlceracionPie" value="#{iCVMedicoController.selected.cartola.estimacionRiesgoUlceracionPie}" />                  
+                <p:outputLabel class="fa fa-square purple-text" value=" Úlcera activa Pie DM:" for="ulcera_activaPieDM" />
+                <p:outputLabel id="ulcera_activaPieDM" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.ulcera_activaPieDM)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Descripción:" for="ulcera_activaPieDM_Descripcion" />
+                <p:outputLabel id="ulcera_activaPieDM_Descripcion" value="#{iCVMedicoController.selected.cartola.ulcera_activaPieDM_Descripcion}" title="ulcera_activaPieDM_Descripcion" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Atención podológica:" for="atencionpodologica" />
+                <p:outputLabel id="atencionpodologica" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.atencionPodologica)}" style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Curación Pie DM:" for="curacionPie_DM" />
+                <p:outputLabel id="curacionPie_DM" value="#{iCVMedicoController.selected.cartola.curacionPie_DM}" /> 
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Sintomatología:" />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+                <p:outputLabel class="fa fa-square purple-text" value=" Polifagia:" for="polifagia_medico" />
+                <p:outputLabel id="polifagia_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.polifagia_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Polidipsia" for="polidipsia_medico" />
+                <p:outputLabel id="polidipsia_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.polifagia_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Poliuria" for="poliuria_medico" />
+                <p:outputLabel id="poliuria_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.poliuria_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Pérdida de peso:" for="perdidaDePeso_medico" />
+                <p:outputLabel id="perdidaDePeso_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.perdidaDePeso_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Cefálea" for="cefalea_medico" />
+                <p:outputLabel id="cefalea_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.cefalea_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Mareos:" for="mareos_medico" />
+                <p:outputLabel id="mareos_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.mareos_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Tinitus" for="tinitus_medico" />
+                <p:outputLabel id="tinitus_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.tinitus_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Fotopsia:" for="fotopsia_medico" />
+                <p:outputLabel id="fotopsia_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.fotopsia_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Sincope" for="sincope_medico" />
+                <p:outputLabel id="sincope_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.sincope_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Angor:" for="angor_medico" />
+                <p:outputLabel id="angor_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.angor_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" DPN:" for="dpn_medico" />
+                <p:outputLabel id="dpn_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.polifagia_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Ortopnea:" for="ortopnea_medico" />
+                <p:outputLabel id="ortopnea_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.polifagia_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Disnea:" for="disnea_medico" />
+                <p:outputLabel id="disnea_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.polifagia_medico)}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaMedicoLabel_otros_sintomatologia_medico}" for="otros_sintomatologia_medico" />
+                <p:outputLabel id="otros_sintomatologia_medico" value="#{fichaMedicoController.selected.otros_sintomatologia_medico}"/>
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Examen fisico" />
+                <p:outputLabel value=" " />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaMedicoLabel_examenFisico_cabeza}" for="examenFisico_cabeza" />
+                <p:outputLabel id="examenFisico_cabeza" value="#{iCVMedicoController.selected.fichaMed.examenFisico_cabeza}"/>
+                
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaMedicoLabel_examenFisico_cuello}" for="examenFisico_cuello" />
+                <p:outputLabel id="examenFisico_cuello" value="#{iCVMedicoController.selected.fichaMed.examenFisico_cuello}"/>
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaMedicoLabel_examenFisico_cardiaco}" for="examenFisico_cardiaco" />
+                <p:outputLabel id="examenFisico_cardiaco" value="#{iCVMedicoController.selected.fichaMed.examenFisico_cardiaco}"/>
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaMedicoLabel_examenFisico_pulmonar}" for="examenFisico_pulmonar" />
+                <p:outputLabel id="examenFisico_pulmonar" value="#{iCVMedicoController.selected.fichaMed.examenFisico_pulmonar}"/>
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaMedicoLabel_examenFisico_abdomen}" for="examenFisico_abdomen" />
+                <p:outputLabel id="examenFisico_abdomen" value="#{iCVMedicoController.selected.fichaMed.examenFisico_abdomen}"/>
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaMedicoLabel_examenFisico_eess}" for="examenFisico_eess" />
+                <p:outputLabel id="examenFisico_eess" value="#{iCVMedicoController.selected.fichaMed.examenFisico_eess}"/>
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaMedicoLabel_examenFisico_eeii}" for="examenFisico_eeii" />
+                <p:outputLabel id="examenFisico_eeii" value="#{iCVMedicoController.selected.fichaMed.examenFisico_eeii}"/>
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_otros_examenes}" for="otros_examenes" />
+                <p:outputLabel id="otros_examenes" value="#{iCVMedicoController.selected.cartola.otros_examenes}"/>
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Fármacos:" />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_sulfonilureas_texto}" for="sulfonilureas_texto" />
+                <p:outputLabel id="sulfonilureas_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.sulfonilureas_bool)}"/>
+                <p:outputLabel id="sulfonilureas_texto" value="#{iCVMedicoController.selected.cartola.sulfonilureas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_sulfonilureas_texto}" />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_biguanidas_texto}" for="biguanidas_texto" />
+                <p:outputLabel id="biguanidas_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.biguanidas_bool)}"/>
+                <p:outputLabel id="biguanidas_texto" value="#{iCVMedicoController.selected.cartola.biguanidas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_biguanidas_texto}" />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_insulina_texto}" for="insulina_texto" />
+                <p:outputLabel id="insulina_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.insulina_bool)}"/>                        
+                <p:outputLabel id="insulina_texto" value="#{iCVMedicoController.selected.cartola.insulina_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_insulina_texto}" />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_diuereticosTiazidicos_texto}" for="diuereticosTiazidicos_texto" />
+                <p:outputLabel id="diuereticosTiazidicos_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.diuereticosTiazidicos_bool)}"/>                       
+                <p:outputLabel id="diuereticosTiazidicos_texto" value="#{iCVMedicoController.selected.cartola.diuereticosTiazidicos_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_diuereticosTiazidicos_texto}" />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_diureticosDelAsa_texto}" for="diureticosDelAsa_texto" />
+                <p:outputLabel id="diureticosDelAsa_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.diureticosDelAsa_bool)}"/>
+                <p:outputLabel id="diureticosDelAsa_texto" value="#{iCVMedicoController.selected.cartola.diureticosDelAsa_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_diureticosDelAsa_texto}" />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_deiureticosAntiAldosterona_texto}" for="deiureticosAntiAldosterona_texto" />
+                <p:outputLabel id="deiureticosAntiAldosterona_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.deiureticosAntiAldosterona_bool)}"/>
+                <p:outputLabel id="deiureticosAntiAldosterona_texto" value="#{iCVMedicoController.selected.cartola.deiureticosAntiAldosterona_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_deiureticosAntiAldosterona_texto}" />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_betaBloqueadores_texto}" for="betaBloqueadores_texto" />
+                <p:outputLabel id="betaBloqueadores_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.betaBloqueadores_bool)}"/>
+                <p:outputLabel id="betaBloqueadores_texto" value="#{iCVMedicoController.selected.cartola.betaBloqueadores_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_betaBloqueadores_texto}" />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_IECA_texto}" for="IECA_texto" />
+                <p:outputLabel id="IECA_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.IECA_bool)}"/>
+                <p:outputLabel id="IECA_texto" value="#{iCVMedicoController.selected.cartola.IECA_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_IECA_texto}" />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_ARAII_texto}" for="ARAII_texto" />
+                <p:outputLabel id="ARAII_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.ARAII_bool)}"/>
+                <p:outputLabel id="ARAII_texto" value="#{iCVMedicoController.selected.cartola.ARAII_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_ARAII_texto}" />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_calcioAntagonistas_texto}" for="calcioAntagonistas_texto" />
+                <p:outputLabel id="calcioAntagonistas_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.calcioAntagonistas_bool)}"/>
+                <p:outputLabel id="calcioAntagonistas_texto" value="#{iCVMedicoController.selected.cartola.calcioAntagonistas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_calcioAntagonistas_texto}" />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_esteatinas_texto}" for="esteatinas_texto" />
+                <p:outputLabel id="esteatinas_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.esteatinas_bool)}"/>
+                <p:outputLabel id="esteatinas_texto" value="#{iCVMedicoController.selected.cartola.esteatinas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_esteatinas_texto}" />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_fibratos_texto}" for="fibratos_texto" />
+                <p:outputLabel id="fibratos_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.fibratos_bool)}"/>
+                <p:outputLabel id="fibratos_texto" value="#{iCVMedicoController.selected.cartola.fibratos_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_fibratos_texto}" />
+                <p:outputLabel value=" " />
+                
+                <p:outputLabel class="fa fa-square purple-text" value=" Tabaco:" for="tabaco" />
+                <p:outputLabel id="tabaco" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.tabaco)}"  style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Hipertrofia ventricular izquierda:" for="HVI" />
+                <p:outputLabel id="HVI" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.HVI)}"  style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" IRC:" for="IRC" />
+                <p:outputLabel id="IRC" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.IRC)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Nefropatía Incipiente:" for="NefroIn" />
+                <p:outputLabel id="NefroIn" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.nefropatiaInciente)}" style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Amputación no traumática:" for="amputacion_no_traumatica" />
+                <p:outputLabel id="amputacion_no_traumatica" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.amputacion_no_traumatica)}"  style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Amputación diabética:" for="amputa_diabe" />
+                <p:outputLabel id="amputa_diabe" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.amputacionDiabetica)}" style="width:60px" />
+
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Ceguera:" for="ceguera" />
+                <p:outputLabel id="ceguera" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.ceguera)}"  style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" Retinopatía:" for="retinopatia" />
+                <p:outputLabel id="retinopatia" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.retinopatia)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Ceguera Post retinopatía" for="ceguera_post" />
+                <p:outputLabel id="ceguera_post" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.cegueraPostRetinopatia)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Complicación (Prevalencia)" for="Complicacion" />
+                <p:outputLabel id="Complicacion" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.complicacionPrevalencia)}" style="width:60px" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" QUALDIAB:" for="QUALDIAB" />
+                <p:outputLabel id="QUALDIAB" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.QUALDIAB)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaMedicoLabel_diagnosticos_medico}" for="diagnosticos_medico" />
+                <p:outputLabel id="diagnosticos_medico" value="#{iCVMedicoController.selected.fichaMed.diagnosticos_medico}" title="#{bundle.CreateFichaMedicoTitle_diagnosticos_medico}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Otros diagonósticos" for="icv_otros_diagnosticos" />
+                <p:outputLabel id="icv_otros_diagnosticos" value="#{iCVMedicoController.selected.fichaMed.icv_otros_diagnosticos}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_punteaje_pie_dm}" for="punteaje_pie_dm" />
+                <p:outputLabel id="punteaje_pie_dm" value="#{iCVMedicoController.selected.cartola.punteaje_pie_dm}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_punteaje_pie_dm}" />
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Exámenes:" />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_glicemia_estado}" for="glicemia_estado" />
+                <p:outputLabel id="glicemia_estado" value="#{iCVMedicoController.selected.cartola.glicemia_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_glicemica_valor}" for="glicemica_valor" />
+                <p:outputLabel id="glicemica_valor" value="#{iCVMedicoController.selected.cartola.glicemica_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_glicemica_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_estado}" for="hba1C_estado" />
+                <p:outputLabel id="hba1C_estado" value="#{iCVMedicoController.selected.cartola.hba1C_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_valor}" for="hba1C_valor" />
+                <p:outputLabel id="hba1C_valor" value="#{iCVMedicoController.selected.cartola.hba1C_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_hba1C_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_estado}" for="colesterolTotal_estado" />
+                <p:outputLabel id="colesterolTotal_estado" value="#{iCVMedicoController.selected.cartola.colesterolTotal_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_valor}" for="colesterolTotal_valor" />
+                <p:outputLabel id="colesterolTotal_valor" value="#{iCVMedicoController.selected.cartola.colesterolTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolTotal_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_estado}" for="colesterolLDL_estado" />
+                <p:outputLabel id="colesterolLDL_estado" value="#{iCVMedicoController.selected.cartola.colesterolLDL_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_valor}" for="colesterolLDL_valor" />
+                <p:outputLabel id="colesterolLDL_valor" value="#{iCVMedicoController.selected.cartola.colesterolLDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolLDL_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_estado}" for="colesterolHDL_estado" />
+                <p:outputLabel id="colesterolHDL_estado" value="#{iCVMedicoController.selected.cartola.colesterolHDL_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_valor}" for="colesterolHDL_valor" />
+                <p:outputLabel id="colesterolHDL_valor" value="#{iCVMedicoController.selected.cartola.colesterolHDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolHDL_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_estado}" for="trigliceridos_estado" />
+                <p:outputLabel id="trigliceridos_estado" value="#{iCVMedicoController.selected.cartola.trigliceridos_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_valor}" for="trigliceridos_valor" />
+                <p:outputLabel id="trigliceridos_valor" value="#{iCVMedicoController.selected.cartola.trigliceridos_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_trigliceridos_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_estado}" for="bilirrubinaTotal_estado" />
+                <p:outputLabel id="bilirrubinaTotal_estado" value="#{iCVMedicoController.selected.cartola.bilirrubinaTotal_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_valor}" for="bilirrubinaTotal_valor" />
+                <p:outputLabel id="bilirrubinaTotal_valor" value="#{iCVMedicoController.selected.cartola.bilirrubinaTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaTotal_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_estado}" for="bilirrubinaDirecta_estado" />
+                <p:outputLabel id="bilirrubinaDirecta_estado" value="#{iCVMedicoController.selected.cartola.bilirrubinaDirecta_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_valor}" for="bilirrubinaDirecta_valor" />
+                <p:outputLabel id="bilirrubinaDirecta_valor" value="#{iCVMedicoController.selected.cartola.bilirrubinaDirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaDirecta_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_estado}" for="bilirrubinaIndirecta_estado" />
+                <p:outputLabel id="bilirrubinaIndirecta_estado" value="#{iCVMedicoController.selected.cartola.bilirrubinaIndirecta_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_valor}" for="bilirrubinaIndirecta_valor" />
+                <p:outputLabel id="bilirrubinaIndirecta_valor" value="#{iCVMedicoController.selected.cartola.bilirrubinaIndirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaIndirecta_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_estado}" for="creatinina_estado" />
+                <p:outputLabel id="creatinina_estado" value="#{iCVMedicoController.selected.cartola.creatinina_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_valor}" for="creatinina_valor" />
+                <p:outputLabel id="creatinina_valor" value="#{iCVMedicoController.selected.cartola.creatinina_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_creatinina_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_BUN_estado}" for="BUN_estado" />
+                <p:outputLabel id="BUN_estado" value="#{iCVMedicoController.selected.cartola.BUN_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_BUN_valor}" for="BUN_valor" />
+                <p:outputLabel id="BUN_valor" value="#{iCVMedicoController.selected.cartola.BUN_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_BUN_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_estado}" for="MDRD_estado" />
+                <p:outputLabel id="MDRD_estado" value="#{iCVMedicoController.selected.cartola.MDRD_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_valor}" for="MDRD_valor" />
+                <p:outputLabel id="MDRD_valor" value="#{iCVMedicoController.selected.cartola.MDRD_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_MDRD_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_estado}" for="microALB24H_estado" />
+                <p:outputLabel id="microALB24H_estado" value="#{iCVMedicoController.selected.cartola.microALB24H_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_valor}" for="microALB24H_valor" />
+                <p:outputLabel id="microALB24H_valor" value="#{iCVMedicoController.selected.cartola.microALB24H_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_microALB24H_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_estado}" for="clearenceCrea_estado" />
+                <p:outputLabel id="clearenceCrea_estado" value="#{iCVMedicoController.selected.cartola.clearenceCrea_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_valor}" for="clearenceCrea_valor" />
+                <p:outputLabel id="clearenceCrea_valor" value="#{iCVMedicoController.selected.cartola.clearenceCrea_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_clearenceCrea_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_estado}" for="naPositivo_estado" />
+                <p:outputLabel id="naPositivo_estado" value="#{iCVMedicoController.selected.cartola.naPositivo_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_valor}" for="naPositivo_valor" />
+                <p:outputLabel id="naPositivo_valor" value="#{iCVMedicoController.selected.cartola.naPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_naPositivo_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_estado}" for="KPositivo_estado" />
+                <p:outputLabel id="KPositivo_estado" value="#{iCVMedicoController.selected.cartola.KPositivo_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_valor}" for="KPositivo_valor" />
+                <p:outputLabel id="KPositivo_valor" value="#{iCVMedicoController.selected.cartola.KPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_KPositivo_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_estado}" for="CLNegativo_estado" />
+                <p:outputLabel id="CLNegativo_estado" value="#{iCVMedicoController.selected.cartola.CLNegativo_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_valor}" for="CLNegativo_valor" />
+                <p:outputLabel id="CLNegativo_valor" value="#{iCVMedicoController.selected.cartola.CLNegativo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_CLNegativo_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_GPT_estado}" for="GPT_estado" />
+                <p:outputLabel id="GPT_estado" value="#{iCVMedicoController.selected.cartola.GPT_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_GPT_valor}" for="GPT_valor" />
+                <p:outputLabel id="GPT_valor" value="#{iCVMedicoController.selected.cartola.GPT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GPT_valor}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_GOT_estado}" for="GOT_estado" />
+                <p:outputLabel id="GOT_estado" value="#{iCVMedicoController.selected.cartola.GOT_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_GOT_valor}" for="GOT_valor" />
+                <p:outputLabel id="GOT_valor" value="#{iCVMedicoController.selected.cartola.GOT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GOT_valor}" />
+
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Exámenes segunda parte:" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+                <p:outputLabel value="" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_estado}" for="orocultivo_estado" />
+                <p:outputLabel id="orocultivo_estado" value="#{iCVMedicoController.selected.cartola.orocultivo_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_ejecucion}" for="orocultivo_ejecucion" />
+                <p:outputLabel id="orocultivo_ejecucion" value="#{iCVMedicoController.selected.cartola.orocultivo_ejecucion}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_ECG_estado}" for="ECG_estado" />
+                <p:outputLabel id="ECG_estado" value="#{iCVMedicoController.selected.cartola.ECG_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_ECG_ejecucion}" for="ECG_ejecucion" />
+                <p:outputLabel id="ECG_ejecucion" value="#{iCVMedicoController.selected.cartola.ECG_ejecucion}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_estado}" for="fondoOJO_estado" />
+                <p:outputLabel id="fondoOJO_estado" value="#{iCVMedicoController.selected.cartola.fondoOJO_estado}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_ejecucion}" for="fondoOJO_ejecucion" />
+                <p:outputLabel id="fondoOJO_ejecucion" value="#{iCVMedicoController.selected.cartola.fondoOJO_ejecucion}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_estado}" for="orinaCompleta_estado" />
+                <p:outputLabel id="orinaCompleta_estado" value="#{iCVMedicoController.selected.cartola.orinaCompleta_estado}" />
+
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_ejecucion}" for="orinaCompleta_ejecucion" />
+                <p:outputLabel id="orinaCompleta_ejecucion" value="#{iCVMedicoController.selected.cartola.orinaCompleta_ejecucion}" />
+                
+                <p:outputLabel value="#{bundle.CreateFichaMedicoLabel_otrasIndicaciones_medico}" for="otrasIndicaciones_medico" />
+                <p:outputLabel id="otrasIndicaciones_medico" value="#{fichaMedicoController.selected.otrasIndicaciones_medico}" title="#{bundle.CreateFichaMedicoTitle_otrasIndicaciones_medico}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateFichaMedicoLabel_referencias_medico}" for="referencias_medico" />
+                <p:outputLabel id="referencias_medico" value="#{iCVMedicoController.selected.fichaMed.referencias_medico}" title="#{bundle.CreateFichaMedicoTitle_referencias_medico}" />
+                <p:outputLabel styleClass="fa  fa-stethoscope purple-text" class="subTitleView" value=" Antecedentes riesgo CCV" />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+                <p:outputLabel value=" " />
+                <p:outputLabel class="fa fa-square purple-text" value=" Prediabético:" for="prediabetico" />
+                <p:outputLabel id="prediabetico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.paciente.prediabetes)}" style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" IAM:" for="IAM" />
+                <p:outputLabel id="IAM" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.IAM)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" ACV:" for="ACV" />
+                <p:outputLabel id="ACV" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.ACV)}"  style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_riesgo_cardiovascular}" for="riesgo_cardiovascular" />
+                <p:outputLabel id="riesgo_cardiovascular" value="#{iCVMedicoController.selected.cartola.riesgo_cardiovascular}" />
+                <p:outputLabel value="Enfermedad Renal Crónica" for="erc" />
+                <p:outputLabel id="erc" value="#{iCVMedicoController.selected.cartola.det_Prev_ERC}" />
+                <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaSeguimientoCCVLabel_proximo_control}" for="proximo_control" />
+                <p:outputLabel id="proximo_control"  value="#{iCVMedicoController.selected.cartola.proximo_control}"/>
+            </p:panelGrid>
+        </h:panelGroup>
+    </h:form>
+
+</html>
+

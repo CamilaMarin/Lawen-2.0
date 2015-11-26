@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:body>
+        <br/>
+        <b:alert severity="warning">SECCIÓN 65 Y MÁS AÑOS CENSO NO-REM PCCV </b:alert>
+        <h:form id="CensoPCCVnoREMFormC" >
+            <p:panelGrid columns="0">
+                <h:panelGroup id="display" class="container">
+                    <td>
+                        <p:panelGrid columns="1" columnClasses="colClassCondiciones" >
+                            <h:outputLabel value=""  style="height: 6px;" />
+                            <h:outputLabel value=""  style="height: 6px;" />
+                            <h:outputLabel value="PBC Censo " style="height: 6px;"  />
+                            <h:outputLabel value="Fallecidos" style="height: 6px;" />
+                            <h:outputLabel value="Perfil lipídico" style="height: 6px;" />
+                            <h:outputLabel value="Fondo de ojo" style="height: 6px;" />
+                            <h:outputLabel value="Atención podológica" style="height: 6px;" />
+                            <h:outputLabel value="HbA1C 4 en año" style="height: 6px;" />
+                            <h:outputLabel value="HbA1C 3 en año" style="height: 6px;" />
+                            <h:outputLabel value="HbA1C 2 en año" style="height: 6px;" />
+                            <h:outputLabel value="HbA1C 1 en año" style="height: 6px;" />
+                            <h:outputLabel value="Creatinina" style="height: 6px;" />
+                            <h:outputLabel value="Potasio plasmático" style="height: 6px;" />
+                            <h:outputLabel value="Microalbuminuria" style="height: 6px;" />
+                            <h:outputLabel value="Electrocardiograma" style="height: 6px;" />
+                            <h:outputLabel value="Complicación(Prevalencia)" style="height: 6px;" />
+                            <h:outputLabel value="Retinopatía diabética" style="height: 6px;" />
+                            <h:outputLabel value="Infarto AG. del miocardio" style="height: 6px;" />
+                            <h:outputLabel value="Accidente vascular encefálico" style="height: 6px;" />
+                            <h:outputLabel value="Ceguera post retinopatía DBT" style="height: 6px;" />
+                            <h:outputLabel value="Hipertrofia ventricular izquierda" style="height: 6px;" />
+                            <h:outputLabel value="Nefropatía incipiente" style="height: 6px;" />
+                            <h:outputLabel value="Insuficiencia renal crónica terminal" style="height: 6px;" />
+                            <h:outputLabel value="Pie diabético(con evaluación)" style="height: 6px;" />
+                            <h:outputLabel value="Pie diabético con ulcera" style="height: 6px;" />
+                            <h:outputLabel value="Pie diabético(manejo avanzado de herida)" style="height: 6px;" />
+                            <h:outputLabel value="Amputación diabética" style="height: 6px;" />
+                            <h:outputLabel value="Pre diabéticos" style="height: 6px;" />
+
+                        </p:panelGrid>
+                    </td>
+                    <ui:repeat value="#{consultasCensoCCVnoREM.pacientes65ymas}" var="t">
+                        <td>
+                            <p:panelGrid columns="1"  style="text-align: center;">
+                                <h:outputLabel value="#{t.nombreColumna2}" style="height: 6px;" />
+                                <h:outputLabel value="#{t.nombreColumna}" style="height: 6px;" />
+                                <h:outputLabel value="#{t.pbc }" style="height: 6px;" /> 
+                                <h:outputLabel value="#{t.fallecidos}" style="height: 6px;" />
+                                <h:outputLabel value="#{t.perfilLipidico}" style="height: 6px;" />
+                                <h:outputLabel value="#{t.fondoOjo}" style="height: 6px;" />
+                                <h:outputLabel value="#{t.atencionPodologica}" style="height: 6px;"  />
+                                <h:outputLabel value="#{t.hba1c4}" style="height: 6px;"  />
+                                <h:outputLabel value="#{t.hba1c3}" style="height: 6px;"  />
+                                <h:outputLabel value="#{t.hba1c2}" style="height: 6px;"  />
+                                <h:outputLabel value="#{t.hba1c1}" style="height: 6px;"  />
+                                <h:outputLabel value="#{t.creatinina}" style="height: 6px;"  />
+                                <h:outputLabel value="#{t.microalbuminuria}" style="height: 6px;"   />
+                                <h:outputLabel value="#{t.potasioPlasmatico}" style="height: 6px;"   />
+                                <h:outputLabel value="#{t.ecg}" style="height: 6px;"  /> 
+                                <h:outputLabel value="#{t.complicacion}" style="height: 6px;"  />
+                                <h:outputLabel value="#{t.retinopatiaDiabetica}" style="height: 6px;"  />
+                                <h:outputLabel value="#{t.infarto}" style="height: 6px;"  />
+                                <h:outputLabel value="#{t.accidenteVascular}" style="height: 6px;"  />
+                                <h:outputLabel value="#{t.cegueraPost}" style="height: 6px;" />
+                                <h:outputLabel value="#{t.hipertrofia}" style="height: 6px;" />
+                                <h:outputLabel value="#{t.nefropatia}" style="height: 6px;" />
+                                <h:outputLabel value="#{t.insuficienciaRenal} " style="height: 6px;" />
+                                <h:outputLabel value="#{t.pieDiabeticoEvaluacion}" style="height: 6px;" />
+                                <h:outputLabel value="#{t.pieDiabeticoUlcera}" style="height: 6px;" />
+                                <h:outputLabel value="#{t.pieDiabeticoHerida}" style="height: 6px;" />
+                                <h:outputLabel value="#{t.amputacionDiabetica}" style="height: 6px;" />
+                                <h:outputLabel value="#{t.preDiabeticos}" style="height: 6px;" />
+                            </p:panelGrid>
+                        </td>
+                    </ui:repeat>
+                </h:panelGroup>
+            </p:panelGrid>
+            <br/>
+
+
+        </h:form>
+    </h:body>
+</html>

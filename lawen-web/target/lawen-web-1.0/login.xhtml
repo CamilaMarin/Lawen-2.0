@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>lawén - Sistema gestión de salud</title>
+        <h:outputStylesheet name="css/style.css"/>
+    </h:head>
+    <h:body>
+        <b:container id="headerContainer">
+            <b:row id="headerTop" styleClass="show-grid">
+                <b:column id="logoLawen" span="9"></b:column>
+                <b:column id="topRight" span="3">
+                    <b:row>
+                        <b:column id="blu1" span="12">
+                            <h:link outcome="login" value="Iniciar sesion" />
+                        </b:column>
+                        <b:column id="blu2" span="12">
+                            <h:outputText value="+56 02 2842 5836 "/><b:iconAwesome name="phone" flip="H"/>
+                            <br />
+                            <h:outputText value="+56 02 2842 5837 "/><b:iconAwesome name="phone" flip="H"/>
+                            <br />
+                            <h:outputText value="centro@cecofrapanui.cl "/><b:iconAwesome name="envelope-o"/>
+                        </b:column>
+                    </b:row>
+                </b:column>
+            </b:row>
+        </b:container>
+
+        <b:navBar id="menu" brand="CESFAM Carol Urzua - CECOF Rapa Nui" brandHref="#">
+            <b:navbarLinks pull="right">
+            </b:navbarLinks>
+        </b:navBar>
+
+        <b:container>
+            <h:outputText value="Lugar de acceso restringido, s&oacute;lo disponible para el personal autorizado."/><br />
+            <h:form styleClass="navbar-form">
+                <b:inputText class="formLogin" placeholder="Usuario" fieldSize="" value="#{loginController.username}"/>
+                <br />
+                <b:inputSecret class="formLogin" placeholder="Contraseña" fieldSize="" value="#{loginController.password}"/>
+                <br />
+                <b:commandButton class="botonForm" action="/faces/index.xhtml" value="Volver" look="warning" icon="chevron-left" iconAlign="left"/>
+                <b:commandButton class="botonForm" action="#{loginController.login()}" value="Acceder" look="success" icon="chevron-right" iconAlign="right" />
+            </h:form>
+        </b:container>
+
+        <b:container>
+            <b:row>
+                <b:column id="logoUdes" span="3">
+                    <h:graphicImage class="img-responsive diinf" value="resources/images/logo-udes.png"/>
+                </b:column>
+                <b:column id="logoDiinf" span="2" offset="6">
+                    <h:graphicImage class="img-responsive" value="resources/images/logo-diinf.png"/>
+                </b:column>
+            </b:row>
+            <b:column id="textFooter" span="12">
+                <h:outputText value="Copyright ©2015 Proyecto de Ingeniería de Software, todos los derechos reservados."/>
+            </b:column>
+        </b:container>
+
+    </h:body>
+</html>

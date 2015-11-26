@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputStylesheet name="css/progressBar.css"/>
+        <h:outputStylesheet name="css/alertify.default.css"/>
+        <h:outputStylesheet name="css/alertify.core.css"/>
+        <h:outputScript library="js" name="alertify.min.js" />
+        <h:outputScript library="js" name="calendar_es.js" />
+        <h:outputScript library="js" name="progressBar.js" />
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="2000" />
+
+        <b:container id="headerContainer">
+            <b:row id="headerTop" styleClass="show-grid">
+                <b:column span="4">
+                    <a id="logoLawen" href="/lawen-web/faces/index.xhtml"></a>
+                </b:column>
+                <b:column id="topRight" span="8">
+                    <b:row>
+                        <b:column id="blu1" span="12">
+                            <h:form rendered="#{!loginController.verifyLogin()}"  styleClass="navbar-form formRight">
+                                <b:inputText id="userb" styleClass="formLogin" placeholder="Usuario" fieldSize="sm" value="#{loginController.username}"/>
+                                <b:inputSecret id="passb" styleClass="formLogin" placeholder="Contraseña" fieldSize="sm" value="#{loginController.password}"/>
+                                <b:commandButton class="botonForm" styleClass="botonForm" action="#{loginController.login()}" size="small" value="Acceder" look="success"/>
+                            </h:form>
+                            <h:form rendered="#{loginController.verifyLogin()}" styleClass="navbar-form formRight">
+                                <h:outputText styleClass="hola col-md-8" value="BIENVENIDO #{usuarioController.FindUsuariobyRut(request.remoteUser).toString()}"/>
+                                <b:commandButton id="nada" class="botonForm" styleClass="botonForm botonCerrar" action="#{loginController.logout()}" size="small" value="Cerrar sesi&oacute;n" look="danger"/>
+                            </h:form>
+                        </b:column>
+                        <b:column id="blu2" span="4" offset="8">
+                            <h:outputText value="+56 02 2842 5836 "/><b:iconAwesome name="phone" flip="H"/>
+                            <br />
+                            <h:outputText value="+56 02 2842 5837 "/><b:iconAwesome name="phone" flip="H"/>
+                            <br />
+                            <h:outputText value="centro@cecosfrapanui.cl "/><b:iconAwesome name="envelope-o"/>
+                        </b:column>
+                    </b:row>
+                </b:column>
+            </b:row>
+        </b:container>
+
+        <b:navBar id="menu" brand="CESFAM Carol Urz&uacute;a - CECOSF Rapa Nui" brandHref="/lawen-web/faces/index.xhtml">
+            <b:navbarLinks pull="right">
+                <b:navLink outcome="/paciente/List.xhtml" value="Pacientes"  rendered="#{loginController.verifyLogin() }"></b:navLink>
+                <b:dropMenu value="Programas" rendered="false" >
+                    <b:navLink header="PSCV -  Preingresos"></b:navLink>
+                    <b:navLink outcome="/preingresoD1/List" value="Preingreso I"></b:navLink>
+                    <b:navLink outcome="/preingresoD2/List" value="Preingreso II"></b:navLink>
+                    <b:navLink outcome="/preingresoD3/List" value="Preingreso III "></b:navLink>
+                    <b:navLink header="PSCV - Ingresos"></b:navLink>
+                    <b:navLink outcome="/iCVMedico/List" value="Ingreso M&eacute;dico"></b:navLink>
+                    <b:navLink outcome="/iCVNutricionista/List" value="Ingreso Nutricionista"></b:navLink>
+                    <b:navLink header="PSCV - Control Cardiovascular"></b:navLink>
+                    <b:navLink outcome="/cCVMedico/List" value="CCV Medico"></b:navLink>
+                    <b:navLink outcome="/cCVNutricionista/List" value="CCV Nutricionista"></b:navLink>
+                    <b:navLink outcome="/cCVEnfermero/List" value="CCV Enfermero"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <b:navLink outcome="/ingresoPSAM/List.xhtml" value="PSAM"></b:navLink>
+                    <b:navLink outcome="" value="Otros"></b:navLink>
+                    <b:navLink header="Ingresos"></b:navLink>
+                </b:dropMenu>
+                <b:dropMenu value="Administraci&oacute;n" rendered="#{loginController.verifyLogin() and tipoUsuarioController.isAdmin(request.remoteUser)==true     }">
+                    <b:navLink outcome="/usuario/List" value="Usuarios" rendered="#{loginController.verifyLogin()}"></b:navLink>
+                    <b:navLink outcome="/tipoPatologia/List.xhtml" value="Patolog&iacute;as"  rendered="#{loginController.verifyLogin()}"></b:navLink>
+                    <b:navLink outcome="/tipoPrograma/List.xhtml" value="Programas"  rendered="#{loginController.verifyLogin()}"></b:navLink>
+                </b:dropMenu>
+                <b:navLink outcome="/programasdesalud.xhtml" value="Programas de Salud"></b:navLink>
+                <b:navLink outcome="/directorio.xhtml" value="Directorio Profesional"></b:navLink>
+                <b:navLink outcome="/ayuda.xhtml" value="Ayuda"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>               
+
+        <b:container>   
+            <ui:insert name="body"/> 
+        </b:container> 
+        <b:container>
+            <b:row>
+                <b:column id="logoUdes" span="3">
+                    <h:graphicImage class="img-responsive diinf" value="/resources/images/logo-udes.png"/>
+                </b:column>
+                <b:column id="logoDiinf" span="2" offset="6">
+                    <h:graphicImage class="img-responsive" value="/resources/images/logo-diinf.png"/>
+                </b:column>
+            </b:row>
+            <b:column id="textFooter" span="12">
+                <h:outputText value="Copyright ©2015 Proyecto de Ingeniería de Software, todos los derechos reservados."/>
+            </b:column>
+        </b:container>        
+
+    </h:body>
+
+</html>

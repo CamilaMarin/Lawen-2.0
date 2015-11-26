@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{consultasCenso.init()}" />
+        </f:metadata>
+        <ui:define name="title">
+            <h:outputText value="REM-P POBLACIÓN DE CONTROL PROGRAMA DE SALUD ADULTO MAYOR"></h:outputText>
+        </ui:define>
+        <h:outputText  value="REM-P POBLACIÓN DE CONTROL PROGRAMA DE SALUD ADULTO MAYOR" style="font-weight:bold" ></h:outputText>
+        <ui:define name="body"  >
+            <b:row>
+                <b:column span="11">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories" title="Inicio"  url="/faces/index.xhtml" />
+                        <p:menuitem value="PSAM Censo" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                    </p:breadCrumb>
+                </b:column>
+                <b:column span="1">
+                    <button id="btrigger" title="Ayuda"  class="btn btn-info btn-xs" data-target="#amodal" data-toggle="modal"><span class="fa fa-question" aria-hidden="true"></span></button>
+                    <b:modal id="amodal" title="Modulo Ayuda - Sección PSAM Censo">
+                        <p>
+                            En esta sección podrá ver el censo generado a partir de las atenciones ingresadas del programa de salud del adulto mayor. <br/>
+                            Este censo consta de 7 secciones que son las siguientes:<br/><br/>
+                            <b>Sección A:</b> Población en control por condición de funcionalidad.<br/>
+                            <b>Sección A.1:</b> Existencia de población en control en programa “más adultos mayores autovalentes” por condición de funcionalidad.<br/>
+                            <b>Sección B:</b> Población bajo control por estado nutricional.<br/>
+                            <b>Sección C:</b> Adultos mayores con sospecha de maltrato.<br/>
+                            <b>Sección D:</b> Adultos mayores en actividad física.<br/>
+                            <b>Sección E:</b> Población de adultos mayores institucionalizados.<br/>
+                            <b>Sección F:</b> Adultos mayores con riesgo de caídas.<br/>
+                            <br/>
+                            Además  de las secciones nombradas anteriormente, existen otras dos más que son para visualizar los pacientes que no han sido censados, en el cual señala la razón de su exclusión. 
+                            Además de una sección para generar un archivo Excel de los datos del censo.
+                        </p>
+                        <f:facet name="footer">
+                            <b:button value="cerrar" dismiss="modal" onclick="return false;"/>
+                        </f:facet>
+                    </b:modal>
+                </b:column>
+            </b:row>
+            <br/>
+            <b:alert severity="success">Censo realizado en: <h:outputText value="#{utilidadesController.fechaSistema}" />
+            </b:alert>  
+            <p:tabView id="tab"  >
+                <p:tab title="Secci&oacute;n A" >
+                    <ui:include src="/censoPSAM/censoPSAMResultadoSeccionA.xhtml" />    
+                </p:tab>
+                <p:tab title="Secci&oacute;n A1" >
+                    <ui:include src="/censoPSAM/censoPSAMResultadoSeccionA1.xhtml" />    
+                </p:tab>
+                <p:tab title="Secci&oacute;n B">
+                    <ui:include src="/censoPSAM/censoPSAMResultadoSeccionB.xhtml"/>    
+                </p:tab>
+                <p:tab title="Secci&oacute;n C">
+                    <ui:include src="/censoPSAM/censoPSAMResultadoSeccionC.xhtml"/>    
+                </p:tab>
+                <p:tab title="Secci&oacute;n D">
+                    <ui:include src="/censoPSAM/censoPSAMResultadoSeccionD.xhtml"/>    
+                </p:tab>
+                <p:tab title="Secci&oacute;n E">
+                    <ui:include src="/censoPSAM/censoPSAMResultadoSeccionE.xhtml"/>    
+                </p:tab><p:tab title="Secci&oacute;n F">
+                    <ui:include src="/censoPSAM/censoPSAMResultadoSeccionF.xhtml"/>    
+                </p:tab>
+                <p:tab title="Pacientes no censados">
+                    <ui:include src="/censoPSAM/censoPSAMResultadoNocensados.xhtml"/>    
+                </p:tab>
+                <p:tab title="Exportar a excel" >     
+                    <h:form>
+                        <b:alert severity="warning">
+                            Descargar archivo:<p:spacer width="10" height="10" />                                                        
+                            <h:commandLink actionListener="#{documentsController.preProcessExcel()}">
+                                <h:graphicImage title="Descargar archivo excel" url="/resources/images/excel.png"/>
+                            </h:commandLink>
+                        </b:alert>
+                    </h:form>    
+                </p:tab>
+            </p:tabView>
+        </ui:define>
+    </ui:composition>
+</html>

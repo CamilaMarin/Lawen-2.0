@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioViewDlg" widgetVar="UsuarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUsuarioTitle}">
+            <h:form id="UsuarioViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
+                         <h:outputText value="Rol"/>
+                        <h:outputText value="#{usuarioController.selected.tipousuario.rol}" title="Rol"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_rut}"/>
+                        <h:outputText value="#{usuarioController.selected.rut}" title="#{bundle.ViewUsuarioTitle_rut}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_nombres_usuario}"/>
+                        <h:outputText value="#{usuarioController.selected.nombres_usuario}" title="#{bundle.ViewUsuarioTitle_nombres_usuario}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_apellidoPaterno_usuario}"/>
+                        <h:outputText value="#{usuarioController.selected.apellidoPaterno_usuario}" title="#{bundle.ViewUsuarioTitle_apellidoPaterno_usuario}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_apellidoMaterno_usuario}"/>
+                        <h:outputText value="#{usuarioController.selected.apellidoMaterno_usuario}" title="#{bundle.ViewUsuarioTitle_apellidoMaterno_usuario}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_telefono1}"/>
+                        <h:outputText value="#{usuarioController.selected.telefono1}" title="#{bundle.ViewUsuarioTitle_telefono1}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_telefono2}"/>
+                        <h:outputText value="#{usuarioController.selected.telefono2}" title="#{bundle.ViewUsuarioTitle_telefono2}"/>
+                        <h:outputText value="#{bundle.ViewUsuarioLabel_correo}"/>
+                        <h:outputText value="#{usuarioController.selected.correo}" title="#{bundle.ViewUsuarioTitle_correo}"/>
+                        <h:outputText value="Estado"/>
+                        <h:outputText value="#{usuarioController.HabilitadoSTring(usuarioController.selected.habilitado)}" title="Estadp"/>
+                    </p:panelGrid>
+                    <h:outputText rendered="#{usuarioController.selected==null}" value="Debe seleccionar un usuario" />
+                    <br/>
+                    <p:commandButton value="#{bundle.Close}" onclick="UsuarioViewDialog.hide()"/>
+                </h:panelGroup>
+                
+            </h:form>
+            
+        </p:dialog>
+
+    </ui:composition>
+</html>

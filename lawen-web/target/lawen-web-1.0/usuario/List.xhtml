@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListUsuarioTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+
+            <b:row>
+                <b:column span="11">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories"  title="Inicio"  url="/faces/index.xhtml" />
+                        <p:menuitem value="Usuarios" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                    </p:breadCrumb>
+                </b:column>
+                <b:column span="1" offset="11">
+                    <button id="btrigger"  title="Ayuda" class="btn btn-info btn-xs" data-target="#amodal" data-toggle="modal"><span class="fa fa-question" aria-hidden="true"></span></button>
+                    <b:modal id="amodal" title="Modulo Ayuda - Sección Usuarios">
+                        <p>
+                            En esta sección podrá crear, ver y editar usuarios en el sistema.<br/><br/>
+
+                            Para poder crear un usuario haga clic en el botón crear.<br/>
+
+                            Para poder visualizar un usuario, seleccione a un usuario y haga clic en el botón ver.<br/>
+
+                            Para poder editar información de un usuario, seleccione a un usuario, y haga clic en el botón editar. No puede modificar en esta opción la contraseña.<br/>
+
+                            Para poder modificar la contraseña de un usuario, seleccione a un usuario, y haga clic en e botón cambiar password.<br/>
+                            <br/>
+                            <b>Crear usuario</b><br/>
+
+                            Para crear un usuario, necesita por lo menos llenar los siguientes campos:<br/>
+
+                            Nombres, Apellido paterno, Rut, 
+                            Contraseña de 5 caracteres<br/>
+                            Confirmar la contraseña<br/>
+                        </p>
+                        <f:facet name="footer">
+                            <b:button value="cerrar" dismiss="modal" onclick="return false;"/>
+                        </f:facet>
+                    </b:modal>
+                </b:column>
+            </b:row>           
+            <br/>
+            <h:form id="UsuarioListForm">
+                <p:dataTable id="datalist" value="#{usuarioController.items}" var="item" reflow="true"
+                             selectionMode="single" selection="#{usuarioController.selected}"
+                             paginator="true" paginatorPosition="bottom"
+                             rowKey="#{item.id}"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             emptyMessage="Sin usuarios registrados."
+                             >
+                    <p:ajax event="rowSelect"   update="createButton viewButton editButton editpassButton"/>
+                    <p:ajax event="rowUnselect" update="createButton viewButton editButton editpassButton"/>
+                    <p:column filterBy="#{item.rut}" headerText="rut" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Rut"/>
+                        </f:facet>
+                        <h:outputText value="#{item.rut}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombres"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nombres_usuario}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Apellido Paterno"/>
+                        </f:facet>
+                        <h:outputText value="#{item.apellidoPaterno_usuario}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Apellido Materno"/>
+                        </f:facet>
+                        <h:outputText value="#{item.apellidoMaterno_usuario}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Rol"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tipousuario.rol}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Habilitado"/>
+                        </f:facet>
+                        <h:outputText value="#{usuarioController.HabilitadoSTring(item.habilitado)}"/>
+                    </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{usuarioController.prepareCreate}" update=":UsuarioCreateForm" oncomplete="PF('UsuarioCreateDialog').show()"/>
+                        <p:commandButton  id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":UsuarioViewForm" oncomplete="PF('UsuarioViewDialog').show()" disabled="#{empty usuarioController.selected}"/>
+                        <p:commandButton  id="editButton" resetValues="true"  icon="ui-icon-pencil" value="#{bundle.Edit}" update=":UsuarioEditForm" oncomplete="PF('UsuarioEditDialog').show()" disabled="#{empty usuarioController.selected}"/>
+                        <p:commandButton  id="editpassButton" resetValues="true"  icon="ui-icon-pencil" value="Cambiar contraseña" update="UsuarioEditPasswordForm" oncomplete="PF('UsuarioEditPasswordDialog').show()" disabled="#{empty usuarioController.selected}"/>
+                        <h:commandLink rendered="#{usuarioController.items.size() != 0}">
+                            <p:graphicImage  title="Descargar listado" name="images/pdf.png"/>
+                            <p:dataExporter type="pdf" target="datalist" fileName="listado_Usuarios"  preProcessor="#{documentsController.preProcessPDFA}"/>
+                        </h:commandLink>
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+            <ui:include src="EditPassword.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

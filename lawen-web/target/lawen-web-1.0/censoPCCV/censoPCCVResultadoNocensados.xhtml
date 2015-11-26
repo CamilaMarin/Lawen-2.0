@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:body>
+
+        <br/>   
+        <b:alert severity="warning">PACIENTES EXCLUIDOS</b:alert>
+
+            <h:form>
+                <p:dataTable id="tableTest" value="#{consultasCensoCCV.pacientes_excluidos}"
+                                reflow="true" var="t"
+                                paginator="true"
+                                paginatorPosition="bottom"
+                                rows="10"
+                                rowsPerPageTemplate="10,20,30,40,50"
+                                emptyMessage="Sin registros de pacientes excluídos."
+                                 > 
+              
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Rut"/>
+                    </f:facet>
+                    <h:outputText value="#{t.rut}"/>
+                </p:column>
+                 <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nombres"/>
+                    </f:facet>
+                     <h:outputText value="#{t.nombre}"/>
+                </p:column>
+                 <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Apellido Paterno"/>
+                    </f:facet>
+                     <h:outputText value="#{t.apellidop}"/>
+                </p:column>
+                 <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Apellido Materno"/>
+                    </f:facet>
+                     <h:outputText value="#{t.apellidom}"/>
+                </p:column>
+                 <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Edad"/>
+                    </f:facet>
+                     <h:outputText value="#{t.edad}"/>
+                </p:column>
+                 <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Razon exclusión Censo"/>
+                    </f:facet>
+                     <h:outputText value="#{t.razon_exclusion}"/>
+                </p:column>
+                
+                    <f:facet name="footer">
+                        <h:commandLink rendered="#{consultasCensoCCV.pacientes_excluidos.size() != 0}">
+                                <p:graphicImage name="images/pdf.png"/>
+                                <p:dataExporter type="pdf" target="tableTest" fileName="listado_pacientes_PSCV_no_censados"  preProcessor="#{documentsController.preProcessPDFA}"/>
+                            </h:commandLink>
+                    </f:facet>
+                </p:dataTable>
+
+    </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <h:outputScript>
+            //<![CDATA[ 
+
+
+            function calcularIMC () {
+
+            var peso = $("#peso").val();
+            var talla = $("#talla").val();
+            var edad = $("#edad_paciente").val();
+
+            if( peso == 0 || talla == 0 || edad == "" ){
+
+            alert("Debe llenar peso, talla y edad");
+
+            }
+
+            var imc = peso/Math.pow(talla,2);
+
+            if(isNaN(imc) || imc == Infinity){
+            $("#imc").val(0.0);
+            }
+            else{
+            $("#imc").val(imc);
+            $("#imc").prop('readonly', true);
+            var diagnosticoNutricional = "";
+
+            if( edad < 65 ){
+            if( imc < 18.5){
+            diagnosticoNutricional = "BP";
+            }
+            else if( 18.5 <= imc && imc < 25){
+            diagnosticoNutricional = "N";
+            }
+            else if( 25 <= imc  && imc < 30){
+            diagnosticoNutricional = "SP";
+            }
+            else if( 30 <= imc  && imc < 35){
+            diagnosticoNutricional = "OBI";
+            }
+            else if( 35 <= imc  && imc < 40){
+            diagnosticoNutricional = "OBII";
+            }
+            else if( 40 <= imc){
+            diagnosticoNutricional = "OBIII";
+            }
+            }
+            else if( edad >= 65){
+            if( imc <= 23){
+            diagnosticoNutricional = "E";
+            }
+            else if( 23 < imc && imc < 28){
+            diagnosticoNutricional = "N";
+            }
+            else if( 28 <= imc  && imc < 32){
+            diagnosticoNutricional = "SP";
+            }
+            else if( 32 <= imc){
+            diagnosticoNutricional = "OB";
+            }
+
+            } 
+
+
+            $("#diagnostico_nutricional").val(diagnosticoNutricional);
+            $("#diagnostico_nutricional").prop('readonly', true);
+
+            }
+
+            };
+
+
+            //]]>
+        </h:outputScript>
+        <p:dialog id="AtencionNutriDietoterapiaCreateDlg" widgetVar="AtencionNutriDietoterapiaCreateDialog" width="470px" resizable="false" modal="true" height="500px" appendTo="@(body)" header="Crear atención Dietoterapia">
+            <h:form id="AtencionNutriDietoterapiaCreateForm" prependId="false" >
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{atencionNutriDietoterapiaController.selected != null}">
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateAtencionNutriDietoterapiaLabel_paciente}" for="paciente" />
+                        <p:selectOneMenu id="paciente" value="#{atencionNutriDietoterapiaController.selected.paciente}"  required="true" requiredMessage="Un paciente es requerido" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItems value="#{pacienteController.itemsAvailableSelectOne}"
+                                           var="pacienteItem"
+                                           itemValue="#{pacienteItem}"/>
+                            <p:ajax  update="edad_paciente" listener="#{atencionNutriDietoterapiaController.handleKeyEvent()}" />
+                        </p:selectOneMenu>
+                        <p:outputLabel class="obligatorio" value="Tipo atención:" for="tipoDietoterapia" />
+                        <p:selectOneMenu id="tipoDietoterapia" value="#{atencionNutriDietoterapiaController.selected.tipoDietoterapia}" required="true" requiredMessage="Debe escoger un tipo de atención">
+                            <f:selectItems value="#{dominiosController.tipoNutriAtencion}" />
+                        </p:selectOneMenu>
+
+
+
+
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateAtencionNutriDietoterapiaLabel_fecha_control}" for="fecha_control" />
+                        <p:calendar id="fecha_control" pattern="dd/MM/yyyy" value="#{atencionNutriDietoterapiaController.selected.fecha_control}" title="#{bundle.EditAtencionNutriDietoterapiaTitle_fecha_control}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_edad_paciente}" for="edad_paciente" />
+                        <p:inputText disabled="true" id="edad_paciente" value="#{atencionNutriDietoterapiaController.edad}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_edad_paciente}" />
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateAtencionNutriDietoterapiaLabel_profesional}" for="profesional" />
+                        <p:selectOneMenu id="profesional" value="#{atencionNutriDietoterapiaController.selected.profesional}"  required="true" requiredMessage="Un profesional es requerido" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="profesionalItem"
+                                           itemValue="#{profesionalItem}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_anamnesis_nutri}" for="anamnesis_nutri" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20"  id="anamnesis_nutri" value="#{atencionNutriDietoterapiaController.selected.anamnesis_nutri}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_anamnesis_nutri}" />
+
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_peso}" for="peso" />
+                        <p:inputText id="peso" value="#{atencionNutriDietoterapiaController.selected.peso}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_peso}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_talla}" for="talla" />
+                        <p:inputText id="talla" value="#{atencionNutriDietoterapiaController.selected.talla}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_talla}" />
+
+                        <h:commandButton id ="calimc" value="Calcular IMC" action="#" onclick="calcularIMC();" >
+                            <f:ajax  />
+                        </h:commandButton>
+                        <p:outputLabel value="" />
+
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_imc}" for="imc" />
+                        <p:inputText id="imc" value="#{atencionNutriDietoterapiaController.selected.imc}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_imc}" />
+
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateAtencionNutriDietoterapiaLabel_diagnostico_nutricional}" for="diagnostico_nutricional" />
+                        <p:inputText id="diagnostico_nutricional" value="#{atencionNutriDietoterapiaController.selected.diagnostico_nutricional}"  required="true" requiredMessage="Un diagnóstico es requerido" />
+
+
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_perimetro_cintura}" for="perimetro_cintura" />
+                        <p:inputText id="perimetro_cintura" value="#{atencionNutriDietoterapiaController.selected.perimetro_cintura}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_perimetro_cintura}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_perimetroCaderas_nutri}" for="perimetroCaderas_nutri" />
+                        <p:inputText id="perimetroCaderas_nutri" value="#{atencionNutriDietoterapiaController.selected.perimetroCaderas_nutri}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_perimetroCaderas_nutri}" />
+
+                        <p:outputLabel value="Índice CC:" for="indiceCC_nutri1" />
+                        <p:inputText style="width: 100px;" id="indiceCC_nutri2" value="#{atencionNutriDietoterapiaController.selected.indiceCC_nutri2}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_indiceCC_nutri2}">
+                            <p:inputText style="width: 100px;" id="indiceCC_nutri1" value="#{atencionNutriDietoterapiaController.selected.indiceCC_nutri1}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_indiceCC_nutri1}" /><h:outputText value="/"/>
+                        </p:inputText>
+
+                        <p:outputLabel value="PA de pie:" for="pa_de_pie1" />
+                        <p:inputText style="width: 100px;" id="pa_de_pie2" value="#{atencionNutriDietoterapiaController.selected.pa_de_pie2}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_pa_de_pie2}">
+                            <p:inputText style="width: 100px;" id="pa_de_pie1" value="#{atencionNutriDietoterapiaController.selected.pa_de_pie1}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_pa_de_pie1}" /><h:outputText value="/"/>
+                        </p:inputText>
+
+                        <p:outputLabel value="PA sentado:" for="pa_sentado1" />
+                        <p:inputText style="width: 100px;" id="pa_sentado2" value="#{atencionNutriDietoterapiaController.selected.pa_sentado2}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_pa_sentado2}">
+                            <p:inputText style="width: 100px;" id="pa_sentado1" value="#{atencionNutriDietoterapiaController.selected.pa_sentado1}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_pa_sentado1}" /><h:outputText value="/"/>
+                        </p:inputText>
+
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_puslo}" for="puslo" />
+                        <p:inputText id="puslo" value="#{atencionNutriDietoterapiaController.selected.puslo}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_puslo}" />
+
+                        <p:outputLabel value="Fármacos:" class="subItem"/>
+                        <p:outputLabel value="" />
+
+
+                        <p:outputLabel value="Sulfonilureas:" for="sulfonilureas_bool" />
+                        <p:selectBooleanButton id="sulfonilureas_bool" value="#{atencionNutriDietoterapiaController.selected.sulfonilureas_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="sulfonilureas_texto" />
+                        <p:inputText id="sulfonilureas_texto" value="#{atencionNutriDietoterapiaController.selected.sulfonilureas_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_sulfonilureas_texto}" />
+
+                        <p:outputLabel value="Biguanidas:" for="biguanidas_bool" />
+                        <p:selectBooleanButton id="biguanidas_bool" value="#{atencionNutriDietoterapiaController.selected.biguanidas_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="biguanidas_texto" />
+                        <p:inputText id="biguanidas_texto" value="#{atencionNutriDietoterapiaController.selected.biguanidas_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_biguanidas_texto}" />
+
+                        <p:outputLabel value="Insulina:" for="insulina_bool" />
+                        <p:selectBooleanButton id="insulina_bool" value="#{atencionNutriDietoterapiaController.selected.insulina_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="insulina_texto" />
+                        <p:inputText id="insulina_texto" value="#{atencionNutriDietoterapiaController.selected.insulina_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_insulina_texto}" />
+
+
+                        <p:outputLabel value="Diueréticos Tiazídicos:" for="diuereticosTiazidicos_bool" />
+                        <p:selectBooleanButton id="diuereticosTiazidicos_bool" value="#{atencionNutriDietoterapiaController.selected.diuereticosTiazidicos_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="diuereticosTiazidicos_texto" />
+                        <p:inputText id="diuereticosTiazidicos_texto" value="#{atencionNutriDietoterapiaController.selected.diuereticosTiazidicos_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_diuereticosTiazidicos_texto}" />
+
+                        <p:outputLabel value="Diuréticos Del Asa:" for="diureticosDelAsa_bool" />
+                        <p:selectBooleanButton id="diureticosDelAsa_bool" value="#{atencionNutriDietoterapiaController.selected.diureticosDelAsa_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="diureticosDelAsa_texto" />
+                        <p:inputText id="diureticosDelAsa_texto" value="#{atencionNutriDietoterapiaController.selected.diureticosDelAsa_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_diureticosDelAsa_texto}" />
+
+                        <p:outputLabel value="Deiuréticos AntiAldosterona:" for="deiureticosAntiAldosterona_bool" />
+                        <p:selectBooleanButton id="deiureticosAntiAldosterona_bool" value="#{atencionNutriDietoterapiaController.selected.deiureticosAntiAldosterona_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="deiureticosAntiAldosterona_texto" />
+                        <p:inputText id="deiureticosAntiAldosterona_texto" value="#{atencionNutriDietoterapiaController.selected.deiureticosAntiAldosterona_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_deiureticosAntiAldosterona_texto}" />
+
+                        <p:outputLabel value="Beta Bloqueadores:" for="betaBloqueadores_bool" />
+                        <p:selectBooleanButton id="betaBloqueadores_bool" value="#{atencionNutriDietoterapiaController.selected.betaBloqueadores_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="betaBloqueadores_texto" />
+                        <p:inputText id="betaBloqueadores_texto" value="#{atencionNutriDietoterapiaController.selected.betaBloqueadores_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_betaBloqueadores_texto}" />
+
+                        <p:outputLabel value="IECA:" for="IECA_bool" />
+                        <p:selectBooleanButton id="IECA_bool" value="#{atencionNutriDietoterapiaController.selected.IECA_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="IECA_texto" />
+                        <p:inputText id="IECA_texto" value="#{atencionNutriDietoterapiaController.selected.IECA_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_IECA_texto}" />
+
+                        <p:outputLabel value="ARAII:" for="ARAII_bool" />
+                        <p:selectBooleanButton id="ARAII_bool" value="#{atencionNutriDietoterapiaController.selected.ARAII_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="ARAII_texto" />
+                        <p:inputText id="ARAII_texto" value="#{atencionNutriDietoterapiaController.selected.ARAII_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_ARAII_texto}" />
+
+                        <p:outputLabel value="Calcio Antagonistas:" for="calcioAntagonistas_bool" />
+                        <p:selectBooleanButton id="calcioAntagonistas_bool" value="#{atencionNutriDietoterapiaController.selected.calcioAntagonistas_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="calcioAntagonistas_texto" />
+                        <p:inputText id="calcioAntagonistas_texto" value="#{atencionNutriDietoterapiaController.selected.calcioAntagonistas_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_calcioAntagonistas_texto}" />
+
+                        <p:outputLabel value="Estatinas:" for="esteatinas_bool" />
+                        <p:selectBooleanButton id="esteatinas_bool" value="#{atencionNutriDietoterapiaController.selected.esteatinas_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="esteatinas_texto" />
+                        <p:inputText id="esteatinas_texto" value="#{atencionNutriDietoterapiaController.selected.esteatinas_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_esteatinas_texto}" />
+
+                        <p:outputLabel value="Fibratos:" for="fibratos_bool" />
+                        <p:selectBooleanButton id="fibratos_bool" value="#{atencionNutriDietoterapiaController.selected.fibratos_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_fibratos_texto}" for="fibratos_texto" />
+                        <p:inputText id="fibratos_texto" value="#{atencionNutriDietoterapiaController.selected.fibratos_texto}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_fibratos_texto}" />
+
+                        <p:outputLabel value="Exámenes"  class="subItem"/>
+                        <p:outputLabel value="" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_glicemia_estado}" for="glicemia_estado" />
+                        <p:selectOneMenu id="glicemia_estado" value="#{atencionNutriDietoterapiaController.selected.glicemia_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>                     
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_glicemica_valor}" for="glicemica_valor" />
+                        <p:inputText id="glicemica_valor" value="#{atencionNutriDietoterapiaController.selected.glicemica_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_glicemica_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_estado}" for="hba1C_estado" />
+                        <p:selectOneMenu id="hba1C_estado" value="#{atencionNutriDietoterapiaController.selected.hba1C_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_valor}" for="hba1C_valor" />
+                        <p:inputText id="hba1C_valor" value="#{atencionNutriDietoterapiaController.selected.hba1C_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_hba1C_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_estado}" for="colesterolTotal_estado" />
+                        <p:selectOneMenu id="colesterolTotal_estado" value="#{atencionNutriDietoterapiaController.selected.colesterolTotal_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_valor}" for="colesterolTotal_valor" />
+                        <p:inputText id="colesterolTotal_valor" value="#{atencionNutriDietoterapiaController.selected.colesterolTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolTotal_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_estado}" for="colesterolLDL_estado" />
+                        <p:selectOneMenu id="colesterolLDL_estado" value="#{atencionNutriDietoterapiaController.selected.colesterolLDL_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_valor}" for="colesterolLDL_valor" />
+                        <p:inputText id="colesterolLDL_valor" value="#{atencionNutriDietoterapiaController.selected.colesterolLDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolLDL_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_estado}" for="colesterolHDL_estado" />
+                        <p:selectOneMenu id="colesterolHDL_estado" value="#{atencionNutriDietoterapiaController.selected.colesterolHDL_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_valor}" for="colesterolHDL_valor" />
+                        <p:inputText id="colesterolHDL_valor" value="#{atencionNutriDietoterapiaController.selected.colesterolHDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolHDL_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_estado}" for="trigliceridos_estado" />
+                        <p:selectOneMenu id="trigliceridos_estado" value="#{atencionNutriDietoterapiaController.selected.trigliceridos_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_valor}" for="trigliceridos_valor" />
+                        <p:inputText id="trigliceridos_valor" value="#{atencionNutriDietoterapiaController.selected.trigliceridos_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_trigliceridos_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_estado}" for="bilirrubinaTotal_estado" />
+                        <p:selectOneMenu id="bilirrubinaTotal_estado" value="#{atencionNutriDietoterapiaController.selected.bilirrubinaTotal_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_valor}" for="bilirrubinaTotal_valor" />
+                        <p:inputText id="bilirrubinaTotal_valor" value="#{atencionNutriDietoterapiaController.selected.bilirrubinaTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaTotal_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_estado}" for="bilirrubinaDirecta_estado" />
+                        <p:selectOneMenu id="bilirrubinaDirecta_estado" value="#{atencionNutriDietoterapiaController.selected.bilirrubinaDirecta_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_valor}" for="bilirrubinaDirecta_valor" />
+                        <p:inputText id="bilirrubinaDirecta_valor" value="#{atencionNutriDietoterapiaController.selected.bilirrubinaDirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaDirecta_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_estado}" for="bilirrubinaIndirecta_estado" />
+                        <p:selectOneMenu id="bilirrubinaIndirecta_estado" value="#{atencionNutriDietoterapiaController.selected.bilirrubinaIndirecta_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_valor}" for="bilirrubinaIndirecta_valor" />
+                        <p:inputText id="bilirrubinaIndirecta_valor" value="#{atencionNutriDietoterapiaController.selected.bilirrubinaIndirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaIndirecta_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_estado}" for="creatinina_estado" />
+                        <p:selectOneMenu id="creatinina_estado" value="#{atencionNutriDietoterapiaController.selected.creatinina_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_valor}" for="creatinina_valor" />
+                        <p:inputText id="creatinina_valor" value="#{atencionNutriDietoterapiaController.selected.creatinina_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_creatinina_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_BUN_estado}" for="BUN_estado" />
+                        <p:selectOneMenu id="BUN_estado" value="#{atencionNutriDietoterapiaController.selected.BUN_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_BUN_valor}" for="BUN_valor" />
+                        <p:inputText id="BUN_valor" value="#{atencionNutriDietoterapiaController.selected.BUN_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_BUN_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_estado}" for="MDRD_estado" />
+                        <p:selectOneMenu id="MDRD_estado" value="#{atencionNutriDietoterapiaController.selected.MDRD_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_valor}" for="MDRD_valor" />
+                        <p:inputText id="MDRD_valor" value="#{atencionNutriDietoterapiaController.selected.MDRD_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_MDRD_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_estado}" for="microALB24H_estado" />
+                        <p:selectOneMenu id="microALB24H_estado" value="#{atencionNutriDietoterapiaController.selected.microALB24H_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_valor}" for="microALB24H_valor" />
+                        <p:inputText id="microALB24H_valor" value="#{atencionNutriDietoterapiaController.selected.microALB24H_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_microALB24H_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_estado}" for="clearenceCrea_estado" />
+                        <p:selectOneMenu id="clearenceCrea_estado" value="#{atencionNutriDietoterapiaController.selected.clearenceCrea_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_valor}" for="clearenceCrea_valor" />
+                        <p:inputText id="clearenceCrea_valor" value="#{atencionNutriDietoterapiaController.selected.clearenceCrea_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_clearenceCrea_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_estado}" for="naPositivo_estado" />
+                        <p:selectOneMenu id="naPositivo_estado" value="#{atencionNutriDietoterapiaController.selected.naPositivo_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_valor}" for="naPositivo_valor" />
+                        <p:inputText id="naPositivo_valor" value="#{atencionNutriDietoterapiaController.selected.naPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_naPositivo_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_estado}" for="KPositivo_estado" />
+                        <p:selectOneMenu id="KPositivo_estado" value="#{atencionNutriDietoterapiaController.selected.KPositivo_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_valor}" for="KPositivo_valor" />
+                        <p:inputText id="KPositivo_valor" value="#{atencionNutriDietoterapiaController.selected.KPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_KPositivo_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_estado}" for="CLNegativo_estado" />
+                        <p:selectOneMenu id="CLNegativo_estado" value="#{atencionNutriDietoterapiaController.selected.CLNegativo_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_valor}" for="CLNegativo_valor" />
+                        <p:inputText id="CLNegativo_valor" value="#{atencionNutriDietoterapiaController.selected.CLNegativo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_CLNegativo_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GPT_estado}" for="GPT_estado" />
+                        <p:selectOneMenu id="GPT_estado" value="#{atencionNutriDietoterapiaController.selected.GPT_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GPT_valor}" for="GPT_valor" />
+                        <p:inputText id="GPT_valor" value="#{atencionNutriDietoterapiaController.selected.GPT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GPT_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GOT_estado}" for="GOT_estado" />
+                        <p:selectOneMenu id="GOT_estado" value="#{atencionNutriDietoterapiaController.selected.GOT_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GOT_valor}" for="GOT_valor" />
+                        <p:inputText id="GOT_valor" value="#{atencionNutriDietoterapiaController.selected.GOT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GOT_valor}" />
+
+                        <p:outputLabel value="Exámenes segunda parte" class="subItem" />
+                        <p:outputLabel value="" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_estado}" for="orocultivo_estado" />
+                        <p:selectOneMenu id="orocultivo_estado" value="#{atencionNutriDietoterapiaController.selected.orocultivo_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_ejecucion}" for="orocultivo_ejecucion" />
+                        <p:selectOneMenu id="orocultivo_ejecucion" value="#{atencionNutriDietoterapiaController.selected.orocultivo_ejecucion}"> 
+                            <f:selectItems value="#{dominiosController.ejecucionExamen}"/>    
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_ECG_estado}" for="ECG_estado" />
+                        <p:selectOneMenu id="ECG_estado" value="#{atencionNutriDietoterapiaController.selected.ECG_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_ECG_ejecucion}" for="ECG_ejecucion" />
+                        <p:selectOneMenu id="ECG_ejecucion" value="#{atencionNutriDietoterapiaController.selected.ECG_ejecucion}"> 
+                            <f:selectItems value="#{dominiosController.ejecucionExamen}"/>    
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_estado}" for="fondoOJO_estado" />
+                        <p:selectOneMenu id="fondoOJO_estado" value="#{atencionNutriDietoterapiaController.selected.fondoOJO_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_ejecucion}" for="fondoOJO_ejecucion" />
+                        <p:selectOneMenu id="fondoOJO_ejecucion" value="#{atencionNutriDietoterapiaController.selected.fondoOJO_ejecucion}"> 
+                            <f:selectItems value="#{dominiosController.ejecucionExamen}"/>    
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_estado}" for="orinaCompleta_estado" />
+                        <p:selectOneMenu id="orinaCompleta_estado" value="#{atencionNutriDietoterapiaController.selected.orinaCompleta_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_ejecucion}" for="orinaCompleta_ejecucion" />
+                        <p:selectOneMenu id="orinaCompleta_ejecucion" value="#{atencionNutriDietoterapiaController.selected.orinaCompleta_ejecucion}"> 
+                            <f:selectItems value="#{dominiosController.ejecucionExamen}"/>    
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_otros_examenes}" for="otros_examenes" />
+                        <p:inputText id="otros_examenes" value="#{atencionNutriDietoterapiaController.selected.otros_examenes}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_otros_examenes}" />
+
+                        <p:outputLabel value="Historia dietética"  class="subItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Desayuno"  class="subSubItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+
+                        <p:calendar id="desayuno_horario" value="#{atencionNutriDietoterapiaController.selected.desayuno_horario}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:outputLabel value="Descripción" />
+                        <p:inputText id="desayuno_descripcion" value="#{atencionNutriDietoterapiaController.selected.desayuno_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_descripcion}" />
+                        <p:outputLabel value="Colación" class="subSubItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:calendar id="colacion_horario" value="#{atencionNutriDietoterapiaController.selected.colacion_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:outputLabel value="Descripción" />
+                        <p:inputText id="colacion_descripcion" value="#{atencionNutriDietoterapiaController.selected.colacion_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_descripcion}" />
+                        <p:outputLabel value="Almuerzo" class="subSubItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:calendar id="almuerzo_horario" value="#{atencionNutriDietoterapiaController.selected.almuerzo_horario}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:outputLabel value="Descripción" />
+                        <p:inputText id="almuerzo_descripcion" value="#{atencionNutriDietoterapiaController.selected.almuerzo_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_descripcion}" />
+                        <p:outputLabel value="Colación Tarde" class="subSubItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:calendar id="colaciontarde_horario" value="#{atencionNutriDietoterapiaController.selected.colaciontarde_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:outputLabel value="Descripción" />
+                        <p:inputText id="colaciontarde_descripcion" value="#{atencionNutriDietoterapiaController.selected.colaciontarde_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_descripcion}" />
+                        <p:outputLabel value="Cena" class="subSubItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:calendar id="cena_horario" value="#{atencionNutriDietoterapiaController.selected.cena_horario}" title="#{bundle.CreateFichaNutricionistaTitle_cena_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
+                        <p:outputLabel value="Descripción" />
+                        <p:inputText id="cena_descripcion" value="#{atencionNutriDietoterapiaController.selected.cena_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_cena_descripcion}" />
+
+                        <p:outputLabel value="Frecuencia consumo:" for="frecuencia_consumo" />
+                        <p:inputTextarea rows="5" cols="20" id="frecuencia_consumo" value="#{atencionNutriDietoterapiaController.selected.frecuencia_consumo}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_frecuencia_consumo}" />
+
+                        <p:outputLabel value="Intoleracia Alimentaria:" for="intolerancia_alimentaria" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="intolerancia_alimentaria" value="#{atencionNutriDietoterapiaController.selected.intolerancia_alimentaria}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_intolerancia_alimentaria}" />
+                        <p:outputLabel value="Nutrientes críticos:" for="nutrientes_criticos" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="nutrientes_criticos" value="#{atencionNutriDietoterapiaController.selected.nutrientes_criticos}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_nutrientes_criticos}" />
+                        <p:outputLabel value="Indicaciones:" for="indicaciones" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="indicaciones" value="#{atencionNutriDietoterapiaController.selected.indicaciones}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_indicaciones}" />
+
+                        <p:outputLabel value="Régimen"  class="subItem"/>
+                        <p:outputLabel value="" />
+
+
+
+                        <p:outputLabel value="Hiposódico" for="hiposodico" />
+                        <p:selectBooleanButton id="hiposodico" value="#{atencionNutriDietoterapiaController.selected.hiposodico}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Diabético" for="diabetico" />
+                        <p:selectBooleanButton id="diabetico" value="#{atencionNutriDietoterapiaController.selected.diabetico}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Hipocalórico" for="hipocalorico" />
+                        <p:selectBooleanButton id="hipocalorico" value="#{atencionNutriDietoterapiaController.selected.hipocalorico}" onLabel="Si" offLabel="No" style="width:60px" />
+
+
+
+                        <p:outputLabel value="Calorías:" for="calorias" />
+                        <p:inputText id="calorias" value="#{atencionNutriDietoterapiaController.selected.calorias}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_calorias}" />
+
+                        <p:outputLabel value="Referencias:" for="referencias_nutri" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="referencias_nutri" value="#{atencionNutriDietoterapiaController.selected.referencias_nutri}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_referencias_nutri}" />
+
+                        <p:outputLabel value="Puntaje Pie DM:" for="punteaje_pie_dm" />
+                        <p:inputText id="punteaje_pie_dm" value="#{atencionNutriDietoterapiaController.selected.punteaje_pie_dm}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_punteaje_pie_dm}" />
+
+
+                        <p:outputLabel value="Antecedentes riesgo CCV"  class="subItem"/>
+                        <p:outputLabel value="" />
+
+                        <p:outputLabel value="Tabaco:" for="tabaco" />
+                        <p:selectBooleanButton id="tabaco" value="#{atencionNutriDietoterapiaController.selected.tabaco}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="IAM:" for="IAM" />
+                        <p:selectBooleanButton id="IAM" value="#{atencionNutriDietoterapiaController.selected.IAM}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="ACV:" for="ACV" />
+                        <p:selectBooleanButton id="ACV" value="#{atencionNutriDietoterapiaController.selected.ACV}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="Hipertrofia ventricular izquierda:" for="HVI" />
+                        <p:selectBooleanButton id="HVI" value="#{atencionNutriDietoterapiaController.selected.HVI}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="IRC:" for="IRC" />
+                        <p:selectBooleanButton id="IRC" value="#{atencionNutriDietoterapiaController.selected.IRC}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="Amputación no traumática:" for="amputacion_no_traumatica" />
+                        <p:selectBooleanButton id="amputacion_no_traumatica" value="#{atencionNutriDietoterapiaController.selected.amputacion_no_traumatica}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="Ceguera:" for="ceguera" />
+                        <p:selectBooleanButton id="ceguera" value="#{atencionNutriDietoterapiaController.selected.ceguera}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="Retinopatía:" for="retinopatia" />
+                        <p:selectBooleanButton id="retinopatia" value="#{atencionNutriDietoterapiaController.selected.retinopatia}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="QUALDIAB:" for="QUALDIAB" />
+                        <p:selectBooleanButton id="QUALDIAB" value="#{atencionNutriDietoterapiaController.selected.QUALDIAB}" onLabel="Si" offLabel="No" style="width:60px" />
+
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_riesgo_cardiovascular}" for="riesgo_cardiovascular" />
+                        <p:selectOneMenu id="riesgo_cardiovascular" value="#{atencionNutriDietoterapiaController.selected.riesgo_cardiovascular}"> 
+                            <f:selectItems value="#{dominiosController.riesgoCCV}"/>    
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="Próximo control:" for="proximo_control" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20"  id="proximo_control" value="#{atencionNutriDietoterapiaController.selected.proximo_control}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_proximo_control}" />
+                        <p:outputLabel value="Profesional próximo:" for="profesional_control" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20"  id="profesional_control" value="#{atencionNutriDietoterapiaController.selected.profesional_control}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_profesional_control}" />
+
+                    </p:panelGrid>
+                    <p:commandButton style="margin-top: 10px!important; margin-bottom: 10px!important;"  actionListener="#{atencionNutriDietoterapiaController.create(atencionNutriDietoterapiaController.edad)}" value="#{bundle.Save}" update="display,:AtencionNutriDietoterapiaListForm:datalist,:growl,:AtencionNutriDietoterapiaViewForm" oncomplete="handleSubmit(args,'AtencionNutriDietoterapiaCreateDialog');"/>
+                    <p:commandButton style="margin-left: 10px!important; margin-top: 10px!important; margin-bottom: 10px!important;"  actionListener="#{atencionNutriDietoterapiaController.cancel()}" value="#{bundle.Cancel}" update="display,:growl,:AtencionNutriDietoterapiaViewForm" onclick="AtencionNutriDietoterapiaCreateDialog.hide()" immediate="true" />
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

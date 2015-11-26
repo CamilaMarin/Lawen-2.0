@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:body>
+        <br/>
+        <b:alert severity="warning">SECCIÓN A: POBLACIÓN EN CONTROL POR CONDICIÓN DE FUNCIONALIDAD</b:alert>
+        <h:form id="CensoPSAMFormA" >
+            <p:panelGrid columns="0">
+                <h:panelGroup id="display" class="container">
+                    <td>
+                        <p:panelGrid columns="1" columnClasses="colClassCondiciones" >
+                            <h:outputLabel value=""  style="height: 12px;" />
+                            <h:outputLabel value="Condición de funcionalidad"/>
+                            <h:outputLabel value="Autovalente con riesgos" />
+                            <h:outputLabel value="Autovalente sin riesgos" />
+                            <h:outputLabel value="Riesgo de dependencia" />
+                            <h:outputLabel value="SubTotal Efam" />
+                            <h:outputLabel value="Dependiente Leve" />
+                            <h:outputLabel value="Dependiente Moderado" />
+                            <h:outputLabel value="Dependiente Grave" />
+                            <h:outputLabel value="Dependiente Total" />
+                            <h:outputLabel value="Subtotal Barthel" />
+                            <h:outputLabel value="Total control" />
+                        </p:panelGrid>
+                    </td>
+                    <ui:repeat value="#{consultasCenso.elementos}" var="t">
+                        <td>
+                            <p:panelGrid columns="1"  style="text-align: center;">
+                                <h:outputLabel value="#{t.columnName1}"/>
+                                <h:outputLabel value="#{t.columnName2}"/> 
+                                <h:outputLabel value="#{t.contadorAutovalenteConRiesgo}"/>
+                                <h:outputLabel value="#{t.contadorAutovalenteSinRiesgo}"/>
+                                <h:outputLabel value="#{t.contadorRiesgoDependencia}"/>
+                                <h:outputLabel value="#{t.subTotalEfam}"  style="font-weight:bold;" />
+                                <h:outputLabel value="#{t.dependentienteLeve}" />
+                                <h:outputLabel value="#{t.dependientemoderado}"/>
+                                <h:outputLabel value="#{t.dependientegrave}" />
+                                <h:outputLabel value="#{t.dependienteTotal}" />
+                                <h:outputLabel value="#{t.subTotalBarthel}"  style="font-weight:bold;" />
+                                <h:outputLabel value="#{t.totalAdutosMayoresControl}"  style="font-weight:bold;" />
+                            </p:panelGrid>
+                        </td>
+                    </ui:repeat>
+                </h:panelGroup>
+            </p:panelGrid>
+            <br/>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="#{bundle.ListEsferaClinicaPSAMTitle_id}"/>
+                </f:facet>
+                <h:outputText value="#{item}"/>
+            </p:column>
+            <f:facet name="footer">
+            </f:facet>
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,1114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition  template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="PSCV Paciente Control Cardiovascular"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:fragment rendered="#{pacienteController.isExistPaciente(pacienteController.selected)==false}">
+                <ui:include src="/wrong.xhtml"/>
+            </ui:fragment>
+            <ui:fragment rendered="#{pacienteController.isExistPaciente(pacienteController.selected)==true}">
+
+                <b:row>
+                    <b:column span="11">
+                        <p:breadCrumb>
+                            <p:menuitem value="Categories" url="/faces/index.xhtml" />
+                            <p:menuitem value="PSCV Paciente Control Cardiovascular" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                        </p:breadCrumb>
+                    </b:column>
+                    <b:column span="1">
+                        <button id="btrigger" class="btn btn-info btn-xs" data-target="#amodal" data-toggle="modal"><span class="fa fa-question" aria-hidden="true"></span></button>
+                        <b:modal id="amodal" title="M&oacute;dulo Ayuda - Secci&oacute;n Control Cardiovascular">
+                            <p>
+                                En esta sección podrá ingresar atenciones del programa de salud cardiovascular.<br/><br/>
+                                Para <b>crear</b> un <b>preingreso</b>, debe seleccionar cual preingreso quiere ingresar, y luego hacer clic en crear preingreso.<br/>
+                                Para <b>crear</b> un <b>ingreso</b>, debe seleccionar cual ingreso quiere registrar, y luego hacer clic en crear ingreso.<br/>
+                                Para <b>crear</b> un <b>control cardiovascular</b>, debe seleccionar cual control quiere ingresar, y luego hacer clic en crear control.<br/><br/>
+                                <b>Crear preingreso I, II y III</b><br/><br/>
+                                Para crear un preingreso del programa de salud cardiovascular, necesita por lo menos llenar los siguientes campos:<br/><br/>
+                                Tipo de programa - Fecha - Profesional<br/><br/>
+                                <b>Crear ingreso Médico y Nutricionista</b>
+                                <br/><br/>
+                                Para crear un ingreso del programa de salud cardiovascular, necesita por lo menos llenar los siguientes campos:<br/><br/>
+                                Fecha de control - Profesional<br/>
+                                <br/>
+                                <b>Crear Control Cardiovascular</b><br/><br/>
+                                Para crear un control del programa de salud cardiovascular, necesita por lo menos llenar los siguientes campos:<br/><br/>
+                                Paciente - Fecha de control - Profesional - Peso - Talla - IMC - Diagnóstico nutricional - Presión arterial de pie - Presión arterial sentado - Riesgo cardiovascular<br/>
+                                <br/>
+                            </p>
+                            <f:facet name="footer">
+                                <b:button value="cerrar" dismiss="modal" onclick="return false;"/>
+                            </f:facet>
+                        </b:modal>
+                    </b:column>
+                </b:row>                    
+                <br/>
+                <b:alert severity="info" title="Programa de Salud Cardiovascular">
+                    <br/>
+                    <h:outputLabel value="Paciente: #{pacienteController.selected.nombres_paciente } #{pacienteController.selected.apellidoPaterno_paciente} #{pacienteController.selected.apellidoMaterno_paciente}"/> 
+                    <br/>
+                    <h:outputLabel value="Rut: #{pacienteController.selected.rut_paciente}"/>
+                </b:alert>
+                <b:alert severity="warning" title="Indicaciones" closable="true">
+                    * CITAR A MEDICO: PA PROMEDIO DE 115 O MAS EN POSICIÓN SENTADA Y/O SINTOMATICO Y /O CON TRATAMIENTO PREVIO. <br/>
+                    ** CITAR A SEGUNDO CEDAZO: PA PROMEDIO 91 A114 ASINTOMATICO Y SIN TRATAMIENTO.<br/>
+                    *** CONTROL CADA 6 MESES: PA PROMEDIO IGUAL O MENOR A 80, ASINTOMATICO Y SIN TRATAMIENTO.
+                </b:alert>
+                <h:panelGroup>
+                    <h:outputLabel value="Estado de avance: "/>
+                    <br/>
+                    <h:outputLabel value="Sin Preingreso 1"  rendered = "#{preingresoD1Controller.getObjetobyRut(pacienteController.selected.rut_paciente) ==null}" style="color: #C53430;"/> 
+                    <h:outputLabel value="Preingreso 1 Ingresado"  rendered = "#{preingresoD1Controller.getObjetobyRut(pacienteController.selected.rut_paciente) !=null}" style="color:#7EAA14;"/> 
+                    <br/>
+                    <h:outputLabel value="Sin Preingreso 2"  rendered = "#{preingresoD2Controller.getObjetobyRut(pacienteController.selected.rut_paciente) ==null}" style="color: #C53430;"/> 
+                    <h:outputLabel value="Preingreso 2 Ingresado"  rendered = "#{preingresoD2Controller.getObjetobyRut(pacienteController.selected.rut_paciente) !=null}" style="color:#7EAA14;"/> 
+                    <br/>
+                    <h:outputLabel value="Sin Preingreso 3"  rendered = "#{preingresoD3Controller.getObjetobyRut(pacienteController.selected.rut_paciente) ==null}" style="color: #C53430;"/> 
+                    <h:outputLabel value="Preingreso 3 Ingresado "  rendered = "#{preingresoD3Controller.getObjetobyRut(pacienteController.selected.rut_paciente) !=null}" style="color:#7EAA14;"/> 
+                    <br/>
+                    <h:outputLabel value="Sin Ingreso M&eacute;dico"  rendered = "#{iCVMedicoController.getObjetobyRut(pacienteController.selected.id) ==null}" style="color: #C53430;"/> 
+                    <h:outputLabel value="Ingreso M&eacute;dico Ingresado "  rendered = "#{iCVMedicoController.getObjetobyRut(pacienteController.selected.id) !=null}" style="color:#7EAA14;"/> 
+                    <br/>
+                    <h:outputLabel value="Sin Ingreso Nutricionista"  rendered = "#{iCVNutricionistaController.getObjetobyRut(pacienteController.selected.id) ==null}" style="color: #C53430;"/> 
+                    <h:outputLabel value="Ingreso Nutricionista Ingresado "  rendered = "#{iCVNutricionistaController.getObjetobyRut(pacienteController.selected.id) !=null}" style="color:#7EAA14;"/> 
+                    <br/>
+                </h:panelGroup>
+
+                <p:accordionPanel multiple="true">
+                    <p:tab title="Preingreso 1 - Cedazo 1">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:form id="PreingresoD1ViewForm">
+                                <h:panelGroup id="display">
+                                    <h:outputLabel value="El paciente seleccionado no presenta registros para el Preingreso 1"  rendered = "#{preingresoD1Controller.getObjetobyRut(pacienteController.selected.rut_paciente) ==null}"/> <br/>
+                                    <p:button icon="fa fa-file-powerpoint-o" value="Crear Preingreso 1"  outcome="/preingresoD1/CreatepreingresoD1fromPaciente" rendered = "#{preingresoD1Controller.getObjetobyRut(pacienteController.selected.rut_paciente) ==null}" />
+                                   
+
+                                    <p:panelGrid columns="2" rendered="#{preingresoD1Controller.getObjetobyRut(pacienteController.selected.rut_paciente) != null}" layout="grid" class="container tab1_preingresod">
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_dated1}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.dated1}" title="#{bundle.ViewPreingresoD1Title_dated1}"><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_referido}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.referido}" title="#{bundle.ViewPreingresoD1Title_referido}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_paref1sentado}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.paref1sentado} / #{preingresoD1Controller.selected.paref2sentado}" title="#{bundle.ViewPreingresoD1Title_paref1sentado}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_paref1parado}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.paref1parado} / #{preingresoD1Controller.selected.paref2parado}" title="#{bundle.ViewPreingresoD1Title_paref1parado}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_antecedentespersocvc}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.antecedentespersocvc}" title="#{bundle.ViewPreingresoD1Title_antecedentespersocvc}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_antecedentesfamicvc}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.antecedentesfamicvc}" title="#{bundle.ViewPreingresoD1Title_antecedentesfamicvc}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_trataactual}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.trataactual}" title="#{bundle.ViewPreingresoD1Title_trataactual}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_peso}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.peso}" title="#{bundle.ViewPreingresoD1Title_peso}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_talla}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.talla}" title="#{bundle.ViewPreingresoD1Title_talla}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_pass1}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.pass1} / #{preingresoD1Controller.selected.pass2}" title="#{bundle.ViewPreingresoD1Title_pass1}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_pads1}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.pads1} / #{preingresoD1Controller.selected.pads2}" title="#{bundle.ViewPreingresoD1Title_pads1}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_pasp1}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.pasp1} / #{preingresoD1Controller.selected.pasp2}" title="#{bundle.ViewPreingresoD1Title_pasp1}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_padp1}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.padp1} / #{preingresoD1Controller.selected.padp2}" title="#{bundle.ViewPreingresoD1Title_padp1}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_pulso}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.pulso}" title="#{bundle.ViewPreingresoD1Title_pulso}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_observaciones}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.observaciones}" title="#{bundle.ViewPreingresoD1Title_observaciones}"/>
+                                        <h:outputText value="#{bundle.ViewPreingresoD1Label_profesional}"/>
+                                        <h:outputText value="#{preingresoD1Controller.selected.profesional.toString()}" title="#{bundle.ViewPreingresoD1Title_profesional}"/>
+                                    </p:panelGrid>
+                                </h:panelGroup>
+                            </h:form>
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Preingreso 2 - Cedazo 2">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputLabel value="El paciente seleccionado no presenta registros para el Preingreso 2"  rendered = "#{preingresoD2Controller.getObjetobyRut(pacienteController.selected.rut_paciente) ==null}"/>
+                            <p:button icon="fa fa-file-powerpoint-o" value="Crear Preingreso 2"  outcome="/preingresoD2/CreatepreingresoD2fromPaciente"  rendered = "#{preingresoD2Controller.getObjetobyRut(pacienteController.selected.rut_paciente) == null}" />
+                            
+                            <p:panelGrid columns="2" rendered="#{preingresoD2Controller.getObjetobyRut(pacienteController.selected.rut_paciente) != null}" layout="grid" class="container tab1_preingresod">
+                                <h:outputText value="#{bundle.ViewPreingresoD2Label_dated2}"/>
+                                <h:outputText value="#{preingresoD2Controller.selected.dated2}" title="#{bundle.ViewPreingresoD2Title_dated2}"><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
+                                <h:outputText value="#{bundle.ViewPreingresoD2Label_peso}"/>
+                                <h:outputText value="#{preingresoD2Controller.selected.peso}" title="#{bundle.ViewPreingresoD2Title_peso}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD2Label_pass1}"/>
+                                <h:outputText value="#{preingresoD2Controller.selected.pass1} / #{preingresoD2Controller.selected.pass2}" title="#{bundle.ViewPreingresoD2Title_pass1}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD2Label_pads1}"/>
+                                <h:outputText value="#{preingresoD2Controller.selected.pads1} / #{preingresoD2Controller.selected.pads2}" title="#{bundle.ViewPreingresoD2Title_pads1}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD2Label_pasp1}"/>
+                                <h:outputText value="#{preingresoD2Controller.selected.pasp1} / #{preingresoD2Controller.selected.pasp2}" title="#{bundle.ViewPreingresoD2Title_pasp1}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD2Label_padp1}"/>
+                                <h:outputText value="#{preingresoD2Controller.selected.padp1} / #{preingresoD2Controller.selected.padp2}" title="#{bundle.ViewPreingresoD2Title_padp1}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD2Label_pulso}"/>
+                                <h:outputText value="#{preingresoD2Controller.selected.pulso}" title="#{bundle.ViewPreingresoD2Title_pulso}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD2Label_observaciones}"/>
+                                <h:outputText value="#{preingresoD2Controller.selected.observaciones}" title="#{bundle.ViewPreingresoD2Title_observaciones}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD2Label_profesional}"/>
+                                <h:outputText value="#{preingresoD2Controller.selected.profesional.toString()}" title="#{bundle.ViewPreingresoD2Title_profesional}"/>
+                            </p:panelGrid>
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Preingreso 3 - Cedazo 3">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputLabel value="El paciente seleccionado no presenta registros para el Preingreso 3" rendered = "#{preingresoD3Controller.getObjetobyRut(pacienteController.selected.rut_paciente) ==null}"/> 
+                            <p:button icon="fa fa-file-powerpoint-o" value="Crear Preingreso 3"  outcome="/preingresoD3/CreatepreingresoD3fromPaciente" rendered = "#{preingresoD3Controller.getObjetobyRut(pacienteController.selected.rut_paciente) ==null}" />
+
+                            <p:panelGrid columns="2" rendered="#{preingresoD3Controller.getObjetobyRut(pacienteController.selected.rut_paciente) != null}" layout="grid" class="container tab1_preingresod">
+                                <h:outputText value="#{bundle.ViewPreingresoD3Label_dated3}"/>
+                                <h:outputText value="#{preingresoD3Controller.selected.dated3}" title="#{bundle.ViewPreingresoD3Title_dated3}"><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
+                                <h:outputText value="#{bundle.ViewPreingresoD3Label_peso}"/>
+                                <h:outputText value="#{preingresoD3Controller.selected.peso}" title="#{bundle.ViewPreingresoD3Title_peso}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD3Label_pass1}"/>
+                                <h:outputText value="#{preingresoD3Controller.selected.pass1} / #{preingresoD3Controller.selected.pass2}" title="#{bundle.ViewPreingresoD3Title_pass1}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD3Label_pads1}"/>
+                                <h:outputText value="#{preingresoD3Controller.selected.pads1} / #{preingresoD3Controller.selected.pads2}" title="#{bundle.ViewPreingresoD3Title_pads1}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD3Label_pasp1}"/>
+                                <h:outputText value="#{preingresoD3Controller.selected.pasp1} / #{preingresoD3Controller.selected.pasp2}" title="#{bundle.ViewPreingresoD3Title_pasp1}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD3Label_padp1}"/>
+                                <h:outputText value="#{preingresoD3Controller.selected.padp1} / #{preingresoD3Controller.selected.padp2}" title="#{bundle.ViewPreingresoD3Title_padp1}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD3Label_pulso}"/>
+                                <h:outputText value="#{preingresoD3Controller.selected.pulso}" title="#{bundle.ViewPreingresoD3Title_pulso}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD3Label_observaciones}"/>
+                                <h:outputText value="#{preingresoD3Controller.selected.observaciones}" title="#{bundle.ViewPreingresoD3Title_observaciones}"/>
+                                <h:outputText value="#{bundle.ViewPreingresoD3Label_profesional}"/>
+                                <h:outputText value="#{preingresoD3Controller.selected.profesional.toString()}" title="#{bundle.ViewPreingresoD3Title_profesional}"/>                                
+
+                            </p:panelGrid>
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Ingreso M&eacute;dico">
+                        <h:panelGrid columns="1" cellpadding="10"> 
+                            <h:outputLabel value="El paciente seleccionado no presenta registros para el Ingreso m&eacute;dico" rendered = "#{iCVMedicoController.getObjetobyRut(pacienteController.selected.id) ==null}" /> 
+                            <p:button icon="fa fa-file-powerpoint-o" value="Crear Ingreso Medico"  outcome="/iCVMedico/CrearICVMedico" rendered = "#{iCVMedicoController.getObjetobyRut(pacienteController.selected.id) ==null}" />
+                            <p:panelGrid  layout="grid" class="container tab1_preingresod" columns="2" rendered="#{iCVMedicoController.getObjetobyRut(pacienteController.selected.id) !=null}">
+                <h:outputText value="Ingreso o Reingreso:"  />
+                <h:outputText id="ingreso_reingreso" value="#{iCVMedicoController.selected.cartola.ingreso_reingreso}" title="Ingreso o Reingreso" />
+                
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_paciente}"  />
+                <h:outputText id="paciente" value="#{iCVMedicoController.selected.cartola.paciente.toString()}"/> 
+                
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_fecha_control}"  />
+                <h:outputText id="fecha_control"  value="#{iCVMedicoController.selected.cartola.fecha_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fecha_control}" >  <f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_edad_paciente}"  />
+                <h:outputText id="edad_paciente" value="#{iCVMedicoController.selected.cartola.edad_paciente}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_edad_paciente}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_profesional}"  />
+                <h:outputText id="profesional" value="#{iCVMedicoController.selected.cartola.profesional.toString()}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" />
+                <h:outputText value="#{bundle.CreateFichaMedicoLabel_anamnesis_medico}"  />
+                <h:outputText id="anamnesis_medico" value="#{iCVMedicoController.selected.fichaMed.anamnesis_medico}" title="#{bundle.CreateFichaMedicoTitle_anamnesis_medico}" />
+                
+                <h:outputText  value=" HTA"  class="subItem" />
+                <h:outputText value="" />
+                <h:outputText value="HTA cedazo"  />
+                <h:outputText id="icv_hta_cedazo" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_hta_cedazo)}" />
+                <h:outputText value="HTA Reingreso"  />
+                <h:outputText id="icv_hta_reingreso" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_hta_reingreso)}" />
+                <h:outputText value="HTA Traslado"  />
+                <h:outputText id="icv_hta_traslado" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_hta_traslado)}" />
+                <h:outputText value="HTA extratasis personales"  />
+                <h:outputText id="icv_hta_extrasis" value="#{iCVMedicoController.selected.fichaMed.icv_hta_extrasis}" />
+                <h:outputText  value=" DM"  class="subItem" />
+                <h:outputText value="" />
+                <h:outputText value="DM 2 Glicemias alteradas"  />
+                <h:outputText id="icv_dm_glicemiaalt" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_dm_glicemiaalt)}" />
+                <h:outputText value="DM PTGO"  />
+                <h:outputText id="icv_dm_ptgo" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_dm_ptgo)}" />
+                <h:outputText value="DM Glicemia >= 200"  />
+                <h:outputText id="icv_dm_glicemiamayor" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.icv_dm_glicemiamayor)}" />
+                <h:outputText value="DM otros"  />
+                <h:outputText id="icv_dm_otros" value="#{iCVMedicoController.selected.fichaMed.icv_dm_otros}" />
+                
+                <h:outputText value="Antecedentes personales"  />
+                <h:outputText id="icv_antecedentes_personales" value="#{iCVMedicoController.selected.fichaMed.icv_antecedentes_personales}" />
+                <h:outputText value="Antecedentes familiares"  />
+                <h:outputText id="icv_antecedentes_familiares" value="#{iCVMedicoController.selected.fichaMed.icv_antecedentes_familiares}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_peso}"  />
+                <h:outputText id="peso" value="#{iCVMedicoController.selected.cartola.peso}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_peso}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_talla}"  />
+                <h:outputText id="talla" value="#{iCVMedicoController.selected.cartola.talla}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_talla}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_imc}"  />
+                <h:outputText id="imc" value="#{iCVMedicoController.selected.cartola.imc}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_imc}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_diagnostico_nutricional}"  />
+                <h:outputText id="diagnostico_nutricional" value="#{iCVMedicoController.selected.cartola.diagnostico_nutricional}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_perimetro_cintura}"  />
+                <h:outputText id="perimetro_cintura" value="#{iCVMedicoController.selected.cartola.perimetro_cintura}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_perimetro_cintura}" />
+                
+                <h:outputText value="Presión arterial de pie"  />
+                <h:outputText value="#{iCVMedicoController.selected.cartola.pa_de_pie1} / #{iCVMedicoController.selected.cartola.pa_de_pie2}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_de_pie1}"/>
+                <h:outputText value="Presión arterial sentado"  />
+                <h:outputText value="#{iCVMedicoController.selected.cartola.pa_sentado1} / #{iCVMedicoController.selected.cartola.pa_sentado2}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_sentado1}"/>
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_puslo}"  />
+                <h:outputText id="puslo" value="#{iCVMedicoController.selected.cartola.puslo}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_puslo}" />
+                <h:outputText  value=" Patologías Crónicas:"  class="subItem" />
+                <h:outputText value="" />
+
+                <h:outputText value="Hipertensión:"  />
+                <h:outputText id="hipertencion" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.paciente.hipertencion)}"  style="width:60px" />
+                <h:outputText value="Diabétes:"  />
+                <h:outputText id="diabeticop" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.paciente.diabetico)}"  style="width:60px" />
+                <h:outputText value="Dislipidemia:"  />
+                <h:outputText id="dislipidemico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.paciente.dislipidemico)}"  style="width:60px" />
+                <h:outputText  value=" Evaluación del PIE Según riesgo ulceración:"  class="subItem" />
+                <h:outputText value="" />
+                <h:outputText value="Riesgo Ulceración Pie:"  />
+                <h:outputText id="estimacionRiesgoUlceracionPie" value="#{iCVMedicoController.selected.cartola.estimacionRiesgoUlceracionPie}" />                  
+                <h:outputText value="Úlcera activa Pie DM:"  />
+                <h:outputText id="ulcera_activaPieDM" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.ulcera_activaPieDM)}"  style="width:60px" />
+                <h:outputText value="Descripción:"  />
+                <h:outputText id="ulcera_activaPieDM_Descripcion" value="#{iCVMedicoController.selected.cartola.ulcera_activaPieDM_Descripcion}" title="ulcera_activaPieDM_Descripcion" />
+                <h:outputText value="Atención podológica:"  />
+                <h:outputText id="atencionpodologica" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.atencionPodologica)}" style="width:60px" />
+                <h:outputText value="Curación Pie DM:"  />
+                <h:outputText id="curacionPie_DM" value="#{iCVMedicoController.selected.cartola.curacionPie_DM}" /> 
+                <h:outputText  value=" Sintomatología:"  class="subItem" />
+                <h:outputText value="" />
+                <h:outputText value="Polifagia:"  />
+                <h:outputText id="polifagia_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.polifagia_medico)}" />
+                <h:outputText value="Polidipsia"  />
+                <h:outputText id="polidipsia_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.polifagia_medico)}" />
+                <h:outputText value="Poliuria"  />
+                <h:outputText id="poliuria_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.poliuria_medico)}" />
+                <h:outputText value="Pérdida de peso:"  />
+                <h:outputText id="perdidaDePeso_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.perdidaDePeso_medico)}" />
+                <h:outputText value="Cefálea"  />
+                <h:outputText id="cefalea_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.cefalea_medico)}" />
+                <h:outputText value="Mareos:"  />
+                <h:outputText id="mareos_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.mareos_medico)}" />
+                <h:outputText value="Tinitus"  />
+                <h:outputText id="tinitus_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.tinitus_medico)}" />
+                <h:outputText value="Fotopsia:"  />
+                <h:outputText id="fotopsia_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.fotopsia_medico)}" />
+                <h:outputText value="Sincope"  />
+                <h:outputText id="sincope_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.sincope_medico)}" />
+                <h:outputText value="Angor:"  />
+                <h:outputText id="angor_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.angor_medico)}" />
+                <h:outputText value="DPN:"  />
+                <h:outputText id="dpn_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.polifagia_medico)}" />
+                <h:outputText value="Ortopnea:"  />
+                <h:outputText id="ortopnea_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.polifagia_medico)}" />
+                <h:outputText value="Disnea:"  />
+                <h:outputText id="disnea_medico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.fichaMed.polifagia_medico)}" />
+                <h:outputText value="#{bundle.CreateFichaMedicoLabel_otros_sintomatologia_medico}"  />
+                <h:outputText id="otros_sintomatologia_medico" value="#{fichaMedicoController.selected.otros_sintomatologia_medico}"/>
+                <h:outputText  value=" Examen fisico"  class="subItem" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateFichaMedicoLabel_examenFisico_cabeza}"  />
+                <h:outputText id="examenFisico_cabeza" value="#{iCVMedicoController.selected.fichaMed.examenFisico_cabeza}"/>
+                
+                <h:outputText value="#{bundle.CreateFichaMedicoLabel_examenFisico_cuello}"  />
+                <h:outputText id="examenFisico_cuello" value="#{iCVMedicoController.selected.fichaMed.examenFisico_cuello}"/>
+                <h:outputText value="#{bundle.CreateFichaMedicoLabel_examenFisico_cardiaco}"  />
+                <h:outputText id="examenFisico_cardiaco" value="#{iCVMedicoController.selected.fichaMed.examenFisico_cardiaco}"/>
+                <h:outputText value="#{bundle.CreateFichaMedicoLabel_examenFisico_pulmonar}"  />
+                <h:outputText id="examenFisico_pulmonar" value="#{iCVMedicoController.selected.fichaMed.examenFisico_pulmonar}"/>
+                <h:outputText value="#{bundle.CreateFichaMedicoLabel_examenFisico_abdomen}"  />
+                <h:outputText id="examenFisico_abdomen" value="#{iCVMedicoController.selected.fichaMed.examenFisico_abdomen}"/>
+                <h:outputText value="#{bundle.CreateFichaMedicoLabel_examenFisico_eess}"  />
+                <h:outputText id="examenFisico_eess" value="#{iCVMedicoController.selected.fichaMed.examenFisico_eess}"/>
+                <h:outputText value="#{bundle.CreateFichaMedicoLabel_examenFisico_eeii}"  />
+                <h:outputText id="examenFisico_eeii" value="#{iCVMedicoController.selected.fichaMed.examenFisico_eeii}"/>
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_otros_examenes}"  />
+                <h:outputText id="otros_examenes" value="#{iCVMedicoController.selected.cartola.otros_examenes}"/>
+                <h:outputText  value=" Fármacos:"  class="subItem" />
+                <h:outputText value="" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_sulfonilureas_texto}"  />
+                <h:outputText id="sulfonilureas_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.sulfonilureas_bool)}"/>
+                <h:outputText id="sulfonilureas_texto" value="#{iCVMedicoController.selected.cartola.sulfonilureas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_sulfonilureas_texto}" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_biguanidas_texto}"  />
+                <h:outputText id="biguanidas_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.biguanidas_bool)}"/>
+                <h:outputText id="biguanidas_texto" value="#{iCVMedicoController.selected.cartola.biguanidas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_biguanidas_texto}" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_insulina_texto}"  />
+                <h:outputText id="insulina_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.insulina_bool)}"/>                        
+                <h:outputText id="insulina_texto" value="#{iCVMedicoController.selected.cartola.insulina_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_insulina_texto}" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_diuereticosTiazidicos_texto}"  />
+                <h:outputText id="diuereticosTiazidicos_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.diuereticosTiazidicos_bool)}"/>                       
+                <h:outputText id="diuereticosTiazidicos_texto" value="#{iCVMedicoController.selected.cartola.diuereticosTiazidicos_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_diuereticosTiazidicos_texto}" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_diureticosDelAsa_texto}"  />
+                <h:outputText id="diureticosDelAsa_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.diureticosDelAsa_bool)}"/>
+                <h:outputText id="diureticosDelAsa_texto" value="#{iCVMedicoController.selected.cartola.diureticosDelAsa_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_diureticosDelAsa_texto}" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_deiureticosAntiAldosterona_texto}"  />
+                <h:outputText id="deiureticosAntiAldosterona_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.deiureticosAntiAldosterona_bool)}"/>
+                <h:outputText id="deiureticosAntiAldosterona_texto" value="#{iCVMedicoController.selected.cartola.deiureticosAntiAldosterona_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_deiureticosAntiAldosterona_texto}" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_betaBloqueadores_texto}"  />
+                <h:outputText id="betaBloqueadores_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.betaBloqueadores_bool)}"/>
+                <h:outputText id="betaBloqueadores_texto" value="#{iCVMedicoController.selected.cartola.betaBloqueadores_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_betaBloqueadores_texto}" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_IECA_texto}"  />
+                <h:outputText id="IECA_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.IECA_bool)}"/>
+                <h:outputText id="IECA_texto" value="#{iCVMedicoController.selected.cartola.IECA_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_IECA_texto}" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_ARAII_texto}"  />
+                <h:outputText id="ARAII_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.ARAII_bool)}"/>
+                <h:outputText id="ARAII_texto" value="#{iCVMedicoController.selected.cartola.ARAII_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_ARAII_texto}" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_calcioAntagonistas_texto}"  />
+                <h:outputText id="calcioAntagonistas_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.calcioAntagonistas_bool)}"/>
+                <h:outputText id="calcioAntagonistas_texto" value="#{iCVMedicoController.selected.cartola.calcioAntagonistas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_calcioAntagonistas_texto}" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_esteatinas_texto}"  />
+                <h:outputText id="esteatinas_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.esteatinas_bool)}"/>
+                <h:outputText id="esteatinas_texto" value="#{iCVMedicoController.selected.cartola.esteatinas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_esteatinas_texto}" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_fibratos_texto}"  />
+                <h:outputText id="fibratos_bool" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.fibratos_bool)}"/>
+                <h:outputText id="fibratos_texto" value="#{iCVMedicoController.selected.cartola.fibratos_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_fibratos_texto}" />
+                <h:outputText value="" />
+                
+                <h:outputText value="Tabaco:"  />
+                <h:outputText id="tabaco" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.tabaco)}"  style="width:60px" />
+
+                <h:outputText value="Hipertrofia ventricular izquierda:"  />
+                <h:outputText id="HVI" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.HVI)}"  style="width:60px" />
+
+                <h:outputText value="IRC:"  />
+                <h:outputText id="IRC" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.IRC)}"  style="width:60px" />
+                <h:outputText value="Nefropatía Incipiente:"  />
+                <h:outputText id="NefroIn" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.nefropatiaInciente)}" style="width:60px" />
+
+                <h:outputText value="Amputación no traumática:"  />
+                <h:outputText id="amputacion_no_traumatica" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.amputacion_no_traumatica)}"  style="width:60px" />
+
+                <h:outputText value="Amputación diabética:"  />
+                <h:outputText id="amputa_diabe" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.amputacionDiabetica)}" style="width:60px" />
+
+
+                <h:outputText value="Ceguera:"  />
+                <h:outputText id="ceguera" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.ceguera)}"  style="width:60px" />
+
+                <h:outputText value="Retinopatía:"  />
+                <h:outputText id="retinopatia" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.retinopatia)}"  style="width:60px" />
+                <h:outputText value="Ceguera Post retinopatía"  />
+                <h:outputText id="ceguera_post" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.cegueraPostRetinopatia)}"  style="width:60px" />
+                <h:outputText value="Complicación (Prevalencia)"  />
+                <h:outputText id="Complicacion" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.complicacionPrevalencia)}" style="width:60px" />
+
+                <h:outputText value="QUALDIAB:"  />
+                <h:outputText id="QUALDIAB" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.QUALDIAB)}"  style="width:60px" />
+                <h:outputText value="#{bundle.CreateFichaMedicoLabel_diagnosticos_medico}"  />
+                <h:outputText id="diagnosticos_medico" value="#{iCVMedicoController.selected.fichaMed.diagnosticos_medico}" title="#{bundle.CreateFichaMedicoTitle_diagnosticos_medico}" />
+                <h:outputText value="Otros diagonósticos"  />
+                <h:outputText id="icv_otros_diagnosticos" value="#{iCVMedicoController.selected.fichaMed.icv_otros_diagnosticos}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_punteaje_pie_dm}"  />
+                <h:outputText id="punteaje_pie_dm" value="#{iCVMedicoController.selected.cartola.punteaje_pie_dm}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_punteaje_pie_dm}" />
+                <h:outputText  value=" Exámenes:"  class="subItem" />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_glicemia_estado}"  />
+                <h:outputText id="glicemia_estado" value="#{iCVMedicoController.selected.cartola.glicemia_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_glicemica_valor}"  />
+                <h:outputText id="glicemica_valor" value="#{iCVMedicoController.selected.cartola.glicemica_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_glicemica_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_estado}"  />
+                <h:outputText id="hba1C_estado" value="#{iCVMedicoController.selected.cartola.hba1C_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_valor}"  />
+                <h:outputText id="hba1C_valor" value="#{iCVMedicoController.selected.cartola.hba1C_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_hba1C_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_estado}"  />
+                <h:outputText id="colesterolTotal_estado" value="#{iCVMedicoController.selected.cartola.colesterolTotal_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_valor}"  />
+                <h:outputText id="colesterolTotal_valor" value="#{iCVMedicoController.selected.cartola.colesterolTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolTotal_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_estado}"  />
+                <h:outputText id="colesterolLDL_estado" value="#{iCVMedicoController.selected.cartola.colesterolLDL_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_valor}"  />
+                <h:outputText id="colesterolLDL_valor" value="#{iCVMedicoController.selected.cartola.colesterolLDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolLDL_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_estado}"  />
+                <h:outputText id="colesterolHDL_estado" value="#{iCVMedicoController.selected.cartola.colesterolHDL_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_valor}"  />
+                <h:outputText id="colesterolHDL_valor" value="#{iCVMedicoController.selected.cartola.colesterolHDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolHDL_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_estado}"  />
+                <h:outputText id="trigliceridos_estado" value="#{iCVMedicoController.selected.cartola.trigliceridos_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_valor}"  />
+                <h:outputText id="trigliceridos_valor" value="#{iCVMedicoController.selected.cartola.trigliceridos_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_trigliceridos_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_estado}"  />
+                <h:outputText id="bilirrubinaTotal_estado" value="#{iCVMedicoController.selected.cartola.bilirrubinaTotal_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_valor}"  />
+                <h:outputText id="bilirrubinaTotal_valor" value="#{iCVMedicoController.selected.cartola.bilirrubinaTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaTotal_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_estado}"  />
+                <h:outputText id="bilirrubinaDirecta_estado" value="#{iCVMedicoController.selected.cartola.bilirrubinaDirecta_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_valor}"  />
+                <h:outputText id="bilirrubinaDirecta_valor" value="#{iCVMedicoController.selected.cartola.bilirrubinaDirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaDirecta_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_estado}"  />
+                <h:outputText id="bilirrubinaIndirecta_estado" value="#{iCVMedicoController.selected.cartola.bilirrubinaIndirecta_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_valor}"  />
+                <h:outputText id="bilirrubinaIndirecta_valor" value="#{iCVMedicoController.selected.cartola.bilirrubinaIndirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaIndirecta_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_estado}"  />
+                <h:outputText id="creatinina_estado" value="#{iCVMedicoController.selected.cartola.creatinina_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_valor}"  />
+                <h:outputText id="creatinina_valor" value="#{iCVMedicoController.selected.cartola.creatinina_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_creatinina_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_BUN_estado}"  />
+                <h:outputText id="BUN_estado" value="#{iCVMedicoController.selected.cartola.BUN_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_BUN_valor}"  />
+                <h:outputText id="BUN_valor" value="#{iCVMedicoController.selected.cartola.BUN_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_BUN_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_estado}"  />
+                <h:outputText id="MDRD_estado" value="#{iCVMedicoController.selected.cartola.MDRD_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_valor}"  />
+                <h:outputText id="MDRD_valor" value="#{iCVMedicoController.selected.cartola.MDRD_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_MDRD_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_estado}"  />
+                <h:outputText id="microALB24H_estado" value="#{iCVMedicoController.selected.cartola.microALB24H_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_valor}"  />
+                <h:outputText id="microALB24H_valor" value="#{iCVMedicoController.selected.cartola.microALB24H_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_microALB24H_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_estado}"  />
+                <h:outputText id="clearenceCrea_estado" value="#{iCVMedicoController.selected.cartola.clearenceCrea_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_valor}"  />
+                <h:outputText id="clearenceCrea_valor" value="#{iCVMedicoController.selected.cartola.clearenceCrea_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_clearenceCrea_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_estado}"  />
+                <h:outputText id="naPositivo_estado" value="#{iCVMedicoController.selected.cartola.naPositivo_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_valor}"  />
+                <h:outputText id="naPositivo_valor" value="#{iCVMedicoController.selected.cartola.naPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_naPositivo_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_estado}"  />
+                <h:outputText id="KPositivo_estado" value="#{iCVMedicoController.selected.cartola.KPositivo_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_valor}"  />
+                <h:outputText id="KPositivo_valor" value="#{iCVMedicoController.selected.cartola.KPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_KPositivo_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_estado}"  />
+                <h:outputText id="CLNegativo_estado" value="#{iCVMedicoController.selected.cartola.CLNegativo_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_valor}"  />
+                <h:outputText id="CLNegativo_valor" value="#{iCVMedicoController.selected.cartola.CLNegativo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_CLNegativo_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_GPT_estado}"  />
+                <h:outputText id="GPT_estado" value="#{iCVMedicoController.selected.cartola.GPT_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_GPT_valor}"  />
+                <h:outputText id="GPT_valor" value="#{iCVMedicoController.selected.cartola.GPT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GPT_valor}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_GOT_estado}"  />
+                <h:outputText id="GOT_estado" value="#{iCVMedicoController.selected.cartola.GOT_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_GOT_valor}"  />
+                <h:outputText id="GOT_valor" value="#{iCVMedicoController.selected.cartola.GOT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GOT_valor}" />
+
+                <h:outputText  value=" Exámenes segunda parte:"  class="subItem"  />
+                <h:outputText value="" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_estado}"  />
+                <h:outputText id="orocultivo_estado" value="#{iCVMedicoController.selected.cartola.orocultivo_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_ejecucion}"  />
+                <h:outputText id="orocultivo_ejecucion" value="#{iCVMedicoController.selected.cartola.orocultivo_ejecucion}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_ECG_estado}"  />
+                <h:outputText id="ECG_estado" value="#{iCVMedicoController.selected.cartola.ECG_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_ECG_ejecucion}"  />
+                <h:outputText id="ECG_ejecucion" value="#{iCVMedicoController.selected.cartola.ECG_ejecucion}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_estado}"  />
+                <h:outputText id="fondoOJO_estado" value="#{iCVMedicoController.selected.cartola.fondoOJO_estado}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_ejecucion}"  />
+                <h:outputText id="fondoOJO_ejecucion" value="#{iCVMedicoController.selected.cartola.fondoOJO_ejecucion}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_estado}"  />
+                <h:outputText id="orinaCompleta_estado" value="#{iCVMedicoController.selected.cartola.orinaCompleta_estado}" />
+
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_ejecucion}"  />
+                <h:outputText id="orinaCompleta_ejecucion" value="#{iCVMedicoController.selected.cartola.orinaCompleta_ejecucion}" />
+                
+                <p:outputLabel value="#{bundle.CreateFichaMedicoLabel_otrasIndicaciones_medico}"  />
+                <h:outputText id="otrasIndicaciones_medico" value="#{fichaMedicoController.selected.otrasIndicaciones_medico}" title="#{bundle.CreateFichaMedicoTitle_otrasIndicaciones_medico}" />
+                <h:outputText value="#{bundle.CreateFichaMedicoLabel_referencias_medico}"  />
+                <h:outputText id="referencias_medico" value="#{iCVMedicoController.selected.fichaMed.referencias_medico}" title="#{bundle.CreateFichaMedicoTitle_referencias_medico}" />
+                <h:outputText  value=" Antecedentes riesgo CCV"  class="subItem" />
+                <h:outputText value="" />
+                <h:outputText value="Prediabético:"  />
+                <h:outputText id="prediabetico" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.paciente.prediabetes)}" style="width:60px" />
+                <h:outputText value="IAM:"  />
+                <h:outputText id="IAM" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.IAM)}"  style="width:60px" />
+                <h:outputText value="ACV:"  />
+                <h:outputText id="ACV" value="#{utilidadesController.booleanos(iCVMedicoController.selected.cartola.ACV)}"  style="width:60px" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_riesgo_cardiovascular}"  />
+                <h:outputText id="riesgo_cardiovascular" value="#{iCVMedicoController.selected.cartola.riesgo_cardiovascular}" />
+                <p:outputLabel value="Enfermedad Renal Crónica"  />
+                <h:outputText id="erc" value="#{iCVMedicoController.selected.cartola.det_Prev_ERC}" />
+                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_proximo_control}"  />
+                <h:outputText id="proximo_control"  value="#{iCVMedicoController.selected.cartola.proximo_control}"/>
+                            </p:panelGrid>
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Ingreso Nutricionista">
+                        <h:panelGrid columns="1" cellpadding="10"> 
+                            <h:outputLabel value="El paciente seleccionado no presenta registros para el Ingreso Nutricionista" rendered = "#{iCVNutricionistaController.getObjetobyRut(pacienteController.selected.id) ==null}" /> 
+                            <p:button icon="fa fa-file-powerpoint-o" value="Crear Ingreso Nutricionista"  outcome="/iCVNutricionista/CrearICVNutricionista" rendered = "#{iCVNutricionistaController.getObjetobyRut(pacienteController.selected.id) ==null}" />
+
+                            <p:panelGrid layout="grid" class="container tab1_preingresod" columns="2" rendered="#{iCVNutricionistaController.getObjetobyRut(pacienteController.selected.id) !=null}">
+                                <p:outputLabel value="Ingreso o Reingreso:"  for="ingreso_reingreso2"/>
+                                <h:outputText id="ingreso_reingreso2" value="#{iCVNutricionistaController.selected.cartola.ingreso_reingreso}" title="Ingreso o Reingreso" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_fecha_control}"  />
+                                <h:outputText id="fecha_control_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.fecha_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fecha_control}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_edad_paciente}"  />
+                                <h:outputText id="edad_paciente_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.edad_paciente}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_edad_paciente}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_profesional}"  />
+                                <h:outputText id="profesional_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.profesional.toString()}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_peso}"  />
+                                <h:outputText id="peso_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.peso}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_peso}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_talla}"  />
+                                <h:outputText id="talla_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.talla}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_talla}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_imc}"  />
+                                <h:outputText id="imc_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.imc}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_imc}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_diagnostico_nutricional}"  />
+                                <h:outputText id="diagnostico_nutricional_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.diagnostico_nutricional}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_perimetro_cintura}"  />
+                                <h:outputText id="perimetro_cintura_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.perimetro_cintura}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_perimetro_cintura}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_calorias}"  />
+                                <h:outputText id="calorias" value="#{iCVNutricionistaController.selected.cartolaToNutri.calorias}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_calorias}" />
+
+
+                                <h:outputText value="" />
+                                <h:outputText value="" />
+                                <h:outputText value="Patologías Crónicas:" class="subItem" />
+                                <h:outputText value="" />
+
+                                <h:outputText value="Hipertensión:"  />
+                                <h:outputText value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartola.paciente.hipertencion)}"  style="width:60px" />
+                                <h:outputText value="Diabétes:"  />
+                                <h:outputText value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartola.paciente.diabetico)}"  style="width:60px" />
+                                <h:outputText value="Dislipidemia:" />
+                                <h:outputText value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartola.paciente.dislipidemico)}"  style="width:60px" />
+
+
+                                <h:outputText value="" />
+                                <h:outputText value="" />
+                                <h:outputText value="Evaluación del PIE Según riesgo ulceración:" class="subItem" />
+                                <h:outputText value="" />
+                                <h:outputText value="Riesgo Ulceración Pie:"  />
+                                <h:outputText value="#{iCVNutricionistaController.selected.cartola.estimacionRiesgoUlceracionPie}" />                  
+                                <h:outputText value="Úlcera activa Pie DM:" />
+                                <h:outputText value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartola.ulcera_activaPieDM)}"  style="width:60px" />
+                                <h:outputText value=" Atención podológica:"/>
+                                <h:outputText value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.atencionPodologica)}"  style="width:60px" />
+                                <h:outputText value="Descripción:" />
+                                <h:outputText value="#{iCVNutricionistaController.selected.cartola.ulcera_activaPieDM_Descripcion}" title="ulcera_activaPieDM_Descripcion" />
+                                <h:outputText value="Curación Pie DM:"  />
+                                <h:outputText value="#{iCVNutricionistaController.selected.cartola.curacionPie_DM}" /> 
+                                <h:outputText value=" Nefropatía Incipiente:"/>
+                                <h:outputText value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.nefropatiaInciente)}" style="width:60px" />
+                                <h:outputText value=" Preescripción dietética"/>
+                                <h:outputText value="#{iCVNutricionistaController.selected.fichaNutri.icv_preescripciones_dieteticas}" />
+                                <h:outputText value=" Indicaciones alimentarias"/>
+                                <h:outputText value="#{iCVNutricionistaController.selected.fichaNutri.icv_indicaciones_alimentarias}" />
+                                <h:outputText value=" Indicaciones específicas" class="subItem" />
+                               <h:outputText value=" " />
+                               <h:outputText value=" " />
+                                <h:outputText value=" " />
+                                <h:outputText value=" H.de C (texto)"/>
+                                <h:outputText value="#{iCVNutricionistaController.selected.fichaNutri.icv_ind_esp_hdec1}" />
+                                <h:outputText value=" H.de C (número)"/>
+                                <h:outputText value="#{iCVNutricionistaController.selected.fichaNutri.icv_ind_esp_hdec2}" />
+
+                                <h:outputText value=" Indicaciones proteínas (texto)" />
+                                <h:outputText value="#{iCVNutricionistaController.selected.fichaNutri.icv_ind_esp_proteinas1}" />
+                                <h:outputText value=" Indicaciones proteínas (número)"/>
+                                <h:outputText value="#{iCVNutricionistaController.selected.fichaNutri.icv_ind_esp_proteinas2}" />
+
+                                <h:outputText value=" Indicaciones lípidos (texto)"/>
+                                <h:outputText value="#{iCVNutricionistaController.selected.fichaNutri.icv_ind_esp_lipidos1}" />
+                                <h:outputText value=" Indicaciones lípidos (número)"/>
+                                <h:outputText value="#{iCVNutricionistaController.selected.fichaNutri.icv_ind_esp_lipidos2}" />
+                                <h:outputText value="" />
+                                <h:outputText value="" />
+                                <h:outputText value="Régimen:" class="subItem"/>
+                                <h:outputText value="" />
+                                <h:outputText value="Hiposidico"  />
+                                <h:outputText id="hiposodico" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.hiposodico)}"  style="width:60px" />
+                                <h:outputText value="Diabético"  />
+                                <h:outputText id="diabetico" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.diabetico)}"  style="width:60px" />
+                                <h:outputText value="Hipocalórico"  />
+                                <h:outputText id="hipocalorico" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.hipocalorico)}"  style="width:60px" />
+
+                                <h:outputText value="Fármacos:" class="subItem"/>
+                                <h:outputText value="" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_sulfonilureas_texto}"  />
+                                <h:outputText id="sulfonilureas_bool_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.sulfonilureas_bool)}"  style="width:60px" />
+                                <h:outputText value="Observaciones" />
+                                <h:outputText id="sulfonilureas_texto_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.sulfonilureas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_sulfonilureas_texto}" />
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_biguanidas_texto}"  />
+                                <h:outputText id="biguanidas_bool_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.biguanidas_bool)}"  style="width:60px" />
+                                <h:outputText value="Observaciones" />
+                                <h:outputText id="biguanidas_texto_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.biguanidas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_biguanidas_texto}" />
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_insulina_texto}"  />
+                                <h:outputText id="insulina_bool_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.insulina_bool)}"  style="width:60px" />                        
+                                <h:outputText value="Observaciones" />
+                                <h:outputText id="insulina_texto_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.insulina_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_insulina_texto}" />
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_diuereticosTiazidicos_texto}"  />
+                                <h:outputText id="diuereticosTiazidicos_bool_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.diuereticosTiazidicos_bool)}"  style="width:60px" />                       
+                                <h:outputText value="Observaciones" />
+                                <h:outputText id="diuereticosTiazidicos_texto_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.diuereticosTiazidicos_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_diuereticosTiazidicos_texto}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_diureticosDelAsa_texto}"  />
+                                <h:outputText id="diureticosDelAsa_bool_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.diureticosDelAsa_bool)}"  style="width:60px" />
+                                <h:outputText value="Observaciones" />
+                                <h:outputText id="diureticosDelAsa_texto_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.diureticosDelAsa_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_diureticosDelAsa_texto}" />
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_deiureticosAntiAldosterona_texto}"  />
+                                <h:outputText id="deiureticosAntiAldosterona_bool_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.deiureticosAntiAldosterona_bool)}"  style="width:60px" />
+                                <h:outputText value="Observaciones" />
+                                <h:outputText id="deiureticosAntiAldosterona_texto_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.deiureticosAntiAldosterona_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_deiureticosAntiAldosterona_texto}" />
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_betaBloqueadores_texto}"  />
+                                <h:outputText id="betaBloqueadores_bool_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.betaBloqueadores_bool)}"  style="width:60px" />
+                                <h:outputText value="Observaciones" />
+                                <h:outputText id="betaBloqueadores_texto_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.betaBloqueadores_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_betaBloqueadores_texto}" />
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_IECA_texto}"  />
+                                <h:outputText id="IECA_bool_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.IECA_bool)}"  style="width:60px" />
+                                <h:outputText value="Observaciones" />
+                                <h:outputText id="IECA_texto_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.IECA_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_IECA_texto}" />
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_ARAII_texto}"  />
+                                <h:outputText id="ARAII_bool_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.ARAII_bool)}"  style="width:60px" />
+                                <h:outputText value="Observaciones" />
+                                <h:outputText id="ARAII_texto_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.ARAII_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_ARAII_texto}" />
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_calcioAntagonistas_texto}"  />
+                                <h:outputText id="calcioAntagonistas_bool_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.calcioAntagonistas_bool)}"  style="width:60px" />
+                                <h:outputText value="Observaciones" />
+                                <h:outputText id="calcioAntagonistas_texto_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.calcioAntagonistas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_calcioAntagonistas_texto}" />
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_esteatinas_texto}"  />
+                                <h:outputText id="esteatinas_bool_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.esteatinas_bool)}"  style="width:60px" />
+                                <h:outputText value="Observaciones" />
+                                <h:outputText id="esteatinas_texto_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.esteatinas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_esteatinas_texto}" />
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_fibratos_texto}"  />
+                                <h:outputText id="fibratos_bool_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.fibratos_bool)}"  style="width:60px" />
+                                <h:outputText value="Observaciones" />
+                                <h:outputText id="fibratos_texto_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.fibratos_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_fibratos_texto}" />
+
+
+
+                                <h:outputText value="Presión arterial de pie"  />
+                                <h:outputText id="pa_de_pie1_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.pa_de_pie1} / #{iCVNutricionistaController.selected.cartolaToNutri.pa_de_pie2}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_de_pie1}" />
+
+                                <h:outputText value="Presión arterial sentado"  />
+                                <h:outputText id="pa_sentado1_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.pa_sentado1} / #{iCVNutricionistaController.selected.cartolaToNutri.pa_sentado2}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_sentado1}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_puslo}"  />
+                                <h:outputText id="pulso_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.puslo}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_puslo}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_punteaje_pie_dm}"  />
+                                <h:outputText id="punteaje_pie_dm_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.punteaje_pie_dm}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_punteaje_pie_dm}" />
+
+
+
+                                <h:outputText value="Exámenes:" class="subItem"/>
+                                <h:outputText value="" />
+
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_glicemia_estado}"  />
+                                <h:outputText id="glicemia_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.glicemia_estado}" />                     
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_glicemica_valor}" />
+                                <h:outputText id="glicemica_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.glicemica_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_glicemica_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_estado}"  />
+                                <h:outputText id="hba1C_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.hba1C_estado}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_valor}"  />
+                                <h:outputText id="hba1C_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.hba1C_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_hba1C_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_estado}"  />
+                                <h:outputText id="colesterolTotal_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.colesterolTotal_estado}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_valor}" />
+                                <h:outputText id="colesterolTotal_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.colesterolTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolTotal}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_estado}"  />
+                                <h:outputText id="colesterolLDL_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.colesterolLDL_estado}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_valor}"  />
+                                <h:outputText id="colesterolLDL_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.colesterolLDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolLDL_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_estado}"  />
+                                <h:outputText id="colesterolHDL_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.colesterolHDL_estado}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_valor}"  />
+                                <h:outputText id="colesterolHDL_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.colesterolHDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolHDL_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_estado}"  />
+                                <h:outputText id="trigliceridos_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.trigliceridos_estado}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_valor}"  />
+                                <h:outputText id="trigliceridos_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.trigliceridos_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_trigliceridos_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_estado}"  />
+                                <h:outputText id="bilirrubinaTotal_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.bilirrubinaTotal_estado}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_valor}"  />
+                                <h:outputText id="bilirrubinaTotal_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.bilirrubinaTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaTotal_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_estado}"  />
+                                <h:outputText id="bilirrubinaDirecta_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.bilirrubinaDirecta_estado}" />
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_valor}"  />
+                                <h:outputText id="bilirrubinaDirecta_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.bilirrubinaDirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaDirecta_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_estado}"  />
+                                <h:outputText id="bilirrubinaIndirecta_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.bilirrubinaIndirecta_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_valor}"  />
+                                <h:outputText id="bilirrubinaIndirecta_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.bilirrubinaIndirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaIndirecta_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_estado}"  />
+                                <h:outputText id="creatinina_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.creatinina_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_valor}"  />
+                                <h:outputText id="creatinina_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.creatinina_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_creatinina_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_BUN_estado}"  />
+                                <h:outputText id="BUN_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.BUN_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_BUN_valor}"  />
+                                <h:outputText id="BUN_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.BUN_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_BUN_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_estado}"  />
+                                <h:outputText id="MDRD_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.MDRD_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_valor}"  />
+                                <h:outputText id="MDRD_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.MDRD_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_MDRD_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_estado}"  />
+                                <h:outputText id="microALB24H_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.microALB24H_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_valor}"  />
+                                <h:outputText id="microALB24H_valor_nutri" value="#{vmicroALB24H_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_microALB24H_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_estado}" />
+                                <h:outputText id="clearenceCrea_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.clearenceCrea_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_valor}" />
+                                <h:outputText id="clearenceCrea_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.clearenceCrea_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_clearenceCrea_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_estado}"  />
+                                <h:outputText id="naPositivo_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.naPositivo_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_valor}"  />
+                                <h:outputText id="naPositivo_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.naPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_naPositivo_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_estado}"  />
+                                <h:outputText id="KPositivo_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.KPositivo_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_valor}"  />
+                                <h:outputText id="KPositivo_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.KPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_KPositivo_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_estado}"  />
+                                <h:outputText id="CLNegativo_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.CLNegativo_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_valor}"  />
+                                <h:outputText id="CLNegativo_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.CLNegativo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_CLNegativo_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_GPT_estado}"  />
+                                <h:outputText id="GPT_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.GPT_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_GPT_valor}"  />
+                                <h:outputText id="GPT_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.GPT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GPT_valor}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_GOT_estado}"  />
+                                <h:outputText id="GOT_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.GOT_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_GOT_valor}"  />
+                                <h:outputText id="GOT_valor_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.GOT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GOT_valor}" />
+
+                                <h:outputText value="Exámenes segunda parte:" class="subItem"/>
+                                <h:outputText value="" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_estado}"  />
+                                <h:outputText id="orocultivo_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.orocultivo_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_ejecucion}"  />
+                                <h:outputText id="orocultivo_ejecucion_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.orocultivo_ejecucion}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_ECG_estado}"  />
+                                <h:outputText id="ECG_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.ECG_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_ECG_ejecucion}"  />
+                                <h:outputText id="ECG_ejecucion_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.ECG_ejecucion}"/>
+
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_estado}"  />
+                                <h:outputText id="fondoOJO_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.fondoOJO_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_ejecucion}"  />
+                                <h:outputText id="fondoOJO_ejecucion_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.fondoOJO_ejecucion}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_estado}"  />
+                                <h:outputText id="orinaCompleta_estado_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.orinaCompleta_estado}"/>
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_ejecucion}"  />
+                                <h:outputText id="orinaCompleta_ejecucion_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.orinaCompleta_ejecucion}"/>
+
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_otros_examenes}"  />
+                                <h:outputText id="otros_examenes_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.otros_examenes}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_otros_examenes}" />
+
+
+                                <h:outputText value="Antecedentes riesgo CCV" class="subItem"/>
+                                <h:outputText value="" />
+
+                                <h:outputText value="Tabaco:"  />
+                                <h:outputText id="tabaco_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.tabaco)}"  style="width:60px" />
+
+                                <h:outputText value="IAM:" />
+                                <h:outputText id="IAM_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.paciente.IAM)}"  style="width:60px" />
+
+                                <h:outputText value="ACV:"  />
+                                <h:outputText id="ACV_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.paciente.ACV)}"  style="width:60px" />
+
+                                <h:outputText value="Hipertrofia ventricular izquierda:"  />
+                                <h:outputText id="HVI_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.HVI)}"  style="width:60px" />
+
+                                <h:outputText value="IRC:"  />
+                                <h:outputText id="IRC_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.IRC)}"  style="width:60px" />
+
+                                <h:outputText value="Amputación no traumática:" />
+                                <h:outputText id="amputacion_no_traumatica_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.amputacion_no_traumatica)}"  style="width:60px" />
+
+                                <h:outputText value="Ceguera:"  />
+                                <h:outputText id="ceguera_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.ceguera)}"  style="width:60px" />
+
+                                <h:outputText value="Retinopatía:"  />
+                                <h:outputText id="retinopatia_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.retinopatia)}"  style="width:60px" />
+
+                                <h:outputText value="QUALDIAB:"  />
+                                <h:outputText id="QUALDIAB_nutri" value="#{utilidadesController.booleanos(iCVNutricionistaController.selected.cartolaToNutri.QUALDIAB)}"  style="width:60px" />
+
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_riesgo_cardiovascular}"  />
+                                <h:outputText id="riesgo_cardiovascular_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.riesgo_cardiovascular}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_observaciones}"  />
+                                <h:outputText id="observaciones" value="#{iCVNutricionistaController.selected.cartolaToNutri.observaciones}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_observaciones}" />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_fechareingreso}"  />
+                                <h:outputText id="fechareingreso" value="#{iCVNutricionistaController.selected.cartolaToNutri.fechareingreso}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fechareingreso}"  />
+
+                                <h:outputText value="#{bundle.CreateCartolaSeguimientoCCVLabel_proximo_control}"  />
+                                <h:outputText id="proximo_control_nutri" value="#{iCVNutricionistaController.selected.cartolaToNutri.proximo_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_proximo_control}" />
+                                <h:outputText value="#{bundle.CreateFichaNutricionistaLabel_anamnesis_nutri}"  />
+                                <h:outputText id="anamnesis_nutri" value="#{iCVNutricionistaController.selected.fichaNutri.anamnesis_nutri}" title="#{bundle.CreateFichaNutricionistaTitle_anamnesis_nutri}" />
+                                <h:outputText value="#{bundle.CreateFichaNutricionistaLabel_perimetroCaderas_nutri}"  />
+                                <h:outputText id="perimetroCaderas_nutri" value="#{iCVNutricionistaController.selected.fichaNutri.perimetroCaderas_nutri}" title="#{bundle.CreateFichaNutricionistaTitle_perimetroCaderas_nutri}" />
+
+                                <h:outputText value="#{bundle.CreateFichaNutricionistaLabel_indiceCC_nutri}"  />
+                                <h:outputText id="indiceCC_nutri1" value="#{iCVNutricionistaController.selected.fichaNutri.indiceCC_nutri1}" title="#{bundle.CreateFichaNutricionistaTitle_indiceCC_nutri}"><h:outputText value="/"/>
+                                <h:outputText id="indiceCC_nutri2" value="#{iCVNutricionistaController.selected.fichaNutri.indiceCC_nutri2}" title="#{bundle.CreateFichaNutricionistaTitle_indiceCC_nutri}"/>
+                                </h:outputText>
+
+                            </p:panelGrid>
+                            <p:panelGrid styleClass="col-md-12 spaceGrid" layout="grid" columns="3" rendered="#{iCVNutricionistaController.getObjetobyRut(pacienteController.selected.id) !=null}">
+                                <h:outputText value="Historia dietética:" class="subItem"/>
+                                <h:outputText value="" />
+                                <h:outputText value="" />
+                                <h:outputText value="Minuta" />
+                                <h:outputText value="Horario" />
+                                <h:outputText value="Descripción" />
+                                <h:outputText value="Desayuno" />
+                                <h:outputText id="desayuno_horario" value="#{iCVNutricionistaController.selected.fichaNutri.desayuno_horario}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_horario}" />
+                                <h:outputText id="desayuno_descripcion" value="#{iCVNutricionistaController.selected.fichaNutri.desayuno_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_descripcion}" />
+                                <h:outputText value="Colación" />
+                                <h:outputText id="colacion_horario" value="#{iCVNutricionistaController.selected.fichaNutri.colacion_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_horario}" />
+                                <h:outputText id="colacion_descripcion" value="#{iCVNutricionistaController.selected.fichaNutri.colacion_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_descripcion}" />
+                                <h:outputText value="Almuerzo" />
+                                <h:outputText id="almuerzo_horario" value="#{iCVNutricionistaController.selected.fichaNutri.almuerzo_horario}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_horario}" />
+                                <h:outputText id="almuerzo_descripcion" value="#{iCVNutricionistaController.selected.fichaNutri.almuerzo_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_descripcion}" />
+                                <h:outputText value="Colación Tarde" />
+                                <h:outputText id="colaciontarde_horario" value="#{iCVNutricionistaController.selected.fichaNutri.colaciontarde_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_horario}" />
+                                <h:outputText id="colaciontarde_descripcion" value="#{iCVNutricionistaController.selected.fichaNutri.colaciontarde_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_descripcion}" />
+                                <h:outputText value="Cena" />
+                                <h:outputText id="cena_horario" value="#{iCVNutricionistaController.selected.fichaNutri.cena_horario}" title="#{bundle.CreateFichaNutricionistaTitle_cena_horario}" />
+                                <h:outputText id="cena_descripcion" value="#{iCVNutricionistaController.selected.fichaNutri.cena_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_cena_descripcion}" />
+                            </p:panelGrid>
+                            <p:panelGrid styleClass="col-md-12 spaceGrid" layout="grid" columns="4" rendered="#{iCVNutricionistaController.getObjetobyRut(pacienteController.selected.id) !=null}">
+                                <h:outputText value="Frecuencia de consumo:" class="subItem"/>
+                                <h:outputText value="" />
+                                <h:outputText value="" />
+                                <h:outputText value="" />
+                                <h:outputText value="Alimentos" />
+                                <h:outputText value="Frecuencia" />
+                                <h:outputText value="Cantidad" />
+                                <h:outputText value="Observaciones" />
+
+                                <h:outputText value="Leche y yogurt" />
+                                <h:outputText id="consumo_lecheYogurt_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_lecheYogurt_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_lecheYogurt_frecuencia}" />
+                                <h:outputText id="consumo_lecheYogurt_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_lecheYogurt_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_lecheYogurt_cantidad}" />
+                                <h:outputText id="consumo_lecheYogurt_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_lecheYogurt_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_lecheYogurt_observaciones}" />
+                                <h:outputText value="Queso y quesillo" />
+                                <h:outputText id="consumo_quesoQuesillo_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_quesoQuesillo_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_quesoQuesillo_frecuencia}" />
+                                <h:outputText id="consumo_quesoQuesillo_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_quesoQuesillo_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_quesoQuesillo_cantidad}" />
+                                <h:outputText id="consumo_quesoQuesillo_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_quesoQuesillo_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_quesoQuesillo_observaciones}" />
+                                <h:outputText value="Carnes" />
+                                <h:outputText id="consumo_carnes_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_carnes_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_carnes_frecuencia}" />
+                                <h:outputText id="consumo_carnes_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_carnes_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_carnes_cantidad}" />
+                                <h:outputText id="consumo_carnes_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_carnes_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_carnes_observaciones}" />
+                                <h:outputText value="Pescados y mariscos" />
+                                <h:outputText id="consumo_pescadosMariscos_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_pescadosMariscos_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_pescadosMariscos_frecuencia}" />
+                                <h:outputText id="consumo_pescadosMariscos_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_pescadosMariscos_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_pescadosMariscos_cantidad}" />
+                                <h:outputText id="consumo_pescadosMariscos_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_pescadosMariscos_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_pescadosMariscos_observaciones}" />
+                                <h:outputText value="Huevos" />
+                                <h:outputText id="consumo_huevos_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_huevos_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_huevos_frecuencia}" />
+                                <h:outputText id="consumo_huevos_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_huevos_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_huevos_cantidad}" />
+                                <h:outputText id="consumo_huevos_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_huevos_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_huevos_observaciones}" />
+                                <h:outputText value="Verduras" />
+                                <h:outputText id="consumo_verduras_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_verduras_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_verduras_frecuencia}" />
+                                <h:outputText id="consumo_verduras_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_verduras_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_verduras_cantidad}" />
+                                <h:outputText id="consumo_verduras_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_verduras_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_verduras_observaciones}" />
+                                <h:outputText value="Papas" />
+                                <h:outputText id="consumo_papas_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_papas_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_papas_frecuencia}" />
+                                <h:outputText id="consumo_papas_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_papas_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_papas_cantidad}" />
+                                <h:outputText id="consumo_papas_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_papas_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_papas_observaciones}" />
+                                <h:outputText value="Frutas" />
+                                <h:outputText id="consumo_frutas_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_frutas_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_frutas_frecuencia}" />
+                                <h:outputText id="consumo_frutas_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_frutas_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_frutas_cantidad}" />
+                                <h:outputText id="consumo_frutas_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_frutas_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_frutas_observaciones}" />
+                                <h:outputText value="Leguminosas" />
+                                <h:outputText id="consumo_leguminosas_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_leguminosas_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_leguminosas_frecuencia}" />
+                                <h:outputText id="consumo_leguminosas_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_leguminosas_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_leguminosas_cantidad}" />
+                                <h:outputText id="consumo_leguminosas_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_leguminosas_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_leguminosas_observaciones}" />
+                                <h:outputText value="Cereales" />
+                                <h:outputText id="consumo_cerealesFarinaceos_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_cerealesFarinaceos_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_cerealesFarinaceos_frecuencia}" />
+                                <h:outputText id="consumo_cerealesFarinaceos_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_cerealesFarinaceos_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_cerealesFarinaceos_cantidad}" />
+                                <h:outputText id="consumo_cerealesFarinaceos_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_cerealesFarinaceos_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_cerealesFarinaceos_observaciones}" />
+                                <h:outputText value="Sopas" />
+                                <h:outputText id="consumo_sopas_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_sopas_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_sopas_frecuencia}" />
+                                <h:outputText id="consumo_sopas_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_sopas_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_sopas_cantidad}" />
+                                <h:outputText id="consumo_sopas_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_sopas_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_sopas_observaciones}" />
+                                <h:outputText value="Guisos" />
+                                <h:outputText id="consumo_guisos_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_guisos_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_guisos_frecuencia}" />
+                                <h:outputText id="consumo_guisos_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_guisos_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_guisos_cantidad}" />
+                                <h:outputText id="consumo_guisos_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_guisos_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_guisos_observaciones}" />
+                                <h:outputText value="Pan" />
+                                <h:outputText id="consumo_pan_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_pan_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_pan_frecuencia}" />
+                                <h:outputText id="consumo_pan_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_pan_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_pan_cantidad}" />
+                                <h:outputText id="consumo_pan_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_pan_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_pan_observaciones}" />
+                                <h:outputText value="Galletas" />
+                                <h:outputText id="consumo_galletas_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_galletas_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_galletas_frecuencia}" />
+                                <h:outputText id="consumo_galletas_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_galletas_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_galletas_cantidad}" />
+                                <h:outputText id="consumo_galletas_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_galletas_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_galletas_observaciones}" />
+                                <h:outputText value="Aceite" />
+                                <h:outputText id="consumo_aceite_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_aceite_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_aceite_frecuencia}" />
+                                <h:outputText id="consumo_aceite_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_aceite_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_aceite_cantidad}" />
+                                <h:outputText id="consumo_aceite_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_aceite_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_aceite_observaciones}" />
+                                <h:outputText value="Mantequilla" />
+                                <h:outputText id="consumo_mantequillaMargarina_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_mantequillaMargarina_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_mantequillaMargarina_frecuencia}" />
+                                <h:outputText id="consumo_mantequillaMargarina_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_mantequillaMargarina_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_mantequillaMargarina_cantidad}" />
+                                <h:outputText id="consumo_mantequillaMargarina_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_mantequillaMargarina_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_mantequillaMargarina_observaciones}" />
+                                <h:outputText value="Azúcar" />
+                                <h:outputText id="consumo_azucar_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_azucar_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_azucar_frecuencia}" />
+                                <h:outputText id="consumo_azucar_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_azucar_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_azucar_cantidad}" />
+                                <h:outputText id="consumo_azucar_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_azucar_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_azucar_observaciones}" />
+                                <h:outputText value="Mermelada" />
+                                <h:outputText id="consumo_mielMermelada_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_mielMermelada_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_mielMermelada_frecuencia}" />
+                                <h:outputText id="consumo_mielMermelada_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_mielMermelada_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_mielMermelada_cantidad}" />
+                                <h:outputText id="consumo_mielMermelada_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_mielMermelada_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_mielMermelada_observaciones}" />
+                                <h:outputText value="Bebidas" />
+                                <h:outputText id="consumo_bedidas_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_bedidas_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_bedidas_frecuencia}" />
+                                <h:outputText id="consumo_bebidas_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_bebidas_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_bebidas_cantidad}" />
+                                <h:outputText id="consumo_bebidas_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_bebidas_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_bebidas_observaciones}" />
+                                <h:outputText value="Dulces" />
+                                <h:outputText id="consumo_dulces_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_dulces_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_dulces_frecuencia}" />
+                                <h:outputText id="consumo_dulces_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_dulces_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_dulces_cantidad}" />
+                                <h:outputText id="consumo_dulces_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_dulces_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_dulces_observaciones}" />
+                                <h:outputText value="Embutidos" />
+                                <h:outputText id="consumo_embutidos_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_embutidos_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_embutidos_frecuencia}" />
+                                <h:outputText id="consumo_embutidos_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_embutidos_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_embutidos_cantidad}" />
+                                <h:outputText id="consumo_embutidos_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_embutidos_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_embutidos_observaciones}" />
+                                <h:outputText value="Agua" />
+                                <h:outputText id="consumo_agua_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_agua_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_agua_frecuencia}" />
+                                <h:outputText id="consumo_agua_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_agua_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_agua_cantidad}" />
+                                <h:outputText id="consumo_agua_observaciones" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_agua_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_agua_observaciones}" />
+                                <h:outputText value="Otros Alimentos" />
+                                <h:outputText id="consumo_otrosAlimentos_frecuencia" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_otrosAlimentos_frecuencia}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_otrosAlimentos_frecuencia}" />
+                                <h:outputText id="consumo_otrosAlimentos_cantidad" value="#{iCVNutricionistaController.selected.fichaNutri.consumo_otrosAlimentos_cantidad}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_otrosAlimentos_cantidad}" />
+                                <h:outputText id="consumo_otrosAlimentos_observaciones" value="#{vconsumo_otrosAlimentos_observaciones}" title="#{bundle.CreateFichaNutricionistaTitle_consumo_otrosAlimentos_observaciones}" />
+                            </p:panelGrid>
+                            <p:panelGrid styleClass="col-md-12 spaceGrid" layout="grid" columns="2" rendered="#{iCVNutricionistaController.getObjetobyRut(pacienteController.selected.id) !=null}">
+                                <h:outputText value="#{bundle.CreateFichaNutricionistaLabel_intolerancia_alimentaria}"  />
+                                <h:outputText id="intolerancia_alimentaria" value="#{iCVNutricionistaController.selected.fichaNutri.intolerancia_alimentaria}" title="#{bundle.CreateFichaNutricionistaTitle_intolerancia_alimentaria}" />
+                                <h:outputText value="#{bundle.CreateFichaNutricionistaLabel_nutrientes_criticos}"  />
+                                <h:outputText id="nutrientes_criticos" value="#{iCVNutricionistaController.selected.fichaNutri.nutrientes_criticos}" title="#{bundle.CreateFichaNutricionistaTitle_nutrientes_criticos}" />
+                                <h:outputText value="#{bundle.CreateFichaNutricionistaLabel_referencias_nutri}"  />
+                                <h:outputText id="referencias_nutri" value="#{iCVNutricionistaController.selected.fichaNutri.referencias_nutri}" title="#{bundle.CreateFichaNutricionistaTitle_referencias_nutri}" />
+                            </p:panelGrid>                            
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Reingresos al Programa Cardiovascular">
+                        
+                        <h:outputLabel value="Sin Ingreso M&eacute;dico"  rendered = "#{iCVMedicoController.getObjetobyRut(pacienteController.selected.id) ==null}" style="color: #C53430;"/> 
+                        <p:button rendered = "#{iCVMedicoController.getObjetobyRut(pacienteController.selected.id) !=null}" icon="fa fa-file-powerpoint-o" value="Crear Reingreso M&eacute;dico"  outcome="/faces/iCVMedico/CrearICVMedico"></p:button><br/><br/>
+                        <br/>
+                        <h:outputLabel value="Sin Ingreso Nutricionista"  rendered = "#{iCVNutricionistaController.getObjetobyRut(pacienteController.selected.id) ==null}" style="color: #C53430;"/> 
+                        <p:button rendered = "#{iCVNutricionistaController.getObjetobyRut(pacienteController.selected.id) !=null}" icon="fa fa-file-powerpoint-o" value="Crear Reingreso Cardiovascular Nutricionista"  outcome="/faces/iCVNutricionista/CrearICVNutricionista"></p:button><br/><br/>
+                        
+                    </p:tab>
+                    <p:tab title="Control Cardiovascular">
+                        <p:button icon="fa fa-file-powerpoint-o" value="Crear Control Cardiovascular M&eacute;dico"  outcome="/faces/cCVMedico/List"></p:button><br/><br/>
+                        <p:button icon="fa fa-file-powerpoint-o" value="Crear Control Cardiovascular Nutricionista"  outcome="/faces/cCVNutricionista/List"></p:button><br/><br/>
+                        <p:button icon="fa fa-file-powerpoint-o" value="Crear Control Cardiovascular Enfermero"  outcome="/faces/cCVEnfermero/List"></p:button><br/><br/>
+                    </p:tab>
+                </p:accordionPanel>
+
+            </ui:fragment>
+        </ui:define>    
+
+    </ui:composition>
+
+</html>

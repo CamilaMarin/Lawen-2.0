@@ -1,0 +1,676 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+ 
+    <h:head>
+        <h:outputStylesheet library="css" name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputScript library="js" name="js/jsfcrud.js"/>
+    </h:head>
+ <br/>
+ <br/>
+
+    <h:form id="ViewIngresoPSAMForm" >
+        <h:panelGroup id="display">
+                    <p:panelGrid  layout="grid"  columns="2"
+                                 rendered="#{ingresoPSAMController.selected != null}">
+    <p:tabView>
+        <p:tab title="Datos Paciente">
+            <h:panelGrid columns="2" cellpadding="10" columnClasses="col-md-8">
+                <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_paciente}" for="paciente" />
+                <p:outputLabel id="paciente" value="#{ingresoPSAMController.selected.cartolaPSAM.paciente.toString()}" />
+                <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_edad}" for="edad" />
+                <p:outputLabel id="edad" value="#{ingresoPSAMController.selected.cartolaPSAM.edad}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_edad}" />
+                <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_antiguedad_programa}" for="antiguedad_programa" />
+                <p:outputLabel id="antiguedad_programa" value="#{ingresoPSAMController.selected.cartolaPSAM.antiguedad_programa}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_antiguedad_programa}" />
+                <p:outputLabel value="Fecha atención:" for="fechaIngresoPSAM" />
+                <h:outputText id="fechaIngresoPSAM" value="#{cartolaSeguimientoPSAMController.selected.fechaAtencion}" ><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
+                <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_profesional}" for="profesional" />
+                <p:outputLabel id="profesional" value="#{ingresoPSAMController.selected.cartolaPSAM.profesional.toString()}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Esfera Clinica">
+            <h:panelGrid columns="2" cellpadding="10" columnClasses="col-md-8">
+                <p:outputLabel value=" " /><p:outputLabel value=" " />
+                <p:outputLabel value="Vacunas" class="subItem"/>
+                <p:outputLabel value=" " /><p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Influenza" for="influenza" />
+                        <p:outputLabel id="influenza" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.influenza)}"  style="width:60px" />
+                        <p:outputLabel value="Última administración " />
+                        <p:outputLabel id="influenza_ultimaAdmin"  value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.influenza_ultimaAdmin}" title="#{bundle.EditEsferaClinicaPSAMTitle_influenza_ultimaAdmin}" />
+                        <p:outputLabel value="Neumocócica" for="neumococica" />
+                        <p:outputLabel id="neumococica" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.neumococica)}"  style="width:60px" />
+                        <p:outputLabel value="Última administración " />
+                        <p:outputLabel id="neumonia_ultimaAdmin"  value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.neumonia_ultimaAdmin}" title="#{bundle.EditEsferaClinicaPSAMTitle_neumonia_ultimaAdmin}"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_descripcion_habitosAlimenticios}" for="descripcion_habitosAlimenticios" />
+                        <p:outputLabel    id="descripcion_habitosAlimenticios" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.descripcion_habitosAlimenticios}" title="#{bundle.CreateEsferaClinicaPSAMTitle_descripcion_habitosAlimenticios}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_descripcion_patronEliminacion}" for="descripcion_patronEliminacion" />
+                        <p:outputLabel    id="descripcion_patronEliminacion" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.descripcion_patronEliminacion}" title="#{bundle.CreateEsferaClinicaPSAMTitle_descripcion_patronEliminacion}" />
+                        <p:outputLabel value="Sexualidad activa" for="sexualidad_activa" />
+                        <p:outputLabel id="sexualidad_activa" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.sexualidad_activa)}"  style="width:60px" />
+                        <p:outputLabel value="Realiza actividad física" for="realiza_actividadFisica" />
+                        <p:outputLabel id="realiza_actividadFisica" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.cartolaPSAM.realiza_actividadFisica)}"  style="width:60px" />
+                        <p:outputLabel value="Patologías Agudas" />
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value="Neumonia" for="neumonia" />
+                        <p:outputLabel id="neumonia" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.neumonia)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_neumonia_obervaciones}" for="neumonia_obervaciones" />
+                        <p:outputLabel id="neumonia_obervaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.neumonia_obervaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_neumonia_obervaciones}" />
+                        <p:outputLabel value="Fractura Muñeca" for="fractura_muneca" />
+                        <p:outputLabel id="fractura_muneca" value="#{utilidadesController.booleanos(ngresoPSAMController.selected.fichaAdultoMayor.esferaCli.fractura_muneca)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_fractura_muneca_observaciones}" for="fractura_muneca_observaciones" />
+                        <p:outputLabel id="fractura_muneca_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.fractura_muneca_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_fractura_muneca_observaciones}" />
+                        <p:outputLabel value="Fractura Cadera" for="fractura_cadera" />
+                        <p:outputLabel id="fractura_cadera" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.fractura_cadera)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_fractura_cadera_observaciones}" for="fractura_cadera_observaciones" />
+                        <p:outputLabel id="fractura_cadera_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.fractura_cadera_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_fractura_cadera_observaciones}" />
+                       
+                        <p:outputLabel value="Fractura Columna" for="fractura_columna" />
+                        <p:outputLabel id="fractura_columna" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.fractura_columna)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_fractura_columna_observaciones}" for="fractura_columna_observaciones" />
+                        <p:outputLabel id="fractura_columna_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.fractura_columna_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_fractura_columna_observaciones}" />
+                        
+                        <p:outputLabel value="IAM" for="IAM" />
+                        <p:outputLabel id="IAM" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.IAM)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_IAM_observaciones}" for="IAM_observaciones" />
+                        <p:outputLabel id="IAM_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.IAM_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_IAM_observaciones}" />
+                        
+                        <p:outputLabel value="Ataque Cerebero Vascular" for="ataque_cerebro_vascular" />
+                        <p:outputLabel id="ataque_cerebro_vascular" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.ataque_cerebro_vascular)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_ataque_cerebro_vascular_observaciones}" for="ataque_cerebro_vascular_observaciones" />
+                        <p:outputLabel id="ataque_cerebro_vascular_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.ataque_cerebro_vascular_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_ataque_cerebro_vascular_observaciones}" />
+                        
+                        
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Terapia Famacológica" class="subItem"/>
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Atenolol" for="atenolol" />
+                        <p:outputLabel id="atenolol" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.atenolol)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_atenolol_observaciones}" for="atenolol_observaciones" />
+                        <p:outputLabel id="atenolol_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.atenolol_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_atenolol_observaciones}" />
+                        
+                        <p:outputLabel value="Anticoagulante" for="anticoagulante" />
+                        <p:outputLabel id="anticoagulante" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.anticoagulante)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_anticoagulante_observaciones}" for="anticoagulante_observaciones" />
+                        <p:outputLabel id="anticoagulante_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.anticoagulante_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_anticoagulante_observaciones}" />
+                        
+                        <p:outputLabel value="Alprazalam" for="alprazalam" />
+                        <p:outputLabel id="alprazalam" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.alprazalam)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_alprazalam_observaciones}" for="alprazalam_observaciones" />
+                        <p:outputLabel id="alprazalam_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.alprazalam_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_alprazalam_observaciones}" />
+                        
+                        <p:outputLabel value="Amitriptilina" for="amitriptilina" />
+                        <p:outputLabel id="amitriptilina" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.amitriptilina)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_amitriptilina_observaciones}" for="amitriptilina_observaciones" />
+                        <p:outputLabel id="amitriptilina_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.amitriptilina_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_amitriptilina_observaciones}" />
+                        
+                        <p:outputLabel value="Aspirina" for="aspirina" />
+                        <p:outputLabel id="aspirina" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.aspirina)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_aspirina_observaciones}" for="aspirina_observaciones" />
+                        <p:outputLabel id="aspirina_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.aspirina_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_aspirina_observaciones}" />
+                        
+                        <p:outputLabel value="Celecoxib" for="celecoxib" />
+                        <p:outputLabel id="celecoxib" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.celecoxib)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_celecoxib_observaciones}" for="celecoxib_observaciones" />
+                        <p:outputLabel id="celecoxib_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.celecoxib_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_celecoxib_observaciones}" />
+                        
+                        <p:outputLabel value="Clorfenamina" for="clorfenamina" />
+                        <p:outputLabel id="clorfenamina" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.clorfenamina)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_clorfenamina_observaciones}" for="clorfenamina_observaciones" />
+                        <p:outputLabel id="clorfenamina_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.clorfenamina_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_clorfenamina_observaciones}" />
+                        
+                        <p:outputLabel value="Clordiazepoxido" for="clordiazepoxido" />
+                        <p:outputLabel id="clordiazepoxido" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.clordiazepoxido)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_clordiazepoxido_observaciones}" for="clordiazepoxido_observaciones" />
+                        <p:outputLabel id="clordiazepoxido_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.clordiazepoxido_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_clordiazepoxido_observaciones}" />
+                        
+                        <p:outputLabel value="Diazepam" for="diazepam" />
+                        <p:outputLabel id="diazepam" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.diazepam)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_diazepam_observaciones}" for="diazepam_observaciones" />
+                        <p:outputLabel id="diazepam_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.diazepam_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_diazepam_observaciones}" />
+                        
+                        <p:outputLabel value="Diclofenaco" for="diclofenaco" />
+                        <p:outputLabel id="diclofenaco" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.diclofenaco)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_diclofenaco_observaciones}" for="diclofenaco_observaciones" />
+                        <p:outputLabel id="diclofenaco_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.diclofenaco_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_diclofenaco_observaciones}" />
+                        
+                        <p:outputLabel value="Enalapril" for="enalapril" />
+                        <p:outputLabel id="enalapril" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.enalapril)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_enalapril_observaciones}" for="enalapril_observaciones" />
+                        <p:outputLabel id="enalapril_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.enalapril_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_enalapril_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Furocemida" for="furocemida" />
+                        <p:outputLabel id="furocemida" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.furocemida)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_furocemida_observaciones}" for="furocemida_observaciones" />
+                        <p:outputLabel id="furocemida_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.furocemida_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_furocemida_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Fluoxetina" for="fluoxetina" />
+                        <p:outputLabel id="fluoxetina" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.fluoxetina)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_fluoxetina_observaciones}" for="fluoxetina_observaciones" />
+                        <p:outputLabel id="fluoxetina_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.fluoxetina_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_fluoxetina_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Genfibrozilo" for="genfibrozilo" />
+                        <p:outputLabel id="genfibrozilo" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.genfibrozilo)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_genfibrozilo_observaciones}" for="genfibrozilo_observaciones" />
+                        <p:outputLabel id="genfibrozilo_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.genfibrozilo_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_genfibrozilo_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Glibenclamida" for="glibenclamida" />
+                        <p:outputLabel id="glibenclamida" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.glibenclamida)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_glibenclamida_observaciones}" for="glibenclamida_observaciones" />
+                        <p:outputLabel id="glibenclamida_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.glibenclamida_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_glibenclamida_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Hidroclorotiazida" for="hidroclorotiazida" />
+                        <p:outputLabel id="hidroclorotiazida" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.hidroclorotiazida)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_hidroclorotiazida_observaciones}" for="hidroclorotiazida_observaciones" />
+                        <p:outputLabel id="hidroclorotiazida_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.hidroclorotiazida_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_hidroclorotiazida_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Insulina" for="insulina" />
+                        <p:outputLabel id="insulina" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.insulina)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_insulina_observaciones}" for="insulina_observaciones" />
+                        <p:outputLabel id="insulina_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.insulina_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_insulina_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Imipramina" for="imipramina" />
+                        <p:outputLabel id="imipramina" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.imipramina)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_imipramina_observaciones}" for="imipramina_observaciones" />
+                        <p:outputLabel id="imipramina_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.imipramina_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_imipramina_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Salbutamol" for="salbutamol" />
+                        <p:outputLabel id="salbutamol" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.salbutamol)}"  style="width:60px"  />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_salbutamol_observaciones}" for="salbutamol_observaciones" />
+                        <p:outputLabel id="salbutamol_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.salbutamol_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_salbutamol_observaciones}" />
+                        
+                        <p:outputLabel value="Bromuro ipratropio" for="bromuro_ipratropio" />
+                        <p:outputLabel id="bromuro_ipratropio" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.bromuro_ipratropio)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_bromuro_ipratropio_observaciones}" for="bromuro_ipratropio_observaciones" />
+                        <p:outputLabel id="bromuro_ipratropio_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.bromuro_ipratropio_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_bromuro_ipratropio_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Ibuprofeno" for="ibuprofeno" />
+                        <p:outputLabel id="ibuprofeno" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.ibuprofeno)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_ibuprofeno_observaciones}" for="ibuprofeno_observaciones" />
+                        <p:outputLabel id="ibuprofeno_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.ibuprofeno_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_ibuprofeno_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Corticoides inhalados" for="corticoides_inhalados" />
+                        <p:outputLabel id="corticoides_inhalados" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.corticoides_inhalados)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_corticoides_inhalados_observaciones}" for="corticoides_inhalados_observaciones" />
+                        <p:outputLabel id="corticoides_inhalados_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.corticoides_inhalados_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_corticoides_inhalados_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Losartan potasico" for="losartan_potasico" />
+                        <p:outputLabel id="losartan_potasico" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.losartan_potasico)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_losartan_potasico_observaciones}" for="losartan_potasico_observaciones" />
+                        <p:outputLabel id="losartan_potasico_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.losartan_potasico_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_losartan_potasico_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Levopoda" for="levopoda" />
+                        <p:outputLabel id="levopoda" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.levopoda)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_levopoda_observaciones}" for="levopoda_observaciones" />
+                        <p:outputLabel id="levopoda_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.levopoda_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_levopoda_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Metformina" for="metformina" />
+                        <p:outputLabel id="metformina" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.metformina)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_metformina_observaciones}" for="metformina_observaciones" />
+                        <p:outputLabel id="metformina_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.metformina_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_metformina_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Nifedipino" for="nifedipino" />
+                        <p:outputLabel id="nifedipino" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.nifedipino)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_nifedipino_observaciones}" for="nifedipino_observaciones" />
+                        <p:outputLabel id="nifedipino_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.nifedipino_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_nifedipino_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Omeprazol" for="omeprazol" />
+                        <p:outputLabel id="omeprazol" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.omeprazol)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_omeprazol_observaciones}" for="omeprazol_observaciones" />
+                        <p:outputLabel id="omeprazol_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.omeprazol_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_omeprazol_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Paracetamol" for="paracetamol" />
+                        <p:outputLabel id="paracetamol" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.paracetamol)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_paracetamol_observaciones}" for="paracetamol_observaciones" />
+                        <p:outputLabel id="paracetamol_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.paracetamol_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_paracetamol_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Sertralina" for="sertralina" />
+                        <p:outputLabel id="sertralina" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.sertralina)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_sertralina_observaciones}" for="sertralina_observaciones" />
+                        <p:outputLabel id="sertralina_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.sertralina_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_sertralina_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Tolbutamida" for="tolbutamida" />
+                        <p:outputLabel id="tolbutamida" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.tolbutamida)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_tolbutamida_observaciones}" for="tolbutamida_observaciones" />
+                        <p:outputLabel id="tolbutamida_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.tolbutamida_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_tolbutamida_observaciones}" />
+                        
+                        
+                        <p:outputLabel value="Otros fármacos" for="otros_farmacos" />
+                        <p:outputLabel id="otros_farmacos" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.otros_farmacos)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_otros_farmacos_observaciones}" for="otros_farmacos_observaciones" />
+                        <p:outputLabel id="otros_farmacos_observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.otros_farmacos_observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_otros_farmacos_observaciones}" />
+                        
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Exámenes de laboratorio" class="subItem" />
+                        <p:outputLabel value=" " />
+                     <p:outputLabel value=" " /><p:outputLabel value=" " />
+                         
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_glicemia_sol}" for="glicemia_sol" />
+                        <p:outputLabel id="glicemia_sol" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.glicemia_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_glicemia_sol}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_glicemia_valor}" for="glicemia_valor" />
+                        <p:outputLabel id="glicemia_valor" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.glicemia_valor}" title="#{bundle.CreateEsferaClinicaPSAMTitle_glicemia_valor}" />
+                        
+                                 
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_colesterolTotal_sol}" for="colesterolTotal_sol" />
+                        <p:outputLabel id="colesterolTotal_sol" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.colesterolTotal_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_colesterolTotal_sol}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_colesterolTotal_valor}" for="colesterolTotal_valor" />
+                        <p:outputLabel id="colesterolTotal_valor" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.colesterolTotal_valor}" title="#{bundle.CreateEsferaClinicaPSAMTitle_colesterolTotal_valor}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_baciloscopia_sol}" for="baciloscopia_sol" />
+                        <p:outputLabel id="baciloscopia_sol" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.baciloscopia_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_baciloscopia_sol}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_baciloscopia_estado}" for="baciloscopia_estado" />
+                        <p:outputLabel id="baciloscopia_estado" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.baciloscopia_estado}" title="#{bundle.CreateEsferaClinicaPSAMTitle_baciloscopia_estado}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_VDRL_sol}" for="VDRL_sol" />
+                        <p:outputLabel id="VDRL_sol" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.VDRL_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_VDRL_sol}"/>
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_VDRL_estado}" for="VDRL_estado" />
+                        <p:outputLabel id="VDRL_estado" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.VDRL_estado}" title="#{bundle.CreateEsferaClinicaPSAMTitle_VDRL_estado}"/>
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_presbicia_sol}" for="presbicia_sol" />
+                        <p:outputLabel id="presbicia_sol" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.presbicia_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_presbicia_sol}"/>
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_presbicia_estado}" for="presbicia_estado" />
+                        <p:outputLabel id="presbicia_estado" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.presbicia_estado}" title="#{bundle.CreateEsferaClinicaPSAMTitle_presbicia_estado}"/>
+                        
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Mediciones" class="subItem" />
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Presión alterial sentado" for="presion_arterial_sentado1" />
+                        <p:outputLabel id="presion_arterial_sentado2" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.presion_arterial_sentado2}" title="#{bundle.CreateEsferaClinicaPSAMTitle_presion_arterial_sentado2}">
+                        <p:outputLabel id="presion_arterial_sentado1" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.presion_arterial_sentado1}" title="#{bundle.CreateEsferaClinicaPSAMTitle_presion_arterial_sentado1}" />
+                        </p:outputLabel>
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_presion_arterial_dePie1}" for="presion_arterial_dePie1" />
+                        <p:outputLabel id="presion_arterial_dePie2" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.presion_arterial_dePie2}" title="#{bundle.CreateEsferaClinicaPSAMTitle_presion_arterial_dePie2}">
+                        <p:outputLabel id="presion_arterial_dePie1" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.presion_arterial_dePie1}" title="#{bundle.CreateEsferaClinicaPSAMTitle_presion_arterial_dePie1}" />
+                        </p:outputLabel>
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_pulso}" for="pulso" />
+                        <p:outputLabel id="pulso" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.pulso}" title="#{bundle.CreateEsferaClinicaPSAMTitle_pulso}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_peso}" for="peso" />
+                        <p:outputLabel id="peso" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.peso}" title="#{bundle.CreateEsferaClinicaPSAMTitle_peso}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_talla}" for="talla" />
+                        <p:outputLabel id="talla" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.talla}" title="#{bundle.CreateEsferaClinicaPSAMTitle_talla}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_imc}" for="imc" />
+                        <p:outputLabel id="imc" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.imc}" title="#{bundle.CreateEsferaClinicaPSAMTitle_imc}" />
+                        
+         
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_estado_nutricional}" for="estado_nutricional" />
+                        <p:outputLabel id="estado_nutricional" value="#{ingresoPSAMController.selected.cartolaPSAM.estado_nutricional}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_estado_nutricional}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_cc}" for="cc" />
+                        <p:outputLabel id="cc" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.cc}" title="#{bundle.CreateEsferaClinicaPSAMTitle_cc}" />
+                        <p:outputLabel value="Baja de peso ult6meses" for="baja_de_peso_involuntaria_ult6meses" />
+                        <p:outputLabel id="baja_de_peso_involuntaria_ult6meses" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.baja_de_peso_involuntaria_ult6meses)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_observaciones}" for="observaciones" />
+                        <p:outputLabel   id="observaciones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.observaciones}" title="#{bundle.CreateEsferaClinicaPSAMTitle_observaciones}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_examen_fisico}" for="examen_fisico" />
+                        <p:outputLabel    id="examen_fisico" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.examen_fisico}" title="#{bundle.CreateEsferaClinicaPSAMTitle_examen_fisico}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_evaluacion_del_pie}" for="evaluacion_del_pie" />
+                        <p:outputLabel    id="evaluacion_del_pie" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.evaluacion_del_pie}" title="#{bundle.CreateEsferaClinicaPSAMTitle_evaluacion_del_pie}" />
+                        
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Otras Observaciones" class="subItem" />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Usted Observa" />
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value="Mareos" for="mareos" />
+                        <p:outputLabel id="mareos" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.mareos)}"  style="width:60px" />
+                        <p:outputLabel value="Temblor" for="temblor" />
+                        <p:outputLabel id="temblor" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.temblor)}"  style="width:60px" />
+                        <p:outputLabel value="Alteración equilibrio" for="alteracion_equilibrio" />
+                        <p:outputLabel id="alteracion_equilibrio" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.alteracion_equilibrio)}"  style="width:60px" />
+                        <p:outputLabel value="Dolor cadera" for="dolor_cadera" />
+                        <p:outputLabel id="dolor_cadera" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.dolor_cadera)}"  style="width:60px" />
+                        <p:outputLabel value="Dolor rodilla" for="dolor_rodilla" />
+                        <p:outputLabel id="dolor_rodilla" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.dolor_rodilla)}"  style="width:60px" />
+                        <p:outputLabel value="Dolor hombro" for="dolor_hombro" />
+                        <p:outputLabel id="dolor_hombro" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.dolor_hombro)}"  style="width:60px" />
+                        <p:outputLabel value="Dolor espalda" for="dolor_espalda" />
+                        <p:outputLabel id="dolor_espalda" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.dolor_espalda)}"  style="width:60px" />
+                        <p:outputLabel value="Alteración visual" for="alteracion_visual" />
+                        <p:outputLabel id="alteracion_visual" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.alteracion_visual)}"  style="width:60px" />
+                        <p:outputLabel value="Alteración auditiva" for="alteracion_auditiva" />
+                        <p:outputLabel id="alteracion_auditiva" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.alteracion_auditiva)}"  style="width:60px" />
+                        <p:outputLabel value="Otros" for="otros" />
+                        <p:outputLabel id="otros" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaCli.otros)}"  style="width:60px" />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Síndromes geríatricos detectados:"  class="subItem"/>
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Polifarmacia" for="polifarmacia" />
+                        <p:outputLabel id="polifarmacia" value="#{utilidadesController.booleanos(esferaClinicaPSAMController.selected.polifarmacia)}" style="width:60px" />
+                        <p:outputLabel value="Iatrogenia" for="iatrogenia" />
+                        <p:outputLabel id="iatrogenia" value="#{utilidadesController.booleanos(esferaClinicaPSAMController.selected.iatrogenia)}" style="width:60px" />
+                        <p:outputLabel value="Incontinencia urinaria" for="incontinencia_urinaria" />
+                        <p:outputLabel id="incontinencia_urinaria" value="#{utilidadesController.booleanos(esferaClinicaPSAMController.selected.incontinencia_urinaria)}" style="width:60px" />
+                        <p:outputLabel value="Incontinencia fecal" for="incontinencia_fecal" />
+                        <p:outputLabel id="incontinencia_fecal" value="#{utilidadesController.booleanos(esferaClinicaPSAMController.selected.incontinencia_fecal)}" style="width:60px" />
+                        <p:outputLabel value="UPP" for="upp" />
+                        <p:outputLabel id="upp" value="#{utilidadesController.booleanos(esferaClinicaPSAMController.selected.upp)}" style="width:60px" />
+                        <p:outputLabel value="Transtorno sexualidad" for="transtorno_sexualidad" />
+                        <p:outputLabel id="transtorno_sexualidad" value="#{utilidadesController.booleanos(esferaClinicaPSAMController.selected.transtorno_sexualidad)}" style="width:60px" />
+                        <p:outputLabel value="Sarcopenia" for="sarcopenia" />
+                        <p:outputLabel id="sarcopenia" value="#{utilidadesController.booleanos(esferaClinicaPSAMController.selected.sarcopenia)}" style="width:60px" />
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " />                
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Esfera Funcional">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Uso de prótesis dentaria" for="uso_protesis_dentaria" />
+                        <p:outputLabel id="uso_protesis_dentaria" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.uso_protesis_dentaria)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_uso_protesis_dentaria_obs}" for="uso_protesis_dentaria_obs" />
+                        <p:outputLabel id="uso_protesis_dentaria_obs" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.uso_protesis_dentaria_obs}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_uso_protesis_dentaria_obs}" />
+                        
+                        <p:outputLabel value="Uso de lentes ópticos" for="uso_lentes_opticos" />
+                        <p:outputLabel id="uso_lentes_opticos" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.uso_lentes_opticos)}" style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_uso_lentes_opticos_obs}" for="uso_lentes_opticos_obs" />
+                        <p:outputLabel id="uso_lentes_opticos_obs" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.uso_lentes_opticos_obs}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_uso_lentes_opticos_obs}" />
+                        
+                        <p:outputLabel value="Uso de medios de apoyo" for="uso_medios_apoyo" />
+                        <p:outputLabel id="uso_medios_apoyo" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.uso_medios_apoyo)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_uso__medios_apoyo_obs}" for="uso__medios_apoyo_obs" />
+                        <p:outputLabel id="uso__medios_apoyo_obs" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.uso__medios_apoyo_obs}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_uso__medios_apoyo_obs}" />
+                        
+                        <p:outputLabel value="Uso de audífonos" for="uso_audifonos" />
+                        <p:outputLabel id="uso_audifonos" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.uso_audifonos)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_uso_audifonos_obs}" for="uso_audifonos_obs" />
+                        <p:outputLabel id="uso_audifonos_obs" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.uso_audifonos_obs}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_uso_audifonos_obs}" />
+                        
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Riesgo de caidas" class="subItem"/>
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Caidas este año" for="caidas_este_ano" />
+                        <p:outputLabel id="caidas_este_ano" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.caidas_este_ano)}"  style="width:60px" />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_estacion_unipodal_derecha}" for="estacion_unipodal_derecha" />
+                        <p:outputLabel id="estacion_unipodal_derecha" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.estacion_unipodal_derecha}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_estacion_unipodal_derecha}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_estacion_unipodal_izquierda}" for="estacion_unipodal_izquierda" />
+                        <p:outputLabel id="estacion_unipodal_izquierda" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.estacion_unipodal_izquierda}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_estacion_unipodal_izquierda}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_timed_up_and_go}" for="timed_up_and_go" />
+                        <p:outputLabel id="timed_up_and_go" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.timed_up_and_go}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_timed_up_and_go}" />
+                        
+                        <p:outputLabel value="Valoración Riesgo" for="valoracion_riesgo" />
+                        <p:outputLabel id="valoracion_riesgo" value="#{ingresoPSAMController.selected.cartolaPSAM.valoracion_riesgo}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_valoracion_riesgo}" />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Escala EFAM" class="subItem"/>
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Pregunta A" class="subSubItem"/>
+                        <p:outputLabel value=" " />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PA_pregunta01}" for="PA_pregunta01" />
+                        <p:outputLabel id="PA_pregunta01" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PA_pregunta01}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PA_pregunta01}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PA_pregunta02}" for="PA_pregunta02" />
+                        <p:outputLabel id="PA_pregunta02" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PA_pregunta02}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PA_pregunta02}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PA_pregunta03}" for="PA_pregunta03" />
+                        <p:outputLabel id="PA_pregunta03" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PA_pregunta03}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PA_pregunta03}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PA_pregunta04}" for="PA_pregunta04" />
+                        <p:outputLabel id="PA_pregunta04" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PA_pregunta04}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PA_pregunta04}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PA_pregunta05}" for="PA_pregunta05" />
+                        <p:outputLabel id="PA_pregunta05" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PA_pregunta05}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PA_pregunta05}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PA_pregunta06}" for="PA_pregunta06" />
+                        <p:outputLabel id="PA_pregunta06" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PA_pregunta06}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PA_pregunta06}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PA_pregunta07}" for="PA_pregunta07" />
+                        <p:outputLabel id="PA_pregunta07" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PA_pregunta07}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PA_pregunta07}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PA_pregunta08}" for="PA_pregunta08" />
+                        <p:outputLabel id="PA_pregunta08" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PA_pregunta08}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PA_pregunta08}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PA_pregunta09}" for="PA_pregunta09" />
+                        <p:outputLabel id="PA_pregunta09" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PA_pregunta09}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PA_pregunta09}" />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Pregunta B" class="subSubItem"/>
+                        <p:outputLabel value=" " />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PB_pregunta01}" for="PB_pregunta01" />
+                        <p:outputLabel id="PB_pregunta01" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PB_pregunta01}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PB_pregunta01}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PB_pregunta02}" for="PB_pregunta02" />
+                        <p:outputLabel id="PB_pregunta02" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PB_pregunta02}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PB_pregunta02}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PB_pregunta03}" for="PB_pregunta03" />
+                        <p:outputLabel id="PB_pregunta03" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PB_pregunta03}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PB_pregunta03}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PB_pregunta04}" for="PB_pregunta04" />
+                        <p:outputLabel id="PB_pregunta04" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PB_pregunta04}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PB_pregunta04}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PB_pregunta05}" for="PB_pregunta05" />
+                        <p:outputLabel id="PB_pregunta05" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PB_pregunta05}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PB_pregunta05}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_PB_pregunta06}" for="PB_pregunta06" />
+                        <p:outputLabel id="PB_pregunta06" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.PB_pregunta06}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_PB_pregunta06}" />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Pregunta MMSE" class="subItem"/>
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_MMSE_pregunta01}" for="MMSE_pregunta01" />
+                        <p:outputLabel id="MMSE_pregunta01" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.MMSE_pregunta01}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_MMSE_pregunta01}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_MMSE_pregunta02}" for="MMSE_pregunta02" />
+                        <p:outputLabel id="MMSE_pregunta02" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.MMSE_pregunta02}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_MMSE_pregunta02}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_MMSE_pregunta03}" for="MMSE_pregunta03" />
+                        <p:outputLabel id="MMSE_pregunta03" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.MMSE_pregunta03}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_MMSE_pregunta03}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_MMSE_pregunta04}" for="MMSE_pregunta04" />
+                        <p:outputLabel id="MMSE_pregunta04" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.MMSE_pregunta04}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_MMSE_pregunta04}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_MMSE_pregunta05}" for="MMSE_pregunta05" />
+                        <p:outputLabel id="MMSE_pregunta05" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.MMSE_pregunta05}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_MMSE_pregunta05}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_MMSE_pregunta06}" for="MMSE_pregunta06" />
+                        <p:outputLabel id="MMSE_pregunta06" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.MMSE_pregunta06}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_MMSE_pregunta06}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_total_efam}" for="total_efam" />
+                        <p:outputLabel id="total_efam" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.total_efam}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_total_efam}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_clasificacion_efam}" for="clasificacion_efam" />
+                        <p:outputLabel id="clasificacion_efam" value="#{ingresoPSAMController.selected.cartolaPSAM.clasificacion_efam}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_clasificacion_efam}" />
+                        
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Escala BARTHEL" class="subItem"/>
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_comer}" for="comer" />
+                        <p:outputLabel id="comer" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.comer}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_comer}" />
+                        <p:outputLabel value="Lavarse:" for="laverse" />
+                        <p:outputLabel id="laverse" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.laverse}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_laverse}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_vestirse}" for="vestirse" />
+                        <p:outputLabel id="vestirse" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.vestirse}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_vestirse}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_arreglarse}" for="arreglarse" />
+                        <p:outputLabel id="arreglarse" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.arreglarse}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_arreglarse}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_deposiciones_semanaPrevia}" for="deposiciones_semanaPrevia" />
+                        <p:outputLabel id="deposiciones_semanaPrevia" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.deposiciones_semanaPrevia}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_deposiciones_semanaPrevia}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_miccion_semanaPrevia}" for="miccion_semanaPrevia" />
+                        <p:outputLabel id="miccion_semanaPrevia" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.miccion_semanaPrevia}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_miccion_semanaPrevia}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_usar_el_retrete}" for="usar_el_retrete" />
+                        <p:outputLabel id="usar_el_retrete" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.usar_el_retrete}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_usar_el_retrete}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_trasladarse}" for="trasladarse" />
+                        <p:outputLabel id="trasladarse" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.trasladarse}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_trasladarse}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_deambular}" for="deambular" />
+                        <p:outputLabel id="deambular" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.deambular}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_deambular}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_escalones}" for="escalones" />
+                        <p:outputLabel id="escalones" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.escalones}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_escalones}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_total_barthel}" for="total_barthel" />
+                        <p:outputLabel id="total_barthel" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaFu.total_barthel}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_total_barthel}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_clasificacion_barthel}" for="clasificacion_barthel" />
+                        <p:outputLabel id="clasificacion_barthel" value="#{ingresoPSAMController.selected.cartolaPSAM.clasificacion_barthel}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_clasificacion_barthel}" />
+                        
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Síndromes geríatricos detectados:" class="subItem"/>
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Riesgo de caídas" for="riesgo_de_caidas" />
+                        <p:outputLabel id="riesgo_de_caidas" value="#{utilidadesController.booleanos(esferaFuncionalPSAMController.selected.riesgo_de_caidas)}"  style="width:60px" />
+                        <p:outputLabel value="Inmovilidad" for="inmovilidad" />
+                        <p:outputLabel id="inmovilidad" value="#{utilidadesController.booleanos(esferaFuncionalPSAMController.selected.inmovilidad)}" style="width:60px" />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Esfera Mental">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:outputLabel value=" " /><p:outputLabel value=" " />
+                       <p:outputLabel value="Escala YESAVAGE" class="subItem"/>
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta01}" for="YEVG_pregunta01" />
+                        <p:outputLabel id="YEVG_pregunta01" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta01}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta01}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta02}" for="YEVG_pregunta02" />
+                        <p:outputLabel id="YEVG_pregunta02" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta02}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta02}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta03}" for="YEVG_pregunta03" />
+                        <p:outputLabel id="YEVG_pregunta03" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta03}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta03}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta04}" for="YEVG_pregunta04" />
+                        <p:outputLabel id="YEVG_pregunta04" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta04}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta04}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta05}" for="YEVG_pregunta05" />
+                        <p:outputLabel id="YEVG_pregunta05" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta05}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta05}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta06}" for="YEVG_pregunta06" />
+                        <p:outputLabel id="YEVG_pregunta06" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta06}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta06}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta07}" for="YEVG_pregunta07" />
+                        <p:outputLabel id="YEVG_pregunta07" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta07}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta07}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta08}" for="YEVG_pregunta08" />
+                        <p:outputLabel id="YEVG_pregunta08" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta08}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta08}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta09}" for="YEVG_pregunta09" />
+                        <p:outputLabel id="YEVG_pregunta09" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta09}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta09}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta10}" for="YEVG_pregunta10" />
+                        <p:outputLabel id="YEVG_pregunta10" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta10}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta10}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta11}" for="YEVG_pregunta11" />
+                        <p:outputLabel id="YEVG_pregunta11" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta11}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta11}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta12}" for="YEVG_pregunta12" />
+                        <p:outputLabel id="YEVG_pregunta12" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta12}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta12}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta13}" for="YEVG_pregunta13" />
+                        <p:outputLabel id="YEVG_pregunta13" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta13}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta13}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta14}" for="YEVG_pregunta14" />
+                        <p:outputLabel id="YEVG_pregunta14" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta14}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta14}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_YEVG_pregunta15}" for="YEVG_pregunta15" />
+                        <p:outputLabel id="YEVG_pregunta15" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.YEVG_pregunta15}" title="#{bundle.CreateEsferaMentalPSAMTitle_YEVG_pregunta15}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_total_yesavage}" for="total_yesavage" />
+                        <p:outputLabel id="total_yesavage" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.total_yesavage}" title="#{bundle.CreateEsferaMentalPSAMTitle_total_yesavage}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_clasificacion_yesavage}" for="clasificacion_yesavage" />
+                        <p:outputLabel id="clasificacion_yesavage" value="#{ingresoPSAMController.selected.cartolaPSAM.clasificacion_yesavage}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_clasificacion_yesavage}" />
+<p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Escala PFEFFER" class="subItem"/>
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_PFFR_pregunta01}" for="PFFR_pregunta01" />
+                        <p:outputLabel id="PFFR_pregunta01" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.PFFR_pregunta01}" title="#{bundle.CreateEsferaMentalPSAMTitle_PFFR_pregunta01}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_PFFR_pregunta02}" for="PFFR_pregunta02" />
+                        <p:outputLabel id="PFFR_pregunta02" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.PFFR_pregunta02}" title="#{bundle.CreateEsferaMentalPSAMTitle_PFFR_pregunta02}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_PFFR_pregunta03}" for="PFFR_pregunta03" />
+                        <p:outputLabel id="PFFR_pregunta03" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.PFFR_pregunta03}" title="#{bundle.CreateEsferaMentalPSAMTitle_PFFR_pregunta03}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_PFFR_pregunta04}" for="PFFR_pregunta04" />
+                        <p:outputLabel id="PFFR_pregunta04" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.PFFR_pregunta04}" title="#{bundle.CreateEsferaMentalPSAMTitle_PFFR_pregunta04}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_PFFR_pregunta05}" for="PFFR_pregunta05" />
+                        <p:outputLabel id="PFFR_pregunta05" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.PFFR_pregunta05}" title="#{bundle.CreateEsferaMentalPSAMTitle_PFFR_pregunta05}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_PFFR_pregunta06}" for="PFFR_pregunta06" />
+                        <p:outputLabel id="PFFR_pregunta06" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.PFFR_pregunta06}" title="#{bundle.CreateEsferaMentalPSAMTitle_PFFR_pregunta06}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_PFFR_pregunta07}" for="PFFR_pregunta07" />
+                        <p:outputLabel id="PFFR_pregunta07" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.PFFR_pregunta07}" title="#{bundle.CreateEsferaMentalPSAMTitle_PFFR_pregunta07}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_PFFR_pregunta08}" for="PFFR_pregunta08" />
+                        <p:outputLabel id="PFFR_pregunta08" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.PFFR_pregunta08}" title="#{bundle.CreateEsferaMentalPSAMTitle_PFFR_pregunta08}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_PFFR_pregunta09}" for="PFFR_pregunta09" />
+                        <p:outputLabel id="PFFR_pregunta09" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.PFFR_pregunta09}" title="#{bundle.CreateEsferaMentalPSAMTitle_PFFR_pregunta09}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_PFFR_pregunta10}" for="PFFR_pregunta10" />
+                        <p:outputLabel id="PFFR_pregunta10" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.PFFR_pregunta10}" title="#{bundle.CreateEsferaMentalPSAMTitle_PFFR_pregunta10}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_total_pfeffer}" for="total_pfeffer" />
+                        <p:outputLabel id="total_pfeffer" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.total_pfeffer}" title="#{bundle.CreateEsferaMentalPSAMTitle_total_pfeffer}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_clasificacion_pfeffer}" for="clasificacion_pfeffer" />
+                        <p:outputLabel id="clasificacion_pfeffer" value="#{ingresoPSAMController.selected.cartolaPSAM.clasificacion_pfeffer}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_clasificacion_pfeffer}" />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Escala MMSE EXTENDIDO O FOLSTEIN" class="subItem"/>
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_orientacion_temporal}" for="orientacion_temporal" />
+                        <p:outputLabel id="orientacion_temporal" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.orientacion_temporal}" title="#{bundle.CreateEsferaMentalPSAMTitle_orientacion_temporal}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_orientacion_espacial}" for="orientacion_espacial" />
+                        <p:outputLabel id="orientacion_espacial" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.orientacion_espacial}" title="#{bundle.CreateEsferaMentalPSAMTitle_orientacion_espacial}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_recuerdo_Inmediato}" for="recuerdo_Inmediato" />
+                        <p:outputLabel id="recuerdo_Inmediato" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.recuerdo_Inmediato}" title="#{bundle.CreateEsferaMentalPSAMTitle_recuerdo_Inmediato}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_atencion_calculo}" for="atencion_calculo" />
+                        <p:outputLabel id="atencion_calculo" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.atencion_calculo}" title="#{bundle.CreateEsferaMentalPSAMTitle_atencion_calculo}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_recuedo_diferido}" for="recuedo_diferido" />
+                        <p:outputLabel id="recuedo_diferido" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.recuedo_diferido}" title="#{bundle.CreateEsferaMentalPSAMTitle_recuedo_diferido}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_lenguaje}" for="lenguaje" />
+                        <p:outputLabel id="lenguaje" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.lenguaje}" title="#{bundle.CreateEsferaMentalPSAMTitle_lenguaje}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_total_folstein}" for="total_folstein" />
+                        <p:outputLabel id="total_folstein" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.total_folstein}" title="#{bundle.CreateEsferaMentalPSAMTitle_total_folstein}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_clasificacion_folstein}" for="clasificacion_folstein" />
+                        <p:outputLabel id="clasificacion_folstein" value="#{ingresoPSAMController.selected.cartolaPSAM.clasificacion_folstein}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_clasificacion_folstein}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_ocupacion}" for="ocupacion" />
+                        <p:outputLabel   id="ocupacion" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.ocupacion}" title="#{bundle.CreateEsferaMentalPSAMTitle_ocupacion}" />
+                        <p:outputLabel value="Trabaja:" for="trabaja" />
+                        <p:outputLabel id="trabaja" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.trabaja)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_trabaja_descripcion}" for="trabaja_descripcion" />
+                        <p:outputLabel id="trabaja_descripcion" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.trabaja_descripcion}" title="#{bundle.CreateEsferaMentalPSAMTitle_trabaja_descripcion}" />
+                        
+                        <p:outputLabel value="Tienen quien lo apoye:" for="apoyo" />
+                        <p:outputLabel id="apoyo" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.apoyo)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_apoyo_descripcion}" for="apoyo_descripcion" />
+                        <p:outputLabel id="apoyo_descripcion" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.apoyo_descripcion}" title="#{bundle.CreateEsferaMentalPSAMTitle_apoyo_descripcion}" />
+                        
+                        <p:outputLabel value="Sospecha de maltrato:" for="sospecha_maltrato" />
+                        <p:outputLabel id="sospecha_maltrato" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.cartolaPSAM.sospecha_maltrato)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_sospecha_maltrato_obs}" for="sospecha_maltrato_obs" />
+                        <p:outputLabel id="sospecha_maltrato_obs" value="#{ingresoPSAMController.selected.cartolaPSAM.sospecha_maltrato_obs}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_sospecha_maltrato_obs}" />
+                        <p:outputLabel value="Antecedentes psiquiátricos personales y/o familiares" for="antecedentes_psiquiatricos_personales_familiares" />
+                        <p:outputLabel id="antecedentes_psiquiatricos_personales_familiares" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.antecedentes_psiquiatricos_personales_familiares)}"  style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_ant_psi_obs}" for="ant_psi_obs" />
+                        <p:outputLabel id="ant_psi_obs" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaMen.ant_psi_obs}" title="#{bundle.CreateEsferaMentalPSAMTitle_ant_psi_obs}" />
+
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Síndromes geríatricos detectados:" class="subItem"/>
+                        <p:outputLabel value=" " />
+                        <p:outputLabel value=" " /><p:outputLabel value=" " />
+                        <p:outputLabel value="Demencia" for="demencia" />
+                        <p:outputLabel id="demencia" value="#{utilidadesController.booleanos(esferaMentalPSAMController.selected.demencia)}" style="width:60px" />
+                        <p:outputLabel value="Transtorno ánimo" for="transtorno_animo" />
+                        <p:outputLabel id="transtorno_animo" value="#{utilidadesController.booleanos(esferaMentalPSAMController.selected.transtorno_animo)}" style="width:60px" />
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Esfera Social">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:outputLabel value=" " /><p:outputLabel value=" " />
+                <p:outputLabel value="#{bundle.CreateEsferaSocialPSAMLabel_ingreso_socioeconomico}" for="ingreso_socioeconomico" />
+                        <p:outputLabel id="ingreso_socioeconomico" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaSo.ingreso_socioeconomico}" title="#{bundle.CreateEsferaSocialPSAMTitle_ingreso_socioeconomico}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaSocialPSAMLabel_descripcion_hogar}" for="descripcion_hogar" />
+                        <p:outputLabel  id="descripcion_hogar" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaSo.descripcion_hogar}" title="#{bundle.CreateEsferaSocialPSAMTitle_descripcion_hogar}" />
+                        <p:outputLabel value="#{bundle.CreateEsferaSocialPSAMLabel_tipo_familia}" for="tipo_familia" />
+                        <p:outputLabel  id="tipo_familia" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaSo.tipo_familia}" title="#{bundle.CreateEsferaSocialPSAMTitle_tipo_familia}" />
+                        
+                        <p:outputLabel value="Paciente Institucionalizado:" for="paciente_institucionalizado" />
+                        <p:outputLabel id="paciente_institucionalizado" value="#{utilidadesController.booleanos(ingresoPSAMController.selected.cartolaPSAM.paciente_institucionalizado)}" style="width:60px" />
+                        
+                        <p:outputLabel value="#{bundle.CreateEsferaSocialPSAMLabel_puntaje_apgar}" for="puntaje_apgar" />
+                        <p:outputLabel id="puntaje_apgar" value="#{ingresoPSAMController.selected.fichaAdultoMayor.esferaSo.puntaje_apgar}" title="#{bundle.CreateEsferaSocialPSAMTitle_puntaje_apgar}" />
+                        <p:outputLabel value="Nuevos 2015"  />
+                        <p:outputLabel value=""  />
+                        <p:outputLabel value="Pertenece al programa más:" for="clasificacion_folstein" />
+                        
+                        <p:outputLabel id="pertenece_al_programa_mas" value="#{cartolaSeguimientoPSAMController.selected.pertenece_al_programa_mas}" title="Más adultos autovalentes por un Chile mejor y con mejor desarrollo social" />
+                  
+                        
+            </h:panelGrid>
+        </p:tab>        
+    </p:tabView>
+                    </p:panelGrid>
+                </h:panelGroup>
+            </h:form>
+  
+</html>

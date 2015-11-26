@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      <h:form id="AtencionNutriEmbarazadaViewForm" style="margin-top: 20px!important;">
+                <h:panelGroup id="display">
+                    <p:panelGrid id="panel" columns="2" rendered="#{atencionNutriEmbarazadaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriEmbarazadaLabel_profesional}" for="profesional" />
+                        <p:outputLabel id="profesional" value="#{atencionNutriEmbarazadaController.selected.profesional.toString()}" />
+                        <p:outputLabel value="Fecha:" for="fecha_control" />
+                        <h:outputText id="fecha_control"  value="#{atencionNutriEmbarazadaController.selected.fecha_control}" title="#{bundle.EditAtencionNutriEmbarazadaTitle_fecha_control}" ><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
+                        <p:outputLabel value="Edad:" for="edad_paciente" />
+                        <p:outputLabel id="edad_paciente" value="#{atencionNutriEmbarazadaController.selected.edad_paciente}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_edad_paciente}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriEmbarazadaLabel_anannemsis_nutri}" for="anannemsis_nutri" />
+                        <p:outputLabel  id="anannemsis_nutri" value="#{atencionNutriEmbarazadaController.selected.anannemsis_nutri}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_anannemsis_nutri}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriEmbarazadaLabel_peso}" for="peso" />
+                        <p:outputLabel id="peso" value="#{atencionNutriEmbarazadaController.selected.peso}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_peso}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriEmbarazadaLabel_talla}" for="talla" />
+                        <p:outputLabel id="talla" value="#{atencionNutriEmbarazadaController.selected.talla}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_talla}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriEmbarazadaLabel_imc}" for="imc" />
+                        <p:outputLabel id="imc" value="#{atencionNutriEmbarazadaController.selected.imc}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_imc}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_diagnostico_nutricional}" for="diagnostico_nutricional" />
+                        <p:outputLabel id="diagnostico_nutricional" value="#{atencionNutriEmbarazadaController.selected.diagnostico_nutricional}" />
+                        <p:outputLabel value="PA Sentado:" for="pa_sentado1" />
+                        <p:outputLabel id="pa_sentado1" value="#{atencionNutriEmbarazadaController.selected.pa_sentado1}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_pa_sentado1}" ><h:outputText value="/"/>
+                        <p:outputLabel id="pa_sendado2" value="#{atencionNutriEmbarazadaController.selected.pa_sendado2}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_pa_sendado2}"/>
+                        </p:outputLabel>                        
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriEmbarazadaLabel_puslo}" for="puslo" />
+                        <p:outputLabel id="puslo" value="#{atencionNutriEmbarazadaController.selected.puslo}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_puslo}" />
+                        <p:outputLabel value="Exámenes" class="subItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_glicemia_estado}" for="glicemia_estado" />
+                        <p:outputLabel id="glicemia_estado" value="#{atencionNutriEmbarazadaController.selected.glicemia_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_glicemica_valor}" for="glicemica_valor" />
+                        <p:outputLabel id="glicemica_valor" value="#{atencionNutriEmbarazadaController.selected.glicemica_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_glicemica_valor}" />                        
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_estado}" for="hba1C_estado" />
+                        <p:outputLabel id="hba1C_estado" value="#{atencionNutriEmbarazadaController.selected.hba1C_estado}" />                       
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_valor}" for="hba1C_valor" />
+                        <p:outputLabel id="hba1C_valor" value="#{atencionNutriEmbarazadaController.selected.hba1C_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_hba1C_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_estado}" for="colesterolTotal_estado" />
+                        <p:outputLabel id="colesterolTotal_estado" value="#{atencionNutriEmbarazadaController.selected.colesterolTotal_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_valor}" for="colesterolTotal_valor" />
+                        <p:outputLabel id="colesterolTotal_valor" value="#{atencionNutriEmbarazadaController.selected.colesterolTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolTotal_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_estado}" for="colesterolLDL_estado" />
+                        <p:outputLabel id="colesterolLDL_estado" value="#{atencionNutriEmbarazadaController.selected.colesterolLDL_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_valor}" for="colesterolLDL_valor" />
+                        <p:outputLabel id="colesterolLDL_valor" value="#{atencionNutriEmbarazadaController.selected.colesterolLDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolLDL_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_estado}" for="colesterolHDL_estado" />
+                        <p:outputLabel id="colesterolHDL_estado" value="#{atencionNutriEmbarazadaController.selected.colesterolHDL_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_valor}" for="colesterolHDL_valor" />
+                        <p:outputLabel id="colesterolHDL_valor" value="#{atencionNutriEmbarazadaController.selected.colesterolHDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolHDL_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_estado}" for="trigliceridos_estado" />
+                        <p:outputLabel id="trigliceridos_estado" value="#{atencionNutriEmbarazadaController.selected.trigliceridos_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_valor}" for="trigliceridos_valor" />
+                        <p:outputLabel id="trigliceridos_valor" value="#{atencionNutriEmbarazadaController.selected.trigliceridos_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_trigliceridos_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_estado}" for="bilirrubinaTotal_estado" />
+                        <p:outputLabel id="bilirrubinaTotal_estado" value="#{atencionNutriEmbarazadaController.selected.bilirrubinaTotal_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_valor}" for="bilirrubinaTotal_valor" />
+                        <p:outputLabel id="bilirrubinaTotal_valor" value="#{atencionNutriEmbarazadaController.selected.bilirrubinaTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaTotal_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_estado}" for="bilirrubinaDirecta_estado" />
+                        <p:outputLabel id="bilirrubinaDirecta_estado" value="#{atencionNutriEmbarazadaController.selected.bilirrubinaDirecta_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_valor}" for="bilirrubinaDirecta_valor" />
+                        <p:outputLabel id="bilirrubinaDirecta_valor" value="#{atencionNutriEmbarazadaController.selected.bilirrubinaDirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaDirecta_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_estado}" for="bilirrubinaIndirecta_estado" />
+                        <p:outputLabel id="bilirrubinaIndirecta_estado" value="#{atencionNutriEmbarazadaController.selected.bilirrubinaIndirecta_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_valor}" for="bilirrubinaIndirecta_valor" />
+                        <p:outputLabel id="bilirrubinaIndirecta_valor" value="#{atencionNutriEmbarazadaController.selected.bilirrubinaIndirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaIndirecta_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_estado}" for="creatinina_estado" />
+                        <p:outputLabel id="creatinina_estado" value="#{atencionNutriEmbarazadaController.selected.creatinina_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_valor}" for="creatinina_valor" />
+                        <p:outputLabel id="creatinina_valor" value="#{atencionNutriEmbarazadaController.selected.creatinina_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_creatinina_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_BUN_estado}" for="BUN_estado" />
+                        <p:outputLabel id="BUN_estado" value="#{atencionNutriEmbarazadaController.selected.BUN_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_BUN_valor}" for="BUN_valor" />
+                        <p:outputLabel id="BUN_valor" value="#{atencionNutriEmbarazadaController.selected.BUN_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_BUN_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_estado}" for="MDRD_estado" />
+                        <p:outputLabel id="MDRD_estado" value="#{atencionNutriEmbarazadaController.selected.MDRD_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_valor}" for="MDRD_valor" />
+                        <p:outputLabel id="MDRD_valor" value="#{atencionNutriEmbarazadaController.selected.MDRD_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_MDRD_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_estado}" for="microALB24H_estado" />
+                        <p:outputLabel id="microALB24H_estado" value="#{atencionNutriEmbarazadaController.selected.microALB24H_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_valor}" for="microALB24H_valor" />
+                        <p:outputLabel id="microALB24H_valor" value="#{atencionNutriEmbarazadaController.selected.microALB24H_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_microALB24H_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_estado}" for="clearenceCrea_estado" />
+                        <p:outputLabel id="clearenceCrea_estado" value="#{atencionNutriEmbarazadaController.selected.clearenceCrea_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_valor}" for="clearenceCrea_valor" />
+                        <p:outputLabel id="clearenceCrea_valor" value="#{atencionNutriEmbarazadaController.selected.clearenceCrea_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_clearenceCrea_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_estado}" for="naPositivo_estado" />
+                        <p:outputLabel id="naPositivo_estado" value="#{atencionNutriEmbarazadaController.selected.naPositivo_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_valor}" for="naPositivo_valor" />
+                        <p:outputLabel id="naPositivo_valor" value="#{atencionNutriEmbarazadaController.selected.naPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_naPositivo_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_estado}" for="KPositivo_estado" />
+                        <p:outputLabel id="KPositivo_estado" value="#{atencionNutriEmbarazadaController.selected.KPositivo_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_valor}" for="KPositivo_valor" />
+                        <p:outputLabel id="KPositivo_valor" value="#{atencionNutriEmbarazadaController.selected.KPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_KPositivo_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_estado}" for="CLNegativo_estado" />
+                        <p:outputLabel id="CLNegativo_estado" value="#{atencionNutriEmbarazadaController.selected.CLNegativo_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_valor}" for="CLNegativo_valor" />
+                        <p:outputLabel id="CLNegativo_valor" value="#{atencionNutriEmbarazadaController.selected.CLNegativo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_CLNegativo_valor}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GPT_estado}" for="GPT_estado" />
+                        <p:outputLabel id="GPT_estado" value="#{atencionNutriEmbarazadaController.selected.GPT_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GPT_valor}" for="GPT_valor" />
+                        <p:outputLabel id="GPT_valor" value="#{atencionNutriEmbarazadaController.selected.GPT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GPT_valor}" />                       
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GOT_estado}" for="GOT_estado" />
+                        <p:outputLabel id="GOT_estado" value="#{atencionNutriEmbarazadaController.selected.GOT_estado}" />                              
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GOT_valor}" for="GOT_valor" />
+                        <p:outputLabel id="GOT_valor" value="#{atencionNutriEmbarazadaController.selected.GOT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GOT_valor}" />                                         
+                        <p:outputLabel value="Exámenes 2da parte" class="subItem" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_estado}" for="orocultivo_estado" />
+                        <p:outputLabel id="orocultivo_estado" value="#{atencionNutriEmbarazadaController.selected.orocultivo_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_ejecucion}" for="orocultivo_ejecucion" />
+                        <p:outputLabel id="orocultivo_ejecucion" value="#{atencionNutriEmbarazadaController.selected.orocultivo_ejecucion}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_ECG_estado}" for="ECG_estado" />
+                        <p:outputLabel id="ECG_estado" value="#{atencionNutriEmbarazadaController.selected.ECG_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_ECG_ejecucion}" for="ECG_ejecucion" />
+                        <p:outputLabel id="ECG_ejecucion" value="#{atencionNutriEmbarazadaController.selected.ECG_ejecucion}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_estado}" for="fondoOJO_estado" />
+                        <p:outputLabel id="fondoOJO_estado" value="#{atencionNutriEmbarazadaController.selected.fondoOJO_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_ejecucion}" for="fondoOJO_ejecucion" />
+                        <p:outputLabel id="fondoOJO_ejecucion" value="#{atencionNutriEmbarazadaController.selected.fondoOJO_ejecucion}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_estado}" for="orinaCompleta_estado" />
+                        <p:outputLabel id="orinaCompleta_estado" value="#{atencionNutriEmbarazadaController.selected.orinaCompleta_estado}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_ejecucion}" for="orinaCompleta_ejecucion" />
+                        <p:outputLabel id="orinaCompleta_ejecucion" value="#{atencionNutriEmbarazadaController.selected.orinaCompleta_ejecucion}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_otros_examenes}" for="otros_examenes" />
+                        <p:outputLabel id="otros_examenes" value="#{atencionNutriEmbarazadaController.selected.otros_examenes}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_otros_examenes}" />
+                        <p:outputLabel value="Historia dietética" class="subItem" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Desayuno" class="subSubItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:outputLabel id="desayuno_horario" value="#{atencionNutriEmbarazadaController.selected.desayuno_horario}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_horario}" />
+                        <p:outputLabel value="Descripción" />
+                        <p:outputLabel id="desayuno_descripcion" value="#{atencionNutriEmbarazadaController.selected.desayuno_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_descripcion}" />
+                        <p:outputLabel value="Colación" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:outputLabel id="colacion_horario" value="#{atencionNutriEmbarazadaController.selected.colacion_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_horario}" />
+                        <p:outputLabel value="Descripción" />
+                        <p:outputLabel id="colacion_descripcion" value="#{atencionNutriEmbarazadaController.selected.colacion_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_descripcion}" />
+                        <p:outputLabel value="Almuerzo" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:outputLabel id="almuerzo_horario" value="#{atencionNutriEmbarazadaController.selected.almuerzo_horario}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_horario}" />
+                        <p:outputLabel value="Descripción" />
+                        <p:outputLabel id="almuerzo_descripcion" value="#{atencionNutriEmbarazadaController.selected.almuerzo_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_descripcion}" />
+                        <p:outputLabel value="Colación Tarde" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:outputLabel id="colaciontarde_horario" value="#{atencionNutriEmbarazadaController.selected.colaciontarde_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_horario}" />
+                        <p:outputLabel value="Descripción" />
+                        <p:outputLabel id="colaciontarde_descripcion" value="#{atencionNutriEmbarazadaController.selected.colaciontarde_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_descripcion}" />
+                        <p:outputLabel value="Cena" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Horario" />
+                        <p:outputLabel id="cena_horario" value="#{atencionNutriEmbarazadaController.selected.cena_horario}" title="#{bundle.CreateFichaNutricionistaTitle_cena_horario}" />
+                        <p:outputLabel value="Descripción" />
+                        <p:outputLabel id="cena_descripcion" value="#{atencionNutriEmbarazadaController.selected.cena_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_cena_descripcion}" />
+                        <p:outputLabel value="Frecuencia consumo:" for="frecuencia_consumo" />
+                        <p:outputLabel id="frecuencia_consumo" value="#{atencionNutriEmbarazadaController.selected.frecuencia_consumo}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_frecuencia_consumo}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriEmbarazadaLabel_intolerancia_alimentaria}" for="intolerancia_alimentaria" />
+                        <p:outputLabel  id="intolerancia_alimentaria" value="#{atencionNutriEmbarazadaController.selected.intolerancia_alimentaria}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_intolerancia_alimentaria}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionNutriEmbarazadaLabel_prescripcion_dietetica}" for="prescripcion_dietetica" />
+                        <p:outputLabel   id="prescripcion_dietetica" value="#{atencionNutriEmbarazadaController.selected.prescripcion_dietetica}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_prescripcion_dietetica}" />
+                        <p:outputLabel value="Indicaciones Específicas:" class="subItem"/>
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Hidratos de carbono:" for="hidratos_de_carbono" />
+                        <p:outputLabel id="hidratos_de_carbono" value="#{atencionNutriEmbarazadaController.selected.hidratos_de_carbono}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_hidratos_de_carbono}" />
+                        <p:outputLabel value="Observaciones:" for="hidratos_de_carbonObs" />
+                        <p:outputLabel id="hidratos_de_carbonObs" value="#{atencionNutriEmbarazadaController.selected.hidratos_de_carbonObs}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_hidratos_de_carbonObs}" />
+                        <p:outputLabel value="Proteínas:" for="proteinas" />
+                        <p:outputLabel id="proteinas" value="#{atencionNutriEmbarazadaController.selected.proteinas}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_proteinas}" />
+                        <p:outputLabel value="Observaciones" for="proteinas_Obs" />
+                        <p:outputLabel id="proteinas_Obs" value="#{atencionNutriEmbarazadaController.selected.proteinas_Obs}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_proteinas_Obs}" />
+                        <p:outputLabel value="Lípidos:" for="lipidos" />
+                        <p:outputLabel id="lipidos" value="#{atencionNutriEmbarazadaController.selected.lipidos}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_lipidos}" />
+                        <p:outputLabel value="Observaciones:" for="lipidos_Obs" />
+                        <p:outputLabel id="lipidos_Obs" value="#{atencionNutriEmbarazadaController.selected.lipidos_Obs}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_lipidos_Obs}" />                        
+                        <p:outputLabel value="Indicaciones Alimentarias:" for="indicaciones_alimentarias" />
+                        <p:outputLabel id="indicaciones_alimentarias" value="#{atencionNutriEmbarazadaController.selected.indicaciones_alimentarias}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_indicaciones_alimentarias}" />
+                        <p:outputLabel value="Régimen:" for="regimen" />
+                        <p:outputLabel id="regimen" value="#{atencionNutriEmbarazadaController.selected.regimen}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_regimen}" />
+                        <p:outputLabel value="Calorías:" for="calorias" />
+                        <p:outputLabel id="calorias" value="#{atencionNutriEmbarazadaController.selected.calorias}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_calorias}" />
+                        <p:outputLabel value="Referencias:" for="referencias" />
+                        <p:outputLabel id="referencias" value="#{atencionNutriEmbarazadaController.selected.referencias}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_referencias}" />
+                        <p:outputLabel value="Próximo Control:" for="proximo_control" />
+                        <p:outputLabel id="proximo_control" value="#{atencionNutriEmbarazadaController.selected.proximo_control}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_proximo_control}" />
+                        <p:outputLabel value="Próximo profesional:" for="proximo_profesional" />
+                        <p:outputLabel id="proximo_profesional" value="#{atencionNutriEmbarazadaController.selected.proximo_profesional}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_proximo_profesional}" />
+                        <p:outputLabel value="Paciente:" for="paciente" />
+                        <p:outputLabel id="paciente" value="#{atencionNutriEmbarazadaController.selected.paciente.toString()}" />
+                    </p:panelGrid>
+                    <p:commandButton style="margin-top: 10px!important;" styleClass="noPrintButton" value="Imprimir" ajax="false" rendered="#{atencionNutriEmbarazadaController.selected != null}">
+                        <p:printer target="panel"/>
+                    </p:commandButton>
+                </h:panelGroup>
+            </h:form>
+</html>

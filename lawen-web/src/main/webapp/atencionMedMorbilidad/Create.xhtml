@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <h:outputScript>
+            //<![CDATA[ 
+
+
+            function calcularIMC () {
+
+            var peso = $("#peso").val();
+            var talla = $("#talla").val();
+            var edad = $("#edadMorb").val();
+
+            if( peso == 0 || talla == 0 || edad == "" ){
+
+            alert("Debe llenar peso, talla y edad");
+
+            }
+
+            var imc = peso/Math.pow(talla,2);
+
+            if(isNaN(imc) || imc == Infinity){
+            $("#imc").val(0.0);
+            }
+            else{
+            $("#imc").val(imc);
+            $("#imc").prop('readonly', true);
+            var diagnosticoNutricional = "";
+
+            if( edad < 65 ){
+            if( imc < 18.5){
+            diagnosticoNutricional = "BP";
+            }
+            else if( 18.5 <= imc && imc < 25){
+            diagnosticoNutricional = "N";
+            }
+            else if( 25 <= imc  && imc < 30){
+            diagnosticoNutricional = "SP";
+            }
+            else if( 30 <= imc  && imc < 35){
+            diagnosticoNutricional = "OBI";
+            }
+            else if( 35 <= imc  && imc < 40){
+            diagnosticoNutricional = "OBII";
+            }
+            else if( 40 <= imc){
+            diagnosticoNutricional = "OBIII";
+            }
+            }
+            else if( edad >= 65){
+            if( imc <= 23){
+            diagnosticoNutricional = "E";
+            }
+            else if( 23 < imc && imc < 28){
+            diagnosticoNutricional = "N";
+            }
+            else if( 28 <= imc  && imc < 32){
+            diagnosticoNutricional = "SP";
+            }
+            else if( 32 <= imc){
+            diagnosticoNutricional = "OB";
+            }
+
+            } 
+
+
+            $("#diagnostico_nutricional").val(diagnosticoNutricional);
+            $("#diagnostico_nutricional").prop('readonly', true);
+
+            }
+
+            };
+
+
+            //]]>
+        </h:outputScript>
+        <p:dialog id="AtencionMedMorbilidadCreateDlg" widgetVar="AtencionMedMorbilidadCreateDialog" width="600px" resizable="false" modal="true" height="500px"  header="#{bundle.CreateAtencionMedMorbilidadTitle}">
+            <h:form id="AtencionMedMorbilidadCreateForm"  prependId="false" >
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{atencionMedMorbilidadController.selected != null}">
+                        <p:outputLabel  class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_paciente}" for="paciente" />
+                        <p:selectOneMenu id="paciente" value="#{atencionMedMorbilidadController.selected.paciente_mrb}" required="true" requiredMessage="Es necesario seleccionar un paciente" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItems value="#{pacienteController.itemsAvailableSelectOne}"
+                                           var="pacienteItem"
+                                           itemValue="#{pacienteItem}"/>
+                            <p:ajax  update="edadMorb" listener="#{atencionMedMorbilidadController.handleKeyEvent()}" />
+                        </p:selectOneMenu>
+                        <p:outputLabel  class="obligatorio" value="#{bundle.CreateAtencionMedMorbilidadLabel_fechaAtencion_morb}" for="fechaAtencion_morb" />
+                        <p:calendar id="fechaAtencion_morb" pattern="dd/MM/yyyy" value="#{atencionMedMorbilidadController.selected.fechaAtencion_morb}" title="#{bundle.EditAtencionMedMorbilidadTitle_fechaAtencion_morb}" navigator="true" locale="es" yearRange="c-100:c+10"  showOn="button"/>
+                        <p:outputLabel  class="obligatorio" value="Profesional" for="profesional_apse" />
+                        <p:selectOneMenu id="profesional_apse" value="#{atencionMedMorbilidadController.selected.profesional_morb}" required="true" requiredMessage="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="profesional_apseItem"
+                                           itemValue="#{profesional_apseItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_edadMorb}" for="edadMorb" />
+                        <p:inputText disabled="true" id="edadMorb" value="#{atencionMedMorbilidadController.edad}" title="#{bundle.CreateAtencionMedMorbilidadTitle_edadMorb}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_anamnesis_morb}" for="anamnesis_morb" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="anamnesis_morb" value="#{atencionMedMorbilidadController.selected.anamnesis_morb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_anamnesis_morb}" />                        
+                        <h:outputText value="Control signos vitales" class="subItem"/>
+                        <h:outputText value=""/>
+                        <h:outputText value="Presi&oacute;n arterial:"/>
+                        <p:inputText value="#{atencionMedMorbilidadController.selected.presion_arterial2}" title="#{bundle.ViewAtencionMedMorbilidadTitle_presion_arterial2}">
+                            <p:inputText value="#{atencionMedMorbilidadController.selected.presion_arterial1}" title="#{bundle.ViewAtencionMedMorbilidadTitle_presion_arterial1}"/><h:outputText value=" / "/>
+                        </p:inputText>
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_frecuencia_cardiaca}" for="frecuencia_cardiaca" />
+                        <p:inputText id="frecuencia_cardiaca" value="#{atencionMedMorbilidadController.selected.frecuencia_cardiaca}" title="#{bundle.CreateAtencionMedMorbilidadTitle_frecuencia_cardiaca}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_temperatura}" for="temperatura" />
+                        <p:inputText id="temperatura" value="#{atencionMedMorbilidadController.selected.temperatura}" title="#{bundle.CreateAtencionMedMorbilidadTitle_temperatura}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_frecuencia_respiratoria}" for="frecuencia_respiratoria" />
+                        <p:inputText id="frecuencia_respiratoria" value="#{atencionMedMorbilidadController.selected.frecuencia_respiratoria}" title="#{bundle.CreateAtencionMedMorbilidadTitle_frecuencia_respiratoria}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_dolor}" for="dolor" />
+                        <p:inputText id="dolor" value="#{atencionMedMorbilidadController.selected.dolor}" title="#{bundle.CreateAtencionMedMorbilidadTitle_dolor}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_saturacion_oxigeno}" for="saturacion_oxigeno" />
+                        <p:inputText id="saturacion_oxigeno" value="#{atencionMedMorbilidadController.selected.saturacion_oxigeno}" title="#{bundle.CreateAtencionMedMorbilidadTitle_saturacion_oxigeno}" />
+                        <h:outputText value="Medidas antropom&eacute;tricas" class="subItem"/>
+                        <h:outputText value=""/>
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_talla_morb}" for="talla" />
+                        <p:inputText id="talla" value="#{atencionMedMorbilidadController.selected.talla_morb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_talla_morb}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_peso_morb}" for="peso" />
+                        <p:inputText id="peso" value="#{atencionMedMorbilidadController.selected.peso_morb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_peso_morb}" />
+
+                        <h:commandButton id ="calimc" value="Calcular IMC" action="#" onclick="calcularIMC();" >
+                            <f:ajax  />
+                        </h:commandButton>
+                        <h:outputText value=""/>
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_imc_morb}" for="imc" />
+                        <p:inputText id="imc" value="#{atencionMedMorbilidadController.selected.imc_morb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_imc_morb}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_diagnostico_nutricional_mrb}" for="diagnostico_nutricional" />
+                        <p:inputText id="diagnostico_nutricional" value="#{atencionMedMorbilidadController.selected.diagnostico_nutricional_mrb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_diagnostico_nutricional_mrb}" />
+
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_examen_fisico}" for="examen_fisico" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="examen_fisico" value="#{atencionMedMorbilidadController.selected.examen_fisico}" title="#{bundle.CreateAtencionMedMorbilidadTitle_examen_fisico}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_hipotesis_diagnostiva}" for="hipotesis_diagnostiva" />
+                        <p:inputText id="hipotesis_diagnostiva" value="#{atencionMedMorbilidadController.selected.hipotesis_diagnostiva}" title="#{bundle.CreateAtencionMedMorbilidadTitle_hipotesis_diagnostiva}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_diagnostivo_mrb}" for="diagnostivo_mrb" />
+                        <p:inputText id="diagnostivo_mrb" value="#{atencionMedMorbilidadController.selected.diagnostivo_mrb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_diagnostivo_mrb}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_indicaciones}" for="indicaciones" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="indicaciones" value="#{atencionMedMorbilidadController.selected.indicaciones}" title="#{bundle.CreateAtencionMedMorbilidadTitle_indicaciones}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_tratamiento_famacologico}" for="tratamiento_famacologico" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="tratamiento_famacologico" value="#{atencionMedMorbilidadController.selected.tratamiento_famacologico}" title="#{bundle.CreateAtencionMedMorbilidadTitle_tratamiento_famacologico}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_examenes}" for="examenes" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="examenes" value="#{atencionMedMorbilidadController.selected.examenes}" title="#{bundle.CreateAtencionMedMorbilidadTitle_examenes}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_referencias_mrb}" for="referencias_mrb" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="referencias_mrb" value="#{atencionMedMorbilidadController.selected.referencias_mrb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_referencias_mrb}" />                        
+
+                    </p:panelGrid>
+                    <p:commandButton style="margin-top: 10px!important; margin-bottom: 10px!important;"  actionListener="#{atencionMedMorbilidadController.create(atencionMedMorbilidadController.edad)}" value="#{bundle.Save}" update="display,:AtencionMedMorbilidadListForm:datalist,:growl,:AtencionMedMorbilidadViewForm" oncomplete="handleSubmit(args,'AtencionMedMorbilidadCreateDialog');"/>
+                    <p:commandButton style="margin-left: 10px!important; margin-top: 10px!important; margin-bottom: 10px!important;" actionListener="#{atencionMedMorbilidadController.cancel()}" value="#{bundle.Cancel}" update="display,:growl,:AtencionMedMorbilidadViewForm" onclick="AtencionMedMorbilidadCreateDialog.hide()" immediate="true"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

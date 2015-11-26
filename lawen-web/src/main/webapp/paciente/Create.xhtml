@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition>
+
+        <p:dialog id="PacienteCreateDlg" widgetVar="PacienteCreateDialog" width="auto" resizable="false" modal="true" height="500px" appendTo="@(body)" header="#{bundle.CreatePacienteTitle}" >
+            <h:form id="PacienteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid  styleClass="col-md-12 spaceGrid" layout="grid" columns="2" rendered="#{pacienteController.selected != null}">
+
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreatePacienteLabel_rut_paciente}" for="rut_paciente"  />
+                        <p:inputText id="rut_paciente" value="#{pacienteController.selected.rut_paciente}" placeholder="Sin puntos y con guión" title="#{bundle.CreatePacienteTitle_rut_paciente}">
+                            <f:validator validatorId="rutValidator" />
+                        </p:inputText>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreatePacienteLabel_nombres_paciente}" for="nombres_paciente" />
+                        <p:inputText id="nombres_paciente" value="#{pacienteController.selected.nombres_paciente}" title="#{bundle.CreatePacienteTitle_nombres_paciente}" required="true" requiredMessage="Debe ingresar un nombre" />
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreatePacienteLabel_apellidoPaterno_paciente}" for="apellidoPaterno_paciente" />
+                        <p:inputText id="apellidoPaterno_paciente" value="#{pacienteController.selected.apellidoPaterno_paciente}" title="#{bundle.CreatePacienteTitle_apellidoPaterno_paciente}" required="true" requiredMessage="Debe ingresar un apellido" />
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_apellidoMaterno_paciente}"  for="apellidoMaterno_paciente" />
+                        <p:inputText  id="apellidoMaterno_paciente" value="#{pacienteController.selected.apellidoMaterno_paciente}" title="#{bundle.CreatePacienteTitle_apellidoMaterno_paciente}" />
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreatePacienteLabel_fechaNacimiento_paciente}" for="fechaNacimiento_paciente" />
+                        <p:calendar id="fechaNacimiento_paciente" pattern="dd/MM/yyyy" value="#{pacienteController.selected.fechaNacimiento_paciente}" title="#{bundle.EditPacienteTitle_fechaNacimiento_paciente}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_genero_paciente}" for="genero_paciente" />
+                        <p:selectOneMenu id="genero_paciente" value="#{pacienteController.selected.genero_paciente}"> 
+                            <f:selectItems value="#{dominiosController.genero}"/>    
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_email_paciente}" for="email_paciente" />
+                        <p:inputText id="email_paciente" value="#{pacienteController.selected.email_paciente}" title="#{bundle.CreatePacienteTitle_email_paciente}" />
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_direccion_paciente}" for="direccion_paciente" />
+                        <p:inputText id="direccion_paciente" value="#{pacienteController.selected.direccion_paciente}" title="#{bundle.CreatePacienteTitle_direccion_paciente}" />
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_nacionalidad_paciente}" for="nacionalidad_paciente" />
+                        <p:inputText id="nacionalidad_paciente" value="#{pacienteController.selected.nacionalidad_paciente}" title="#{bundle.CreatePacienteTitle_nacionalidad_paciente}" />
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_etnia_paciente}" for="etnia_paciente" />
+                        <p:inputText id="etnia_paciente" value="#{pacienteController.selected.etnia_paciente}" title="#{bundle.CreatePacienteTitle_etnia_paciente}" />
+
+
+                        <p:outputLabel value="Etnia" for="etnia" />
+                        <p:selectBooleanButton id="etnia" value="#{pacienteController.selected.etnia}" onLabel="Si" offLabel="No" style="width:60px" />
+
+
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_ocupacion_paciente}" for="ocupacion_paciente" />
+                        <p:inputText id="ocupacion_paciente" value="#{pacienteController.selected.ocupacion_paciente}" title="#{bundle.CreatePacienteTitle_ocupacion_paciente}" />
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_telefono1}" for="telefono1" />
+                        <p:inputText id="telefono1" value="#{pacienteController.selected.telefono1}" title="#{bundle.CreatePacienteTitle_telefono1}" />
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_telefono2}" for="telefono2" />
+                        <p:inputText id="telefono2" value="#{pacienteController.selected.telefono2}" title="#{bundle.CreatePacienteTitle_telefono2}" />
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_estadoCivil_paciente}" for="estadoCivil_paciente" />
+                        <p:inputText id="estadoCivil_paciente" value="#{pacienteController.selected.estadoCivil_paciente}" title="#{bundle.CreatePacienteTitle_estadoCivil_paciente}" />
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_escolaridad_paciente}" for="escolaridad_paciente" />
+                        <p:inputText id="escolaridad_paciente" value="#{pacienteController.selected.escolaridad_paciente}" title="#{bundle.CreatePacienteTitle_escolaridad_paciente}" />
+
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_sector_paciente}" for="sector_paciente" />
+                        <p:selectOneMenu id="sector_paciente" value="#{pacienteController.selected.sector_paciente}">
+                            <f:selectItems value="#{dominiosController.sector}"/>    
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_prevision_paciente}" for="prevision_paciente" />
+                        <p:selectOneMenu id="prevision_paciente" value="#{pacienteController.selected.prevision_paciente}">
+                            <f:selectItems value="#{dominiosController.prevision}"/>    
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_fechaInscripcion_paciente}" for="fechaInscripcion_paciente" />
+                        <p:calendar id="fechaInscripcion_paciente" pattern="dd-MM-yyyy" value="#{pacienteController.selected.fechaInscripcion_paciente}" title="#{bundle.EditPacienteTitle_fechaInscripcion_paciente}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_numeroFicha_paciente}" for="numeroFicha_paciente" />
+                        <p:inputText id="numeroFicha_paciente" value="#{pacienteController.selected.numeroFicha_paciente}" title="#{bundle.CreatePacienteTitle_numeroFicha_paciente}" />
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_numeroRegistro_paciente}" for="numeroRegistro_paciente" />
+                        <p:inputText id="numeroRegistro_paciente" value="#{pacienteController.selected.numeroRegistro_paciente}" title="#{bundle.CreatePacienteTitle_numeroRegistro_paciente}" />
+
+                        <p:outputLabel value="Alcohol:" for="alcohol_paciente" />
+                        <p:selectBooleanButton id="alcohol_paciente" value="#{pacienteController.selected.alcohol_paciente}" onLabel="Si" offLabel="No" style="width:60px" />                       
+                        <p:outputLabel value="Tabaco:" for="tabaco_paciente" />
+                        <p:selectBooleanButton id="tabaco_paciente" value="#{pacienteController.selected.tabaco_paciente}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="Drogas:" for="drogas_paciente" />
+                        <p:selectBooleanButton id="drogas_paciente" value="#{pacienteController.selected.drogas_paciente}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_hospitalizaciones_paciente}" for="hospitalizaciones_paciente" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20"  maxlength="150" id="hospitalizaciones_paciente" value="#{pacienteController.selected.hospitalizaciones_paciente}" title="#{bundle.CreatePacienteTitle_hospitalizaciones_paciente}" />
+
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_alergias_paciente}" for="alergias_paciente" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20"  maxlength="150"  id="alergias_paciente" value="#{pacienteController.selected.alergias_paciente}" title="#{bundle.CreatePacienteTitle_alergias_paciente}" />
+
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_anteQuirurjicos_paciente}" for="anteQuirurjicos_paciente" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20"  maxlength="150" id="anteQuirurjicos_paciente" value="#{pacienteController.selected.anteQuirurjicos_paciente}" title="#{bundle.CreatePacienteTitle_anteQuirurjicos_paciente}" />
+
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_anteObstetricos_paciente}" for="anteObstetricos_paciente" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20"  maxlength="150"  id="anteObstetricos_paciente" value="#{pacienteController.selected.anteObstetricos_paciente}" title="#{bundle.CreatePacienteTitle_anteObstetricos_paciente}" />
+
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_actividadFisica_paciente}" for="actividadFisica_paciente" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20"  maxlength="150"  id="actividadFisica_paciente" value="#{pacienteController.selected.actividadFisica_paciente}" title="#{bundle.CreatePacienteTitle_actividadFisica_paciente}" />
+
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value="Patologías Crónicas:" class="subItem"/>
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value="Hipertensión:" for="hipertencion" />
+                        <p:selectBooleanButton id="hipertencion" value="#{pacienteController.selected.hipertencion}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Diabetico:" for="diabetico" />
+                        <p:selectBooleanButton id="diabetico" value="#{pacienteController.selected.diabetico}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Dislipidémico:" for="dislipidemico" />
+                        <p:selectBooleanButton id="dislipidemico" value="#{pacienteController.selected.dislipidemico}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Pre-diabetico" for="prediabetes" />
+                        <p:selectBooleanButton id="prediabetes" value="#{pacienteController.selected.prediabetes}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value=" "/>
+
+                        <p:outputLabel value="Antecedentes:" class="subItem"/>
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value="De infarto:" for="IAM" />
+                        <p:selectBooleanButton id="IAM" value="#{pacienteController.selected.IAM}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="De enfermedad cerebro Cardiovascular:" for="ACV" />
+                        <p:selectBooleanButton id="ACV" value="#{pacienteController.selected.ACV}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value=" "/>
+
+                    </p:panelGrid>
+
+
+                    <p:commandButton style="margin-left: 20px; margin-right: 10px;" actionListener="#{pacienteController.create}" value="#{bundle.Save}" update="display,:PacienteListForm:datalist,:growl,:PacienteViewForm" oncomplete="handleSubmit(args,'PacienteCreateDialog');"/>
+                    <p:commandButton actionListener="#{pacienteController.cancel}" value="#{bundle.Cancel}" onclick="PacienteCreateDialog.hide()" immediate="true" />
+                    <br/><br/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

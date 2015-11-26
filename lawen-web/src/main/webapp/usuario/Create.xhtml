@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioCreateDlg" widgetVar="UsuarioCreateDialog" width="auto" resizable="false" modal="true" height="500px" appendTo="@(body)" header="#{bundle.CreateUsuarioTitle}">
+            <h:form id="UsuarioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid styleClass="col-md-12 spaceGrid" layout="grid" columns="2" rendered="#{usuarioController.prepareCreate() != null and tipoUsuarioController.prepareCreate() != null}">
+                        <p:outputLabel  class="obligatorio" value="#{bundle.CreateUsuarioLabel_nombres_usuario}" for="nombres_usuario" />
+                        <p:inputText required="true" id="nombres_usuario" value="#{usuarioController.selected.nombres_usuario}" title="#{bundle.CreateUsuarioTitle_nombres_usuario}" />
+                        <p:outputLabel  class="obligatorio" value="#{bundle.CreateUsuarioLabel_apellidoPaterno_usuario}" for="apellidoPaterno_usuario" />
+                        <p:inputText required="true" id="apellidoPaterno_usuario" value="#{usuarioController.selected.apellidoPaterno_usuario}" title="#{bundle.CreateUsuarioTitle_apellidoPaterno_usuario}" />
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_apellidoMaterno_usuario}" for="apellidoMaterno_usuario" />
+                        <p:inputText  id="apellidoMaterno_usuario" value="#{usuarioController.selected.apellidoMaterno_usuario}" title="#{bundle.CreateUsuarioTitle_apellidoMaterno_usuario}" />
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_telefono1}" for="telefono1" />
+                        <p:inputText id="telefono1" value="#{usuarioController.selected.telefono1}" title="#{bundle.CreateUsuarioTitle_telefono1}" />
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_telefono2}" for="telefono2" />
+                        <p:inputText id="telefono2" value="#{usuarioController.selected.telefono2}" title="#{bundle.CreateUsuarioTitle_telefono2}" />
+                        <p:outputLabel value="#{bundle.CreateUsuarioLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{usuarioController.selected.correo}" title="#{bundle.CreateUsuarioTitle_correo}" />
+
+
+                        <p:outputLabel class="obligatorio"  value="#{bundle.CreateUsuarioLabel_rut}" for="rut" />
+                        <p:inputText id="rut" value="#{usuarioController.selected.rut}" title="#{bundle.CreateUsuarioTitle_rut}">
+                            <f:validator validatorId="rutValidator" />
+                        </p:inputText>
+                        <p:outputLabel  class="obligatorio" value="Rol" for="rol" />
+                        <p:selectOneMenu id="rol" value="#{tipoUsuarioController.selected.rol}"  >
+                            <f:selectItems value="#{dominiosController.profesionales}"/>    
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:panelGrid styleClass="col-md-12 spaceGrid" layout="grid" columns="2" id="matchGrid">                   
+                        <h:outputLabel for="pwd1" class="obligatorio" value="Ingrese la Contraseña (5 caracteres):" />
+                        <p:password id="pwd1" value="#{usuarioController.selected.password}" match="pwd2" label="Contraseña" required="true" feedback="true" inline="true"
+                                    promptLabel="Ingrese contraseña(5 caracteres mínimo)" weakLabel="Debil"
+                                    goodLabel="Medio" strongLabel="Fuerte">
+                            <f:validateLength minimum="5" />
+                        </p:password> 
+                        <h:outputLabel for="pwd2" class="obligatorio" value="Confirme la contraseña:" />
+                        <p:password id="pwd2" value="#{usuarioController.selected.password}" label="Confirme Contraseña" required="true" feedback="true" inline="true"
+                                    promptLabel="Ingrese contraseña (5 caracteres mínimo):" weakLabel="Debil"
+                                    goodLabel="Medio" strongLabel="Fuerte">
+                            <f:validateLength minimum="5" />
+                        </p:password>
+                    </p:panelGrid>
+
+                    <p:commandButton style="margin-top: 10px!important;"  actionListener="#{usuarioController.crearUsuarioyTipo(usuarioController,tipoUsuarioController )}" value="#{bundle.Save}" update="display,:UsuarioListForm:datalist,:growl,matchGrid" oncomplete="handleSubmit(args,'UsuarioCreateDialog');"/>
+                    <p:commandButton style="margin-left: 10px!important; margin-top: 10px!important;" value="#{bundle.Cancel}" onclick="UsuarioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

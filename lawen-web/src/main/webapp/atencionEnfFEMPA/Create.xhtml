@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <h:outputScript>
+            //<![CDATA[ 
+
+
+            function calcularIMC () {
+                    
+                     var peso = $("#peso").val();
+                     var talla = $("#talla").val();
+                     var edad = $("#edad_paciente").val();
+               
+                    if( peso == 0 || talla == 0 || edad == "" ){
+                    
+                        alert("Debe llenar peso, talla y edad");
+                    
+                    }
+                     
+                     var imc = peso/Math.pow(talla,2);
+                     
+                     if(isNaN(imc) || imc == Infinity){
+                            $("#imc").val(0.0);
+                     }
+                     else{ 
+                     
+                     $("#imc").val(imc);
+                     $("#imc").prop('readonly', true);
+                    }
+                };
+
+
+        //]]>
+        </h:outputScript>
+        <p:dialog id="AtencionEnfFEMPACreateDlg" widgetVar="AtencionEnfFEMPACreateDialog"  width="740px" resizable="false" modal="true" height="500px" appendTo="@(body)"  header="Crear atención EMPA">
+            <h:form id="AtencionEnfFEMPACreateForm" prependId="false" >
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{atencionEnfFEMPAController.selected != null}">
+                        <p:outputLabel class="obligatorio" value="Paciente:" for="paciente_empa" />
+                        <p:selectOneMenu id="paciente_empa" value="#{atencionEnfFEMPAController.selected.paciente_empa}" required="true" requiredMessage="Es necesario un paciente" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItems value="#{pacienteController.itemsAvailableSelectOne}"
+                                           var="paciente_empaItem"
+                                           itemValue="#{paciente_empaItem}"/>
+                            <p:ajax  update="edad_paciente" listener="#{atencionEnfFEMPAController.handleKeyEvent()}" />
+                        </p:selectOneMenu>  
+                        
+                        <p:outputLabel  class="obligatorio"  value="Profesional:" for="profesional_empa" />
+                        <p:selectOneMenu id="profesional_empa" value="#{atencionEnfFEMPAController.selected.profesional_empa}"  required="true" requiredMessage="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="profesional_empaItem"
+                                           itemValue="#{profesional_empaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel  class="obligatorio" value="#{bundle.CreateAtencionEnfFEMPALabel_fechaEmpa}" for="fechaEmpa" />
+                        <p:calendar id="fechaEmpa" pattern="dd/MM/yyyy" value="#{atencionEnfFEMPAController.selected.fechaEmpa}" title="#{bundle.EditAtencionEnfFEMPATitle_fechaEmpa}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_edad_paciente_emp}" for="edad_paciente" />
+                        <p:inputText disabled="true" id="edad_paciente" value="#{atencionEnfFEMPAController.edad}" title="#{bundle.CreateAtencionEnfFEMPATitle_edad_paciente_emp}" />
+                        <p:outputLabel value="Item: Ambos géneros de 15 a 64 años" class="subItem"/>
+                        <p:outputLabel value=""/>
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_peso_emp}" for="peso" />
+                        <p:inputText id="peso" value="#{atencionEnfFEMPAController.selected.peso_emp}" title="#{bundle.CreateAtencionEnfFEMPATitle_peso_emp}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_talla_emp}" for="talla" />
+                        <p:inputText id="talla" value="#{atencionEnfFEMPAController.selected.talla_emp}" title="#{bundle.CreateAtencionEnfFEMPATitle_talla_emp}" />
+                        <p:outputLabel value=""/>
+                         <h:commandButton id ="calimc" value="Calcular IMC" action="#" onclick="calcularIMC();" >
+                            <f:ajax  />
+                        </h:commandButton>
+                        
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_imc_emp}" for="imc" />
+                        <p:inputText id="imc" value="#{atencionEnfFEMPAController.selected.imc_emp}" title="#{bundle.CreateAtencionEnfFEMPATitle_imc_emp}" />
+                        <p:outputLabel value="Presión arterial:" for="presion_aterial1_emp" />
+                        <p:inputText id="presion_aterial2_emp" value="#{atencionEnfFEMPAController.selected.presion_aterial2_emp}" title="#{bundle.CreateAtencionEnfFEMPATitle_presion_aterial2_emp}">
+                        <p:inputText id="presion_aterial1_emp" value="#{atencionEnfFEMPAController.selected.presion_aterial1_emp}" title="#{bundle.CreateAtencionEnfFEMPATitle_presion_aterial1_emp}" /><h:outputText value="/"/>
+                        </p:inputText>
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_puntaje_audit}" for="puntaje_audit" />
+                        <p:inputText id="puntaje_audit" value="#{atencionEnfFEMPAController.selected.puntaje_audit}" title="#{bundle.CreateAtencionEnfFEMPATitle_puntaje_audit}" />
+                        <p:outputLabel value="Bebedor problema:" for="bebedor_problema" />
+                        <p:selectBooleanButton id="bebedor_problema" value="#{atencionEnfFEMPAController.selected.bebedor_problema}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Tabaquismo:" for="tabaquismo" />
+                        <p:selectBooleanButton id="tabaquismo" value="#{atencionEnfFEMPAController.selected.tabaquismo}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="DM2:" class="subSubItem"/>
+                        <p:outputLabel value=""/>
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_valor_glicemia}" for="valor_glicemia" />
+                        <p:inputText id="valor_glicemia" value="#{atencionEnfFEMPAController.selected.valor_glicemia}" title="#{bundle.CreateAtencionEnfFEMPATitle_valor_glicemia}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_indicacion_glicemia}" for="indicacion_glicemia" />
+                        <p:inputText id="indicacion_glicemia" value="#{atencionEnfFEMPAController.selected.indicacion_glicemia}" title="#{bundle.CreateAtencionEnfFEMPATitle_indicacion_glicemia}" />
+                        <p:outputLabel value="DLP:" class="subSubItem"/>
+                        <p:outputLabel value=""/>
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_valor_colesterol_total}" for="valor_colesterol_total" />
+                        <p:inputText id="valor_colesterol_total" value="#{atencionEnfFEMPAController.selected.valor_colesterol_total}" title="#{bundle.CreateAtencionEnfFEMPATitle_valor_colesterol_total}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_indicacion_colesterol}" for="indicacion_colesterol" />
+                        <p:inputText id="indicacion_colesterol" value="#{atencionEnfFEMPAController.selected.indicacion_colesterol}" title="#{bundle.CreateAtencionEnfFEMPATitle_indicacion_colesterol}" />
+                        <p:outputLabel value="Síntomas Respiratorios:" class="subSubItem"/>
+                        <p:outputLabel value=""/>
+                        <p:outputLabel value="Baciloscopía:" for="baciloscopia" />
+                        <p:selectBooleanButton id="baciloscopia" value="#{atencionEnfFEMPAController.selected.baciloscopia}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_escala_abreviada_deteccion_depresion}" for="escala_abreviada_deteccion_depresion" />
+                        <p:inputText id="escala_abreviada_deteccion_depresion" value="#{atencionEnfFEMPAController.selected.escala_abreviada_deteccion_depresion}" title="#{bundle.CreateAtencionEnfFEMPATitle_escala_abreviada_deteccion_depresion}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_pauta_alimentacion_saludable}" for="pauta_alimentacion_saludable" />
+                        <p:inputText id="pauta_alimentacion_saludable" value="#{atencionEnfFEMPAController.selected.pauta_alimentacion_saludable}" title="#{bundle.CreateAtencionEnfFEMPATitle_pauta_alimentacion_saludable}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_indicaciones_referencias}" for="indicaciones_referencias" />
+                        <p:inputTextarea class="textAreas" rows="10" cols="20" id="indicaciones_referencias" value="#{atencionEnfFEMPAController.selected.indicaciones_referencias}" title="#{bundle.CreateAtencionEnfFEMPATitle_indicaciones_referencias}" />
+                        <p:outputLabel value="Item 2: Solo Mujeres" class="subItem"/>
+                        <p:outputLabel value=""/>
+                        <p:outputLabel value="Sección A: 25 a 64 años - CANCER CERVICOUTERINO" class="subSubItem"/>
+                        <p:outputLabel value=""/>                        
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_pap}" for="pap" />
+                        <p:selectOneMenu id="pap" value="#{atencionEnfFEMPAController.selected.pap}" title="#{bundle.CreateAtencionEnfFEMPATitle_pap}" >
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItems value="#{dominiosController.empaDom}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_pap_observaciones}" for="pap_observaciones" />
+                        <p:inputTextarea class="textAreas" rows="10" cols="20" id="pap_observaciones" value="#{atencionEnfFEMPAController.selected.pap_observaciones}" title="#{bundle.CreateAtencionEnfFEMPATitle_pap_observaciones}" />                        
+                        <p:outputLabel value="Sección B: 15 a 50 años - CANCER DE MAMAS" class="subSubItem"/>
+                        <p:outputLabel value=""/>
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_examen_fisico_mamas}" for="examen_fisico_mamas" />
+                        <p:inputTextarea class="textAreas" rows="10" cols="20" id="examen_fisico_mamas" value="#{atencionEnfFEMPAController.selected.examen_fisico_mamas}" title="#{bundle.CreateAtencionEnfFEMPATitle_examen_fisico_mamas}" />
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_mamografia}" for="mamografia" />
+                        <p:selectOneMenu id="mamografia" value="#{atencionEnfFEMPAController.selected.mamografia}" title="#{bundle.CreateAtencionEnfFEMPATitle_mamografia}" >
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItems value="#{dominiosController.empaDom}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_mamografia_observaciones}" for="mamografia_observaciones" />
+                        <p:inputTextarea class="textAreas" rows="10" cols="20" id="mamografia_observaciones" value="#{atencionEnfFEMPAController.selected.mamografia_observaciones}" title="#{bundle.CreateAtencionEnfFEMPATitle_mamografia_observaciones}" />
+                        <p:outputLabel value="Sección C: Embarazadas" class="subSubItem"/>
+                        <p:outputLabel value=""/>
+                        <p:outputLabel value="VDRL" for="VDRL" />
+                        <p:selectBooleanButton id="VDRL" value="#{atencionEnfFEMPAController.selected.VDRL}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Observaciones:" for="VDRL_obs" />
+                        <p:inputText id="VDRL_obs" value="#{atencionEnfFEMPAController.selected.VDRL_obs}" title="#{bundle.CreateAtencionEnfFEMPATitle_VDRL_obs}" />
+                        <p:outputLabel value="Test ELISA" for="test_ELISA" />
+                        <p:selectBooleanButton id="test_ELISA" value="#{atencionEnfFEMPAController.selected.test_ELISA}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Indicaciones y referencias:" for="indicaciones_referencias2" />
+                        <p:inputTextarea class="textAreas" rows="10" cols="20"  id="indicaciones_referencias2" value="#{atencionEnfFEMPAController.selected.indicaciones_referencias2}" title="#{bundle.CreateAtencionEnfFEMPATitle_indicaciones_referencias2}" />
+                                          
+                    </p:panelGrid>
+                    <p:commandButton style="margin-top: 10px!important; margin-bottom: 10px!important;"  actionListener="#{atencionEnfFEMPAController.create(atencionEnfFEMPAController.edad)}" value="#{bundle.Save}" update="display,:AtencionEnfFEMPAListForm:datalist,:growl,:AtencionEnfFEMPAViewForm" oncomplete="handleSubmit(args,'AtencionEnfFEMPACreateDialog');"/>
+                    <p:commandButton style="margin-left: 10px!important; margin-top: 10px!important; margin-bottom: 10px!important;" actionListener="#{atencionEnfFEMPAController.cancel()}"  value="#{bundle.Cancel}" update="display,:growl,:AtencionEnfFEMPAViewForm" onclick="AtencionEnfFEMPACreateDialog.hide()" immediate="true" />
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

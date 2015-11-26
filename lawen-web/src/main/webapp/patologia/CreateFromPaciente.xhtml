@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+            <ui:fragment rendered="#{pacienteController.isExistPaciente(pacienteController.selected)==false}">
+                <ui:include src="/wrong.xhtml"/>
+            </ui:fragment>
+            <ui:fragment rendered="#{pacienteController.isExistPaciente(pacienteController.selected)==true}">
+                <f:metadata>
+                    <f:viewParam name="idUsuario" value="#{pacienteController.selected}" />
+                </f:metadata>
+
+                <b:row>
+                    <b:column span="12">
+                        <p:breadCrumb>
+                            <p:menuitem value="Categories"  title="Inicio" url="/faces/index.xhtml" />
+                            <p:menuitem value="PSCV Paciente Control Cardiovascular" url="/faces/paciente/PacienteToCCV.xhtml?idUsuario=#{pacienteController.selected.id}"/>
+                            <p:menuitem value="Patología" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                        </p:breadCrumb>
+                    </b:column>
+                </b:row>
+                <br/>
+
+                <h:form id="PatologiaForPacienteCreateForm">
+                    <h:panelGroup id="display">
+
+
+                        <h2><h:outputText value="Asociar patologías"/></h2>
+                        <br/>
+                        <p:panelGrid columns="2" rendered="#{patologiaController.prepareCreate() != null}">
+
+                            <p:outputLabel class="obligatorio" value="Patología:" for="patologia" />
+                            <p:selectOneMenu id="patologia" value="#{patologiaController.selected.patologia}"  required="true" requiredMessage="#{bundle.EditPatologiaRequiredMessage_patologia}" panelStyle="width:180px"
+                                             effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                                <f:selectItems value="#{tipoPatologiaController.itemsAvailableSelectOne}"
+                                               var="patologiaItem"
+                                               itemValue="#{patologiaItem}"
+                                               itemLabel="#{patologiaItem.nombre_patologia}"
+                                               />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="Paciente:" for="pacientes" />
+                            <p:inputText disabled="true" id="pacientes" value="#{pacienteController.selected.rut_paciente}"/>     
+                        </p:panelGrid>
+                        <p:commandButton action="#{patologiaController.create(pacienteController.selected)}" value="#{bundle.Save}" update="display" oncomplete="window.location.href='/lawen-web/faces/paciente/List.xhtml'; "/>
+                        <p:button outcome="/paciente/List" value="Volver" />
+                    </h:panelGroup>
+                </h:form>
+
+            </ui:fragment>
+        </ui:define>
+    </ui:composition>
+</html>

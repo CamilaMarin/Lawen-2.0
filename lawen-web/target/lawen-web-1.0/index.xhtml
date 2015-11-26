@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="lawén - Sistema gestión de salud"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+
+            <b:container  rendered="#{loginController.verifyLogin()}">
+                <b:row class="panelSeparado">
+                    <b:column span="12">
+                        <p:breadCrumb>
+                            <p:menuitem value="Categories"  title="Inicio" url="/faces/index.xhtml" />
+                        </p:breadCrumb>
+                        <br/>
+                    </b:column>
+                    <b:column span="12">
+                        <b:panel look="atenciones">
+                            <f:facet name="heading"><i class="fa fa-file-text-o"></i> Atenciones</f:facet>  
+                            <b:listLinks>
+                                <b:column span="4">
+                                    <b:navLink outcome="/atencionENFVisitaDom/List" value="Atenci&oacute;n visita domiciliaria"></b:navLink>
+                                    <b:navLink outcome="/atencionEnfFEMPA/List" value="Atenci&oacute;n EMPA"></b:navLink>
+                                </b:column>                
+                                <b:column span="4">
+                                    <b:navLink outcome="/atencionGeneralAPSE/List" value="Atenci&oacute;n general APSE"></b:navLink>
+                                    <b:navLink outcome="/atencionMedMorbilidad/List" value="Atenci&oacute;n Morbilidad"></b:navLink>
+                                </b:column>        
+                                <b:column span="4">
+                                    <b:navLink outcome="/atencionNutriDietoterapia/List" value="Atenci&oacute;n Dietoterapia"></b:navLink>
+                                    <b:navLink outcome="/atencionNutriEmbarazada/List" value="Atenci&oacute;n Embarazada"></b:navLink>
+                                </b:column>
+                            </b:listLinks>
+                        </b:panel>
+                    </b:column>
+
+
+                    <b:column span="12">
+                        <b:panel look="cardiovascular">
+                            <f:facet name="heading"><i class="fa fa-heartbeat"></i> Programa de Salud Cardiovascular</f:facet>  
+                            <b:listLinks>
+                                <b:column span="4" class="psc1">
+                                    <i class="fa fa-caret-right"></i> <h:outputText id="p1" value=" Preingreso" style="color: #2AA00B;"/>
+                                    <p:tooltip id="toolTipFade" for="p1" value="Los preingresos se hacen desde el paciente. S&oacute;lo se muestran listas."  trackMouse="true" />
+                                    <b:navLink outcome="/preingresoD1/List" value="Preingreso I"></b:navLink>
+                                    <b:navLink outcome="/preingresoD2/List" value="Preingreso II"></b:navLink>
+                                    <b:navLink outcome="/preingresoD3/List" value="Preingreso III "></b:navLink>
+                                </b:column>
+                                <b:column span="4" class="psc2">
+                                    <i class="fa fa-caret-right"></i> <h:outputText  id ="p2" value=" Ingreso" style="color: #2AA00B;"/>
+                                    <p:tooltip id="toolTipFade2" for="p2" value="Los ingresos cardiovasculares se hacen desde el paciente. S&oacute;lo se muestran las listas."  trackMouse="true" />
+                                    <b:navLink outcome="/iCVMedico/List" value="Ingreso M&eacute;dico"></b:navLink>
+                                    <b:navLink outcome="/iCVNutricionista/List" value="Ingreso Nutricionista"></b:navLink>
+                                </b:column>        
+                                <b:column span="4" class="psc3">
+                                    <i class="fa fa-caret-right"></i> <h:outputText id="p3" value=" Control Cardiovascular" style="color: #2AA00B;"/>
+                                    <p:tooltip id="toolTipFade3" for="p3" value="Realizar un control cardiovascular con el profesional correspondiente."  trackMouse="true" />
+                                    <b:navLink outcome="/cCVMedico/List" value="CCV M&eacute;dico"></b:navLink>
+                                    <b:navLink outcome="/cCVNutricionista/List" value="CCV Nutricionista"></b:navLink>
+                                    <b:navLink outcome="/cCVEnfermero/List" value="CCV Enfermero"></b:navLink>
+                                </b:column>
+                            </b:listLinks>
+                        </b:panel>
+                    </b:column>
+                    <b:column span="3" rendered="#{loginController.verifyLogin() and tipoUsuarioController.isAdmin(request.remoteUser)==true}">
+                        <b:panel look="psam">
+                            <f:facet name="heading"><i class="fa fa-medkit"></i> Programa Salud Adulto Mayor</f:facet>   
+                            <b:listLinks>
+                                <b:column span="12" class="paddinExtra">
+                                    <b:navLink outcome="ingresoPSAM/List" value="Ingreso PSAM"></b:navLink>
+                                </b:column>
+                            </b:listLinks>
+                        </b:panel> 
+                    </b:column>
+                    <b:column span="12" rendered="#{loginController.verifyLogin() and tipoUsuarioController.isAdmin(request.remoteUser)!=true}">
+                        <b:panel look="warning">
+                            <f:facet name="heading"><i class="fa fa-medkit"></i> Programa Salud Adulto Mayor</f:facet>   
+                            <b:listLinks>
+                                <b:column span="12">
+                                    <b:navLink outcome="ingresoPSAM/List" value="Ingreso PSAM"></b:navLink>
+                                </b:column>
+                            </b:listLinks>
+                        </b:panel> 
+                    </b:column>
+                    <b:column span="9" rendered="#{loginController.verifyLogin() and tipoUsuarioController.isAdmin(request.remoteUser)==true}">
+                        <b:panel look="censo">
+                            <f:facet name="heading"><i class="fa fa-pie-chart"></i> Censos</f:facet>   
+                            <b:listLinks>
+                                <b:column span="3" class="text-center">
+                                    <p:button outcome="/faces/censoPSAM/censoPSAM.xhtml" onclick="PF('dlg2').show();" widgetVar="startButton2" value="Programa Salud Adulto Mayor"  class="botonCensoPSAM"></p:button>
+                                    <p:dialog header="Cargando..." widgetVar="dlg2" modal="true" height="100" width="500">
+                                        <h:graphicImage value="resources/images/circular.gif" />
+                                    </p:dialog>  
+                                </b:column>
+                                <b:column span="3" class="text-center">
+                                    <p:button href="/faces/censoPCCV/censoPCCV.xhtml"  onclick="PF('dlg3').show();" widgetVar="startButton3"   value="Programa de Salud Cardiovascular" class="botonCensoPSCV">
+                                    </p:button>
+                                    <p:dialog header="Cargando..." widgetVar="dlg3" modal="true" height="100" width="500">
+                                        <h:graphicImage value="resources/images/circular.gif" />
+                                    </p:dialog>  
+                                </b:column>
+                                  <b:column span="4" class="text-center">
+                                    <p:button href="/faces/censoPCCVnoREM/censoPCCVnoREM.xhtml"  onclick="PF('dlg4').show();" widgetVar="startButton4"   value="Programa de Salud Cardiovascular no REM" class="botonCensoPSCVNR">
+                                    </p:button>
+                                    <p:dialog header="Cargando..." widgetVar="dlg4" modal="true" height="100" width="500">
+                                        <h:graphicImage value="resources/images/circular.gif" />
+                                    </p:dialog>  
+                                </b:column>    
+                                
+                                
+                            </b:listLinks>
+                        </b:panel> 
+                    </b:column>
+                </b:row>
+            </b:container>
+            <b:container rendered="#{!loginController.verifyLogin()}">
+                <b:column>
+                    <p:carousel id="daniel" style="width: auto;" itemStyleClass="" autoPlayInterval="4000" effect="fade" numVisible="1" circular="true" vertical="false" pageLinks="0">
+                        <p:graphicImage  value="resources/images/centro-1.png" />
+                        <p:graphicImage value="resources/images/centro-2.png" />
+                        <p:graphicImage value="resources/images/centro-3.png" />
+                    </p:carousel>
+                </b:column>
+            </b:container>
+
+            <b:container rendered="#{!loginController.verifyLogin()}">
+                <b:row class="panelSeparado">
+                    <b:column span="4">
+                        <b:panel look="success">
+                            <f:facet name="heading">Pacientes</f:facet>   
+                            <b:listLinks>
+                                <i class="fa fa-caret-right" style="padding-left: 10px;"></i> <h:outputText value=" Datos personales" style="color: #4f4f4f;"/><br/><br/>
+                                <i class="fa fa-caret-right" style="padding-left: 10px;"></i> <h:outputText value=" Búsqueda avanzada" style="color: #4f4f4f;"/><br/><br/>
+                                <i class="fa fa-caret-right" style="padding-left: 10px;"></i> <h:outputText value=" Historial clínico de salud" style="color: #4f4f4f;"/><br/><br/>
+                                <i class="fa fa-caret-right" style="padding-left: 10px;"></i> <h:outputText value=" Ficha electronica" style="color: #4f4f4f;"/><br/>
+                            </b:listLinks>
+                        </b:panel> 
+                    </b:column>
+                    <b:column span="4">
+                        <b:panel look="info">
+                            <f:facet name="heading">Profesionales</f:facet>   
+                            <b:listLinks>
+                                <i class="fa fa-caret-right" style="padding-left: 10px;"></i> <h:outputText value=" Agenda horaria" style="color: #4f4f4f;"/><br/><br/>
+                                <i class="fa fa-caret-right" style="padding-left: 10px;"></i> <h:outputText value=" Atenciones hist&oacute;ricas" style="color: #4f4f4f;"/><br/><br/>
+                                <i class="fa fa-caret-right" style="padding-left: 10px;"></i> <h:outputText value=" Programas de salud" style="color: #4f4f4f;"/><br/><br/>
+                                <i class="fa fa-caret-right" style="padding-left: 10px;"></i> <h:outputText value=" Ficha electr&oacute;nica" style="color: #4f4f4f;"/><br/>
+                            </b:listLinks>
+                        </b:panel> 
+                    </b:column>
+                    <b:column span="4">
+                        <b:panel look="warning">
+                            <f:facet name="heading">Reportes</f:facet>   
+                            <b:listLinks>
+                                <i class="fa fa-caret-right" style="padding-left: 10px;"></i> <h:outputText value=" Estad&iacute;stica de pacientes" style="color: #4f4f4f;"/><br/><br/>
+                                <i class="fa fa-caret-right" style="padding-left: 10px;"></i> <h:outputText value=" Estad&iacute;stica de salud" style="color: #4f4f4f;"/><br/><br/>
+                                <i class="fa fa-caret-right" style="padding-left: 10px;"></i> <h:outputText value=" Tipo de atenciones" style="color: #4f4f4f;"/><br/><br/>
+                                <i class="fa fa-caret-right" style="padding-left: 10px;"></i> <h:outputText value=" Censo por programa de salud" style="color: #4f4f4f;"/><br/>
+                            </b:listLinks>
+                        </b:panel> 
+                    </b:column>
+                </b:row>
+            </b:container>
+            <br /><br />
+        </ui:define>
+    </ui:composition>
+</html>

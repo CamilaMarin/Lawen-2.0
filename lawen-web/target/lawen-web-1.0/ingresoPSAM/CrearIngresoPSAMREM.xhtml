@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="PSAM Crear Ingreso"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:outputScript>
+                //<![CDATA[ 
+
+
+                function isIngresable () {
+                var edad = $("#edad").val();
+                if (edad < 65){
+                alertify.error("El paciente es menor a 65 años, no será considerado en el censo.");
+                }
+                else {
+                alertify.success("El paciente es mayor a 65 años, será considerado en el censo.");
+                }
+                }
+                //]]>
+            </h:outputScript>
+            <b:row>
+                <b:column span="12">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories" url="/faces/index.xhtml" />
+                        <p:menuitem value="PSAM Ingreso" url="/faces/ingresoPSAM/List.xhtml"/>
+                        <p:menuitem value="PSAM Crear Ingreso REM" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                    </p:breadCrumb>
+                </b:column>
+            </b:row>
+            <br/>
+
+            <h:form id="CartolaSeguimientoCCVCreateForm" prependId="false" >
+                <h:panelGroup id="display">
+                    <p:panelGrid styleClass="col-md-12 spaceGrid" 
+                                 layout="grid" columns="2" 
+                                 rendered="#{cartolaSeguimientoPSAMController.prepareCreate() != null and 
+                                             fichaAdultoMayorController.prepareCreate() != null and
+                                             esferaClinicaPSAMController.prepareCreate()!= null and
+                                             esferaFuncionalPSAMController.prepareCreate()!= null and
+                                             esferaMentalPSAMController.prepareCreate()!= null and
+                                             esferaSocialPSAMController.prepareCreate()!= null
+                                            }">
+
+                        <p:outputLabel value="Datos generales" styleClass="Item"/>
+                        <p:outputLabel value=" " />
+
+
+                        <p:outputLabel  class="obligatorio" value="Fecha atención:" for="fechaIngresoPSAM" />
+                        <p:calendar id="fechaIngresoPSAM" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoPSAMController.selected.fechaAtencion}" navigator="true" locale="es" yearRange="c-100:c+10"  showOn="button" />
+                        <p:outputLabel  class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_profesional}" for="profesional" />
+                        <p:selectOneMenu id="profesional" value="#{cartolaSeguimientoPSAMController.selected.profesional}" required="true" requiredMessage="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="profesionalItem"
+                                           itemValue="#{profesionalItem}"/>
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel  class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_paciente}" for="paciente" />
+                        <p:selectOneMenu id="paciente" value="#{cartolaSeguimientoPSAMController.selected.paciente}" required="true" requiredMessage="#{bundle.EditCartolaSeguimientoPSAMRequiredMessage_paciente}" filter="true" filterMatchMode="startsWith">
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItems value="#{pacienteController.itemsAvailableSelectOne}"
+                                           var="pacienteItem"
+                                           itemValue="#{pacienteItem}"/>
+                            <p:ajax  update="edad" listener="#{cartolaSeguimientoPSAMController.handleKeyEvent()}" />
+                            <p:ajax  oncomplete="isIngresable();" />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_edad}" for="edad" />
+                        <p:inputText disabled="true" required="true" id="edad" value="#{cartolaSeguimientoPSAMController.edad}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_edad}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_antiguedad_programa}" for="antiguedad_programa" />
+                        <p:selectOneMenu id="antiguedad_programa" value="#{cartolaSeguimientoPSAMController.selected.antiguedad_programa}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_antiguedad_programa}" >
+                            <f:selectItems value="#{dominiosController.antiguedad}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_estado_nutricional}" for="estado_nutricional" />
+                        <p:selectOneMenu id="estado_nutricional" value="#{cartolaSeguimientoPSAMController.selected.estado_nutricional}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_estado_nutricional}" >
+                            <f:selectItems value="#{dominiosController.diagnosticoLista}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_valoracion_riesgo}" for="valoracion_riesgo" />
+                        <p:selectOneMenu id="valoracion_riesgo" value="#{cartolaSeguimientoPSAMController.selected.valoracion_riesgo}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_valoracion_riesgo}" >
+                            <f:selectItems value="#{dominiosController.riesgo}"/>
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="Escalas de evaluación" styleClass="Item container" style="margin-top:20px;margin-bottom: 20px;text-align: center"/>
+                        <p:outputLabel value=" " />
+                        <p:commandButton value="Aplicar Efam" >
+                            <p:ajax listener="#{ingresoPSAMController.elegirEfam()}" update="efam,barthel" />
+                        </p:commandButton>
+
+                        <p:commandButton value="Aplicar Barthel">
+                            <p:ajax listener="#{ingresoPSAMController.elegirBarthel()}" update="efam,barthel" />
+                        </p:commandButton>
+
+
+                        <p:panelGrid id="efam" styleClass="spaceGrid" 
+                                     layout="grid" columns="2" 
+                                     rendered="#{cartolaSeguimientoPSAMController.selected != null and 
+                                                 fichaAdultoMayorController.selected != null and
+                                                 esferaClinicaPSAMController.selected!= null and
+                                                 esferaFuncionalPSAMController.selected!= null and
+                                                 esferaMentalPSAMController.selected!= null and
+                                                 esferaSocialPSAMController.selected!= null
+                                            }" >
+
+                            <p:outputLabel rendered="#{!ingresoPSAMController.efam}" styleClass="subItem" value="Clasificación EFAM:" for="clasificacion_efam"  style="color: #7EAA14!important;"/>
+                            <p:outputLabel  rendered="#{ingresoPSAMController.efam}" styleClass="subItem"  style="color: #bdbdbd!important;" value="Clasificación EFAM:" for="clasificacion_efam" />
+                            <p:selectOneMenu  disabled="#{ingresoPSAMController.efam}" id="clasificacion_efam" value="#{cartolaSeguimientoPSAMController.selected.clasificacion_efam}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_clasificacion_efam}" >
+                                <f:selectItems value="#{dominiosController.clasificacionefam}" />
+                            </p:selectOneMenu>
+
+
+                        </p:panelGrid>
+                        <p:panelGrid id="barthel" styleClass="spaceGrid" 
+                                     layout="grid" columns="2"
+                                     rendered="#{cartolaSeguimientoPSAMController.selected != null and 
+                                                 fichaAdultoMayorController.selected != null and
+                                                 esferaClinicaPSAMController.selected!= null and
+                                                 esferaFuncionalPSAMController.selected!= null and
+                                                 esferaMentalPSAMController.selected!= null and
+                                                 esferaSocialPSAMController.selected!= null
+                                            }" >
+                            <p:outputLabel styleClass="subItem" rendered="#{!ingresoPSAMController.barthel}" value="Clasificación BARTHEL:" for="clasificacion_barthel" style="color: #7EAA14!important;" />
+                            <p:outputLabel styleClass="subItem" rendered="#{ingresoPSAMController.barthel}" style="color: #bdbdbd!important;" value="Clasificación BARTHEL:" for="clasificacion_barthel" />
+                            <p:selectOneMenu  disabled="#{ingresoPSAMController.barthel}" id="clasificacion_barthel" value="#{cartolaSeguimientoPSAMController.selected.clasificacion_barthel}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_clasificacion_barthel}" >
+                                <f:selectItems value="#{dominiosController.clasificacionbarthel}" />
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+
+                        <p:outputLabel styleClass="subItem" value="Clasificación YESAVAGE" for="clasificacion_yesavage" />
+                        <p:selectOneMenu id="clasificacion_yesavage" value="#{cartolaSeguimientoPSAMController.selected.clasificacion_yesavage}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_clasificacion_yesavage}" >
+                            <f:selectItems value="#{dominiosController.clasificacionyesavage}" />
+                        </p:selectOneMenu>
+                        <p:outputLabel styleClass="subItem" value="Clasificación PFEFFER" for="clasificacion_pfeffer" />
+                        <p:selectOneMenu id="clasificacion_pfeffer" value="#{cartolaSeguimientoPSAMController.selected.clasificacion_pfeffer}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_clasificacion_pfeffer}" >
+                            <f:selectItems value="#{dominiosController.clasificacionpfeffer}" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel styleClass="subItem" value="Clasificación FOLSTEIN" for="clasificacion_folstein" />
+                        <p:selectOneMenu id="clasificacion_folstein" value="#{cartolaSeguimientoPSAMController.selected.clasificacion_folstein}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_clasificacion_folstein}" >
+                            <f:selectItems value="#{dominiosController.clasificacionfolstein}" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Paciente institucionalizado:" for="paciente_institucionalizado" />
+                        <p:selectBooleanButton id="paciente_institucionalizado" value="#{cartolaSeguimientoPSAMController.selected.paciente_institucionalizado}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Realiza actividad física:" for="realiza_actividadFisica" />
+                        <p:selectBooleanButton id="realiza_actividadFisica" value="#{cartolaSeguimientoPSAMController.selected.realiza_actividadFisica}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Sospecha maltrato:" for="sospecha_maltrato" />
+                        <p:selectBooleanButton id="sospecha_maltrato" value="#{cartolaSeguimientoPSAMController.selected.sospecha_maltrato}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_sospecha_maltrato_obs}" for="sospecha_maltrato_obs" />
+                        <p:inputTextarea maxlength="255"  class="textAreas" rows="10" cols="20" id="sospecha_maltrato_obs" value="#{cartolaSeguimientoPSAMController.selected.sospecha_maltrato_obs}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_sospecha_maltrato_obs}" />
+                        <p:watermark for="sospecha_maltrato_obs" value="Ingrese la descripción aquí..." id="watermark" />
+                        <p:outputLabel value=""  />
+                        <p:outputLabel  styleClass="subItem" value="Nuevos 2015"  />
+                        <p:outputLabel value=""  />                        
+                        <p:outputLabel value="Pertenece al programa más:" for="clasificacion_folstein" />
+
+                        <p:selectOneMenu id="pertenece_al_programa_mas" value="#{cartolaSeguimientoPSAMController.selected.pertenece_al_programa_mas}" title="Más adultos autovalentes por un Chile mejor y con mejor desarrollo social" >
+                            <f:selectItems value="#{dominiosController.pertenece_al_programa_mas}" />
+                        </p:selectOneMenu>
+
+                    </p:panelGrid>
+
+                    <p:commandButton style="margin-right: 10px!important; margin-top: 10px!important;"  action="#{ingresoPSAMController.crearCPSAM( cartolaSeguimientoPSAMController, fichaAdultoMayorController, esferaClinicaPSAMController, esferaFuncionalPSAMController, esferaMentalPSAMController, esferaSocialPSAMController,cartolaSeguimientoPSAMController.edad)}" value="#{bundle.Save}" update="growl" />
+
+                    <p:button outcome="/ingresoPSAM/List" value="Volver" />
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

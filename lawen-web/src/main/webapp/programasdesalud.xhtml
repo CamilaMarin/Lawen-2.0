@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPatologiaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <b:row>
+                <b:column span="12">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories"  title="Inicio" url="/faces/index.xhtml" />
+                        <p:menuitem value="Programas de salud" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                    </p:breadCrumb>
+                </b:column>
+            </b:row>
+            <br/>
+            <p:accordionPanel multiple="true">
+                <p:tab title="Programa de Salud Cardiovascular">
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <h:outputText
+                            value="Las enfermedades no transmisibles (ENT), (denominación de la Organización Mundial de la Salud, OMS) son enfermedades de larga duración, lenta progresión, que no se resuelven espontáneamente y que rara vez logran una curación total. A nivel mundial, son responsables del 63% de las muertes equivalente a 36 millones de muertes por año, un 25% de estas en menores de 60 años por lo que la detección precoz y el tratamiento oportuno de estas patologías es prioritario.
+
+                            Dentro del grupo de ENT destacan las enfermedades cardiovasculares (ECV), el cáncer, las enfermedades respiratorias crónicas y la diabetes, patologías prevenibles relacionadas a estilos de vida no saludables como tabaquismo, alimentación no saludable, inactividad física y consumo excesivo de alcohol.
+
+                            En Chile, al igual que en la mayoría del mundo, las ENT son la principal causa de muerte.  Las ECV y los tumores malignos dan cuenta de más de la mitad de las muertes con 27.1% y 25.8% respectivamente en el año 2011. 
+
+                            Las ENT y sus factores de riesgo han sido priorizadas en los Objetivos Sanitarios de la Década 2011-2020 con metas específicas para cada patología así como para los principales factores de riesgo, contribuyendo así al control de estos a través de una detección y tratamiento oportuno, previniendo complicaciones, discapacidad y mortalidad prematura. " />
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Programa de Salud del Adulto Mayor">
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <h:outputText
+                            value="El irreversible fenómeno del envejecimiento poblacional y los avances de la geriatría, han llevado a la creación de un enfoque  anticipatorio y preventivo, basado en la mantención de la funcionalidad. Dicho de otra manera, antes que se instale el daño.
+
+                            Esto ha llevado a que el Ministerio de Salud haya instalado, ya hace una década, la medición de la funcionalidad como un examen universal: Examen de Medicina Preventiva del Adulto Mayor (EMPAM), promoviendo el envejecimiento saludable.
+
+                            A partir de esta medición, donde cada adulto mayor, es clasificado según riesgo de perder la funcionalidad, se implementan acciones, netamente preventivas, de tratamiento o rehabilitadoras. Acciones que pueden referirse al riesgo cardio vascular, a la salud mental o al ámbito  osteo articular. Crucial para las personas mayores es contar con buenas redes de apoyo. No siempre se da esto. Y aquí también es necesario detectar los riesgos de una débil red de apoyo o simplemente la existencia de maltrato.
+
+                            Por otro lado, es fundamental comprender que ninguna acción del Estado va a suplir a una familia atenta y preocupada de su adulto mayor. Esta es la base para que nuestros adultos mayores logren buena calidad de vida. Por supuesto que en esta tarea la familia debe ser apoyada por el Estado con entrega oportuna de atención.
+
+                            Es así como el Programa del Adulto Mayor tiene como visión que las personas mayores permanezcan autónomas y autovalentes por el mayor tiempo posible y que sus problemas de salud sean resueltos en forma oportuna con calidad en la atención, asegurando de este modo una buena calidad de vida." />
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Programa de Salud Infantil">
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <h:outputText
+                            value="El Programa Nacional de Salud de la infancia tiene como propósito contribuir al desarrollo integral de niños y niñas menores de 10 años, en su contexto familiar y comunitario, a través de actividades de fomento, protección, prevención,  recuperación de la salud y rehabilitación, que impulsen la plena expresión de su potencial biopsicosocial y mejor calidad de vida.
+
+                            Este Programa se desarrolla a través de la Subsecretaría de Salud Pública y Redes Asistenciales, el cual integra una gama de prestaciones, las cuales son desarrolladas en su conjunto con diferentes áreas programáticas del Ministerio de Salud, que poseen dentro de su oferta programática áreas vinculadas a la salud integral infantil en el Marco del Sistema de Protección a la Primera Infancia, Modelo de Salud Familiar y Comunitaria y Gestión Hospitalaria, pretende entregar atención de calidad a la población infantil y sus familias.
+
+                            Actualmente el Programa se encuentra en fase de rediseño, el cual incorpora diversas estructuras de procesos de regulación normativa." />
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Programa de Salud de la Mujer">
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <h:outputText
+                            value="En 1994, el Ministerio de Salud, después de haber alcanzado excelentes indicadores universales de salud, adoptó la decisión de transformar el programa de Salud Materna y Perinatal (1991) en uno más amplio: el Programa de Salud de la Mujer. Así se agregaron a este programa, aspectos no reproductivos tales como salud mental, salud laboral, atención en el período preconcepcional, salud de la etapa posreproductiva dando relevancia al enfoque de género en las actividades programáticas, sin descuidar las acciones de protección del proceso reproductivo.
+                            La Estrategia Nacional de Salud para la década 2011-2020, define metas para continuar disminuyendo la morbimortalidad y para mejorar la salud de las personas a través de su curso vital, en cinco etapas separadas de acuerdo a la vulnerabilidad de cada una: salud de la mujer y del recién nacido, salud del niño y de la niña, salud de adolescentes y jóvenes, salud del adulto y del adulto mayor. En esta lógica, la salud global de la mujer que va cambiando de etapas, se aborda como un proceso continuo, ya que las características y condiciones propias de cada etapa del curso de vida afecta al período siguiente." />
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Programa de Salud Sexual y Reproductiva">
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <h:outputText
+                            value="La tarea de planifi cación familiar sigue inconclusa. A pesar de los grandes avances de las últimas décadas, más de 120 millones de mujeres a nivel mundial quieren evitar el embarazo, pero ellas ni sus parejas están utilizando anticoncepción. Hay muchas razones por las que no se ha resuelto esa necesidad: los servicios y los insumos todavía no se encuentran disponibles en todos lados, o las opciones son limitadas. El miedo a la desaprobación social o a la oposición de la pareja plantea barreras formidables. El temor a efectos colaterales e inquietudes relacionadas con la salud frenan a mucha gente; otros no conocen las opciones anticonceptivas y su utilización. Estas personas necesitan ayuda ahora.
+
+                            Millones más están utilizando la planifi cación familiar para evitar el embarazo pero fracasan por una serie de razones. Puede que no hayan recibido instrucciones claras acerca de cómo utilizar el método de manera apropiada, que no hayan conseguido el método más adecuado a sus necesidades, que no estuvieran sufi cientemente preparadas para los efectos colaterales, o que se hubieran terminado los suministros. Estas personas necesitan una mejor ayuda ahora.
+
+                            Además, la tarea de la planifi cación familiar nunca se acaba. En los próximos 5 años, cerca de 60 millones de niñas y varones alcanzarán la madurez sexual. Generación tras generación, siempre habrá gente que necesite planifi cación familiar y otros cuidados sanitarios.
+
+                            Mientras que los actuales desafíos en la salud a nivel mundial son muchos y muy serios, la necesidad de controlar la fertilidad propia probablemente toca a más vidas que cualquier otro aspecto de la salud. Es crucial para el bienestar de las personas, en particular para el de las mujeres — y fundamental para su autodeterminación." />
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Programa de Salud Mental">
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <h:outputText
+                            value="El Ministerio de Salud de Chile -en su decisión de adecuarse a las necesidades de la población – ha formulado el Plan Nacional de Salud Mental, que es  el fruto de la experiencia, reflexión y análisis colectivo de un importante número de personas, que en su condición de usuarios, familiares, técnicos y profesionales; expresaron así la voluntad nacional de abordar esta dimensión sanitaria.
+
+                            En él se recoge la experiencia y los logros de los últimos años de los distintos equipos de salud mental y siquiatría del país. Además se señalan en forma concreta, objetivos y estrategias para orientar los recursos del Estado en acciones para elevar el bienestar y salud mental de los chilenos." />
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Programa de Salud Dental">
+                    <h:panelGrid columns="1" cellpadding="10">                
+                        <h:outputText
+                            value="La Salud Bucal es reconocida como una de las prioridades de salud del país, tanto por la prevalencia y severidad de las enfermedades bucales como por la  mayor percepción de la población frente a estas patologías que afectan su salud general y su calidad de vida.
+
+                            La Política de Salud Bucal está orientada a la prevención y promoción de la Salud Bucal de la población, con énfasis en los grupos más vulnerables. Considera además actividades recuperativas en grupos priorizados mediante acciones costo efectivas basadas en la mejor evidencia disponible.
+
+                            La visión del Departamento de Salud Bucal es que la población goce y valore una Salud Bucal que le permita mejorar su calidad de vida, con la participación activa de toda la sociedad. Su misión es integrar la Salud Bucal con eficacia, equidad y solidaridad a las políticas y estrategias de salud del país, con énfasis en la promoción y en la prevención." />
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Programa de Salud Integral Adolescentes y Jóvenes">
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <h:outputText
+                            value="El Programa de Salud Integral de adolescentes y jóvenes  tiene  el propósito de mejorar el acceso y la oferta de servicios, diferenciados, integrados e integrales, en los distintos niveles de atención del sistema de salud, articulados entre sí, que respondan a las necesidades de salud actuales de  adolescentes y jóvenes, con enfoque de género y pertinencia cultural, en el ámbito de la promoción, prevención, tratamiento y rehabilitación, incorporando a sus familias y la comunidad.
+
+                            La atención integral de éste grupo etáreo, implica transversalizar las prácticas de salud, incorporando los distintos enfoques, lo que permite, visualizarlos como sujetos de derechos y protagonistas de sus propias vidas.
+
+                            Así mismo, es relevante la coordinación y articulación de una red de servicios, por cuanto sus necesidades deben ser abordadas en forma integrada, posibilitando cuando sea necesario, la intervención simultánea de los distintos niveles de atención y distintos equipos, intra e intersectoriales, particularmente cuando se trata de poblaciones de adolescentes y jóvenes en situaciones  de vulneración de derechos y  en conflicto con la justicia." />
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Programa Nacional de inmunizaciones">
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <h:outputText
+                            value="El país cuenta desde 1978 con un Programa Nacional de Inmunizaciones. Este ha permitido la disminución de la morbilidad y mortalidad de las enfermedades inmunoprevenibles contribuyendo a la disminución de la mortalidad infantil.
+                            Entre sus logros más destacados se encuentran la erradicación de la Viruela (1950), de la Poliomielitis (1975) y eliminación del Sarampión (1992).
+                            El Programa Nacional de Inmunizaciones posee un enfoque integral y tiene como objetivo prevenir morbilidad, discapacidad y muertes secundarias a enfermedades inmunoprevenibles, a lo largo de todo el ciclo vital." />
+                    </h:panelGrid>
+                </p:tab>
+                <p:tab title="Programa de Lactancia Materna">
+                    <h:panelGrid columns="1" cellpadding="10">                
+                        <h:outputText
+                            value="La lactancia materna es la forma de alimentación que contribuye con mayor efectividad al desarrollo físico y mental del niño, proporcionándole nutrientes en calidad y cantidad adecuadas. Se recomienda que el niño reciba leche materna en forma exclusiva durante los primeros seis meses de vida y que constituya parte importante de la alimentación hasta los dos años. Las curvas de crecimiento confeccionadas a partir del peso y talla de niños alimentados con leche materna exclusiva los primeros seis meses de vida, muestran un crecimiento superior al de las de referencia basadas en los pesos de niños con lactancia mixta o artificial.
+
+                            La leche materna ha sido definida como un fluido bioactivo, que permite a los niños así alimentados tener menor riesgo de contraer enfermedades infecciosas y presentar menor incidencia y severidad de éstas. La leche humana contiene una variedad de elementos inmunológicos que destruyen bacterias, virus y parásitos. Esta propiedad es más relevante en países en desarrollo con elevadas cifras de morbimortalidad infantil por enfermedades diarreicas u otras infecciones. La leche humana, además de dar inmunidad pasiva al niño, acelera la maduración de sus órganos y sistema inmunológico.
+
+                            Los niños amamantados tienen un mejor desarrollo de los arcos dentales, paladar y otras estructuras faciales y presentan una incidencia menor de caries que los niños que reciben mamadera.
+
+                            Se ha observado que los niños amamantados son más activos, presentan un mejor desarrollo psicomotor y mejor capacidad de aprendizaje. También se ha demostrado que niños prematuros alimentados con leche materna tienen un coeficiente intelectual, medido a los ocho años, significativamente superior a los que no recibieron leche materna. Investigaciones recientes muestran una mayor agudeza visual entre los niños que fueron amamantados comparados con los alimentados con fórmula.
+
+                            Al amamantar, el contacto piel a piel favorece el apego y estimula la creación de vínculos de amor y seguridad entre la madre y el niño, permitiendo que éste afirme su presencia como persona a través de la interacción con su madre.
+
+                            Es por ello que se considera que la interacción del niño o niña durante los primeros días, semanas y meses con sus padres, y la formación de las bases de su personalidad y seguridad en sí mismo, están estrechamente ligadas al amamantamiento." />
+                    </h:panelGrid>
+                </p:tab>
+            </p:accordionPanel>
+
+        </ui:define>
+    </ui:composition>
+</html>

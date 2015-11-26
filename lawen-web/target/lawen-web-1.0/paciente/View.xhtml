@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <h:outputStylesheet library="css" name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputScript library="js" name="js/jsfcrud.js"/>
+    </h:head>
+
+
+    <h:form id="PacienteViewForm">
+        <h:panelGroup id="display" styleClass="">
+            <p:panelGrid id="fichaPaciente" style="margin-top: 20px; margin-bottom: 40px;" styleClass="col-md-12 spaceGrid" layout="grid" columns="4" rendered="#{pacienteController.selected != null}">
+                <p:outputLabel styleClass="fa purple-text"  value=" FICHA PACIENTE" style="margin-top: 10px; margin-bottom: 20px; color: #43005D;"/>
+                <p:outputLabel value=" "/>
+                <p:outputLabel value=" "/>
+                <p:outputLabel value=" "/>
+                <h:outputText styleClass="fa fa-square purple-text" value=" #{bundle.ViewPacienteLabel_rut_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.rut_paciente}" title="#{bundle.ViewPacienteTitle_rut_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text" value=" #{bundle.ViewPacienteLabel_nombres_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.nombres_paciente}" title="#{bundle.ViewPacienteTitle_nombres_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text" value=" #{bundle.ViewPacienteLabel_apellidoPaterno_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.apellidoPaterno_paciente}" title="#{bundle.ViewPacienteTitle_apellidoPaterno_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text" value=" #{bundle.ViewPacienteLabel_apellidoMaterno_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.apellidoMaterno_paciente}" title="#{bundle.ViewPacienteTitle_apellidoMaterno_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_fechaNacimiento_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.fechaNacimiento_paciente}" title="#{bundle.ViewPacienteTitle_fechaNacimiento_paciente}"><f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" Edad"/>
+                <h:outputText value="#{pacienteController.Age(pacienteController.selected.fechaNacimiento_paciente)}" title="Edad"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_genero_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.genero_paciente}" title="#{bundle.ViewPacienteTitle_genero_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_email_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.email_paciente}" title="#{bundle.ViewPacienteTitle_email_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_direccion_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.direccion_paciente}" title="#{bundle.ViewPacienteTitle_direccion_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_nacionalidad_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.nacionalidad_paciente}" title="#{bundle.ViewPacienteTitle_nacionalidad_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_etnia_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.etnia_paciente}" title="#{bundle.ViewPacienteTitle_etnia_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_ocupacion_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.ocupacion_paciente}" title="#{bundle.ViewPacienteTitle_ocupacion_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_telefono1}"/>
+                <h:outputText value="#{pacienteController.selected.telefono1}" title="#{bundle.ViewPacienteTitle_telefono1}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_telefono2}"/>
+                <h:outputText value="#{pacienteController.selected.telefono2}" title="#{bundle.ViewPacienteTitle_telefono2}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_estadoCivil_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.estadoCivil_paciente}" title="#{bundle.ViewPacienteTitle_estadoCivil_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_escolaridad_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.escolaridad_paciente}" title="#{bundle.ViewPacienteTitle_escolaridad_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_sector_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.sector_paciente}" title="#{bundle.ViewPacienteTitle_sector_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_prevision_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.prevision_paciente}" title="#{bundle.ViewPacienteTitle_prevision_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_fechaInscripcion_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.fechaInscripcion_paciente}" title="#{bundle.ViewPacienteTitle_fechaInscripcion_paciente}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputText>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_numeroFicha_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.numeroFicha_paciente}" title="#{bundle.ViewPacienteTitle_numeroFicha_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_numeroRegistro_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.numeroRegistro_paciente}" title="#{bundle.ViewPacienteTitle_numeroRegistro_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_hospitalizaciones_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.hospitalizaciones_paciente}" title="#{bundle.ViewPacienteTitle_hospitalizaciones_paciente}"/>
+                <h:outputText styleClass="fa fa-square purple-text"  value=" #{bundle.ViewPacienteLabel_alergias_paciente}"/>
+                <h:outputText value="#{pacienteController.selected.alergias_paciente}" title="#{bundle.ViewPacienteTitle_alergias_paciente}"/>
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Alcohol:" for="alcohol_paciente" />
+
+                <h:outputText id="alcohol_paciente" rendered="#{pacienteController.selected.alcohol_paciente == true }" value="Si" style="width:60px" />
+                <h:outputText id="alcohol_paciente2" rendered="#{pacienteController.selected.alcohol_paciente == false }" value="No" style="width:60px" />
+
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Tabaco:" for="tabaco_paciente" />
+                <h:outputText id="tabaco_paciente" rendered="#{pacienteController.selected.tabaco_paciente == true}" value="Si" style="width:60px" />
+                <h:outputText id="tabaco_paciente2" rendered="#{pacienteController.selected.tabaco_paciente == false}" value="No" style="width:60px" />
+
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Drogas:" for="drogas_paciente" />
+                <h:outputText id="drogas_paciente" rendered="#{pacienteController.selected.drogas_paciente == true}" value="Si" style="width:60px" />
+                <h:outputText id="drogas_paciente2" rendered="#{pacienteController.selected.drogas_paciente == false}" value="No" style="width:60px" />
+
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" #{bundle.CreatePacienteLabel_anteQuirurjicos_paciente}" for="anteQuirurjicos_paciente" />
+                <h:outputText id="anteQuirurjicos_paciente" value="#{pacienteController.selected.anteQuirurjicos_paciente}" title="#{bundle.CreatePacienteTitle_anteQuirurjicos_paciente}" />
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" #{bundle.CreatePacienteLabel_anteObstetricos_paciente}" for="anteObstetricos_paciente" />
+                <h:outputText id="anteObstetricos_paciente" value="#{pacienteController.selected.anteObstetricos_paciente}" title="#{bundle.CreatePacienteTitle_anteObstetricos_paciente}" />
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" #{bundle.CreatePacienteLabel_actividadFisica_paciente}" for="actividadFisica_paciente" />
+                <h:outputText id="actividadFisica_paciente" value="#{pacienteController.selected.actividadFisica_paciente}" title="#{bundle.CreatePacienteTitle_actividadFisica_paciente}" />
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Estado" for="estado_paciente" />
+                <h:outputText id="estado_paciente" value="#{pacienteController.selected.estado}" title="Estado" />
+                <p:outputLabel styleClass="fa purple-text" style="margin-bottom: 10px; margin-top: 10px; color: #7642B5;" value=" Patologías Crónicas:"/>
+                <p:outputLabel value=" "/>
+                <p:outputLabel value=" "/>
+                <p:outputLabel value=" "/>
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Hipertensión:" for="hipertencion" />
+                <h:outputText id="hipertencion" rendered="#{pacienteController.selected.hipertencion == true}" value="Si" style="width:60px" />
+                <h:outputText id="hipertencion2" rendered="#{pacienteController.selected.hipertencion == false}" value="No" style="width:60px" />
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Diabético:" for="diabetico" />
+                <h:outputText id="diabetico" rendered="#{pacienteController.selected.diabetico == true}" value="Si" style="width:60px" />
+                <h:outputText id="diabetico2" rendered="#{pacienteController.selected.diabetico == false}" value="No" style="width:60px" />
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Dislipidémico:" for="dislipidemico" />
+                <h:outputText id="dislipidemico" rendered="#{pacienteController.selected.dislipidemico == true}" value="Si" style="width:60px" />
+                <h:outputText id="dislipidemico2" rendered="#{pacienteController.selected.dislipidemico == false}" value="No" style="width:60px" />
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Pre-Diabético:" for="prediabetico" />
+                <h:outputText id="prediabetico" value="#{utilidadesController.booleanos(pacienteController.selected.prediabetes)}"/>
+                <p:outputLabel styleClass="fa purple-text" style="margin-bottom: 10px; margin-top: 10px; color: #7642B5;" value=" Antecedentes:"/>
+                <p:outputLabel value=" "/>
+                <p:outputLabel value=" "/>
+                <p:outputLabel value=" "/>
+
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" De infarto:" for="IAM" />
+                <h:outputText id="IAM" rendered="#{pacienteController.selected.IAM == true}" value="Si" style="width:60px" />
+                <h:outputText id="IAM2" rendered="#{pacienteController.selected.IAM == false}" value="No" style="width:60px" />
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" De enfermedad cerebro Cardiovascular:" for="ACV" />
+                <h:outputText id="ACV" rendered="#{pacienteController.selected.ACV == true}" value="Si" style="width:60px" />
+                <h:outputText id="ACV2" rendered="#{pacienteController.selected.ACV == false}" value="No" style="width:60px" />
+
+
+                <ui:param name="idPaciente" value="#{pacienteController.selected.id}" />
+
+            </p:panelGrid>
+
+            <p:dataTable var="patologia" rendered="#{idPaciente!=null }" value="#{patologiaController.itemsAvailableSelectOne}" emptyMessage="Paciente no registra patolog&iacute;as asociados.">
+                <f:facet name="header" >
+                    <h:outputText value="Patologías asociadas"/>
+                </f:facet>
+                <p:column rendered="#{patologia.paciente.id == idPaciente }">
+                    <h:outputText value="#{patologia.patologia.nombre_patologia}"/>
+                </p:column>                            
+            </p:dataTable>
+            <p:dataTable var="programa" rendered="#{idPaciente!=null }" value="#{programaController.itemsAvailableSelectOne}" emptyMessage="Paciente no registra programas de salud asociados.">
+                <f:facet name="header" rendered="#{programa.paciente.id == idPaciente }">
+                    <h:outputText value="Programas de salud asociados"/>
+                </f:facet>
+
+                <p:column rendered="#{programa.paciente.id == idPaciente }">
+                    <h:outputText value="#{programa.programa.nombre_programa}"/>
+                </p:column>                            
+            </p:dataTable>
+            <br/>
+            <p:button style="margin-right: 10px;" rendered="#{idPaciente!= null }" icon="fa fa-file-powerpoint-o" value="Asociar Patología"  outcome="/patologia/CreateFromPaciente">
+                <f:param name="idUsuario" value="#{ idPaciente }" />
+            </p:button> 
+            <p:button style="margin-right: 10px;" rendered="#{idPaciente!= null }" icon="fa fa-stethoscope" value="Asociar Programa" outcome="/programa/CreateProgramaFromPaciente" >
+                <f:param name="idUsuario" value="#{ idPaciente }" />
+            </p:button>
+            <p:button style="margin-right: 10px;" rendered="#{idPaciente!= null and pacienteController.isActivo(pacienteController.selected)==true}" icon="ui-icon-folder-open" value="Pasar al programa Cardiovascular" outcome="/paciente/PacienteToCCV" />
+            <p:commandButton styleClass="noPrintButton" value="Imprimir ficha paciente" ajax="false" rendered="#{pacienteController.selected != null}">
+                <p:dataExporter type="pdf" target="tableVacia" fileName="#{pacienteController.selected.toString()}" preProcessor="#{pacienteController.preProcessPDF}"/>                    
+            </p:commandButton>
+            <p:dataTable id="tableVacia" emptyMessage="" rendered="false">
+                <p:column>
+                    Fin comlumna
+                </p:column>
+            </p:dataTable>
+            
+            <br/><br/>
+        </h:panelGroup>
+    </h:form>
+
+</html>

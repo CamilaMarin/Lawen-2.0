@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioEditDlg" widgetVar="UsuarioEditDialog"  width="auto" resizable="false" modal="true" height="500px" appendTo="@(body)" header="Editar">
+            <h:form id="UsuarioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid styleClass="col-md-12 spaceGrid" layout="grid"  columns="2" rendered="#{usuarioController.selected != null}">
+                         <p:outputLabel value="#{bundle.CreateUsuarioLabel_rut}" for="rut" />
+                        <p:inputText disabled ="true"  id="rut" value="#{usuarioController.selected.rut}" title="#{bundle.CreateUsuarioTitle_rut}"/>
+                        <p:outputLabel value="Rol" for="rol" />
+                        <p:inputText id="rol" value="#{usuarioController.selected.tipousuario.rol}" disabled ="true" />
+                        
+                        <p:outputLabel  class="obligatorio" value="#{bundle.EditUsuarioLabel_nombres_usuario}" for="nombres_usuario" />
+                        <p:inputText required="true" id="nombres_usuario" value="#{usuarioController.selected.nombres_usuario}" title="#{bundle.EditUsuarioTitle_nombres_usuario}" />
+                        <p:outputLabel  class="obligatorio" value="#{bundle.EditUsuarioLabel_apellidoPaterno_usuario}" for="apellidoPaterno_usuario" />
+                        <p:inputText required="true" id="apellidoPaterno_usuario" value="#{usuarioController.selected.apellidoPaterno_usuario}" title="#{bundle.EditUsuarioTitle_apellidoPaterno_usuario}" />
+                        <p:outputLabel value="#{bundle.EditUsuarioLabel_apellidoMaterno_usuario}" for="apellidoMaterno_usuario" />
+                        <p:inputText  id="apellidoMaterno_usuario" value="#{usuarioController.selected.apellidoMaterno_usuario}" title="#{bundle.EditUsuarioTitle_apellidoMaterno_usuario}" />
+                        <p:outputLabel value="#{bundle.EditUsuarioLabel_telefono1}" for="telefono1" />
+                        <p:inputText id="telefono1" value="#{usuarioController.selected.telefono1}" title="#{bundle.EditUsuarioTitle_telefono1}" />
+                        <p:outputLabel value="#{bundle.EditUsuarioLabel_telefono2}" for="telefono2" />
+                        <p:inputText id="telefono2" value="#{usuarioController.selected.telefono2}" title="#{bundle.EditUsuarioTitle_telefono2}" />
+                        <p:outputLabel value="#{bundle.EditUsuarioLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{usuarioController.selected.correo}" title="#{bundle.EditUsuarioTitle_correo}" />
+                         <p:outputLabel value="Habilitado" for="habilitar" />
+                         <p:selectBooleanButton id="habilitar" value="#{usuarioController.selected.habilitado}" onLabel="Si" offLabel="No" style="width:60px" />
+                        </p:panelGrid>
+                    <h:outputText rendered="#{usuarioController.selected==null}" value="Debe seleccionar un usuario" />
+                    <br/>
+                    <p:commandButton style="margin-top: 10px!important;"  rendered="#{usuarioController.selected!=null}" actionListener="#{usuarioController.update}" value="#{bundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsuarioEditDialog');"/>
+                    <p:commandButton style="margin-left: 10px!important; margin-top: 10px!important;" actionListener="#{pacienteController.cancel}" value="#{bundle.Cancel}" onclick="UsuarioEditDialog.hide()"/>
+                </h:panelGroup>
+                
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

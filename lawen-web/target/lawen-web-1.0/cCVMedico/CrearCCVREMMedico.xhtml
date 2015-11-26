@@ -1,0 +1,495 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="PSCV CCV REM M&eacute;dico Crear"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+
+            <b:row>
+                <b:column span="12">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories"  title="Inicio" url="/faces/index.xhtml" />
+                        <p:menuitem value="PSCV CCV M&eacute;dico" url="/faces/cCVMedico/List.xhtml"/>
+                        <p:menuitem value="PSCV Crear REM CCV M&eacute;dico" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                    </p:breadCrumb>
+                </b:column>
+            </b:row>
+            <br/>
+
+            <h:form id="CartolaSeguimientoCCVCreateForm" prependId="false">
+                <h:panelGroup id="display">
+                    <p:panelGrid styleClass="col-md-12 spaceGrid" layout="grid" columns="4" rendered="#{cartolaSeguimientoCCVController.prepareCreate() != null and fichaMedicoController.prepareCreate() != null and pacienteController.prepareCreate() != null}">
+                        <p:outputLabel  class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_paciente}" for="paciente" />
+                        <p:selectOneMenu id="paciente" value="#{cartolaSeguimientoCCVController.selected.paciente}" required="true" requiredMessage="Es necesario ingresar un paciente" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItems value="#{pacienteController.itemsAvailableSelectOne}"
+                                           var="pacienteItem"
+                                           itemValue="#{pacienteItem}">
+
+                            </f:selectItems>
+                            <p:ajax  update="edad_paciente" listener="#{cartolaSeguimientoCCVController.handleKeyEvent()}" />
+                            <p:ajax  update="diabeticop" listener="#{cartolaSeguimientoCCVController.cambiarDiabetes()}" />
+                            <p:ajax  update="dislipidemico" listener="#{cartolaSeguimientoCCVController.cambiarDislipidemico()}" />
+                            <p:ajax  update="hipertencion" listener="#{cartolaSeguimientoCCVController.cambiarHipertencion()}" />
+                            <p:ajax  update="IAM" listener="#{cartolaSeguimientoCCVController.cambiarIAM()}" />
+                            <p:ajax  update="ACV" listener="#{cartolaSeguimientoCCVController.cambiarACV()}" />
+                            <p:ajax  update="prediabetico" listener="#{cartolaSeguimientoCCVController.cambiarPrediabetes()}" />
+                        </p:selectOneMenu>
+                        <p:outputLabel  class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_fecha_control}" for="fecha_control" />
+                        <p:calendar id="fecha_control" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoCCVController.selected.fecha_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fecha_control}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_edad_paciente}" for="edad_paciente" />
+                        <p:inputText disabled="true" id="edad_paciente" value="#{cartolaSeguimientoCCVController.edad}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_edad_paciente}" />
+                        <p:outputLabel  class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_profesional}" for="profesional" />
+                        <p:selectOneMenu id="profesional" value="#{cartolaSeguimientoCCVController.selected.profesional}" required="true" requiredMessage="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" panelStyle="width:180px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="profesionalItem"
+                                           itemValue="#{profesionalItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_peso}" for="peso" />
+                        <p:inputText id="peso" value="#{cartolaSeguimientoCCVController.selected.peso}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_peso}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_talla}" for="talla" />
+                        <p:inputText id="talla" value="#{cartolaSeguimientoCCVController.selected.talla}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_talla}" />
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_imc}" for="imc" />
+                        <p:inputText  required="false" requiredMessage="Es necesario el calculo del IMC" id="imc" value="#{cartolaSeguimientoCCVController.selected.imc}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_imc}" />
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_diagnostico_nutricional}" for="diagnostico_nutricional" />
+                        <p:selectOneMenu  required="true" requiredMessage="Es necesario el diagnóstico nutricional" id="diagnostico_nutricional" value="#{cartolaSeguimientoCCVController.selected.diagnostico_nutricional}" >
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true" />
+                            <f:selectItems value="#{dominiosController.diagnosticoLista}" />
+                        </p:selectOneMenu>
+
+
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_perimetro_cintura}" for="perimetro_cintura" />
+                        <p:inputText id="perimetro_cintura" value="#{cartolaSeguimientoCCVController.selected.perimetro_cintura}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_perimetro_cintura}" />
+
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel  class="subTitle" value="Régimen:" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+
+
+                        <p:outputLabel value="Hiposódico" for="hiposodico" />
+                        <p:selectBooleanButton id="hiposodico" value="#{cartolaSeguimientoCCVController.selected.hiposodico}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Diabético" for="diabetico" />
+                        <p:selectBooleanButton id="diabetico" value="#{cartolaSeguimientoCCVController.selected.diabetico}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Hipocalórico" for="hipocalorico" />
+                        <p:selectBooleanButton id="hipocalorico" value="#{cartolaSeguimientoCCVController.selected.hipocalorico}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_calorias}" for="calorias" />
+                        <p:inputText id="calorias" value="#{cartolaSeguimientoCCVController.selected.calorias}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_calorias}" />
+
+                        <p:outputLabel  class="subTitle" value="Patologías Crónicas:" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+
+                        <p:outputLabel value="Hipertensión:" for="hipertencion" />
+                        <p:selectBooleanButton id="hipertencion" value="#{cartolaSeguimientoCCVController.hipertencion}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Diabétes:" for="diabeticop" />
+                        <p:selectBooleanButton id="diabeticop" value="#{cartolaSeguimientoCCVController.diabetes}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Dislipidémico:" for="dislipidemico" />
+                        <p:selectBooleanButton id="dislipidemico" value="#{cartolaSeguimientoCCVController.dislipidemico}" onLabel="Si" offLabel="No" style="width:60px" />
+
+
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel  class="subTitle" value="Evaluación del PIE Según riesgo ulceración:" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Riesgo Ulceración Pie:" for="estimacionRiesgoUlceracionPie" />
+                        <p:selectOneMenu id="estimacionRiesgoUlceracionPie" value="#{cartolaSeguimientoCCVController.selected.estimacionRiesgoUlceracionPie}"> 
+                            <f:selectItems value="#{dominiosController.riesgoUlceras}"/>    
+                        </p:selectOneMenu>                     
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="Úlcera activa Pie DM:" for="ulcera_activaPieDM" />
+                        <p:selectBooleanButton id="ulcera_activaPieDM" value="#{cartolaSeguimientoCCVController.selected.ulcera_activaPieDM}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Descripción:" for="ulcera_activaPieDM_Descripcion" />
+                        <p:inputText id="ulcera_activaPieDM_Descripcion" value="#{cartolaSeguimientoCCVController.selected.ulcera_activaPieDM_Descripcion}" title="ulcera_activaPieDM_Descripcion" />
+                        <p:outputLabel value="Atención podológica:" for="atencionpodologica" />
+                        <p:selectBooleanButton id="atencionpodologica" value="#{cartolaSeguimientoCCVController.selected.atencionPodologica}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="Curación Pie DM:" for="curacionPie_DM" />
+                        <p:selectOneMenu id="curacionPie_DM" value="#{cartolaSeguimientoCCVController.selected.curacionPie_DM}"> 
+                            <f:selectItems value="#{dominiosController.curacionPieDM}"/>    
+                        </p:selectOneMenu>                                             
+
+                        <p:outputLabel  class="subTitle" value="Fármacos:" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_sulfonilureas_texto}" for="sulfonilureas_texto" />
+                        <p:selectBooleanButton id="sulfonilureas_bool" value="#{cartolaSeguimientoCCVController.selected.sulfonilureas_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:inputText id="sulfonilureas_texto" value="#{cartolaSeguimientoCCVController.selected.sulfonilureas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_sulfonilureas_texto}" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_biguanidas_texto}" for="biguanidas_texto" />
+                        <p:selectBooleanButton id="biguanidas_bool" value="#{cartolaSeguimientoCCVController.selected.biguanidas_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:inputText id="biguanidas_texto" value="#{cartolaSeguimientoCCVController.selected.biguanidas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_biguanidas_texto}" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_insulina_texto}" for="insulina_texto" />
+                        <p:selectBooleanButton id="insulina_bool" value="#{cartolaSeguimientoCCVController.selected.insulina_bool}" onLabel="Si" offLabel="No" style="width:60px" />                        
+                        <p:inputText id="insulina_texto" value="#{cartolaSeguimientoCCVController.selected.insulina_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_insulina_texto}" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_diuereticosTiazidicos_texto}" for="diuereticosTiazidicos_texto" />
+                        <p:selectBooleanButton id="diuereticosTiazidicos_bool" value="#{cartolaSeguimientoCCVController.selected.diuereticosTiazidicos_bool}" onLabel="Si" offLabel="No" style="width:60px" />                       
+                        <p:inputText id="diuereticosTiazidicos_texto" value="#{cartolaSeguimientoCCVController.selected.diuereticosTiazidicos_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_diuereticosTiazidicos_texto}" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_diureticosDelAsa_texto}" for="diureticosDelAsa_texto" />
+                        <p:selectBooleanButton id="diureticosDelAsa_bool" value="#{cartolaSeguimientoCCVController.selected.diureticosDelAsa_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:inputText id="diureticosDelAsa_texto" value="#{cartolaSeguimientoCCVController.selected.diureticosDelAsa_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_diureticosDelAsa_texto}" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_deiureticosAntiAldosterona_texto}" for="deiureticosAntiAldosterona_texto" />
+                        <p:selectBooleanButton id="deiureticosAntiAldosterona_bool" value="#{cartolaSeguimientoCCVController.selected.deiureticosAntiAldosterona_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:inputText id="deiureticosAntiAldosterona_texto" value="#{cartolaSeguimientoCCVController.selected.deiureticosAntiAldosterona_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_deiureticosAntiAldosterona_texto}" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_betaBloqueadores_texto}" for="betaBloqueadores_texto" />
+                        <p:selectBooleanButton id="betaBloqueadores_bool" value="#{cartolaSeguimientoCCVController.selected.betaBloqueadores_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:inputText id="betaBloqueadores_texto" value="#{cartolaSeguimientoCCVController.selected.betaBloqueadores_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_betaBloqueadores_texto}" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_IECA_texto}" for="IECA_texto" />
+                        <p:selectBooleanButton id="IECA_bool" value="#{cartolaSeguimientoCCVController.selected.IECA_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:inputText id="IECA_texto" value="#{cartolaSeguimientoCCVController.selected.IECA_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_IECA_texto}" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_ARAII_texto}" for="ARAII_texto" />
+                        <p:selectBooleanButton id="ARAII_bool" value="#{cartolaSeguimientoCCVController.selected.ARAII_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:inputText id="ARAII_texto" value="#{cartolaSeguimientoCCVController.selected.ARAII_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_ARAII_texto}" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_calcioAntagonistas_texto}" for="calcioAntagonistas_texto" />
+                        <p:selectBooleanButton id="calcioAntagonistas_bool" value="#{cartolaSeguimientoCCVController.selected.calcioAntagonistas_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:inputText id="calcioAntagonistas_texto" value="#{cartolaSeguimientoCCVController.selected.calcioAntagonistas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_calcioAntagonistas_texto}" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+                        <p:outputLabel value="Ácido Acetilsalicílico" for="calcioAntagonistas_texto" />
+                        <p:selectBooleanButton id="acido" value="#{cartolaSeguimientoCCVController.selected.acido_acetilsalicilico}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:inputText id="acido_texto" value="#{cartolaSeguimientoCCVController.selected.acido_acetilsalicilico_texto}" title="Acido Acetilsalicilico" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_esteatinas_texto}" for="esteatinas_texto" />
+                        <p:selectBooleanButton id="esteatinas_bool" value="#{cartolaSeguimientoCCVController.selected.esteatinas_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:inputText id="esteatinas_texto" value="#{cartolaSeguimientoCCVController.selected.esteatinas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_esteatinas_texto}" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_fibratos_texto}" for="fibratos_texto" />
+                        <p:selectBooleanButton id="fibratos_bool" value="#{cartolaSeguimientoCCVController.selected.fibratos_bool}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:inputText id="fibratos_texto" value="#{cartolaSeguimientoCCVController.selected.fibratos_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_fibratos_texto}" />
+                        <p:outputLabel value="Llene el texto solo si marca la casilla" />
+
+
+
+                        <p:outputLabel  class="obligatorio" value="Presión arterial de pie" for="pa_de_pie1" />
+                        <p:inputText style="width: 104px;" required="true" requiredMessage= "Ingrese presión de pie" id="pa_de_pie2" value="#{cartolaSeguimientoCCVController.selected.pa_de_pie2}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_de_pie2}">
+                            <p:inputText style="width: 104px;" required="true" requiredMessage= "Ingrese presión de pie" id="pa_de_pie1" value="#{cartolaSeguimientoCCVController.selected.pa_de_pie1}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_de_pie1}" /><h:outputText value=" / "/>
+                        </p:inputText>
+                        <p:outputLabel  class="obligatorio" value="Presión arterial sentado" for="pa_sentado1" />
+                        <p:inputText style="width: 104px;" required="true" requiredMessage= "Ingrese presión sentado" id="pa_sentado2" value="#{cartolaSeguimientoCCVController.selected.pa_sentado2}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_sentado2}" >
+                            <p:inputText style="width: 104px;" required="true" requiredMessage= "Ingrese presión sentado" id="pa_sentado1" value="#{cartolaSeguimientoCCVController.selected.pa_sentado1}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_pa_sentado1}" /><h:outputText value=" / "/>
+                        </p:inputText>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_puslo}" for="puslo" />
+                        <p:inputText id="puslo" value="#{cartolaSeguimientoCCVController.selected.puslo}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_puslo}" />
+
+
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_punteaje_pie_dm}" for="punteaje_pie_dm" />
+                        <p:inputText id="punteaje_pie_dm" value="#{cartolaSeguimientoCCVController.selected.punteaje_pie_dm}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_punteaje_pie_dm}" />
+
+
+                        <p:outputLabel  class="subTitle" value="Exámenes:" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+
+
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_glicemia_estado}" for="glicemia_estado" />
+                        <p:selectOneMenu id="glicemia_estado" value="#{cartolaSeguimientoCCVController.selected.glicemia_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>                     
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_glicemica_valor}" for="glicemica_valor" />
+                        <p:inputText id="glicemica_valor" value="#{cartolaSeguimientoCCVController.selected.glicemica_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_glicemica_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_hba1C_estado}" for="hba1C_estado" />
+                        <p:selectOneMenu id="hba1C_estado" value="#{cartolaSeguimientoCCVController.selected.hba1C_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="HbA1C (%):" for="hba1C_valor" />
+                        <p:inputText id="hba1C_valor" value="#{cartolaSeguimientoCCVController.selected.hba1C_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_hba1C_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_estado}" for="colesterolTotal_estado" />
+                        <p:selectOneMenu id="colesterolTotal_estado" value="#{cartolaSeguimientoCCVController.selected.colesterolTotal_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolTotal_valor}" for="colesterolTotal_valor" />
+                        <p:inputText id="colesterolTotal_valor" value="#{cartolaSeguimientoCCVController.selected.colesterolTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolTotal_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_estado}" for="colesterolLDL_estado" />
+                        <p:selectOneMenu id="colesterolLDL_estado" value="#{cartolaSeguimientoCCVController.selected.colesterolLDL_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolLDL_valor}" for="colesterolLDL_valor" />
+                        <p:inputText id="colesterolLDL_valor" value="#{cartolaSeguimientoCCVController.selected.colesterolLDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolLDL_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_estado}" for="colesterolHDL_estado" />
+                        <p:selectOneMenu id="colesterolHDL_estado" value="#{cartolaSeguimientoCCVController.selected.colesterolHDL_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_colesterolHDL_valor}" for="colesterolHDL_valor" />
+                        <p:inputText id="colesterolHDL_valor" value="#{cartolaSeguimientoCCVController.selected.colesterolHDL_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_colesterolHDL_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_estado}" for="trigliceridos_estado" />
+                        <p:selectOneMenu id="trigliceridos_estado" value="#{cartolaSeguimientoCCVController.selected.trigliceridos_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_trigliceridos_valor}" for="trigliceridos_valor" />
+                        <p:inputText id="trigliceridos_valor" value="#{cartolaSeguimientoCCVController.selected.trigliceridos_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_trigliceridos_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_estado}" for="bilirrubinaTotal_estado" />
+                        <p:selectOneMenu id="bilirrubinaTotal_estado" value="#{cartolaSeguimientoCCVController.selected.bilirrubinaTotal_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaTotal_valor}" for="bilirrubinaTotal_valor" />
+                        <p:inputText id="bilirrubinaTotal_valor" value="#{cartolaSeguimientoCCVController.selected.bilirrubinaTotal_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaTotal_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_estado}" for="bilirrubinaDirecta_estado" />
+                        <p:selectOneMenu id="bilirrubinaDirecta_estado" value="#{cartolaSeguimientoCCVController.selected.bilirrubinaDirecta_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaDirecta_valor}" for="bilirrubinaDirecta_valor" />
+                        <p:inputText id="bilirrubinaDirecta_valor" value="#{cartolaSeguimientoCCVController.selected.bilirrubinaDirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaDirecta_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_estado}" for="bilirrubinaIndirecta_estado" />
+                        <p:selectOneMenu id="bilirrubinaIndirecta_estado" value="#{cartolaSeguimientoCCVController.selected.bilirrubinaIndirecta_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_bilirrubinaIndirecta_valor}" for="bilirrubinaIndirecta_valor" />
+                        <p:inputText id="bilirrubinaIndirecta_valor" value="#{cartolaSeguimientoCCVController.selected.bilirrubinaIndirecta_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_bilirrubinaIndirecta_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_estado}" for="creatinina_estado" />
+                        <p:selectOneMenu id="creatinina_estado" value="#{cartolaSeguimientoCCVController.selected.creatinina_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_creatinina_valor}" for="creatinina_valor" />
+                        <p:inputText id="creatinina_valor" value="#{cartolaSeguimientoCCVController.selected.creatinina_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_creatinina_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_BUN_estado}" for="BUN_estado" />
+                        <p:selectOneMenu id="BUN_estado" value="#{cartolaSeguimientoCCVController.selected.BUN_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_BUN_valor}" for="BUN_valor" />
+                        <p:inputText id="BUN_valor" value="#{cartolaSeguimientoCCVController.selected.BUN_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_BUN_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_estado}" for="MDRD_estado" />
+                        <p:selectOneMenu id="MDRD_estado" value="#{cartolaSeguimientoCCVController.selected.MDRD_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_MDRD_valor}" for="MDRD_valor" />
+                        <p:inputText id="MDRD_valor" value="#{cartolaSeguimientoCCVController.selected.MDRD_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_MDRD_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_estado}" for="microALB24H_estado" />
+                        <p:selectOneMenu id="microALB24H_estado" value="#{cartolaSeguimientoCCVController.selected.microALB24H_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_microALB24H_valor}" for="microALB24H_valor" />
+                        <p:inputText id="microALB24H_valor" value="#{cartolaSeguimientoCCVController.selected.microALB24H_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_microALB24H_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_estado}" for="clearenceCrea_estado" />
+                        <p:selectOneMenu id="clearenceCrea_estado" value="#{cartolaSeguimientoCCVController.selected.clearenceCrea_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_clearenceCrea_valor}" for="clearenceCrea_valor" />
+                        <p:inputText id="clearenceCrea_valor" value="#{cartolaSeguimientoCCVController.selected.clearenceCrea_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_clearenceCrea_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_estado}" for="naPositivo_estado" />
+                        <p:selectOneMenu id="naPositivo_estado" value="#{cartolaSeguimientoCCVController.selected.naPositivo_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_naPositivo_valor}" for="naPositivo_valor" />
+                        <p:inputText id="naPositivo_valor" value="#{cartolaSeguimientoCCVController.selected.naPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_naPositivo_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_estado}" for="KPositivo_estado" />
+                        <p:selectOneMenu id="KPositivo_estado" value="#{cartolaSeguimientoCCVController.selected.KPositivo_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_KPositivo_valor}" for="KPositivo_valor" />
+                        <p:inputText id="KPositivo_valor" value="#{cartolaSeguimientoCCVController.selected.KPositivo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_KPositivo_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_estado}" for="CLNegativo_estado" />
+                        <p:selectOneMenu id="CLNegativo_estado" value="#{cartolaSeguimientoCCVController.selected.CLNegativo_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_CLNegativo_valor}" for="CLNegativo_valor" />
+                        <p:inputText id="CLNegativo_valor" value="#{cartolaSeguimientoCCVController.selected.CLNegativo_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_CLNegativo_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GPT_estado}" for="GPT_estado" />
+                        <p:selectOneMenu id="GPT_estado" value="#{cartolaSeguimientoCCVController.selected.GPT_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GPT_valor}" for="GPT_valor" />
+                        <p:inputText id="GPT_valor" value="#{cartolaSeguimientoCCVController.selected.GPT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GPT_valor}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GOT_estado}" for="GOT_estado" />
+                        <p:selectOneMenu id="GOT_estado" value="#{cartolaSeguimientoCCVController.selected.GOT_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_GOT_valor}" for="GOT_valor" />
+                        <p:inputText id="GOT_valor" value="#{cartolaSeguimientoCCVController.selected.GOT_valor}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_GOT_valor}" />
+
+                        <p:outputLabel  class="subTitle" value="Exámenes segunda parte:" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_estado}" for="orocultivo_estado" />
+                        <p:selectOneMenu id="orocultivo_estado" value="#{cartolaSeguimientoCCVController.selected.orocultivo_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orocultivo_ejecucion}" for="orocultivo_ejecucion" />
+                        <p:selectOneMenu id="orocultivo_ejecucion" value="#{cartolaSeguimientoCCVController.selected.orocultivo_ejecucion}"> 
+                            <f:selectItems value="#{dominiosController.ejecucionExamen}"/>    
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_ECG_estado}" for="ECG_estado" />
+                        <p:selectOneMenu id="ECG_estado" value="#{cartolaSeguimientoCCVController.selected.ECG_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_ECG_ejecucion}" for="ECG_ejecucion" />
+                        <p:selectOneMenu id="ECG_ejecucion" value="#{cartolaSeguimientoCCVController.selected.ECG_ejecucion}"> 
+                            <f:selectItems value="#{dominiosController.ejecucionExamen}"/>    
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_estado}" for="fondoOJO_estado" />
+                        <p:selectOneMenu id="fondoOJO_estado" value="#{cartolaSeguimientoCCVController.selected.fondoOJO_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_fondoOJO_ejecucion}" for="fondoOJO_ejecucion" />
+                        <p:selectOneMenu id="fondoOJO_ejecucion" value="#{cartolaSeguimientoCCVController.selected.fondoOJO_ejecucion}"> 
+                            <f:selectItems value="#{dominiosController.ejecucionExamen}"/>    
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_estado}" for="orinaCompleta_estado" />
+                        <p:selectOneMenu id="orinaCompleta_estado" value="#{cartolaSeguimientoCCVController.selected.orinaCompleta_estado}"> 
+                            <f:selectItems value="#{dominiosController.estadosExamen}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_orinaCompleta_ejecucion}" for="orinaCompleta_ejecucion" />
+                        <p:selectOneMenu id="orinaCompleta_ejecucion" value="#{cartolaSeguimientoCCVController.selected.orinaCompleta_ejecucion}"> 
+                            <f:selectItems value="#{dominiosController.ejecucionExamen}"/>    
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_otros_examenes}" for="otros_examenes" />
+                        <p:inputText id="otros_examenes" value="#{cartolaSeguimientoCCVController.selected.otros_examenes}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_otros_examenes}" />
+
+
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel  class="subTitle" value="Antecedentes riesgo CCV" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+
+                        <p:outputLabel class="obligatorio" value="Tabaco" for="tabaco" />
+                        
+                        <p:selectOneMenu  required="true" requiredMessage="Debe indicar tabaquismo" value="#{cCVMedicoController.tabaco}" id="tabaco" >  
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItem itemLabel="Si" itemValue="Si" />  
+                            <f:selectItem itemLabel="No" itemValue="No" />  
+                        
+                        </p:selectOneMenu> 
+                        <p:outputLabel value="Prediabético:" for="prediabetico" />
+                        <p:selectBooleanButton id="prediabetico" value="#{cartolaSeguimientoCCVController.prediabetes}" onLabel="Si" offLabel="No" style="width:60px" />
+
+
+                        <p:outputLabel value="IAM (Antecedentes de Infarto):" for="IAM" />
+                        <p:selectBooleanButton id="IAM" value="#{cartolaSeguimientoCCVController.IAM}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="ACV (Antecedentes Enf. Cerebro Vascular ):" for="ACV" />
+                        <p:selectBooleanButton id="ACV" value="#{cartolaSeguimientoCCVController.ACV}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="Hipertrofia ventricular izquierda:" for="HVI" />
+                        <p:selectBooleanButton id="HVI" value="#{cartolaSeguimientoCCVController.selected.HVI}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="IRC:" for="IRC" />
+                        <p:selectBooleanButton id="IRC" value="#{cartolaSeguimientoCCVController.selected.IRC}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Nefropatía Incipiente:" for="NefroIn" />
+                        <p:selectBooleanButton id="NefroIn" value="#{cartolaSeguimientoCCVController.selected.nefropatiaInciente}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="Amputación no traumática:" for="amputacion_no_traumatica" />
+                        <p:selectBooleanButton id="amputacion_no_traumatica" value="#{cartolaSeguimientoCCVController.selected.amputacion_no_traumatica}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Amputación diabética:" for="amputa_diabe" />
+                        <p:selectBooleanButton id="amputa_diabe" value="#{cartolaSeguimientoCCVController.selected.amputacionDiabetica}" onLabel="Si" offLabel="No" style="width:60px" />
+
+
+                        <p:outputLabel value="Ceguera:" for="ceguera" />
+                        <p:selectBooleanButton id="ceguera" value="#{cartolaSeguimientoCCVController.selected.ceguera}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="Retinopatía:" for="retinopatia" />
+                        <p:selectBooleanButton id="retinopatia" value="#{cartolaSeguimientoCCVController.selected.retinopatia}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="Ceguera Post retinopatía" for="ceguera_post" />
+                        <p:selectBooleanButton id="ceguera_post" value="#{cartolaSeguimientoCCVController.selected.cegueraPostRetinopatia}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="Complicación(Prevalencia)" for="Complicacion" />
+                        <p:selectBooleanButton id="Complicacion" value="#{cartolaSeguimientoCCVController.selected.complicacionPrevalencia}" onLabel="Si" offLabel="No" style="width:60px" />
+
+
+                        <p:outputLabel value="QUALIDIAB:" for="QUALDIAB" />
+                        <p:selectBooleanButton id="QUALDIAB" value="#{cartolaSeguimientoCCVController.selected.QUALDIAB}" onLabel="Si" offLabel="No" style="width:60px" />
+
+
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_riesgo_cardiovascular}" for="riesgo_cardiovascular" />
+                        <p:selectOneMenu required="true" requiredMessage="Debe ingresar el riesgo cardiovacular" id="riesgo_cardiovascular" value="#{cartolaSeguimientoCCVController.selected.riesgo_cardiovascular}"> 
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true" />
+                            <f:selectItems  value="#{dominiosController.riesgoCCV}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Enfermedad Renal Crónica" for="erc" />
+                        <p:selectOneMenu id="erc" value="#{cartolaSeguimientoCCVController.selected.det_Prev_ERC}"> 
+
+                            <f:selectItems value="#{dominiosController.enfermedadRenalCronica}"/>    
+                        </p:selectOneMenu>
+
+
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_observaciones}" for="observaciones" />
+                        <p:inputText id="observaciones" value="#{cartolaSeguimientoCCVController.selected.observaciones}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_observaciones}" />
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_fechareingreso}" for="fechareingreso" />
+                        <p:calendar id="fechareingreso" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoCCVController.selected.fechareingreso}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fechareingreso}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_proximo_control}" for="proximo_control" />
+                        <h:inputTextarea class="textAreas" rows="10" cols="20"   id="proximo_control"  value="#{cartolaSeguimientoCCVController.selected.proximo_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_proximo_control}" />
+
+
+
+                    </p:panelGrid>
+
+                    <p:commandButton  action="#{cCVMedicoController.crearCCV(cartolaSeguimientoCCVController,fichaMedicoController,pacienteController,cartolaSeguimientoCCVController.edad, cartolaSeguimientoCCVController.diabetes, cartolaSeguimientoCCVController.hipertencion, cartolaSeguimientoCCVController.dislipidemico, cartolaSeguimientoCCVController.ACV, cartolaSeguimientoCCVController.IAM, cartolaSeguimientoCCVController.prediabetes)}" value="#{bundle.Save}" update="growl" />
+
+                    <p:button outcome="/cCVMedico/List" value="Volver" />
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

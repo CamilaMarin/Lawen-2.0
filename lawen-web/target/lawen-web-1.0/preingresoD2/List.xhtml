@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="PSCV Preingreso II"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <b:row>
+                <b:column span="11">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories" title="Inicio"  url="/faces/index.xhtml" />
+                        <p:menuitem value="PSCV Preingreso II" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                    </p:breadCrumb>
+                </b:column>
+                <b:column span="1">
+                    <button id="btrigger"  title="Ayuda" class="btn btn-info btn-xs" data-target="#amodal" data-toggle="modal"><span class="fa fa-question" aria-hidden="true"></span></button>
+                    <b:modal id="amodal" title="M&oacute;dulo Ayuda - Sección PSCV Preingreso II">
+                        <p>
+                            En esta sección podrá  ver atenciones del tipo preingreso II del programa de salud cardiovascular.<br/><br/>
+                            Para <b>ver</b> atenciones, seleccione la atención a visualizar y haga clic en ver.<br/>
+                        </p>
+                        <f:facet name="footer">
+                            <b:button value="cerrar" dismiss="modal" onclick="return false;"/>
+                        </f:facet>
+                    </b:modal>
+                </b:column>
+            </b:row>
+            <br/>
+            <h:form id="PreingresoD2ListForm">
+                <p:dataTable id="datalist" value="#{preingresoD2Controller.items}" var="item" reflow="true"
+                             selectionMode="single" selection="#{preingresoD2Controller.selected}"
+                             paginator="true" paginatorPosition="bottom"
+                             rowKey="#{item.id}"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             emptyMessage="Sin preingresos registrados."
+                             >
+                    <p:ajax event="rowSelect"   update="viewButton"/>
+                    <p:ajax event="rowUnselect" update="viewButton"/>
+                    <p:ajax event="rowDblselect" 
+                            update=":PreingresoD2ViewForm" oncomplete="alertify.success('Ha seleccionado una nueva atención');" />
+                    
+                    <p:column filterBy="#{item.pacientes.rut_paciente}" headerText="rut_paciente" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPacienteTitle_rut_paciente}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.pacientes.rut_paciente}"/>
+                    </p:column> 
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPreingresoD2Title_pacientes}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.pacientes.nombres_paciente} #{item.pacientes.apellidoPaterno_paciente} #{item.pacientes.apellidoMaterno_paciente}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Fecha atención"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dated2}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column filterBy="#{item.profesional.toString()}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListPreingresoD2Title_profesional}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.profesional.toString()}"/>
+                    </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PreingresoD2ViewForm" oncomplete="PF('PreingresoD2ViewDialog').show()" disabled="#{empty preingresoD2Controller.selected}"/>
+                        <h:commandLink rendered="#{preingresoD2Controller.items.size() != 0}">
+                            <p:graphicImage  title="Descargar listado" name="images/pdf.png"/>
+                            <p:dataExporter type="pdf" target="datalist" fileName="listado_preingreso2"  preProcessor="#{documentsController.preProcessPDFA}"/>
+                        </h:commandLink>
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+            <br/>
+            <b:alert severity="warning" title="Indicaciones">
+                * CITAR A MÉDICO: PA PROMEDIO DE 115 O MAS EN POSICIÓN SENTADA Y/O SINTOMÁTICO Y /O CON TRATAMIENTO PREVIO. <br/>
+                ** CITAR A SEGUNDO CEDAZO: PA PROMEDIO 91 A114 ASINTOMÁTICO Y SIN TRATAMIENTO.<br/>
+                *** CONTROL CADA 6 MESES: PA PROMEDIO IGUAL O MENOR A 80, ASINTOMÁTICO Y SIN TRATAMIENTO.
+            </b:alert>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+</html>

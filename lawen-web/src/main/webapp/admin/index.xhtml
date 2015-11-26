@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/templateRegistrado.xhtml">
+        <ui:define name="title">
+            <h:outputText value="lawén - Sistema gestión de salud | Administración"></h:outputText>    
+        </ui:define>
+
+        <ui:define name="body">
+            
+            <h:outputText styleClass="hola col-md-12" value="Hola #{request.remoteUser}"/>
+
+            <b:container>
+                <b:row>
+                    <b:column span="4">
+                        <b:panel look="primary">
+                            <f:facet name="heading">Secci&oacute;n Pacientes</f:facet>   
+                            <b:listLinks>
+                                <b:navLink outcome="/paciente/List" value="Show All Paciente Items"></b:navLink>
+                                <b:navLink outcome="/patologia/List" value="Show All Patologia Items"></b:navLink>
+                                <b:navLink outcome="/programa/List" value="Show All Programa Items"></b:navLink>
+                                <b:navLink ></b:navLink>
+                            </b:listLinks>
+                        </b:panel> 
+                    </b:column>
+                    <b:column span="4">
+                        <b:panel look="success">
+                            <f:facet name="heading">Secci&oacute;n Profesionales</f:facet>   
+                            <b:listLinks>
+                                <b:navLink href="#" value="Agenda horaria"></b:navLink>
+                                <b:navLink href="#" value="Atenciones historicas"></b:navLink>
+                                <b:navLink href="#" value="Programas de salud"></b:navLink>
+                                <b:navLink href="#" value="Ficha electronica"></b:navLink>
+                            </b:listLinks>
+                        </b:panel> 
+                    </b:column>
+                    <b:column span="4">
+                        <b:panel look="primary">
+                            <f:facet name="heading">Secci&oacute;n Reportes</f:facet>   
+                            <b:listLinks>
+                                <b:navLink outcome="/preingresoD1/List" value="Show All PreingresoD1 Items"></b:navLink>
+                                <b:navLink outcome="/preingresoD2/List" value="Show All PreingresoD2 Items"></b:navLink>
+                                <b:navLink outcome="/preingresoD3/List" value="Show All PreingresoD3 Items"></b:navLink>
+                            </b:listLinks>
+                        </b:panel> 
+                    </b:column>
+                </b:row>
+            </b:container>
+            
+        </ui:define>
+    </ui:composition>
+</html>

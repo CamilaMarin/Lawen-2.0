@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      <h:form id="AtencionMedMorbilidadViewForm">
+                <h:panelGroup id="display" class="container">
+                    <p:panelGrid id="panel" columns="2" rendered="#{atencionMedMorbilidadController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_fechaAtencion_morb}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.fechaAtencion_morb}" title="#{bundle.ViewAtencionMedMorbilidadTitle_fechaAtencion_morb}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_profesional_morb}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.profesional_morb.toString()}" title="#{bundle.ViewAtencionMedMorbilidadTitle_profesional_morb}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_edadMorb}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.edadMorb}" title="#{bundle.ViewAtencionMedMorbilidadTitle_edadMorb}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_anamnesis_morb}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.anamnesis_morb}" title="#{bundle.ViewAtencionMedMorbilidadTitle_anamnesis_morb}"/>
+                        <p:outputLabel value="Control signos vitales" class="subItem" />
+                        <p:outputLabel value="" />
+                        <h:outputText value="Presión arterial:"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.presion_arterial2}" title="#{bundle.ViewAtencionMedMorbilidadTitle_presion_arterial2}">
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.presion_arterial1}" title="#{bundle.ViewAtencionMedMorbilidadTitle_presion_arterial1}"/><h:outputText value="/"/>
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_frecuencia_cardiaca}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.frecuencia_cardiaca}" title="#{bundle.ViewAtencionMedMorbilidadTitle_frecuencia_cardiaca}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_temperatura}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.temperatura}" title="#{bundle.ViewAtencionMedMorbilidadTitle_temperatura}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_frecuencia_respiratoria}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.frecuencia_respiratoria}" title="#{bundle.ViewAtencionMedMorbilidadTitle_frecuencia_respiratoria}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_dolor}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.dolor}" title="#{bundle.ViewAtencionMedMorbilidadTitle_dolor}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_saturacion_oxigeno}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.saturacion_oxigeno}" title="#{bundle.ViewAtencionMedMorbilidadTitle_saturacion_oxigeno}"/>
+                        <h:outputText value="Medidas Antropom&eacute;tricas" class="subItem"/>
+                        <h:outputText value=""/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_peso_morb}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.peso_morb}" title="#{bundle.ViewAtencionMedMorbilidadTitle_peso_morb}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_talla_morb}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.talla_morb}" title="#{bundle.ViewAtencionMedMorbilidadTitle_talla_morb}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_imc_morb}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.imc_morb}" title="#{bundle.ViewAtencionMedMorbilidadTitle_imc_morb}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_diagnostico_nutricional_mrb}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.diagnostico_nutricional_mrb}" title="#{bundle.ViewAtencionMedMorbilidadTitle_diagnostico_nutricional_mrb}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_examen_fisico}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.examen_fisico}" title="#{bundle.ViewAtencionMedMorbilidadTitle_examen_fisico}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_hipotesis_diagnostiva}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.hipotesis_diagnostiva}" title="#{bundle.ViewAtencionMedMorbilidadTitle_hipotesis_diagnostiva}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_diagnostivo_mrb}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.diagnostivo_mrb}" title="#{bundle.ViewAtencionMedMorbilidadTitle_diagnostivo_mrb}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_indicaciones}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.indicaciones}" title="#{bundle.ViewAtencionMedMorbilidadTitle_indicaciones}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_tratamiento_famacologico}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.tratamiento_famacologico}" title="#{bundle.ViewAtencionMedMorbilidadTitle_tratamiento_famacologico}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_examenes}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.examenes}" title="#{bundle.ViewAtencionMedMorbilidadTitle_examenes}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_referencias_mrb}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.referencias_mrb}" title="#{bundle.ViewAtencionMedMorbilidadTitle_referencias_mrb}"/>
+                        <h:outputText value="#{bundle.ViewAtencionMedMorbilidadLabel_paciente_mrb}"/>
+                        <h:outputText value="#{atencionMedMorbilidadController.selected.paciente_mrb.toString()}" title="#{bundle.ViewAtencionMedMorbilidadTitle_paciente_mrb}"/>
+                    </p:panelGrid>
+                    <p:commandButton style="margin-top: 10px!important;" styleClass="noPrintButton" value="Imprimir" ajax="false" rendered="#{atencionMedMorbilidadController.selected != null}">
+                        <p:printer target="panel"/>
+                    </p:commandButton>
+                </h:panelGroup>
+            </h:form>
+</html>

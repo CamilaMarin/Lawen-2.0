@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="lawén - Sistema gestión de salud"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+
+        <b:container>
+            <b:column>
+                <p:carousel id="daniel" style="width: auto;" itemStyleClass="" autoPlayInterval="4000" effect="fade" numVisible="1" circular="true" vertical="false" pageLinks="0">
+                    <p:graphicImage  value="resources/images/centro-1.png" />
+                    <p:graphicImage value="resources/images/centro-2.png" />
+                    <p:graphicImage value="resources/images/centro-3.png" />
+                </p:carousel>
+            </b:column>
+        </b:container>
+
+        <b:container>
+            <b:row class="panelSeparado">
+                <b:column span="4">
+                    <b:panel look="success">
+                        <f:facet name="heading">Pacientes</f:facet>   
+                        <b:listLinks>
+                            <b:navLink href="#" value="Datos personales"></b:navLink>
+                            <b:navLink href="#" value="Búsqueda avanzada"></b:navLink>
+                            <b:navLink href="#" value="Historial clínico de salud"></b:navLink>
+                            <b:navLink href="#" value="Ficha electronica"></b:navLink>
+                        </b:listLinks>
+                    </b:panel> 
+                </b:column>
+                <b:column span="4">
+                    <b:panel look="info">
+                        <f:facet name="heading">Profesionales</f:facet>   
+                        <b:listLinks>
+                            <b:navLink value="Agenda horaria"></b:navLink>
+                            <b:navLink value="Atenciones historicas"></b:navLink>
+                            <b:navLink value="Programas de salud"></b:navLink>
+                            <b:navLink value="Ficha electronica"></b:navLink>
+                        </b:listLinks>
+                    </b:panel> 
+                </b:column>
+                <b:column span="4">
+                    <b:panel look="warning">
+                        <f:facet name="heading">Reportes</f:facet>   
+                        <b:listLinks>
+                            <b:navLink href="#" value="Estadistica de pacientes"></b:navLink>
+                            <b:navLink href="#" value="Estadistica de salud"></b:navLink>
+                            <b:navLink href="#" value="Tipo de atenciones"></b:navLink>
+                            <b:navLink href="#" value="Censo por programas de salud"></b:navLink>
+                        </b:listLinks>
+                    </b:panel> 
+                </b:column>
+            </b:row>
+        </b:container>
+        </ui:define>
+    </ui:composition>
+</html>

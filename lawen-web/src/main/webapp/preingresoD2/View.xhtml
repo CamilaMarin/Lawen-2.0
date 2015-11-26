@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+            <h:form id="PreingresoD2ViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid styleClass="col-md-12 spaceGrid" layout="grid" columns="2" rendered="#{preingresoD2Controller.selected != null}">
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_pacientes}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.pacientes.toString()}" title="#{bundle.ViewPreingresoD2Title_pacientes}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_tipoprograma}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.tipoprograma.toString()}" title="#{bundle.ViewPreingresoD2Title_tipoprograma}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_pass1}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.pass1}" title="#{bundle.ViewPreingresoD2Title_pass1}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_pass2}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.pass2}" title="#{bundle.ViewPreingresoD2Title_pass2}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_pads1}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.pads1}" title="#{bundle.ViewPreingresoD2Title_pads1}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_pads2}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.pads2}" title="#{bundle.ViewPreingresoD2Title_pads2}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_pasp1}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.pasp1}" title="#{bundle.ViewPreingresoD2Title_pasp1}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_pasp2}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.pasp2}" title="#{bundle.ViewPreingresoD2Title_pasp2}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_padp1}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.padp1}" title="#{bundle.ViewPreingresoD2Title_padp1}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_padp2}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.padp2}" title="#{bundle.ViewPreingresoD2Title_padp2}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_peso}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.peso}" title="#{bundle.ViewPreingresoD2Title_peso}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_pulso}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.pulso}" title="#{bundle.ViewPreingresoD2Title_pulso}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_observaciones}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.observaciones}" title="#{bundle.ViewPreingresoD2Title_observaciones}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_dated2}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.dated2}" title="#{bundle.ViewPreingresoD2Title_dated2}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_profesional}"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.profesional.toString()}" title="#{bundle.ViewPreingresoD2Title_profesional}"/>
+                        <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.ViewPreingresoD2Label_id}"  rendered="false"/>
+                        <h:outputText value="#{preingresoD2Controller.selected.id}" title="#{bundle.ViewPreingresoD2Title_id}"  rendered="false"/>
+                    </p:panelGrid>
+                </h:panelGroup>
+            </h:form>
+</html>

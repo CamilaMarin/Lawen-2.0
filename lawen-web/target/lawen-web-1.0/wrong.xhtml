@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+     <h:head>
+        <h:outputStylesheet library="css" name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputScript library="js" name="js/jsfcrud.js"/>
+    </h:head>
+    
+    <h:body>
+        <br/>
+        <b:row id="separado">
+        <b:column id="curitaNotFound" span="12">
+            <h:graphicImage class="img-responsive centrar" value="/resources/images/curita.png"/>
+        </b:column>
+        </b:row>
+                <b:column>
+            <input type="button" onclick="history.go(-1)" value="volver" class="col-md-3 col-md-offset-4 volver"/>
+        </b:column>
+        <br/>
+        
+    </h:body>
+
+</html>

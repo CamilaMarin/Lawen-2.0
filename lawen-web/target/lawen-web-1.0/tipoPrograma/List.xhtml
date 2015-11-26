@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTipoProgramaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <b:row>
+                <b:column span="12">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories"  title="Inicio" url="/faces/index.xhtml" />
+                        <p:menuitem value="Programas" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                    </p:breadCrumb>
+                </b:column>
+            </b:row>
+            <br/>
+
+            <h:form id="TipoProgramaListForm">
+                <p:dataTable id="datalist" value="#{tipoProgramaController.items}" var="item" reflow="true"
+                             selectionMode="single" selection="#{tipoProgramaController.selected}"
+                             paginator="true" paginatorPosition="bottom"
+                             rowKey="#{item.id}" 
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             emptyMessage="Sin programas registrados."
+                             >
+
+                    <p:ajax event="rowSelect"   update="createButton editButton"/>
+                    <p:ajax event="rowUnselect" update="createButton editButton"/>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nombre programa"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nombre_programa}"/>
+                    </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tipoProgramaController.prepareCreate}" update=":TipoProgramaCreateForm" oncomplete="PF('TipoProgramaCreateDialog').show()"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TipoProgramaEditForm" oncomplete="PF('TipoProgramaEditDialog').show()" disabled="#{empty tipoProgramaController.selected}"/>
+                        <h:commandLink rendered="#{tipoProgramaController.items.size() != 0}">
+                            <p:graphicImage  title="Descargar listado" name="images/pdf.png"/>
+                            <p:dataExporter type="pdf" target="datalist" fileName="listado_programas"  preProcessor="#{documentsController.preProcessPDFA}"/>
+                        </h:commandLink>
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

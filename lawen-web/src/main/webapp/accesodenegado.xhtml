@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="lawén - Sistema gestión de salud"></h:outputText>
+        </ui:define>
+    
+        <ui:define name="body">
+        <br/>
+        <b:row id="separado">
+        <b:column id="curitaNotFound" span="12">
+            <h:graphicImage class="img-responsive centrar" value="/resources/images/accesodenegado.png"/>
+        </b:column>
+        </b:row>
+                <b:column>
+            <input type="button" onclick="history.go(-1)" value="volver" class="col-md-3 col-md-offset-4 volver"/>
+        </b:column>
+            <br /><br />
+        </ui:define>
+    </ui:composition>
+</html>
