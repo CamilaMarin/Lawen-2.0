@@ -8,8 +8,8 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(TipoUsuario.class)
 public abstract class TipoUsuario_ {
 
-	public static volatile SingularAttribute<TipoUsuario, String> rut;
 	public static volatile SingularAttribute<TipoUsuario, Long> id;
+	public static volatile SingularAttribute<TipoUsuario, String> rut;
 	public static volatile SingularAttribute<TipoUsuario, String> rol;
 
 }

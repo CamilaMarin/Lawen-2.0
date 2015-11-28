@@ -93,8 +93,9 @@ public class AtencionEnfFEMPA implements Serializable {
     
     // Seccion C: Embarazadas
     private boolean VDRL;
-    @Size(max=50)
+    @Size(max=1500)
     private String VDRL_obs;
+    
     private boolean test_ELISA;
     
     

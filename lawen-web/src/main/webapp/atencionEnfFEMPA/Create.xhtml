@@ -60,7 +60,7 @@
                                            itemValue="#{profesional_empaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel  class="obligatorio" value="#{bundle.CreateAtencionEnfFEMPALabel_fechaEmpa}" for="fechaEmpa" />
-                        <p:calendar id="fechaEmpa" pattern="dd/MM/yyyy" value="#{atencionEnfFEMPAController.selected.fechaEmpa}" title="#{bundle.EditAtencionEnfFEMPATitle_fechaEmpa}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                        <p:calendar id="fechaEmpa" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{atencionEnfFEMPAController.selected.fechaEmpa}" title="#{bundle.EditAtencionEnfFEMPATitle_fechaEmpa}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_edad_paciente_emp}" for="edad_paciente" />
                         <p:inputText disabled="true" id="edad_paciente" value="#{atencionEnfFEMPAController.edad}" title="#{bundle.CreateAtencionEnfFEMPATitle_edad_paciente_emp}" />
                         <p:outputLabel value="Item: Ambos géneros de 15 a 64 años" class="subItem"/>
@@ -135,7 +135,7 @@
                         <p:outputLabel value="VDRL" for="VDRL" />
                         <p:selectBooleanButton id="VDRL" value="#{atencionEnfFEMPAController.selected.VDRL}" onLabel="Si" offLabel="No" style="width:60px" />
                         <p:outputLabel value="Observaciones:" for="VDRL_obs" />
-                        <p:inputText id="VDRL_obs" value="#{atencionEnfFEMPAController.selected.VDRL_obs}" title="#{bundle.CreateAtencionEnfFEMPATitle_VDRL_obs}" />
+                        <p:inputTextarea class="textAreas" rows="10" cols="20" id="VDRL_obs" value="#{atencionEnfFEMPAController.selected.VDRL_obs}" title="#{bundle.CreateAtencionEnfFEMPATitle_VDRL_obs}" />
                         <p:outputLabel value="Test ELISA" for="test_ELISA" />
                         <p:selectBooleanButton id="test_ELISA" value="#{atencionEnfFEMPAController.selected.test_ELISA}" onLabel="Si" offLabel="No" style="width:60px" />
                         <p:outputLabel value="Indicaciones y referencias:" for="indicaciones_referencias2" />

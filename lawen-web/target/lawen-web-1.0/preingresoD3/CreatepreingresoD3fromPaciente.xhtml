@@ -40,7 +40,7 @@
                             <p:outputLabel value="#{bundle.CreatePreingresoD1Label_pacientes}" for="pacientes" />
                             <p:inputText  class="obligatorio" disabled="true" id="pacientes" value="#{pacienteController.selected.rut_paciente}"/> 
                             <p:outputLabel  class="obligatorio" value="#{bundle.CreatePreingresoD3Label_dated3}" for="dated3" />
-                            <p:calendar id="dated3" pattern="dd/MM/yyyy" value="#{preingresoD3Controller.selected.dated3}" title="#{bundle.EditPreingresoD3Title_dated3}" required="true" requiredMessage="Ingrese una fecha"  showOn="button"/>
+                            <p:calendar id="dated3" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{preingresoD3Controller.selected.dated3}" title="#{bundle.EditPreingresoD3Title_dated3}" required="true" requiredMessage="Ingrese una fecha"  showOn="button"/>
                             <p:outputLabel value="#{bundle.CreatePreingresoD3Label_peso}" for="peso" />
                             <p:inputText id="peso" value="#{preingresoD3Controller.selected.peso}" title="#{bundle.CreatePreingresoD3Title_peso}" />
                             <p:outputLabel value="#{bundle.CreatePreingresoD3Label_pass1}" for="pass1" />
@@ -62,7 +62,7 @@
                             <p:outputLabel value="#{bundle.CreatePreingresoD3Label_pulso}" for="pulso" />
                             <p:inputText id="pulso" value="#{preingresoD3Controller.selected.pulso}" title="#{bundle.CreatePreingresoD3Title_pulso}" />
                             <p:outputLabel value="#{bundle.CreatePreingresoD3Label_observaciones}" for="observaciones" />
-                            <p:inputText id="observaciones" value="#{preingresoD3Controller.selected.observaciones}" title="#{bundle.CreatePreingresoD3Title_observaciones}" />
+                            <p:inputTextarea class="textAreas" rows="5" cols="20"  id="observaciones" value="#{preingresoD3Controller.selected.observaciones}" title="#{bundle.CreatePreingresoD3Title_observaciones}" />
                             <p:outputLabel  class="obligatorio" value="#{bundle.CreatePreingresoD3Label_tipoprograma}" for="tipoprograma" />
                             <p:selectOneMenu id="tipoprograma" value="#{preingresoD3Controller.selected.tipoprograma}" required="true" requiredMessage="#{bundle.EditPreingresoD3RequiredMessage_tipoprograma}">
                                 <f:selectItems value="#{tipoProgramaController.itemsAvailableSelectOne}"

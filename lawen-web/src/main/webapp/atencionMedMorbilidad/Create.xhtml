@@ -94,7 +94,7 @@
                             <p:ajax  update="edadMorb" listener="#{atencionMedMorbilidadController.handleKeyEvent()}" />
                         </p:selectOneMenu>
                         <p:outputLabel  class="obligatorio" value="#{bundle.CreateAtencionMedMorbilidadLabel_fechaAtencion_morb}" for="fechaAtencion_morb" />
-                        <p:calendar id="fechaAtencion_morb" pattern="dd/MM/yyyy" value="#{atencionMedMorbilidadController.selected.fechaAtencion_morb}" title="#{bundle.EditAtencionMedMorbilidadTitle_fechaAtencion_morb}" navigator="true" locale="es" yearRange="c-100:c+10"  showOn="button"/>
+                        <p:calendar id="fechaAtencion_morb" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{atencionMedMorbilidadController.selected.fechaAtencion_morb}" title="#{bundle.EditAtencionMedMorbilidadTitle_fechaAtencion_morb}" navigator="true" locale="es" yearRange="c-100:c+10"  showOn="button"/>
                         <p:outputLabel  class="obligatorio" value="Profesional" for="profesional_apse" />
                         <p:selectOneMenu id="profesional_apse" value="#{atencionMedMorbilidadController.selected.profesional_morb}" required="true" requiredMessage="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" panelStyle="width:180px"
                                          effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
@@ -141,9 +141,9 @@
                         <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_examen_fisico}" for="examen_fisico" />
                         <p:inputTextarea class="textAreas" rows="5" cols="20" id="examen_fisico" value="#{atencionMedMorbilidadController.selected.examen_fisico}" title="#{bundle.CreateAtencionMedMorbilidadTitle_examen_fisico}" />
                         <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_hipotesis_diagnostiva}" for="hipotesis_diagnostiva" />
-                        <p:inputText id="hipotesis_diagnostiva" value="#{atencionMedMorbilidadController.selected.hipotesis_diagnostiva}" title="#{bundle.CreateAtencionMedMorbilidadTitle_hipotesis_diagnostiva}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="hipotesis_diagnostiva" value="#{atencionMedMorbilidadController.selected.hipotesis_diagnostiva}" title="#{bundle.CreateAtencionMedMorbilidadTitle_hipotesis_diagnostiva}" />
                         <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_diagnostivo_mrb}" for="diagnostivo_mrb" />
-                        <p:inputText id="diagnostivo_mrb" value="#{atencionMedMorbilidadController.selected.diagnostivo_mrb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_diagnostivo_mrb}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="diagnostivo_mrb" value="#{atencionMedMorbilidadController.selected.diagnostivo_mrb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_diagnostivo_mrb}" />
                         <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_indicaciones}" for="indicaciones" />
                         <p:inputTextarea class="textAreas" rows="5" cols="20" id="indicaciones" value="#{atencionMedMorbilidadController.selected.indicaciones}" title="#{bundle.CreateAtencionMedMorbilidadTitle_indicaciones}" />
                         <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_tratamiento_famacologico}" for="tratamiento_famacologico" />

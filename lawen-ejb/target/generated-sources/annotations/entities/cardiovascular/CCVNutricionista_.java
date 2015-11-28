@@ -9,10 +9,10 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(CCVNutricionista.class)
 public abstract class CCVNutricionista_ {
 
-	public static volatile SingularAttribute<CCVNutricionista, FichaNutricionista> fichaNutri;
-	public static volatile SingularAttribute<CCVNutricionista, CartolaSeguimientoCCV> cartolaToNutri;
-	public static volatile SingularAttribute<CCVNutricionista, Date> fechaAtencionNutri;
 	public static volatile SingularAttribute<CCVNutricionista, Long> id;
+	public static volatile SingularAttribute<CCVNutricionista, Date> fechaAtencionNutri;
+	public static volatile SingularAttribute<CCVNutricionista, CartolaSeguimientoCCV> cartolaToNutri;
+	public static volatile SingularAttribute<CCVNutricionista, FichaNutricionista> fichaNutri;
 
 }
 

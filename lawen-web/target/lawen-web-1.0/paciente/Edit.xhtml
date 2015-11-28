@@ -14,7 +14,7 @@
                     <p:panelGrid columns="2" rendered="#{pacienteController.selected != null}">
 
                         <p:outputLabel value="#{bundle.EditPacienteLabel_rut_paciente}" for="rut_paciente" />
-                        <p:inputText id="rut_paciente" value="#{pacienteController.selected.rut_paciente}" placeholder="sin puntos ni digito verificador" title="#{bundle.CreatePacienteTitle_rut_paciente}" disabled="true">
+                        <p:inputText id="rut_paciente" value="#{pacienteController.selected.rut_paciente}" placeholder="sin puntos y con guión" title="#{bundle.CreatePacienteTitle_rut_paciente}">
                             <f:validator validatorId="rutValidator" />
                         </p:inputText>
                         <p:outputLabel  class="obligatorio" value="#{bundle.EditPacienteLabel_nombres_paciente}" for="nombres_paciente" />
@@ -24,7 +24,7 @@
                         <p:outputLabel value="#{bundle.EditPacienteLabel_apellidoMaterno_paciente}" for="apellidoMaterno_paciente" />
                         <p:inputText id="apellidoMaterno_paciente" value="#{pacienteController.selected.apellidoMaterno_paciente}" title="#{bundle.EditPacienteTitle_apellidoMaterno_paciente}" />
                         <p:outputLabel  class="obligatorio" value="#{bundle.EditPacienteLabel_fechaNacimiento_paciente}" for="fechaNacimiento_paciente" />
-                        <p:calendar id="fechaNacimiento_paciente" pattern="dd/MM/yyyy" value="#{pacienteController.selected.fechaNacimiento_paciente}" title="#{bundle.EditPacienteTitle_fechaNacimiento_paciente}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                        <p:calendar id="fechaNacimiento_paciente" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{pacienteController.selected.fechaNacimiento_paciente}" title="#{bundle.EditPacienteTitle_fechaNacimiento_paciente}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
 
 
                         <p:outputLabel value="#{bundle.EditPacienteLabel_genero_paciente}" for="genero_paciente" />
@@ -40,11 +40,13 @@
                         <p:inputText id="direccion_paciente" value="#{pacienteController.selected.direccion_paciente}" title="#{bundle.EditPacienteTitle_direccion_paciente}" />
                         <p:outputLabel value="#{bundle.EditPacienteLabel_nacionalidad_paciente}" for="nacionalidad_paciente" />
                         <p:inputText id="nacionalidad_paciente" value="#{pacienteController.selected.nacionalidad_paciente}" title="#{bundle.EditPacienteTitle_nacionalidad_paciente}" />
-                        <p:outputLabel value="#{bundle.EditPacienteLabel_etnia_paciente}" for="etnia_paciente" />
-                        <p:inputText id="etnia_paciente" value="#{pacienteController.selected.etnia_paciente}" title="#{bundle.EditPacienteTitle_etnia_paciente}" />
 
                         <p:outputLabel value="Etnia" for="etnia" />
                         <p:selectBooleanButton id="etnia" value="#{pacienteController.selected.etnia}" onLabel="Si" offLabel="No" style="width:60px" />
+
+                        <p:outputLabel value="#{bundle.EditPacienteLabel_etnia_paciente}" for="etnia_paciente" />
+                        <p:inputText id="etnia_paciente" value="#{pacienteController.selected.etnia_paciente}" title="#{bundle.EditPacienteTitle_etnia_paciente}" />
+
 
 
                         <p:outputLabel value="#{bundle.EditPacienteLabel_ocupacion_paciente}" for="ocupacion_paciente" />
@@ -70,7 +72,7 @@
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{bundle.EditPacienteLabel_fechaInscripcion_paciente}" for="fechaInscripcion_paciente" />
-                        <p:calendar id="fechaInscripcion_paciente" pattern="MM/dd/yyyy" value="#{pacienteController.selected.fechaInscripcion_paciente}" title="#{bundle.EditPacienteTitle_fechaInscripcion_paciente}"  showOn="button"/>
+                        <p:calendar id="fechaInscripcion_paciente" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{pacienteController.selected.fechaInscripcion_paciente}" title="#{bundle.EditPacienteTitle_fechaInscripcion_paciente}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditPacienteLabel_numeroFicha_paciente}" for="numeroFicha_paciente" />
                         <p:inputText id="numeroFicha_paciente" value="#{pacienteController.selected.numeroFicha_paciente}" title="#{bundle.EditPacienteTitle_numeroFicha_paciente}" />
                         <p:outputLabel value="#{bundle.EditPacienteLabel_numeroRegistro_paciente}" for="numeroRegistro_paciente" />

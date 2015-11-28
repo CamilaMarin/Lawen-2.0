@@ -9,10 +9,10 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(ICVMedico.class)
 public abstract class ICVMedico_ {
 
-	public static volatile SingularAttribute<ICVMedico, Date> fechaAtencionMed;
 	public static volatile SingularAttribute<ICVMedico, Long> id;
 	public static volatile SingularAttribute<ICVMedico, FichaMedico> fichaMed;
 	public static volatile SingularAttribute<ICVMedico, CartolaSeguimientoCCV> cartola;
+	public static volatile SingularAttribute<ICVMedico, Date> fechaAtencionMed;
 
 }
 

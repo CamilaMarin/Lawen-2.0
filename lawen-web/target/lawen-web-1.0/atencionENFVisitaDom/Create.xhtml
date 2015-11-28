@@ -29,7 +29,7 @@
                                            itemValue="#{profesional_visitaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel  class="obligatorio" value="Fecha:" for="fechaVista" />
-                        <p:calendar id="fechaVista" pattern="dd/MM/yyyy" locale="es" value="#{atencionENFVisitaDomController.selected.fechaVista}" title="#{bundle.EditAtencionENFVisitaDomTitle_fechaVista}" navigator="true" yearRange="c-100:c+10" showOn="button"/>
+                        <p:calendar id="fechaVista" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" locale="es" value="#{atencionENFVisitaDomController.selected.fechaVista}" title="#{bundle.EditAtencionENFVisitaDomTitle_fechaVista}" navigator="true" yearRange="c-100:c+10" showOn="button"/>
                         <p:outputLabel value="Edad paciente:" for="edad_paciente" />
                         <p:inputText disabled="true" id="edad_paciente" value="#{atencionENFVisitaDomController.edad}" title="#{bundle.CreateAtencionENFVisitaDomTitle_edad_paciente}" />
                         <p:outputLabel value="Integrantes Grupo Familiar:" for="integrantes_grupo_familiar" />

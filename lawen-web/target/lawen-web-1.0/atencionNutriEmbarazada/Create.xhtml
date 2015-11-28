@@ -101,7 +101,7 @@
                                            itemValue="#{profesionalItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel  class="obligatorio" value="Fecha:" for="fecha_control" />
-                        <p:calendar id="fecha_control" pattern="dd/MM/yyyy" value="#{atencionNutriEmbarazadaController.selected.fecha_control}" title="#{bundle.EditAtencionNutriEmbarazadaTitle_fecha_control}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                        <p:calendar id="fecha_control" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{atencionNutriEmbarazadaController.selected.fecha_control}" title="#{bundle.EditAtencionNutriEmbarazadaTitle_fecha_control}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
                         <p:outputLabel value="Edad:" for="edad_paciente" />
                         <p:inputText disabled="true" id="edad_paciente" value="#{atencionNutriEmbarazadaController.edad}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_edad_paciente}" />
 
@@ -127,7 +127,7 @@
                         <p:outputLabel value="#{bundle.CreateAtencionNutriEmbarazadaLabel_imc}" for="imc" />
                         <p:inputText id="imc" value="#{atencionNutriEmbarazadaController.selected.imc}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_imc}" />
                         <p:outputLabel  class="obligatorio" value="#{bundle.CreateAtencionNutriDietoterapiaLabel_diagnostico_nutricional}" for="diagnostico_nutricional" />
-                        <p:inputText id="diagnostico_nutricional" value="#{atencionNutriEmbarazadaController.selected.diagnostico_nutricional}"  required="true" requiredMessage="Un diagnóstico es requerido" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="diagnostico_nutricional" value="#{atencionNutriEmbarazadaController.selected.diagnostico_nutricional}"  required="true" requiredMessage="Un diagnóstico es requerido" />
 
                         <p:outputLabel value="PA Sentado:" for="pa_sentado1" />
                         <p:inputText id="pa_sendado2" value="#{atencionNutriEmbarazadaController.selected.pa_sendado2}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_pa_sendado2}">
@@ -308,40 +308,40 @@
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_otros_examenes}" for="otros_examenes" />
-                        <p:inputText id="otros_examenes" value="#{atencionNutriEmbarazadaController.selected.otros_examenes}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_otros_examenes}" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="otros_examenes" value="#{atencionNutriEmbarazadaController.selected.otros_examenes}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_otros_examenes}" />
 
                         <p:outputLabel value="Historia dietética:" class="subItem" />
                         <p:outputLabel value="" />
                         <p:outputLabel value="Desayuno" class="subSubItem"/>
                         <p:outputLabel value="" />
                         <p:outputLabel value="Horario" />
-                        <p:calendar id="desayuno_horario" value="#{atencionNutriEmbarazadaController.selected.desayuno_horario}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:calendar id="desayuno_horario" placeholder="hh:mm" value="#{atencionNutriEmbarazadaController.selected.desayuno_horario}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
                         <p:outputLabel value="Descripción" />
-                        <p:inputText id="desayuno_descripcion" value="#{atencionNutriEmbarazadaController.selected.desayuno_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_descripcion}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="desayuno_descripcion" value="#{atencionNutriEmbarazadaController.selected.desayuno_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_descripcion}" />
                         <p:outputLabel value="Colación"  class="subSubItem"/>
                         <p:outputLabel value="" />
                         <p:outputLabel value="Horario" />
-                        <p:calendar id="colacion_horario" value="#{atencionNutriEmbarazadaController.selected.colacion_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:calendar id="colacion_horario" placeholder="hh:mm" value="#{atencionNutriEmbarazadaController.selected.colacion_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
                         <p:outputLabel value="Descripción" />
-                        <p:inputText id="colacion_descripcion" value="#{atencionNutriEmbarazadaController.selected.colacion_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_descripcion}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="colacion_descripcion" value="#{atencionNutriEmbarazadaController.selected.colacion_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_descripcion}" />
                         <p:outputLabel value="Almuerzo"  class="subSubItem"/>
                         <p:outputLabel value="" />
                         <p:outputLabel value="Horario" />
-                        <p:calendar id="almuerzo_horario" value="#{atencionNutriEmbarazadaController.selected.almuerzo_horario}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:calendar id="almuerzo_horario" placeholder="hh:mm" value="#{atencionNutriEmbarazadaController.selected.almuerzo_horario}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
                         <p:outputLabel value="Descripción" />
-                        <p:inputText id="almuerzo_descripcion" value="#{atencionNutriEmbarazadaController.selected.almuerzo_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_descripcion}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="almuerzo_descripcion" value="#{atencionNutriEmbarazadaController.selected.almuerzo_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_descripcion}" />
                         <p:outputLabel value="Colación Tarde"  class="subSubItem"/>
                         <p:outputLabel value="" />
                         <p:outputLabel value="Horario" />
-                        <p:calendar id="colaciontarde_horario" value="#{atencionNutriEmbarazadaController.selected.colaciontarde_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:calendar id="colaciontarde_horario" placeholder="hh:mm" value="#{atencionNutriEmbarazadaController.selected.colaciontarde_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
                         <p:outputLabel value="Descripción" />
-                        <p:inputText id="colaciontarde_descripcion" value="#{atencionNutriEmbarazadaController.selected.colaciontarde_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_descripcion}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="colaciontarde_descripcion" value="#{atencionNutriEmbarazadaController.selected.colaciontarde_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_descripcion}" />
                         <p:outputLabel value="Cena"  class="subSubItem"/>
                         <p:outputLabel value="" />
                         <p:outputLabel value="Horario" />
-                        <p:calendar id="cena_horario" value="#{atencionNutriEmbarazadaController.selected.cena_horario}" title="#{bundle.CreateFichaNutricionistaTitle_cena_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:calendar id="cena_horario" placeholder="hh:mm" value="#{atencionNutriEmbarazadaController.selected.cena_horario}" title="#{bundle.CreateFichaNutricionistaTitle_cena_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
                         <p:outputLabel value="Descripción" />
-                        <p:inputText id="cena_descripcion" value="#{atencionNutriEmbarazadaController.selected.cena_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_cena_descripcion}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="cena_descripcion" value="#{atencionNutriEmbarazadaController.selected.cena_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_cena_descripcion}" />
 
                         <p:outputLabel value="Frecuencia consumo:" for="frecuencia_consumo" />
                         <p:inputTextarea class="textAreas" rows="5" cols="20" id="frecuencia_consumo" value="#{atencionNutriEmbarazadaController.selected.frecuencia_consumo}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_frecuencia_consumo}" />
@@ -354,15 +354,15 @@
                         <p:outputLabel value="Hidratos de carbono:" for="hidratos_de_carbono" />
                         <p:inputText id="hidratos_de_carbono" value="#{atencionNutriEmbarazadaController.selected.hidratos_de_carbono}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_hidratos_de_carbono}" />
                         <p:outputLabel value="Observaciones:" for="hidratos_de_carbonObs" />
-                        <p:inputText id="hidratos_de_carbonObs" value="#{atencionNutriEmbarazadaController.selected.hidratos_de_carbonObs}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_hidratos_de_carbonObs}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="hidratos_de_carbonObs" value="#{atencionNutriEmbarazadaController.selected.hidratos_de_carbonObs}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_hidratos_de_carbonObs}" />
                         <p:outputLabel value="Proteínas:" for="proteinas" />
                         <p:inputText id="proteinas" value="#{atencionNutriEmbarazadaController.selected.proteinas}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_proteinas}" />
                         <p:outputLabel value="Observaciones" for="proteinas_Obs" />
-                        <p:inputText id="proteinas_Obs" value="#{atencionNutriEmbarazadaController.selected.proteinas_Obs}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_proteinas_Obs}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="proteinas_Obs" value="#{atencionNutriEmbarazadaController.selected.proteinas_Obs}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_proteinas_Obs}" />
                         <p:outputLabel value="Lípidos:" for="lipidos" />
                         <p:inputText id="lipidos" value="#{atencionNutriEmbarazadaController.selected.lipidos}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_lipidos}" />
                         <p:outputLabel value="Observaciones:" for="lipidos_Obs" />
-                        <p:inputText id="lipidos_Obs" value="#{atencionNutriEmbarazadaController.selected.lipidos_Obs}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_lipidos_Obs}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="lipidos_Obs" value="#{atencionNutriEmbarazadaController.selected.lipidos_Obs}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_lipidos_Obs}" />
 
                         <p:outputLabel value="Indicaciones Alimentarias:" for="indicaciones_alimentarias" />
                         <p:inputTextarea class="textAreas" rows="5" cols="20" id="indicaciones_alimentarias" value="#{atencionNutriEmbarazadaController.selected.indicaciones_alimentarias}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_indicaciones_alimentarias}" />

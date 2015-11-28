@@ -102,7 +102,7 @@
 
 
                         <p:outputLabel class="obligatorio" value="#{bundle.CreateAtencionNutriDietoterapiaLabel_fecha_control}" for="fecha_control" />
-                        <p:calendar id="fecha_control" pattern="dd/MM/yyyy" value="#{atencionNutriDietoterapiaController.selected.fecha_control}" title="#{bundle.EditAtencionNutriDietoterapiaTitle_fecha_control}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                        <p:calendar id="fecha_control" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{atencionNutriDietoterapiaController.selected.fecha_control}" title="#{bundle.EditAtencionNutriDietoterapiaTitle_fecha_control}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_edad_paciente}" for="edad_paciente" />
                         <p:inputText disabled="true" id="edad_paciente" value="#{atencionNutriDietoterapiaController.edad}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_edad_paciente}" />
                         <p:outputLabel class="obligatorio" value="#{bundle.CreateAtencionNutriDietoterapiaLabel_profesional}" for="profesional" />
@@ -130,7 +130,7 @@
                         <p:inputText id="imc" value="#{atencionNutriDietoterapiaController.selected.imc}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_imc}" />
 
                         <p:outputLabel class="obligatorio" value="#{bundle.CreateAtencionNutriDietoterapiaLabel_diagnostico_nutricional}" for="diagnostico_nutricional" />
-                        <p:inputText id="diagnostico_nutricional" value="#{atencionNutriDietoterapiaController.selected.diagnostico_nutricional}"  required="true" requiredMessage="Un diagnóstico es requerido" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20"  id="diagnostico_nutricional" value="#{atencionNutriDietoterapiaController.selected.diagnostico_nutricional}"  required="true" requiredMessage="Un diagnóstico es requerido" />
 
 
                         <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_perimetro_cintura}" for="perimetro_cintura" />
@@ -405,33 +405,33 @@
                         <p:outputLabel value="" />
                         <p:outputLabel value="Horario" />
 
-                        <p:calendar id="desayuno_horario" value="#{atencionNutriDietoterapiaController.selected.desayuno_horario}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:calendar id="desayuno_horario"  placeholder="hh:mm" value="#{atencionNutriDietoterapiaController.selected.desayuno_horario}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
                         <p:outputLabel value="Descripción" />
-                        <p:inputText id="desayuno_descripcion" value="#{atencionNutriDietoterapiaController.selected.desayuno_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_descripcion}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="desayuno_descripcion" value="#{atencionNutriDietoterapiaController.selected.desayuno_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_descripcion}" />
                         <p:outputLabel value="Colación" class="subSubItem"/>
                         <p:outputLabel value="" />
                         <p:outputLabel value="Horario" />
-                        <p:calendar id="colacion_horario" value="#{atencionNutriDietoterapiaController.selected.colacion_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:calendar id="colacion_horario"  placeholder="hh:mm" value="#{atencionNutriDietoterapiaController.selected.colacion_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
                         <p:outputLabel value="Descripción" />
-                        <p:inputText id="colacion_descripcion" value="#{atencionNutriDietoterapiaController.selected.colacion_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_descripcion}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="colacion_descripcion" value="#{atencionNutriDietoterapiaController.selected.colacion_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_descripcion}" />
                         <p:outputLabel value="Almuerzo" class="subSubItem"/>
                         <p:outputLabel value="" />
                         <p:outputLabel value="Horario" />
-                        <p:calendar id="almuerzo_horario" value="#{atencionNutriDietoterapiaController.selected.almuerzo_horario}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:calendar id="almuerzo_horario" placeholder="hh:mm" value="#{atencionNutriDietoterapiaController.selected.almuerzo_horario}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
                         <p:outputLabel value="Descripción" />
-                        <p:inputText id="almuerzo_descripcion" value="#{atencionNutriDietoterapiaController.selected.almuerzo_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_descripcion}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="almuerzo_descripcion" value="#{atencionNutriDietoterapiaController.selected.almuerzo_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_descripcion}" />
                         <p:outputLabel value="Colación Tarde" class="subSubItem"/>
                         <p:outputLabel value="" />
                         <p:outputLabel value="Horario" />
-                        <p:calendar id="colaciontarde_horario" value="#{atencionNutriDietoterapiaController.selected.colaciontarde_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
+                        <p:calendar id="colaciontarde_horario"  placeholder="hh:mm" value="#{atencionNutriDietoterapiaController.selected.colaciontarde_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button"  />
                         <p:outputLabel value="Descripción" />
-                        <p:inputText id="colaciontarde_descripcion" value="#{atencionNutriDietoterapiaController.selected.colaciontarde_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_descripcion}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="colaciontarde_descripcion" value="#{atencionNutriDietoterapiaController.selected.colaciontarde_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_descripcion}" />
                         <p:outputLabel value="Cena" class="subSubItem"/>
                         <p:outputLabel value="" />
                         <p:outputLabel value="Horario" />
-                        <p:calendar id="cena_horario" value="#{atencionNutriDietoterapiaController.selected.cena_horario}" title="#{bundle.CreateFichaNutricionistaTitle_cena_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
+                        <p:calendar id="cena_horario" placeholder="hh:mm" value="#{atencionNutriDietoterapiaController.selected.cena_horario}" title="#{bundle.CreateFichaNutricionistaTitle_cena_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
                         <p:outputLabel value="Descripción" />
-                        <p:inputText id="cena_descripcion" value="#{atencionNutriDietoterapiaController.selected.cena_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_cena_descripcion}" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="cena_descripcion" value="#{atencionNutriDietoterapiaController.selected.cena_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_cena_descripcion}" />
 
                         <p:outputLabel value="Frecuencia consumo:" for="frecuencia_consumo" />
                         <p:inputTextarea rows="5" cols="20" id="frecuencia_consumo" value="#{atencionNutriDietoterapiaController.selected.frecuencia_consumo}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_frecuencia_consumo}" />

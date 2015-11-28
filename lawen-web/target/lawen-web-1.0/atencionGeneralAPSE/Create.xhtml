@@ -34,7 +34,7 @@
                         
                      
                         <p:outputLabel  class="obligatorio" value="Fecha atención:" for="fechaAtencion" />
-                        <p:calendar id="fechaAtencion" pattern="dd/MM/yyyy" value="#{atencionGeneralAPSEController.selected.fechaAtencion}" title="#{bundle.EditAtencionGeneralAPSETitle_fechaAtencion}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                        <p:calendar id="fechaAtencion" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{atencionGeneralAPSEController.selected.fechaAtencion}" title="#{bundle.EditAtencionGeneralAPSETitle_fechaAtencion}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
                         <p:outputLabel value="Nombre:" for="nombreApse" />
                         <p:inputText id="nombreApse" value="#{atencionGeneralAPSEController.selected.nombreApse}" title="#{bundle.CreateAtencionGeneralAPSETitle_nombreApse}" />
                         <p:outputLabel value="Descripción:" for="descipcionApse" />

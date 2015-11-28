@@ -42,7 +42,7 @@
                             <p:outputLabel value="#{bundle.CreatePreingresoD1Label_pacientes}" for="pacientes" />
                             <p:inputText  class="obligatorio" disabled="true" id="pacientes" value="#{pacienteController.selected.rut_paciente}"/>
                             <p:outputLabel  class="obligatorio" value="#{bundle.CreatePreingresoD1Label_dated1}" for="dated1" />
-                            <p:calendar id="dated1" pattern="dd/MM/yyyy" value="#{preingresoD1Controller.selected.dated1}" title="#{bundle.EditPreingresoD1Title_dated1}"  showOn="button" required="true" requiredMessage="Debe ingresar una fecha de atención"/>
+                            <p:calendar id="dated1" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{preingresoD1Controller.selected.dated1}" title="#{bundle.EditPreingresoD1Title_dated1}"  showOn="button" required="true" requiredMessage="Debe ingresar una fecha de atención"/>
                             <p:outputLabel value="#{bundle.CreatePreingresoD1Label_referido}" for="referido" />
                             <p:inputText id="referido" value="#{preingresoD1Controller.selected.referido}" title="#{bundle.CreatePreingresoD1Title_referido}" />                        
                             <p:outputLabel value="#{bundle.CreatePreingresoD1Label_paref1sentado}" for="paref1sentado" />
@@ -82,7 +82,7 @@
                             <p:outputLabel value="#{bundle.CreatePreingresoD1Label_pulso}" for="pulso" />
                             <p:inputText id="pulso" value="#{preingresoD1Controller.selected.pulso}" title="#{bundle.CreatePreingresoD1Title_pulso}" />
                             <p:outputLabel value="#{bundle.CreatePreingresoD1Label_observaciones}" for="observaciones" />
-                            <p:inputText id="observaciones" value="#{preingresoD1Controller.selected.observaciones}" title="#{bundle.CreatePreingresoD1Title_observaciones}" />                        
+                            <p:inputTextarea class="textAreas" rows="5" cols="20"  id="observaciones" value="#{preingresoD1Controller.selected.observaciones}" title="#{bundle.CreatePreingresoD1Title_observaciones}" />                        
 
                             <p:outputLabel  class="obligatorio" value="#{bundle.CreatePreingresoD1Label_tipoprograma}" for="tipoprograma" />
                             <p:selectOneMenu id="tipoprograma" value="#{preingresoD1Controller.selected.tipoprograma}" required="true" requiredMessage="#{bundle.EditPreingresoD1RequiredMessage_tipoprograma}">
