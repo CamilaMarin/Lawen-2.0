@@ -120,7 +120,7 @@
                         </p:selectOneMenu>
                       
                         <p:outputLabel class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_fecha_control}" for="fecha_control" />
-                        <p:calendar id="fecha_control" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoCCVController.selected.fecha_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fecha_control}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                        <p:calendar id="fecha_control" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoCCVController.selected.fecha_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fecha_control}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_edad_paciente}" for="edad_paciente" />
                         <p:inputText disabled="true" id="edad_paciente" value="#{cartolaSeguimientoCCVController.edad}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_edad_paciente}" />
                         <p:outputLabel class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_profesional}" for="profesional" />
@@ -555,6 +555,7 @@
                             <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
                             <f:selectItem itemLabel="Si" itemValue="Si" />  
                             <f:selectItem itemLabel="No" itemValue="No" />  
+                            <f:selectItem itemLabel="No se sabe" itemValue="No se sabe" />  
                         
                         </p:selectOneMenu> 
                         <p:outputLabel value="Prediabético:" for="prediabetico" />
@@ -622,10 +623,10 @@
                         
                         
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_observaciones}" for="observaciones" />
-                        <p:inputText id="observaciones" value="#{cartolaSeguimientoCCVController.selected.observaciones}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_observaciones}" />
+                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="observaciones" value="#{cartolaSeguimientoCCVController.selected.observaciones}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_observaciones}" />
                         
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_fechareingreso}" for="fechareingreso" />
-                        <p:calendar id="fechareingreso" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoCCVController.selected.fechareingreso}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fechareingreso}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                        <p:calendar id="fechareingreso" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoCCVController.selected.fechareingreso}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fechareingreso}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
                         
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_proximo_control}" for="proximo_control" />
                         <h:inputTextarea class="textAreas" rows="10" cols="20"   id="proximo_control"  value="#{cartolaSeguimientoCCVController.selected.proximo_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_proximo_control}" />

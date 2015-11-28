@@ -1155,7 +1155,7 @@
                         <p:outputLabel value="Datos generales" styleClass="Item"/>
                         <p:outputLabel value=" " />
                         <p:outputLabel  class="obligatorio" value="Fecha atención:" for="fechaIngresoPSAM" />
-                        <p:calendar id="fechaIngresoPSAM" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoPSAMController.selected.fechaAtencion}" navigator="true" locale="es" yearRange="c-100:c+10"  showOn="button" />
+                        <p:calendar id="fechaIngresoPSAM" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoPSAMController.selected.fechaAtencion}" navigator="true" locale="es" yearRange="c-100:c+10"  showOn="button" />
                         <p:outputLabel  class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_profesional}" for="profesional" />
                         <p:selectOneMenu id="profesional" value="#{cartolaSeguimientoPSAMController.selected.profesional}" required="true" requiredMessage="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" panelStyle="width:180px"
                                          effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">

@@ -15,7 +15,113 @@
             <h:outputScript>
              //<![CDATA[ 
 
+             function mostrarResultadoColesterolTotal(){
+                var valor = $("#colesterolTotal_sol_input").val();
+                if(valor == "RESULTADO"){
+                    $("#colesterolTotal_valor").show();
+                    $("#label_colesterolTotal_valor").show();
+                }
+                else{
+                    $("#colesterolTotal_valor").hide();
+                    $("#label_colesterolTotal_valor").hide();
+                }
+             }
 
+             function mostrarResultadoGlicemia(){
+                var valor = $("#glicemia_sol_input").val();
+                if(valor == "RESULTADO"){
+                    $("#glicemia_valor").show();
+                    $("#label_glicemia_valor").show();
+                }
+                else{
+                    $("#glicemia_valor").hide();
+                    $("#label_glicemia_valor").hide();
+                }
+             }   
+             
+             function mostrarResultadoBaciloscopiaTotal(){
+                var valor = $("#baciloscopia_sol_input").val();
+                if(valor == "RESULTADO"){
+                    $("#baciloscopia_estado").show();
+                    $("#label_baciloscopia_estado").show();
+                }
+                else{
+                    $("#baciloscopia_estado").hide();
+                    $("#label_baciloscopia_estado").hide();
+                }
+             }  
+             
+             function mostrarResultadoVDRLTotal(){
+                var valor = $("#VDRL_sol_input").val();
+                if(valor == "RESULTADO"){
+                    $("#VDRL_estado").show();
+                    $("#label_VDRL_estado").show();
+                }
+                else{
+                    $("#VDRL_estado").hide();
+                    $("#label_VDRL_estado").hide();
+                }
+             }   
+
+             function mostrarResultadoPSAMTotal(){
+                var valor = $("#presbicia_sol_input").val();
+                if(valor == "RESULTADO"){
+                    $("#presbicia_estado").show();
+                    $("#label_presbicia_estado").show();
+                }
+                else{
+                    $("#presbicia_estado").hide();
+                    $("#label_presbicia_estado").hide();
+                }
+             }              
+             
+             			function mostrarUsoProtesisDentaria(){
+                if (document.getElementById("uso_protesis_dentaria_obs").style.display == 'none'){
+                    $("#uso_protesis_dentaria_obs").show();
+                    $("#label_uso_protesis_dentaria_obs").show(); 
+                }               
+                else{
+                    $("#uso_protesis_dentaria_obs").hide();
+                    $("#label_uso_protesis_dentaria_obs").hide(); 
+                }    
+              };
+
+
+              function mostrarUsoLentesOpticos(){
+                if (document.getElementById("uso_lentes_opticos_obs").style.display == 'none'){
+                    $("#uso_lentes_opticos_obs").show();
+                    $("#label_uso_lentes_opticos_obs").show(); 
+                }               
+                else{
+                    $("#uso_lentes_opticos_obs").hide();
+                    $("#label_uso_lentes_opticos_obs").hide(); 
+                }    
+              };
+
+              function mostrarUsoMediosApoyo(){
+                if (document.getElementById("uso__medios_apoyo_obs").style.display == 'none'){
+                    $("#uso__medios_apoyo_obs").show();
+                    $("#label_uso__medios_apoyo_obs").show(); 
+                }               
+                else{
+                    $("#uso__medios_apoyo_obs").hide();
+                    $("#label_uso__medios_apoyo_obs").hide(); 
+                }    
+              };
+
+
+              function mostrarUsoAudifonos(){
+                if (document.getElementById("uso_audifonos_obs").style.display == 'none'){
+                    $("#uso_audifonos_obs").show();
+                    $("#label_uso_audifonos_obs").show(); 
+                }               
+                else{
+                    $("#uso_audifonos_obs").hide();
+                    $("#label_uso_audifonos_obs").hide(); 
+                }    
+              };           
+             
+             
              function ocultarInfluenza () {
                 if (document.getElementById("influenza_ultimaAdmin").style.display == 'none'){
                     $("#influenza_ultimaAdmin").show();
@@ -1049,7 +1155,7 @@
                         <p:outputLabel value="Datos generales" styleClass="Item"/>
                         <p:outputLabel value=" " />
                         <p:outputLabel  class="obligatorio" value="Fecha atención:" for="fechaIngresoPSAM" />
-                        <p:calendar id="fechaIngresoPSAM" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoPSAMController.selected.fechaAtencion}" navigator="true" locale="es" yearRange="c-100:c+10"  showOn="button" />
+                        <p:calendar id="fechaIngresoPSAM" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoPSAMController.selected.fechaAtencion}" navigator="true" locale="es" yearRange="c-100:c+10"  showOn="button" />
                         <p:outputLabel  class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_profesional}" for="profesional" />
                         <p:selectOneMenu id="profesional" value="#{cartolaSeguimientoPSAMController.selected.profesional}" required="true" requiredMessage="#{bundle.CreateCartolaSeguimientoCCVTitle_profesional}" panelStyle="width:180px"
                                          effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
@@ -1330,44 +1436,44 @@
                      
                          
                         <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_glicemia_sol}" for="glicemia_sol" />
-                        <p:selectOneMenu id="glicemia_sol" value="#{esferaClinicaPSAMController.selected.glicemia_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_glicemia_sol}" >
+                        <p:selectOneMenu id="glicemia_sol" value="#{esferaClinicaPSAMController.selected.glicemia_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_glicemia_sol}" onchange="mostrarResultadoGlicemia();">
                                <f:selectItems value="#{dominiosController.estadosExamen}"/> 
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_glicemia_valor}" for="glicemia_valor" />
-                        <p:inputText id="glicemia_valor" value="#{esferaClinicaPSAMController.selected.glicemia_valor}" title="#{bundle.CreateEsferaClinicaPSAMTitle_glicemia_valor}" />
+                        <p:outputLabel id="label_glicemia_valor" value="#{bundle.CreateEsferaClinicaPSAMLabel_glicemia_valor}" for="glicemia_valor" style="display:none;"/>
+                        <p:inputText id="glicemia_valor" value="#{esferaClinicaPSAMController.selected.glicemia_valor}" required="false" title="#{bundle.CreateEsferaClinicaPSAMTitle_glicemia_valor}" style="display:none;"/>
                         
-                                 
+                                
                         <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_colesterolTotal_sol}" for="colesterolTotal_sol" />
-                        <p:selectOneMenu id="colesterolTotal_sol" value="#{esferaClinicaPSAMController.selected.colesterolTotal_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_colesterolTotal_sol}" >
+                        <p:selectOneMenu id="colesterolTotal_sol" value="#{esferaClinicaPSAMController.selected.colesterolTotal_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_colesterolTotal_sol}" onchange="mostrarResultadoColesterolTotal();">
                                <f:selectItems value="#{dominiosController.estadosExamen}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_colesterolTotal_valor}" for="colesterolTotal_valor" />
-                        <p:inputText id="colesterolTotal_valor" value="#{esferaClinicaPSAMController.selected.colesterolTotal_valor}" title="#{bundle.CreateEsferaClinicaPSAMTitle_colesterolTotal_valor}" />
+                        <p:outputLabel id="label_colesterolTotal_valor" value="#{bundle.CreateEsferaClinicaPSAMLabel_colesterolTotal_valor}" for="colesterolTotal_valor" style="display:none;"/>
+                        <p:inputText id="colesterolTotal_valor" value="#{esferaClinicaPSAMController.selected.colesterolTotal_valor}" title="#{bundle.CreateEsferaClinicaPSAMTitle_colesterolTotal_valor}" style="display:none;"/>
                         
                         <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_baciloscopia_sol}" for="baciloscopia_sol" />
-                        <p:selectOneMenu id="baciloscopia_sol" value="#{esferaClinicaPSAMController.selected.baciloscopia_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_baciloscopia_sol}" >
+                        <p:selectOneMenu id="baciloscopia_sol" value="#{esferaClinicaPSAMController.selected.baciloscopia_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_baciloscopia_sol}" onchange="mostrarResultadoBaciloscopiaTotal();">
                                 <f:selectItems value="#{dominiosController.estadosExamen}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_baciloscopia_estado}" for="baciloscopia_estado" />
-                        <p:selectOneMenu id="baciloscopia_estado" value="#{esferaClinicaPSAMController.selected.baciloscopia_estado}" title="#{bundle.CreateEsferaClinicaPSAMTitle_baciloscopia_estado}" >
+                        <p:outputLabel id="label_baciloscopia_estado" value="#{bundle.CreateEsferaClinicaPSAMLabel_baciloscopia_estado}" for="baciloscopia_estado" style="display:none;"/>
+                        <p:selectOneMenu id="baciloscopia_estado" value="#{esferaClinicaPSAMController.selected.baciloscopia_estado}" title="#{bundle.CreateEsferaClinicaPSAMTitle_baciloscopia_estado}" style="display:none; width: 97px;">
                                 <f:selectItems value="#{dominiosController.ejecucionExamen}"/> 
                         </p:selectOneMenu>
                         
                         <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_VDRL_sol}" for="VDRL_sol" />
-                        <p:selectOneMenu id="VDRL_sol" value="#{esferaClinicaPSAMController.selected.VDRL_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_VDRL_sol}" >
+                        <p:selectOneMenu id="VDRL_sol" value="#{esferaClinicaPSAMController.selected.VDRL_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_VDRL_sol}" onchange="mostrarResultadoVDRLTotal();">
                                 <f:selectItems value="#{dominiosController.estadosExamen}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_VDRL_estado}" for="VDRL_estado" />
-                        <p:selectOneMenu id="VDRL_estado" value="#{esferaClinicaPSAMController.selected.VDRL_estado}" title="#{bundle.CreateEsferaClinicaPSAMTitle_VDRL_estado}" >
+                        <p:outputLabel id="label_VDRL_estado" value="#{bundle.CreateEsferaClinicaPSAMLabel_VDRL_estado}" for="VDRL_estado" style="display:none;"/>
+                        <p:selectOneMenu id="VDRL_estado" value="#{esferaClinicaPSAMController.selected.VDRL_estado}" title="#{bundle.CreateEsferaClinicaPSAMTitle_VDRL_estado}" style="display:none; width: 97px;" >
                                 <f:selectItems value="#{dominiosController.ejecucionExamen}"/> 
                         </p:selectOneMenu>
                         
                         <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_presbicia_sol}" for="presbicia_sol" />
-                        <p:selectOneMenu id="presbicia_sol" value="#{esferaClinicaPSAMController.selected.presbicia_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_presbicia_sol}" >
+                        <p:selectOneMenu id="presbicia_sol" value="#{esferaClinicaPSAMController.selected.presbicia_sol}" title="#{bundle.CreateEsferaClinicaPSAMTitle_presbicia_sol}" onchange="mostrarResultadoPSAMTotal();">
                                 <f:selectItems value="#{dominiosController.estadosExamen}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_presbicia_estado}" for="presbicia_estado" />
-                        <p:selectOneMenu id="presbicia_estado" value="#{esferaClinicaPSAMController.selected.presbicia_estado}" title="#{bundle.CreateEsferaClinicaPSAMTitle_presbicia_estado}" >
+                        <p:outputLabel id="label_presbicia_estado" value="#{bundle.CreateEsferaClinicaPSAMLabel_presbicia_estado}" for="presbicia_estado" style="display:none;"/>
+                        <p:selectOneMenu id="presbicia_estado" value="#{esferaClinicaPSAMController.selected.presbicia_estado}" title="#{bundle.CreateEsferaClinicaPSAMTitle_presbicia_estado}" style="display:none; width: 97px;   ">
                                 <f:selectItems value="#{dominiosController.ejecucionExamen}"/> 
                         </p:selectOneMenu>
                         
@@ -1477,24 +1583,24 @@
                         </p:outputLabel>
                         
                         <p:outputLabel value="Uso de prótesis dentaria" for="uso_protesis_dentaria" />
-                        <p:selectBooleanButton id="uso_protesis_dentaria" value="#{esferaFuncionalPSAMController.selected.uso_protesis_dentaria}" onLabel="Si" offLabel="No" style="width:60px" />
-                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_uso_protesis_dentaria_obs}" for="uso_protesis_dentaria_obs" />
-                        <p:inputText id="uso_protesis_dentaria_obs" value="#{esferaFuncionalPSAMController.selected.uso_protesis_dentaria_obs}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_uso_protesis_dentaria_obs}" />
+                        <p:selectBooleanButton id="uso_protesis_dentaria" value="#{esferaFuncionalPSAMController.selected.uso_protesis_dentaria}" onLabel="Si" offLabel="No" style="width:60px" onchange="mostrarUsoProtesisDentaria();"/>
+                        <p:outputLabel id="label_uso_protesis_dentaria_obs" value="#{bundle.CreateEsferaFuncionalPSAMLabel_uso_protesis_dentaria_obs}" for="uso_protesis_dentaria_obs" style="display:none;"/>
+                        <p:inputText id="uso_protesis_dentaria_obs" value="#{esferaFuncionalPSAMController.selected.uso_protesis_dentaria_obs}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_uso_protesis_dentaria_obs}" style="display:none;"/>
                         
                         <p:outputLabel value="Uso de lentes ópticos" for="uso_lentes_opticos" />
-                        <p:selectBooleanButton id="uso_lentes_opticos" value="#{esferaFuncionalPSAMController.selected.uso_lentes_opticos}" onLabel="Si" offLabel="No" style="width:60px" />
-                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_uso_lentes_opticos_obs}" for="uso_lentes_opticos_obs" />
-                        <p:inputText id="uso_lentes_opticos_obs" value="#{esferaFuncionalPSAMController.selected.uso_lentes_opticos_obs}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_uso_lentes_opticos_obs}" />
+                        <p:selectBooleanButton id="uso_lentes_opticos" value="#{esferaFuncionalPSAMController.selected.uso_lentes_opticos}" onLabel="Si" offLabel="No" style="width:60px" onchange="mostrarUsoLentesOpticos();"/>
+                        <p:outputLabel id="label_uso_lentes_opticos_obs" value="#{bundle.CreateEsferaFuncionalPSAMLabel_uso_lentes_opticos_obs}" for="uso_lentes_opticos_obs" style="display:none;"/>
+                        <p:inputText id="uso_lentes_opticos_obs" value="#{esferaFuncionalPSAMController.selected.uso_lentes_opticos_obs}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_uso_lentes_opticos_obs}" style="display:none;"/>
                         
                         <p:outputLabel value="Uso de medios de apoyo" for="uso_medios_apoyo" />
-                        <p:selectBooleanButton id="uso_medios_apoyo" value="#{esferaFuncionalPSAMController.selected.uso_medios_apoyo}" onLabel="Si" offLabel="No" style="width:60px" />
-                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_uso__medios_apoyo_obs}" for="uso__medios_apoyo_obs" />
-                        <p:inputText id="uso__medios_apoyo_obs" value="#{esferaFuncionalPSAMController.selected.uso__medios_apoyo_obs}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_uso__medios_apoyo_obs}" />
+                        <p:selectBooleanButton id="uso_medios_apoyo" value="#{esferaFuncionalPSAMController.selected.uso_medios_apoyo}" onLabel="Si" offLabel="No" style="width:60px" onchange="mostrarUsoMediosApoyo();"/>
+                        <p:outputLabel id="label_uso__medios_apoyo_obs" value="#{bundle.CreateEsferaFuncionalPSAMLabel_uso__medios_apoyo_obs}" for="uso__medios_apoyo_obs" style="display:none;"/>
+                        <p:inputText id="uso__medios_apoyo_obs" value="#{esferaFuncionalPSAMController.selected.uso__medios_apoyo_obs}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_uso__medios_apoyo_obs}" style="display:none;"/>
                         
                         <p:outputLabel value="Uso de audífonos" for="uso_audifonos" />
-                        <p:selectBooleanButton id="uso_audifonos" value="#{esferaFuncionalPSAMController.selected.uso_audifonos}" onLabel="Si" offLabel="No" style="width:60px" />
-                        <p:outputLabel value="#{bundle.CreateEsferaFuncionalPSAMLabel_uso_audifonos_obs}" for="uso_audifonos_obs" />
-                        <p:inputText id="uso_audifonos_obs" value="#{esferaFuncionalPSAMController.selected.uso_audifonos_obs}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_uso_audifonos_obs}" />
+                        <p:selectBooleanButton id="uso_audifonos" value="#{esferaFuncionalPSAMController.selected.uso_audifonos}" onLabel="Si" offLabel="No" style="width:60px" onchange="mostrarUsoAudifonos();"/>
+                        <p:outputLabel id="label_uso_audifonos_obs" value="#{bundle.CreateEsferaFuncionalPSAMLabel_uso_audifonos_obs}" for="uso_audifonos_obs" style="display:none;"/>
+                        <p:inputText id="uso_audifonos_obs" value="#{esferaFuncionalPSAMController.selected.uso_audifonos_obs}" title="#{bundle.CreateEsferaFuncionalPSAMTitle_uso_audifonos_obs}" style="display:none;"/>
                         
                         
                         <p:outputLabel value="Riesgo de caídas"  styleClass="subItem"/>

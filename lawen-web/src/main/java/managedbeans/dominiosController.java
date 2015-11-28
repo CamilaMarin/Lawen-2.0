@@ -93,6 +93,7 @@ public class dominiosController {
         riesgoCCV.add(0, "BAJO");
         riesgoCCV.add(1, "MODERADO");
         riesgoCCV.add(2, "ALTO");
+        riesgoCCV.add(3,"NO SE SABE");
         diagnosticoLista = new ArrayList<>(7);
         diagnosticoLista.add(0, "E");
         diagnosticoLista.add(1, "BP");

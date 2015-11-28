@@ -109,7 +109,7 @@
                             <p:inputText disabled="true" id="pacientes" value="#{pacienteController.selected.rut_paciente}"/> 
 
                             <p:outputLabel  class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_fecha_control}" for="fecha_control" />
-                            <p:calendar id="fecha_control" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoCCVController.selected.fecha_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fecha_control}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
+                            <p:calendar id="fecha_control" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoCCVController.selected.fecha_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fecha_control}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
                             <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_edad_paciente}" for="edad_paciente" />
                             <p:inputText disabled="true" id="edad_paciente" value="#{cartolaSeguimientoCCVController.handleICVEvent(pacienteController.selected)}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_edad_paciente}" />
                             <p:outputLabel  class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_profesional}" for="profesional" />
@@ -164,7 +164,7 @@
                             <p:selectBooleanButton id="atencionpodologica" value="#{cartolaSeguimientoCCVController.selected.atencionPodologica}" onLabel="Si" offLabel="No" style="width:60px" />
 
                             <p:outputLabel value="Descripcion:" for="ulcera_activaPieDM_Descripcion" />
-                            <p:inputText id="ulcera_activaPieDM_Descripcion" value="#{cartolaSeguimientoCCVController.selected.ulcera_activaPieDM_Descripcion}" title="ulcera_activaPieDM_Descripcion" />
+                            <p:inputTextarea class="TextAreas" rows="5" cols="20" id="ulcera_activaPieDM_Descripcion" value="#{cartolaSeguimientoCCVController.selected.ulcera_activaPieDM_Descripcion}" title="ulcera_activaPieDM_Descripcion" />
                             <p:outputLabel value="Curación Pie DM:" for="curacionPie_DM" />
                             <p:selectOneMenu id="curacionPie_DM" value="#{cartolaSeguimientoCCVController.selected.curacionPie_DM}"> 
                                 <f:selectItems value="#{dominiosController.curacionPieDM}"/>    
@@ -377,6 +377,7 @@
                                 <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
                                 <f:selectItem itemLabel="Si" itemValue="Si" />  
                                 <f:selectItem itemLabel="No" itemValue="No" />  
+                                <f:selectItem itemLabel="No se sabe" itemValue="No se sabe" />  
 
                             </p:selectOneMenu>     
                             <p:outputLabel value="Hipertrofia ventricular izquierda:" for="HVI" />
@@ -473,24 +474,24 @@
                         <p:outputLabel value=" " />
                         <p:outputLabel value="Desayuno" />
 
-                        <p:calendar id="desayuno_horario" value="#{fichaNutricionistaController.selected.desayuno_horario}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
-                        <p:inputText id="desayuno_descripcion" value="#{fichaNutricionistaController.selected.desayuno_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_descripcion}" />
+                        <p:calendar id="desayuno_horario" placeholder="hh:mm" value="#{fichaNutricionistaController.selected.desayuno_horario}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_horario}" pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="desayuno_descripcion" value="#{fichaNutricionistaController.selected.desayuno_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_desayuno_descripcion}" />
                         <p:outputLabel value="" />
                         <p:outputLabel value="Colación" />
-                        <p:calendar id="colacion_horario" value="#{fichaNutricionistaController.selected.colacion_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_horario}"  pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
-                        <p:inputText id="colacion_descripcion" value="#{fichaNutricionistaController.selected.colacion_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_descripcion}" />
+                        <p:calendar id="colacion_horario" placeholder="hh:mm" value="#{fichaNutricionistaController.selected.colacion_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_horario}"  pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="colacion_descripcion" value="#{fichaNutricionistaController.selected.colacion_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colacion_descripcion}" />
                         <p:outputLabel value="" />
                         <p:outputLabel value="Almuerzo" />
-                        <p:calendar id="almuerzo_horario" value="#{fichaNutricionistaController.selected.almuerzo_horario}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_horario}"  pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
-                        <p:inputText id="almuerzo_descripcion" value="#{fichaNutricionistaController.selected.almuerzo_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_descripcion}" />
+                        <p:calendar id="almuerzo_horario" placeholder="hh:mm" value="#{fichaNutricionistaController.selected.almuerzo_horario}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_horario}"  pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="almuerzo_descripcion" value="#{fichaNutricionistaController.selected.almuerzo_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_almuerzo_descripcion}" />
                         <p:outputLabel value="" />
                         <p:outputLabel value="Colación Tarde" />
-                        <p:calendar id="colaciontarde_horario" value="#{fichaNutricionistaController.selected.colaciontarde_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_horario}"  pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
-                        <p:inputText id="colaciontarde_descripcion" value="#{fichaNutricionistaController.selected.colaciontarde_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_descripcion}" />
+                        <p:calendar id="colaciontarde_horario" placeholder="hh:mm" value="#{fichaNutricionistaController.selected.colaciontarde_horario}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_horario}"  pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="colaciontarde_descripcion" value="#{fichaNutricionistaController.selected.colaciontarde_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_colaciontarde_descripcion}" />
                         <p:outputLabel value="" />
                         <p:outputLabel value="Cena" />
-                        <p:calendar id="cena_horario" value="#{fichaNutricionistaController.selected.cena_horario}" title="#{bundle.CreateFichaNutricionistaTitle_cena_horario}"  pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
-                        <p:inputText id="cena_descripcion" value="#{fichaNutricionistaController.selected.cena_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_cena_descripcion}" />
+                        <p:calendar id="cena_horario" placeholder="hh:mm" value="#{fichaNutricionistaController.selected.cena_horario}" title="#{bundle.CreateFichaNutricionistaTitle_cena_horario}"  pattern="HH:mm" timeOnly="true"  locale="es" showOn="button" />
+                        <p:inputTextarea class="textAreas" rows="2" cols="20" id="cena_descripcion" value="#{fichaNutricionistaController.selected.cena_descripcion}" title="#{bundle.CreateFichaNutricionistaTitle_cena_descripcion}" />
                         <p:outputLabel value="" />
                         <p:outputLabel  class="subTitle" value="Frecuencia de consumo:" />
 
