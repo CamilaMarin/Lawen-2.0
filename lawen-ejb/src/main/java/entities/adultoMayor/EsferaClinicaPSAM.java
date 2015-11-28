@@ -152,9 +152,9 @@ public class EsferaClinicaPSAM implements Serializable {
     private Integer presion_arterial_dePie1;
     private Integer presion_arterial_dePie2;
     private Integer pulso;
-    private float peso;
-    private float talla;
-    private float imc;
+    private Float peso;
+    private Float talla;
+    private Float imc;
     // estado nutricional
     private float cc;
     private boolean baja_de_peso_involuntaria_ult6meses;
@@ -1039,27 +1039,27 @@ public class EsferaClinicaPSAM implements Serializable {
         this.pulso = pulso;
     }
 
-    public float getPeso() {
+    public Float getPeso() {
         return peso;
     }
 
-    public void setPeso(float peso) {
+    public void setPeso(Float peso) {
         this.peso = peso;
     }
 
-    public float getTalla() {
+    public Float getTalla() {
         return talla;
     }
 
-    public void setTalla(float talla) {
+    public void setTalla(Float talla) {
         this.talla = talla;
     }
 
-    public float getImc() {
+    public Float getImc() {
         return imc;
     }
 
-    public void setImc(float imc) {
+    public void setImc(Float imc) {
         this.imc = imc;
     }
 
