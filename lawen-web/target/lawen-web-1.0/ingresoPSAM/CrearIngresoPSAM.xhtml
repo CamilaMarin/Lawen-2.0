@@ -14,6 +14,50 @@
         <ui:define name="body">
             <h:outputScript>
              //<![CDATA[ 
+             
+            function ocultarTrabaja() {
+                if (document.getElementById("trabaja_descripcion").style.display == 'none'){
+                    $("#trabaja_descripcion").show();
+                    $("#label_trabaja_descripcion").show(); 
+                }               
+                else{
+                    $("#trabaja_descripcion").hide();
+                    $("#label_trabaja_descripcion").hide(); 
+                }    
+              };
+
+              function ocultarApoyo() {
+                if (document.getElementById("apoyo_descripcion").style.display == 'none'){
+                    $("#apoyo_descripcion").show();
+                    $("#label_apoyo_descripcion").show(); 
+                }               
+                else{
+                    $("#apoyo_descripcion").hide();
+                    $("#label_apoyo_descripcion").hide(); 
+                }    
+              };
+
+              function ocultarSospMalt() {
+                if (document.getElementById("sospecha_maltrato_obs").style.display == 'none'){
+                    $("#sospecha_maltrato_obs").show();
+                    $("#label_sospecha_maltrato_obs").show(); 
+                }               
+                else{
+                    $("#sospecha_maltrato_obs").hide();
+                    $("#label_sospecha_maltrato_obs").hide(); 
+                }    
+              };
+
+              function ocultarAntPsiq() {
+                if (document.getElementById("ant_psi_obs").style.display == 'none'){
+                    $("#ant_psi_obs").show();
+                    $("#label_ant_psi_obs").show(); 
+                }               
+                else{
+                    $("#ant_psi_obs").hide();
+                    $("#label_ant_psi_obs").hide(); 
+                }    
+              };
 
              function mostrarResultadoColesterolTotal(){
                 var valor = $("#colesterolTotal_sol_input").val();
@@ -1929,23 +1973,23 @@
                         <p:watermark for="ocupacion" value="Ingrese la descripción aquí..." id="watermarkh" />
                         <p:outputLabel value=" " />
                         <p:outputLabel value="Trabaja:" for="trabaja" />
-                        <p:selectBooleanButton id="trabaja" value="#{esferaMentalPSAMController.selected.trabaja}" onLabel="Si" offLabel="No" style="width:60px" />
-                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_trabaja_descripcion}" for="trabaja_descripcion" />
-                        <p:inputText id="trabaja_descripcion" value="#{esferaMentalPSAMController.selected.trabaja_descripcion}" title="#{bundle.CreateEsferaMentalPSAMTitle_trabaja_descripcion}" />
+                        <p:selectBooleanButton id="trabaja" value="#{esferaMentalPSAMController.selected.trabaja}" onLabel="Si" offLabel="No" style="width:60px" onchange="ocultarTrabaja();"/>
+                        <p:outputLabel id="label_trabaja_descripcion" value="#{bundle.CreateEsferaMentalPSAMLabel_trabaja_descripcion}" for="trabaja_descripcion" style="display:none;"/>
+                        <p:inputText id="trabaja_descripcion" value="#{esferaMentalPSAMController.selected.trabaja_descripcion}" title="#{bundle.CreateEsferaMentalPSAMTitle_trabaja_descripcion}" style="display:none;"/>
                         
                         <p:outputLabel value="Tienen quien lo apoye:" for="apoyo" />
-                        <p:selectBooleanButton id="apoyo" value="#{esferaMentalPSAMController.selected.apoyo}" onLabel="Si" offLabel="No" style="width:60px" />
-                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_apoyo_descripcion}" for="apoyo_descripcion" />
-                        <p:inputText id="apoyo_descripcion" value="#{esferaMentalPSAMController.selected.apoyo_descripcion}" title="#{bundle.CreateEsferaMentalPSAMTitle_apoyo_descripcion}" />
+                        <p:selectBooleanButton id="apoyo" value="#{esferaMentalPSAMController.selected.apoyo}" onLabel="Si" offLabel="No" style="width:60px" onchange="ocultarApoyo();"/>
+                        <p:outputLabel id="label_apoyo_descripcion" value="#{bundle.CreateEsferaMentalPSAMLabel_apoyo_descripcion}" for="apoyo_descripcion" style="display:none;"/>
+                        <p:inputText id="apoyo_descripcion" value="#{esferaMentalPSAMController.selected.apoyo_descripcion}" title="#{bundle.CreateEsferaMentalPSAMTitle_apoyo_descripcion}" style="display:none;"/>
                         
                         <p:outputLabel value="Sospecha de maltrato:" for="sospecha_maltrato" />
-                        <p:selectBooleanButton id="sospecha_maltrato" value="#{cartolaSeguimientoPSAMController.selected.sospecha_maltrato}" onLabel="Si" offLabel="No" style="width:60px" />
-                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoPSAMLabel_sospecha_maltrato_obs}" for="sospecha_maltrato_obs" />
-                        <p:inputText id="sospecha_maltrato_obs" value="#{cartolaSeguimientoPSAMController.selected.sospecha_maltrato_obs}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_sospecha_maltrato_obs}" />
+                        <p:selectBooleanButton id="sospecha_maltrato" value="#{cartolaSeguimientoPSAMController.selected.sospecha_maltrato}" onLabel="Si" offLabel="No" style="width:60px" onchange="ocultarSospMalt();"/>
+                        <p:outputLabel id="label_sospecha_maltrato_obs" value="#{bundle.CreateCartolaSeguimientoPSAMLabel_sospecha_maltrato_obs}" for="sospecha_maltrato_obs" style="display:none;"/>
+                        <p:inputText id="sospecha_maltrato_obs" value="#{cartolaSeguimientoPSAMController.selected.sospecha_maltrato_obs}" title="#{bundle.CreateCartolaSeguimientoPSAMTitle_sospecha_maltrato_obs}" style="display:none;"/>
                         <p:outputLabel value="Antecedentes psiquiátricos personales y/o familiares" for="antecedentes_psiquiatricos_personales_familiares" />
-                        <p:selectBooleanButton id="antecedentes_psiquiatricos_personales_familiares" value="#{esferaMentalPSAMController.selected.antecedentes_psiquiatricos_personales_familiares}" onLabel="Si" offLabel="No" style="width:60px" />
-                        <p:outputLabel value="#{bundle.CreateEsferaMentalPSAMLabel_ant_psi_obs}" for="ant_psi_obs" />
-                        <p:inputText id="ant_psi_obs" value="#{esferaMentalPSAMController.selected.ant_psi_obs}" title="#{bundle.CreateEsferaMentalPSAMTitle_ant_psi_obs}" />
+                        <p:selectBooleanButton id="antecedentes_psiquiatricos_personales_familiares" value="#{esferaMentalPSAMController.selected.antecedentes_psiquiatricos_personales_familiares}" onLabel="Si" offLabel="No" style="width:60px" onchange="ocultarAntPsiq();"/>
+                        <p:outputLabel id="label_ant_psi_obs" value="#{bundle.CreateEsferaMentalPSAMLabel_ant_psi_obs}" for="ant_psi_obs" style="display:none;"/>
+                        <p:inputText id="ant_psi_obs" value="#{esferaMentalPSAMController.selected.ant_psi_obs}" title="#{bundle.CreateEsferaMentalPSAMTitle_ant_psi_obs}" style="display:none;"/>
                         
                         <p:outputLabel value="Síndromes geríatricos detectados:" styleClass="subItem"/>
                         <p:outputLabel value=" " />

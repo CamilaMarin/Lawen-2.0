@@ -94,7 +94,7 @@ public abstract class AtencionNutriDietoterapia_ {
 	public static volatile SingularAttribute<AtencionNutriDietoterapia, String> bilirrubinaTotal_estado;
 	public static volatile SingularAttribute<AtencionNutriDietoterapia, Boolean> betaBloqueadores_bool;
 	public static volatile SingularAttribute<AtencionNutriDietoterapia, Float> peso;
-	public static volatile SingularAttribute<AtencionNutriDietoterapia, Boolean> tabaco;
+	public static volatile SingularAttribute<AtencionNutriDietoterapia, String> tabaco;
 	public static volatile SingularAttribute<AtencionNutriDietoterapia, Boolean> IAM;
 	public static volatile SingularAttribute<AtencionNutriDietoterapia, String> anamnesis_nutri;
 	public static volatile SingularAttribute<AtencionNutriDietoterapia, String> sulfonilureas_texto;

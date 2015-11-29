@@ -123,7 +123,7 @@ public class Paciente implements Serializable {
       // hábitos
       
       private boolean alcohol_paciente;
-      private boolean tabaco_paciente;
+      private String tabaco_paciente;
       private boolean drogas_paciente;
       private String actividadFisica_paciente;
       
@@ -431,11 +431,11 @@ public class Paciente implements Serializable {
         this.alcohol_paciente = alcohol_paciente;
     }
 
-    public boolean isTabaco_paciente() {
+    public String getTabaco_paciente() {
         return tabaco_paciente;
     }
 
-    public void setTabaco_paciente(boolean tabaco_paciente) {
+    public void setTabaco_paciente(String tabaco_paciente) {
         this.tabaco_paciente = tabaco_paciente;
     }
 

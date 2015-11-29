@@ -76,10 +76,16 @@
                         <p:inputText id="numeroRegistro_paciente" value="#{pacienteController.selected.numeroRegistro_paciente}" title="#{bundle.CreatePacienteTitle_numeroRegistro_paciente}" />
 
                         <p:outputLabel value="Alcohol:" for="alcohol_paciente" />
-                        <p:selectBooleanButton id="alcohol_paciente" value="#{pacienteController.selected.alcohol_paciente}" onLabel="Si" offLabel="No" style="width:60px" />                       
+                        <p:selectBooleanButton id="alcohol_paciente" value="#{pacienteController.selected.alcohol_paciente}" onLabel="Si" offLabel="No" style="width:60px" /> 
+                        
                         <p:outputLabel value="Tabaco:" for="tabaco_paciente" />
-                        <p:selectBooleanButton id="tabaco_paciente" value="#{pacienteController.selected.tabaco_paciente}" onLabel="Si" offLabel="No" style="width:60px" />
-
+                        <p:selectOneMenu  value="#{pacienteController.selected.tabaco_paciente}"  id="tabaco_paciente">  
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItem itemLabel="Si" itemValue="Si" />  
+                            <f:selectItem itemLabel="No" itemValue="No" />
+                            <f:selectItem itemLabel="No se sabe" itemValue="No se sabe" />
+                        </p:selectOneMenu> 
+                    
                         <p:outputLabel value="Drogas:" for="drogas_paciente" />
                         <p:selectBooleanButton id="drogas_paciente" value="#{pacienteController.selected.drogas_paciente}" onLabel="Si" offLabel="No" style="width:60px" />
 

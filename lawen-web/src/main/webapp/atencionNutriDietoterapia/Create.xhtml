@@ -492,9 +492,14 @@
                         <p:outputLabel value="Antecedentes riesgo CCV"  class="subItem"/>
                         <p:outputLabel value="" />
 
-                        <p:outputLabel value="Tabaco:" for="tabaco" />
-                        <p:selectBooleanButton id="tabaco" value="#{atencionNutriDietoterapiaController.selected.tabaco}" onLabel="Si" offLabel="No" style="width:60px" />
-
+                        <p:outputLabel value="Tabaco:" for="tabaco"/>
+                        <p:selectOneMenu  value="#{atencionNutriDietoterapiaController.selected.tabaco}"  id="tabaco" >  
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItem itemLabel="Si" itemValue="Si" />  
+                            <f:selectItem itemLabel="No" itemValue="No" />
+                            <f:selectItem itemLabel="No se sabe" itemValue="No se sabe" />
+                        </p:selectOneMenu> 
+            
                         <p:outputLabel value="IAM:" for="IAM" />
                         <p:selectBooleanButton id="IAM" value="#{atencionNutriDietoterapiaController.selected.IAM}" onLabel="Si" offLabel="No" style="width:60px" />
 

@@ -73,9 +73,8 @@
                 <h:outputText id="alcohol_paciente" rendered="#{pacienteController.selected.alcohol_paciente == true }" value="Si" style="width:60px" />
                 <h:outputText id="alcohol_paciente2" rendered="#{pacienteController.selected.alcohol_paciente == false }" value="No" style="width:60px" />
 
-                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Tabaco:" for="tabaco_paciente" />
-                <h:outputText id="tabaco_paciente" rendered="#{pacienteController.selected.tabaco_paciente == true}" value="Si" style="width:60px" />
-                <h:outputText id="tabaco_paciente2" rendered="#{pacienteController.selected.tabaco_paciente == false}" value="No" style="width:60px" />
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Tabaco:"  />
+                <h:outputText value="#{pacienteController.selected.tabaco_paciente}" />
 
                 <p:outputLabel styleClass="fa fa-square purple-text"  value=" Drogas:" for="drogas_paciente" />
                 <h:outputText id="drogas_paciente" rendered="#{pacienteController.selected.drogas_paciente == true}" value="Si" style="width:60px" />

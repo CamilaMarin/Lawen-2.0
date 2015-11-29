@@ -131,9 +131,9 @@ public class CCVEnfermeroController implements Serializable {
                 pac.update();
                 prepareCreate();
                 if(tabaco.equals("Si")){
-                    cont.getSelected().setTabaco(true);
+                    cont.getSelected().setTabaco(tabaco);
                 }
-                else cont.getSelected().setTabaco(false);
+                else cont.getSelected().setTabaco(tabaco);
                 cont.getSelected().setIAM(IAM);
                 cont.getSelected().setACV(ACV);
                 cont.getSelected().setImc(imcIn);

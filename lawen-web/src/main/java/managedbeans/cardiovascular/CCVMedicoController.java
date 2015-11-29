@@ -35,7 +35,7 @@ public class CCVMedicoController implements Serializable {
     public CCVMedico getSelected() {
         return selected;
     }
-       public String getTabaco() {
+    public String getTabaco() {
         return tabaco;
     }
 
@@ -88,9 +88,9 @@ public class CCVMedicoController implements Serializable {
         pac.getSelected().setPrediabetes(prediabetes);
         pac.update();
         if(tabaco.equals("Si")){
-                    cont.getSelected().setTabaco(true);
+                    cont.getSelected().setTabaco(tabaco);
                 }
-        else cont.getSelected().setTabaco(false);
+        else cont.getSelected().setTabaco(tabaco);
         cont.getSelected().setIAM(IAM);
         cont.getSelected().setACV(ACV);
         cont.getSelected().setEdad_paciente(edad);

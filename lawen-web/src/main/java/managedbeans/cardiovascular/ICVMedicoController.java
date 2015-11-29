@@ -97,9 +97,9 @@ public class ICVMedicoController implements Serializable {
             edad_pa = 0;
         }
         if(tabaco.equals("Si")){
-            cont.setTabaco(true);
+            cont.setTabaco(tabaco);
                 }
-        else cont.setTabaco(false);
+        else cont.setTabaco(tabaco);
         cont.setEdad_paciente(edad_pa);
         cont.setIngreso_reingreso("Ingreso");
         cont.setPaciente(paciente.getSelected());
@@ -139,9 +139,9 @@ public class ICVMedicoController implements Serializable {
             edad_pa = 0;
         }
         if(tabaco.equals("Si")){
-            cont.setTabaco(true);
+            cont.setTabaco(tabaco);
                 }
-        else cont.setTabaco(false);
+        else cont.setTabaco(tabaco);
                 
         cont.setEdad_paciente(edad_pa);
         cont.setIngreso_reingreso("Reingreso");

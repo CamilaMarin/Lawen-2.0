@@ -701,7 +701,7 @@ public class ConsultasCensoCCV implements Serializable {
                     }
                 }//FIN dislipidemicos
 
-                if (ccv_filtro.get(ccv_filtro.size() - 1).isTabaco() && edad >= 55) {//DOPA
+                if (ccv_filtro.get(ccv_filtro.size() - 1).getTabaco().equals("Si") && edad >= 55) {//DOPA
                     //siempre actualizar variable fue censado:
                     fue_censado = true;
                     totalAmbosSexos.setPBCsegunPyFRTabaquismo(totalAmbosSexos.getPBCsegunPyFRTabaquismo() + 1);

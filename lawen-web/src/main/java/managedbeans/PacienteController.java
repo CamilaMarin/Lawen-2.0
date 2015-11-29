@@ -254,7 +254,7 @@ public class PacienteController implements Serializable {
             paragraph.add("Alcohol:  ");
             paragraph.add(ut.booleanos(selected.isAlcohol_paciente()) + "\n");
             paragraph.add("Tabaco:  ");
-            paragraph.add(ut.booleanos(selected.isTabaco_paciente()) + "\n");
+            paragraph.add(selected.getTabaco_paciente() + "\n");
             paragraph.add("Drogas:  ");
             paragraph.add(ut.booleanos(selected.isDrogas_paciente()) + "\n");
             paragraph.add("Hospitalizaciones:  ");

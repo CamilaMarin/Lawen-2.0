@@ -92,7 +92,7 @@ public abstract class CartolaSeguimientoCCV_ {
 	public static volatile SingularAttribute<CartolaSeguimientoCCV, String> bilirrubinaTotal_estado;
 	public static volatile SingularAttribute<CartolaSeguimientoCCV, Boolean> betaBloqueadores_bool;
 	public static volatile SingularAttribute<CartolaSeguimientoCCV, Float> peso;
-	public static volatile SingularAttribute<CartolaSeguimientoCCV, Boolean> tabaco;
+	public static volatile SingularAttribute<CartolaSeguimientoCCV, String> tabaco;
 	public static volatile SingularAttribute<CartolaSeguimientoCCV, Boolean> IAM;
 	public static volatile SingularAttribute<CartolaSeguimientoCCV, String> sulfonilureas_texto;
 	public static volatile SingularAttribute<CartolaSeguimientoCCV, Boolean> biguanidas_bool;

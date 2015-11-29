@@ -226,7 +226,7 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
   //////////////////////////////////////////////7  
     /// ANTECEDENTES
     
-    private boolean tabaco;
+    private String tabaco;
     private boolean IAM;
     private boolean ACV;
     private boolean HVI;
@@ -1123,11 +1123,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.otros_examenes = otros_examenes;
     }
 
-    public boolean isTabaco() {
+    public String getTabaco() {
         return tabaco;
     }
 
-    public void setTabaco(boolean tabaco) {
+    public void setTabaco(String tabaco) {
         this.tabaco = tabaco;
     }
 
