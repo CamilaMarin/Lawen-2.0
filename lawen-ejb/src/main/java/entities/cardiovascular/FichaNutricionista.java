@@ -31,7 +31,7 @@ public class FichaNutricionista implements Serializable {
     
     @Size(max=2000)
     private String anamnesis_nutri;
-    private float perimetroCaderas_nutri;
+    private Float perimetroCaderas_nutri;
     private Integer indiceCC_nutri1;
     private Integer indiceCC_nutri2;
     //// HISTORIA DIETÉTICA
@@ -169,11 +169,11 @@ public class FichaNutricionista implements Serializable {
         this.anamnesis_nutri = anamnesis_nutri;
     }
 
-    public float getPerimetroCaderas_nutri() {
+    public Float getPerimetroCaderas_nutri() {
         return perimetroCaderas_nutri;
     }
 
-    public void setPerimetroCaderas_nutri(float perimetroCaderas_nutri) {
+    public void setPerimetroCaderas_nutri(Float perimetroCaderas_nutri) {
         this.perimetroCaderas_nutri = perimetroCaderas_nutri;
     }
 
