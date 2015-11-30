@@ -49,9 +49,9 @@ public class AtencionEnfFEMPA implements Serializable {
     
     // Item 1: Ambos generos de 15 a 64 años 
     
-    private float peso_emp;
-    private float talla_emp;
-    private float imc_emp;
+    private Float peso_emp;
+    private Float talla_emp;
+    private Float imc_emp;
     private Integer presion_aterial1_emp;
     private Integer presion_aterial2_emp;
     private Integer puntaje_audit;
@@ -148,27 +148,27 @@ public class AtencionEnfFEMPA implements Serializable {
         this.edad_paciente_emp = edad_paciente_emp;
     }
 
-    public float getPeso_emp() {
+    public Float getPeso_emp() {
         return peso_emp;
     }
 
-    public void setPeso_emp(float peso_emp) {
+    public void setPeso_emp(Float peso_emp) {
         this.peso_emp = peso_emp;
     }
 
-    public float getTalla_emp() {
+    public Float getTalla_emp() {
         return talla_emp;
     }
 
-    public void setTalla_emp(float talla_emp) {
+    public void setTalla_emp(Float talla_emp) {
         this.talla_emp = talla_emp;
     }
 
-    public float getImc_emp() {
+    public Float getImc_emp() {
         return imc_emp;
     }
 
-    public void setImc_emp(float imc_emp) {
+    public void setImc_emp(Float imc_emp) {
         this.imc_emp = imc_emp;
     }
 
