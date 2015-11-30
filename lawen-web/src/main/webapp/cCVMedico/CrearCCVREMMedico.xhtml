@@ -88,9 +88,9 @@
                                            itemValue="#{profesionalItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_peso}" for="peso" />
-                        <p:inputText id="peso" value="#{cartolaSeguimientoCCVController.selected.peso}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_peso}" />
+                        <p:inputText id="peso" placeholder="0.0" value="#{cartolaSeguimientoCCVController.selected.peso}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_peso}" />
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_talla}" for="talla" />
-                        <p:inputText id="talla" value="#{cartolaSeguimientoCCVController.selected.talla}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_talla}" />
+                        <p:inputText id="talla" placeholder="0.0" value="#{cartolaSeguimientoCCVController.selected.talla}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_talla}" />
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_imc}" for="imc" />
                         <p:inputText  required="false" requiredMessage="Es necesario el calculo del IMC" id="imc" value="#{cartolaSeguimientoCCVController.selected.imc}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_imc}" />
                         <p:outputLabel class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_diagnostico_nutricional}" for="diagnostico_nutricional" />

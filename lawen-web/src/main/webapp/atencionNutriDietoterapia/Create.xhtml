@@ -139,9 +139,9 @@
                         <p:inputTextarea class="textAreas" rows="5" cols="20"  id="anamnesis_nutri" value="#{atencionNutriDietoterapiaController.selected.anamnesis_nutri}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_anamnesis_nutri}" />
 
                         <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_peso}" for="peso" />
-                        <p:inputText id="peso" value="#{atencionNutriDietoterapiaController.selected.peso}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_peso}" />
+                        <p:inputText id="peso" placeholder="0.0" value="#{atencionNutriDietoterapiaController.selected.peso}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_peso}" />
                         <p:outputLabel value="#{bundle.CreateAtencionNutriDietoterapiaLabel_talla}" for="talla" />
-                        <p:inputText id="talla" value="#{atencionNutriDietoterapiaController.selected.talla}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_talla}" />
+                        <p:inputText id="talla" placeholder="0.0" value="#{atencionNutriDietoterapiaController.selected.talla}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_talla}" />
 
                         <h:commandButton id ="calimc" value="Calcular IMC" action="#" onclick="calcularIMC();" >
                             <f:ajax  />
