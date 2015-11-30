@@ -55,16 +55,16 @@ public class AtencionMedMorbilidad implements Serializable {
     private Integer presion_arterial1;
     private Integer presion_arterial2;
     private Integer frecuencia_cardiaca;
-    private float temperatura;
+    private Float temperatura;
     private Integer frecuencia_respiratoria;
     private Integer dolor;
     private Integer saturacion_oxigeno;
     
     // medidas antropometricas
     
-    private float peso_morb;
-    private float talla_morb;
-    private float imc_morb;
+    private Float peso_morb;
+    private Float talla_morb;
+    private Float imc_morb;
      @Size(max=50)
     private String diagnostico_nutricional_mrb;
     
@@ -160,11 +160,11 @@ public class AtencionMedMorbilidad implements Serializable {
         this.frecuencia_cardiaca = frecuencia_cardiaca;
     }
 
-    public float getTemperatura() {
+    public Float getTemperatura() {
         return temperatura;
     }
 
-    public void setTemperatura(float temperatura) {
+    public void setTemperatura(Float temperatura) {
         this.temperatura = temperatura;
     }
 
@@ -192,27 +192,27 @@ public class AtencionMedMorbilidad implements Serializable {
         this.saturacion_oxigeno = saturacion_oxigeno;
     }
 
-    public float getPeso_morb() {
+    public Float getPeso_morb() {
         return peso_morb;
     }
 
-    public void setPeso_morb(float peso_morb) {
+    public void setPeso_morb(Float peso_morb) {
         this.peso_morb = peso_morb;
     }
 
-    public float getTalla_morb() {
+    public Float getTalla_morb() {
         return talla_morb;
     }
 
-    public void setTalla_morb(float talla_morb) {
+    public void setTalla_morb(Float talla_morb) {
         this.talla_morb = talla_morb;
     }
 
-    public float getImc_morb() {
+    public Float getImc_morb() {
         return imc_morb;
     }
 
-    public void setImc_morb(float imc_morb) {
+    public void setImc_morb(Float imc_morb) {
         this.imc_morb = imc_morb;
     }
 

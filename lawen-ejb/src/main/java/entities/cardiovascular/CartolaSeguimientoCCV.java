@@ -61,11 +61,11 @@ public class CartolaSeguimientoCCV implements Serializable {
     @ManyToOne
     private Usuario profesional;
     
-    private float peso;
-    private float talla;
-    private float imc;
+    private Float peso;
+    private Float talla;
+    private Float imc;
     private String diagnostico_nutricional;
-    private float perimetro_cintura;
+    private Float perimetro_cintura;
     
     ///////// REINGRESO!!!!
     private String ingreso_reingreso;
@@ -74,7 +74,7 @@ public class CartolaSeguimientoCCV implements Serializable {
     private boolean hiposodico;
     private boolean diabetico;
     private boolean hipocalorico;
-    private float calorias;
+    private Float calorias;
     
     // FARMACOS
     private boolean sulfonilureas_bool;
@@ -131,48 +131,48 @@ Fármacos:
     // Examenes
     
     private String glicemia_estado;
-    private float glicemica_valor;
+    private Float glicemica_valor;
     private String hba1C_estado;
-    private float hba1C_valor;
+    private Float hba1C_valor;
     private String colesterolTotal_estado;
-    private float colesterolTotal_valor;
+    private Float colesterolTotal_valor;
     private String colesterolLDL_estado;
-    private float colesterolLDL_valor;
+    private Float colesterolLDL_valor;
     private String colesterolHDL_estado;
-    private float colesterolHDL_valor;
+    private Float colesterolHDL_valor;
     private String trigliceridos_estado;
-    private float trigliceridos_valor;
+    private Float trigliceridos_valor;
     private String bilirrubinaTotal_estado;
-    private float bilirrubinaTotal_valor;
+    private Float bilirrubinaTotal_valor;
     private String bilirrubinaDirecta_estado;
-    private float bilirrubinaDirecta_valor;
+    private Float bilirrubinaDirecta_valor;
     private String bilirrubinaIndirecta_estado;
-    private float bilirrubinaIndirecta_valor;
+    private Float bilirrubinaIndirecta_valor;
     private String creatinina_estado;
-    private float creatinina_valor;
+    private Float creatinina_valor;
     private String BUN_estado;
-    private float BUN_valor;
+    private Float BUN_valor;
     private String MDRD_estado;
-    private float MDRD_valor;
+    private Float MDRD_valor;
     private String microALB24H_estado;
-    private float microALB24H_valor;
+    private Float microALB24H_valor;
     private String clearenceCrea_estado;
-    private float clearenceCrea_valor;
+    private Float clearenceCrea_valor;
     private String NaPositivo_estado;
-    private float NaPositivo_valor;
+    private Float NaPositivo_valor;
     private String KPositivo_estado;
-    private float KPositivo_valor;
+    private Float KPositivo_valor;
     private String CLNegativo_estado;
-    private float CLNegativo_valor;
+    private Float CLNegativo_valor;
     private String GPT_estado;
-    private float GPT_valor;
+    private Float GPT_valor;
     private String GOT_estado;
-    private float GOT_valor;  
+    private Float GOT_valor;  
     /*
 (para examenes se requieren dos atributos por examen, el primer atributo un char seleccionable entre las siguientes opciones: ("VACIO" - "SE SOLICITA" - "PENDIENTE")  con "VACIO" como predefinido)
 Exámenes:
 -------------------------------------------------------
-Para los siguientes examenes el segundo atributo debe ser un float.
+Para los siguientes examenes el segundo atributo debe ser un Float.
 	GLICEMIA
 	HBA 1C
 	COLESTEROL TOTAL
@@ -435,27 +435,27 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
     }
 
   
-    public float getPeso() {
+    public Float getPeso() {
         return peso;
     }
 
-    public void setPeso(float peso) {
+    public void setPeso(Float peso) {
         this.peso = peso;
     }
 
-    public float getTalla() {
+    public Float getTalla() {
         return talla;
     }
 
-    public void setTalla(float talla) {
+    public void setTalla(Float talla) {
         this.talla = talla;
     }
 
-    public float getImc() {
+    public Float getImc() {
         return imc;
     }
 
-    public void setImc(float imc) {
+    public void setImc(Float imc) {
         this.imc = imc;
     }
 
@@ -467,11 +467,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.diagnostico_nutricional = diagnostico_nutricional;
     }
 
-    public float getPerimetro_cintura() {
+    public Float getPerimetro_cintura() {
         return perimetro_cintura;
     }
 
-    public void setPerimetro_cintura(float perimetro_cintura) {
+    public void setPerimetro_cintura(Float perimetro_cintura) {
         this.perimetro_cintura = perimetro_cintura;
     }
 
@@ -499,11 +499,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.hipocalorico = hipocalorico;
     }
 
-    public float getCalorias() {
+    public Float getCalorias() {
         return calorias;
     }
 
-    public void setCalorias(float calorias) {
+    public void setCalorias(Float calorias) {
         this.calorias = calorias;
     }
 
@@ -755,11 +755,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.glicemia_estado = glicemia_estado;
     }
 
-    public float getGlicemica_valor() {
+    public Float getGlicemica_valor() {
         return glicemica_valor;
     }
 
-    public void setGlicemica_valor(float glicemica_valor) {
+    public void setGlicemica_valor(Float glicemica_valor) {
         this.glicemica_valor = glicemica_valor;
     }
 
@@ -771,11 +771,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.hba1C_estado = hba1C_estado;
     }
 
-    public float getHba1C_valor() {
+    public Float getHba1C_valor() {
         return hba1C_valor;
     }
 
-    public void setHba1C_valor(float hba1C_valor) {
+    public void setHba1C_valor(Float hba1C_valor) {
         this.hba1C_valor = hba1C_valor;
     }
 
@@ -787,11 +787,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.colesterolTotal_estado = colesterolTotal_estado;
     }
 
-    public float getColesterolTotal_valor() {
+    public Float getColesterolTotal_valor() {
         return colesterolTotal_valor;
     }
 
-    public void setColesterolTotal_valor(float colesterolTotal_valor) {
+    public void setColesterolTotal_valor(Float colesterolTotal_valor) {
         this.colesterolTotal_valor = colesterolTotal_valor;
     }
 
@@ -803,11 +803,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.colesterolLDL_estado = colesterolLDL_estado;
     }
 
-    public float getColesterolLDL_valor() {
+    public Float getColesterolLDL_valor() {
         return colesterolLDL_valor;
     }
 
-    public void setColesterolLDL_valor(float colesterolLDL_valor) {
+    public void setColesterolLDL_valor(Float colesterolLDL_valor) {
         this.colesterolLDL_valor = colesterolLDL_valor;
     }
 
@@ -819,11 +819,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.colesterolHDL_estado = colesterolHDL_estado;
     }
 
-    public float getColesterolHDL_valor() {
+    public Float getColesterolHDL_valor() {
         return colesterolHDL_valor;
     }
 
-    public void setColesterolHDL_valor(float colesterolHDL_valor) {
+    public void setColesterolHDL_valor(Float colesterolHDL_valor) {
         this.colesterolHDL_valor = colesterolHDL_valor;
     }
 
@@ -835,11 +835,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.trigliceridos_estado = trigliceridos_estado;
     }
 
-    public float getTrigliceridos_valor() {
+    public Float getTrigliceridos_valor() {
         return trigliceridos_valor;
     }
 
-    public void setTrigliceridos_valor(float trigliceridos_valor) {
+    public void setTrigliceridos_valor(Float trigliceridos_valor) {
         this.trigliceridos_valor = trigliceridos_valor;
     }
 
@@ -851,11 +851,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.bilirrubinaTotal_estado = bilirrubinaTotal_estado;
     }
 
-    public float getBilirrubinaTotal_valor() {
+    public Float getBilirrubinaTotal_valor() {
         return bilirrubinaTotal_valor;
     }
 
-    public void setBilirrubinaTotal_valor(float bilirrubinaTotal_valor) {
+    public void setBilirrubinaTotal_valor(Float bilirrubinaTotal_valor) {
         this.bilirrubinaTotal_valor = bilirrubinaTotal_valor;
     }
 
@@ -867,11 +867,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.bilirrubinaDirecta_estado = bilirrubinaDirecta_estado;
     }
 
-    public float getBilirrubinaDirecta_valor() {
+    public Float getBilirrubinaDirecta_valor() {
         return bilirrubinaDirecta_valor;
     }
 
-    public void setBilirrubinaDirecta_valor(float bilirrubinaDirecta_valor) {
+    public void setBilirrubinaDirecta_valor(Float bilirrubinaDirecta_valor) {
         this.bilirrubinaDirecta_valor = bilirrubinaDirecta_valor;
     }
 
@@ -883,11 +883,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.bilirrubinaIndirecta_estado = bilirrubinaIndirecta_estado;
     }
 
-    public float getBilirrubinaIndirecta_valor() {
+    public Float getBilirrubinaIndirecta_valor() {
         return bilirrubinaIndirecta_valor;
     }
 
-    public void setBilirrubinaIndirecta_valor(float bilirrubinaIndirecta_valor) {
+    public void setBilirrubinaIndirecta_valor(Float bilirrubinaIndirecta_valor) {
         this.bilirrubinaIndirecta_valor = bilirrubinaIndirecta_valor;
     }
 
@@ -899,11 +899,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.creatinina_estado = creatinina_estado;
     }
 
-    public float getCreatinina_valor() {
+    public Float getCreatinina_valor() {
         return creatinina_valor;
     }
 
-    public void setCreatinina_valor(float creatinina_valor) {
+    public void setCreatinina_valor(Float creatinina_valor) {
         this.creatinina_valor = creatinina_valor;
     }
 
@@ -915,11 +915,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.BUN_estado = BUN_estado;
     }
 
-    public float getBUN_valor() {
+    public Float getBUN_valor() {
         return BUN_valor;
     }
 
-    public void setBUN_valor(float BUN_valor) {
+    public void setBUN_valor(Float BUN_valor) {
         this.BUN_valor = BUN_valor;
     }
 
@@ -931,11 +931,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.MDRD_estado = MDRD_estado;
     }
 
-    public float getMDRD_valor() {
+    public Float getMDRD_valor() {
         return MDRD_valor;
     }
 
-    public void setMDRD_valor(float MDRD_valor) {
+    public void setMDRD_valor(Float MDRD_valor) {
         this.MDRD_valor = MDRD_valor;
     }
 
@@ -947,11 +947,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.microALB24H_estado = microALB24H_estado;
     }
 
-    public float getMicroALB24H_valor() {
+    public Float getMicroALB24H_valor() {
         return microALB24H_valor;
     }
 
-    public void setMicroALB24H_valor(float microALB24H_valor) {
+    public void setMicroALB24H_valor(Float microALB24H_valor) {
         this.microALB24H_valor = microALB24H_valor;
     }
 
@@ -963,11 +963,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.clearenceCrea_estado = clearenceCrea_estado;
     }
 
-    public float getClearenceCrea_valor() {
+    public Float getClearenceCrea_valor() {
         return clearenceCrea_valor;
     }
 
-    public void setClearenceCrea_valor(float clearenceCrea_valor) {
+    public void setClearenceCrea_valor(Float clearenceCrea_valor) {
         this.clearenceCrea_valor = clearenceCrea_valor;
     }
 
@@ -979,11 +979,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.NaPositivo_estado = NaPositivo_estado;
     }
 
-    public float getNaPositivo_valor() {
+    public Float getNaPositivo_valor() {
         return NaPositivo_valor;
     }
 
-    public void setNaPositivo_valor(float NaPositivo_valor) {
+    public void setNaPositivo_valor(Float NaPositivo_valor) {
         this.NaPositivo_valor = NaPositivo_valor;
     }
 
@@ -995,11 +995,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.KPositivo_estado = KPositivo_estado;
     }
 
-    public float getKPositivo_valor() {
+    public Float getKPositivo_valor() {
         return KPositivo_valor;
     }
 
-    public void setKPositivo_valor(float KPositivo_valor) {
+    public void setKPositivo_valor(Float KPositivo_valor) {
         this.KPositivo_valor = KPositivo_valor;
     }
 
@@ -1011,11 +1011,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.CLNegativo_estado = CLNegativo_estado;
     }
 
-    public float getCLNegativo_valor() {
+    public Float getCLNegativo_valor() {
         return CLNegativo_valor;
     }
 
-    public void setCLNegativo_valor(float CLNegativo_valor) {
+    public void setCLNegativo_valor(Float CLNegativo_valor) {
         this.CLNegativo_valor = CLNegativo_valor;
     }
 
@@ -1027,11 +1027,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.GPT_estado = GPT_estado;
     }
 
-    public float getGPT_valor() {
+    public Float getGPT_valor() {
         return GPT_valor;
     }
 
-    public void setGPT_valor(float GPT_valor) {
+    public void setGPT_valor(Float GPT_valor) {
         this.GPT_valor = GPT_valor;
     }
 
@@ -1043,11 +1043,11 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.GOT_estado = GOT_estado;
     }
 
-    public float getGOT_valor() {
+    public Float getGOT_valor() {
         return GOT_valor;
     }
 
-    public void setGOT_valor(float GOT_valor) {
+    public void setGOT_valor(Float GOT_valor) {
         this.GOT_valor = GOT_valor;
     }
 

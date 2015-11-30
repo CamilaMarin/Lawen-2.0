@@ -35,7 +35,7 @@ public class CCVEnfermeroController implements Serializable {
     private PacienteFacadeLocal pacienteFacade;
     private List<CCVEnfermero> items = null;
     private CCVEnfermero selected;
-    private float imcIn;
+    private Float imcIn;
     private String diagnosticoIn;
     private PacienteController pa;
     private String tabaco;
@@ -57,11 +57,11 @@ public class CCVEnfermeroController implements Serializable {
     
     
     
-    public float getImcIn() {
+    public Float getImcIn() {
         return imcIn;
     }
 
-    public void setImcIn(float imcIn) {
+    public void setImcIn(Float imcIn) {
         this.imcIn = imcIn;
     }
 
@@ -149,7 +149,7 @@ public class CCVEnfermeroController implements Serializable {
                 pac.setSelected(null);
                 selected = null;
                 tabaco= null;
-                imcIn = 0;
+                imcIn = null;
                 diagnosticoIn = null;
                 return "/faces/cCVEnfermero/List?faces-redirect=true";
        
