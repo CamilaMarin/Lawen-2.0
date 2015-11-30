@@ -138,9 +138,24 @@ public class Paciente implements Serializable {
       private boolean IAM;
       private boolean ACV;
       private boolean prediabetes;
-      
-      
-      
+      private boolean resistencia_insulina;
+      private boolean intolerancia_glucosa;
+
+    public boolean isIntolerancia_glucosa() {
+        return intolerancia_glucosa;
+    }
+
+    public void setIntolerancia_glucosa(boolean intolerancia_glucosa) {
+        this.intolerancia_glucosa = intolerancia_glucosa;
+    }
+
+    public boolean isResistencia_insulina() {
+        return resistencia_insulina;
+    }
+
+    public void setResistencia_insulina(boolean resistencia_insulina) {
+        this.resistencia_insulina = resistencia_insulina;
+    }
     public Long getId() {
         return id;
     }
@@ -364,9 +379,6 @@ public class Paciente implements Serializable {
     public void setPatologia(List<Patologia> patologia) {
         this.patologia = patologia;
     }
-
-    
-
     public List<Programa> getProgramas() {
         return programas;
     }

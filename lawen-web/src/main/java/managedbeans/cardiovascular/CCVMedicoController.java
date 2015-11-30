@@ -77,7 +77,7 @@ public class CCVMedicoController implements Serializable {
      * @param ACV
      * @return 
      */
-    public String crearCCV( CartolaSeguimientoCCVController cont, FichaMedicoController fich, PacienteController pac, int edad, boolean diabetico, boolean hipertenso, boolean dilipidemia, boolean ACV, boolean IAM,boolean prediabetes ){
+    public String crearCCV( CartolaSeguimientoCCVController cont, FichaMedicoController fich, PacienteController pac, int edad, boolean diabetico, boolean hipertenso, boolean dilipidemia, boolean ACV, boolean IAM,boolean prediabetes, boolean intolerancia_glucosa, boolean resistencia_insulina ){
         
         pac.setSelected(cont.getSelected().getPaciente());
         pac.getSelected().setDiabetico(diabetico);
@@ -86,6 +86,8 @@ public class CCVMedicoController implements Serializable {
         pac.getSelected().setACV(ACV);
         pac.getSelected().setIAM(IAM);
         pac.getSelected().setPrediabetes(prediabetes);
+        pac.getSelected().setIntolerancia_glucosa(intolerancia_glucosa);
+        pac.getSelected().setResistencia_insulina(resistencia_insulina);
         pac.update();
         if(tabaco.equals("Si")){
                     cont.getSelected().setTabaco(tabaco);

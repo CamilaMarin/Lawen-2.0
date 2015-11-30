@@ -351,9 +351,9 @@
                             <p:outputLabel class="obligatorio" value="Tabaco" for="tabaco" />
                         
                             <p:selectOneMenu  required="true" requiredMessage="Debe indicar tabaquismo" value="#{iCVMedicoController.tabaco}" id="tabaco" >  
-                                <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                               <f:selectItem itemLabel="No" itemValue="No" />
                                 <f:selectItem itemLabel="Si" itemValue="Si" />  
-                                <f:selectItem itemLabel="No" itemValue="No" /> 
+                                 
                                 <f:selectItem itemLabel="No se sabe" itemValue="No se sabe"/>
 
                             </p:selectOneMenu> 

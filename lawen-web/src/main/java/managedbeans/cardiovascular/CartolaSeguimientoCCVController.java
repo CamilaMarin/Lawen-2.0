@@ -42,8 +42,24 @@ public class CartolaSeguimientoCCVController implements Serializable {
     private boolean IAM;
     private boolean ACV;
     private boolean prediabetes;
-    
-    
+    private boolean resistencia_insulina;
+    private boolean intolerancia_glucosa;
+
+    public boolean isResistencia_insulina() {
+        return resistencia_insulina;
+    }
+
+    public void setResistencia_insulina(boolean resistencia_insulina) {
+        this.resistencia_insulina = resistencia_insulina;
+    }
+
+    public boolean isIntolerancia_glucosa() {
+        return intolerancia_glucosa;
+    }
+
+    public void setIntolerancia_glucosa(boolean intolerancia_glucosa) {
+        this.intolerancia_glucosa = intolerancia_glucosa;
+    }  
     public CartolaSeguimientoCCVFacadeLocal getEjbFacade() {
         return ejbFacade;
     }
@@ -170,12 +186,7 @@ public class CartolaSeguimientoCCVController implements Serializable {
      
     }
      public void cambiarHipertencion(){
-        
-           
-        
         hipertencion = getSelected().getPaciente().isHipertencion();
-
-     
     }
     public void cambiarDislipidemico(){
         
@@ -193,7 +204,23 @@ public class CartolaSeguimientoCCVController implements Serializable {
 
      
     }
-    
+           
+        public void cambiarIntolerancia_glucosa(){
+        
+           
+        
+        intolerancia_glucosa = getSelected().getPaciente().isIntolerancia_glucosa();
+
+     
+    }        
+            public void cambiarResistencia_insulina(){
+        
+           
+        
+        resistencia_insulina = getSelected().getPaciente().isResistencia_insulina();
+
+     
+    }
     
     public void cambiarIAM(){
         
@@ -225,6 +252,8 @@ public class CartolaSeguimientoCCVController implements Serializable {
             
         ACV = paciente.isACV();
         diabetes = paciente.isDiabetico();
+        resistencia_insulina=paciente.isResistencia_insulina();
+        intolerancia_glucosa=paciente.isIntolerancia_glucosa();
         dislipidemico = paciente.isDislipidemico();
         hipertencion = paciente.isHipertencion();
         IAM = paciente.isIAM();

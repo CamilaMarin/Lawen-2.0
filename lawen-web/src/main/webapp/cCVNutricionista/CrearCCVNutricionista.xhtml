@@ -137,6 +137,9 @@
                          <p:ajax  update="IAM" listener="#{cartolaSeguimientoCCVController.cambiarIAM()}" />
                          <p:ajax  update="ACV" listener="#{cartolaSeguimientoCCVController.cambiarACV()}" />
                          <p:ajax  update="prediabetico" listener="#{cartolaSeguimientoCCVController.cambiarPrediabetes()}" />
+                            <p:ajax  update="resistencia_insulina" listener="#{cartolaSeguimientoCCVController.cambiarResistencia_insulina()}" />
+                            <p:ajax  update="intolerancia_glucosa" listener="#{cartolaSeguimientoCCVController.cambiarIntolerancia_glucosa()}" />
+                                                
                         </p:selectOneMenu>
                       
                         <p:outputLabel  class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_fecha_control}" for="fecha_control" />
@@ -668,6 +671,10 @@
                         
                         <p:outputLabel value="Prediabético:" for="prediabetico" />
                         <p:selectBooleanButton id="prediabetico" value="#{cartolaSeguimientoCCVController.prediabetes}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Resistencia a la insulina:" for="resistencia_insulina" />
+                        <p:selectBooleanButton id="resistencia_insulina" value="#{cartolaSeguimientoCCVController.resistencia_insulina}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="Intolerancia a la glucosa:" for="intolerancia_glucosa" />
+                        <p:selectBooleanButton id="intolerancia_glucosa" value="#{cartolaSeguimientoCCVController.intolerancia_glucosa}" onLabel="Si" offLabel="No" style="width:60px" />
                         
                         
                         
@@ -732,7 +739,7 @@
                         
                     </p:panelGrid>
                  
-                    <p:commandButton  action="#{cCVNutricionistaController.crearCCV(cartolaSeguimientoCCVController,fichaNutricionistaController,pacienteController,cartolaSeguimientoCCVController.edad, cartolaSeguimientoCCVController.diabetes, cartolaSeguimientoCCVController.hipertencion, cartolaSeguimientoCCVController.dislipidemico, cartolaSeguimientoCCVController.ACV, cartolaSeguimientoCCVController.IAM,cartolaSeguimientoCCVController.prediabetes)}" value="#{bundle.Save}" update="growl" />
+                    <p:commandButton  action="#{cCVNutricionistaController.crearCCV(cartolaSeguimientoCCVController,fichaNutricionistaController,pacienteController,cartolaSeguimientoCCVController.edad, cartolaSeguimientoCCVController.diabetes, cartolaSeguimientoCCVController.hipertencion, cartolaSeguimientoCCVController.dislipidemico, cartolaSeguimientoCCVController.ACV, cartolaSeguimientoCCVController.IAM,cartolaSeguimientoCCVController.prediabetes, cartolaSeguimientoCCVController.intolerancia_glucosa,cartolaSeguimientoCCVController.resistencia_insulina)}" value="#{bundle.Save}" update="growl" />
 
                     <p:button outcome="/cCVNutricionista/List" value="Volver" />
                 </h:panelGroup>
