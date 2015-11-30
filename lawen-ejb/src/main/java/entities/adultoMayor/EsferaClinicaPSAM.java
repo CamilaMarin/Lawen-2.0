@@ -135,9 +135,9 @@ public class EsferaClinicaPSAM implements Serializable {
     // Estado ("VACIO" - "NORMAL" - "ALTERADO") con "VACIO" preselecionado
     
     private String glicemia_sol;
-    private float glicemia_valor;
+    private Float glicemia_valor;
     private String colesterolTotal_sol;
-    private float colesterolTotal_valor;
+    private Float colesterolTotal_valor;
     private String baciloscopia_sol;
     private String baciloscopia_estado;
     private String VDRL_sol;
@@ -156,7 +156,7 @@ public class EsferaClinicaPSAM implements Serializable {
     private Float talla;
     private Float imc;
     // estado nutricional
-    private float cc;
+    private Float cc;
     private boolean baja_de_peso_involuntaria_ult6meses;
     @Size(max=1000)
     private String observaciones;
@@ -927,11 +927,11 @@ public class EsferaClinicaPSAM implements Serializable {
         this.glicemia_sol = glicemia_sol;
     }
 
-    public float getGlicemia_valor() {
+    public Float getGlicemia_valor() {
         return glicemia_valor;
     }
 
-    public void setGlicemia_valor(float glicemia_valor) {
+    public void setGlicemia_valor(Float glicemia_valor) {
         this.glicemia_valor = glicemia_valor;
     }
 
@@ -943,11 +943,11 @@ public class EsferaClinicaPSAM implements Serializable {
         this.colesterolTotal_sol = colesterolTotal_sol;
     }
 
-    public float getColesterolTotal_valor() {
+    public Float getColesterolTotal_valor() {
         return colesterolTotal_valor;
     }
 
-    public void setColesterolTotal_valor(float colesterolTotal_valor) {
+    public void setColesterolTotal_valor(Float colesterolTotal_valor) {
         this.colesterolTotal_valor = colesterolTotal_valor;
     }
 
@@ -1063,11 +1063,11 @@ public class EsferaClinicaPSAM implements Serializable {
         this.imc = imc;
     }
 
-    public float getCc() {
+    public Float getCc() {
         return cc;
     }
 
-    public void setCc(float cc) {
+    public void setCc(Float cc) {
         this.cc = cc;
     }
 
