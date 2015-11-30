@@ -15,7 +15,7 @@ public class CensoCCVExcluidos {
     private String apellidop;
     private String apellidom;
     private String rut;
-    private int edad;
+    private Integer edad;
     private String razon_exclusion;
 
     public String getNombre() {
@@ -50,11 +50,11 @@ public class CensoCCVExcluidos {
         this.rut = rut;
     }
 
-    public int getEdad() {
+    public Integer getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(Integer edad) {
         this.edad = edad;
     }
 

@@ -45,20 +45,20 @@ public class PreingresoD3 implements Serializable {
     @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario profesional;
-    private int pass1 ;// pa sistolica sentado 
-    private int pass2;// pa sistolica sentado 
-    private int pads1;// pa diastolica sentado
-    private int pads2;// pa diastolica sentado
-    private int pasp1;// pa sistolica pie
-    private int pasp2;// pa sistolica pie 
-    private int padp1;// pa diastolica pie 
-    private int padp2;// pa diastolica pie
-    private double peso;
-    //private double talla;
+    private Integer pass1 ;// pa sistolica sentado 
+    private Integer pass2;// pa sistolica sentado 
+    private Integer pads1;// pa diastolica sentado
+    private Integer pads2;// pa diastolica sentado
+    private Integer pasp1;// pa sistolica pie
+    private Integer pasp2;// pa sistolica pie 
+    private Integer padp1;// pa diastolica pie 
+    private Integer padp2;// pa diastolica pie
+    private Float peso;
+    //private Float talla;
     //private String trataactual;//tratamiento farmacologico
     private boolean citarmed; //se cita al medico para el siguiente
     private boolean citar4;//se cita a 4 meses al paciente
-    private int pulso;
+    private Integer pulso;
     private String observaciones;
     @Temporal(javax.persistence.TemporalType.DATE)
     private java.util.Date dated3;//fecha que se realizo
@@ -90,75 +90,75 @@ public class PreingresoD3 implements Serializable {
     }
 
 
-    public int getPass1() {
+    public Integer getPass1() {
         return pass1;
     }
 
-    public void setPass1(int pass1) {
+    public void setPass1(Integer pass1) {
         this.pass1 = pass1;
     }
 
-    public int getPass2() {
+    public Integer getPass2() {
         return pass2;
     }
 
-    public void setPass2(int pass2) {
+    public void setPass2(Integer pass2) {
         this.pass2 = pass2;
     }
 
-    public int getPads1() {
+    public Integer getPads1() {
         return pads1;
     }
 
-    public void setPads1(int pads1) {
+    public void setPads1(Integer pads1) {
         this.pads1 = pads1;
     }
 
-    public int getPads2() {
+    public Integer getPads2() {
         return pads2;
     }
 
-    public void setPads2(int pads2) {
+    public void setPads2(Integer pads2) {
         this.pads2 = pads2;
     }
 
-    public int getPasp1() {
+    public Integer getPasp1() {
         return pasp1;
     }
 
-    public void setPasp1(int pasp1) {
+    public void setPasp1(Integer pasp1) {
         this.pasp1 = pasp1;
     }
 
-    public int getPasp2() {
+    public Integer getPasp2() {
         return pasp2;
     }
 
-    public void setPasp2(int pasp2) {
+    public void setPasp2(Integer pasp2) {
         this.pasp2 = pasp2;
     }
 
-    public int getPadp1() {
+    public Integer getPadp1() {
         return padp1;
     }
 
-    public void setPadp1(int padp1) {
+    public void setPadp1(Integer padp1) {
         this.padp1 = padp1;
     }
 
-    public int getPadp2() {
+    public Integer getPadp2() {
         return padp2;
     }
 
-    public void setPadp2(int padp2) {
+    public void setPadp2(Integer padp2) {
         this.padp2 = padp2;
     }
 
-    public double getPeso() {
+    public Float getPeso() {
         return peso;
     }
 
-    public void setPeso(double peso) {
+    public void setPeso(Float peso) {
         this.peso = peso;
     }
 
@@ -178,11 +178,11 @@ public class PreingresoD3 implements Serializable {
         this.citar4 = citar4;
     }
 
-    public int getPulso() {
+    public Integer getPulso() {
         return pulso;
     }
 
-    public void setPulso(int pulso) {
+    public void setPulso(Integer pulso) {
         this.pulso = pulso;
     }
 

@@ -1929,7 +1929,7 @@ public class ConsultasCensoCCV implements Serializable {
         //obtengo todos los pacientes habilitados , primer filtro
         for (Paciente pacientes : pacientes_habilitados) {
             boolean fue_censado = false;
-            int edad;
+            Integer edad;
 
             ccv = new ArrayList<>();
             resultados = new boolean[7];
@@ -2551,7 +2551,7 @@ public class ConsultasCensoCCV implements Serializable {
         boolean resultados[];
         for (Paciente pacientes : pacientes_habilitados) {
             boolean fue_censado = false;
-            int edad;
+            Integer edad;
             resultados = new boolean[15];
             ccv = new ArrayList<>();
             ccv_filtro = new ArrayList<>();
@@ -2941,7 +2941,7 @@ public class ConsultasCensoCCV implements Serializable {
                     resultados[1] = true;
                 }
 
-                if (ccv.get(j).getHba1C_valor() > 0.0 && bandera2 == 0) {
+                if (ccv.get(j).getHba1C_valor() > 0 && bandera2 == 0) {
                     if (ccv.get(j).getHba1C_valor() <= 7) {
                         resultados[2] = true;
                     } else {
