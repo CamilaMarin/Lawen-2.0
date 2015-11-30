@@ -30,6 +30,7 @@ public abstract class Paciente_ {
 	public static volatile SingularAttribute<Paciente, String> numeroRegistro_paciente;
 	public static volatile SingularAttribute<Paciente, Boolean> diabetico;
 	public static volatile SingularAttribute<Paciente, String> anteObstetricos_paciente;
+	public static volatile SingularAttribute<Paciente, Boolean> intolerancia_glucosa;
 	public static volatile SingularAttribute<Paciente, String> numeroFicha_paciente;
 	public static volatile SingularAttribute<Paciente, String> alergias_paciente;
 	public static volatile SingularAttribute<Paciente, Date> fechaInscripcion_paciente;
@@ -37,6 +38,7 @@ public abstract class Paciente_ {
 	public static volatile ListAttribute<Paciente, Patologia> patologia;
 	public static volatile SingularAttribute<Paciente, String> nombres_paciente;
 	public static volatile SingularAttribute<Paciente, String> anteQuirurjicos_paciente;
+	public static volatile SingularAttribute<Paciente, Boolean> resistencia_insulina;
 	public static volatile SingularAttribute<Paciente, String> prevision_paciente;
 	public static volatile SingularAttribute<Paciente, Boolean> dislipidemico;
 	public static volatile SingularAttribute<Paciente, Boolean> IAM;

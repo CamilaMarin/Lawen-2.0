@@ -368,7 +368,11 @@
                 <p:outputLabel id="tabaco" value="#{cCVEnfermeroController.selected.cartolaToEnf.tabaco}"  style="width:60px" />
                 <p:outputLabel class="fa fa-square purple-text" value=" Prediabético:" for="prediabetico" />
                 <p:outputLabel id="prediabetico" value="#{utilidadesController.booleanos(cCVEnfermeroController.selected.cartolaToEnf.paciente.prediabetes)}" style="width:60px" />
-
+                <p:outputLabel class="fa fa-square purple-text" value=" Resistencia a la insulina:" for="resistencia_insulina" />
+                <p:outputLabel id="resistencia_insulina" value="#{utilidadesController.booleanos(cCVEnfermeroController.selected.cartolaToEnf.paciente.resistencia_insulina)}" style="width:60px" />
+                <p:outputLabel class="fa fa-square purple-text" value=" Intolerancia a la glucosa:" for="intolerancia_glucosa" />
+                <p:outputLabel id="intolerancia_glucosa" value="#{utilidadesController.booleanos(cCVEnfermeroController.selected.cartolaToEnf.paciente.intolerancia_glucosa)}" style="width:60px" />
+                
                 <p:outputLabel class="fa fa-square purple-text" value=" IAM:" for="IAM" />
                 <p:outputLabel id="IAM" value="#{utilidadesController.booleanos(cCVEnfermeroController.selected.cartolaToEnf.IAM)}"  style="width:60px" />
 

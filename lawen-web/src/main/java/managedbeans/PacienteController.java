@@ -277,6 +277,10 @@ public class PacienteController implements Serializable {
             paragraph.add(ut.booleanos(selected.isDislipidemico()) + "\n");
             paragraph.add("Pre-diabético:  ");
             paragraph.add(ut.booleanos(selected.isPrediabetes()) + "\n");
+            paragraph.add("Resistencia a la Insulina:  ");
+            paragraph.add(ut.booleanos(selected.isResistencia_insulina()) + "\n");
+            paragraph.add("Intolerancia a la Glucosa:  ");
+            paragraph.add(ut.booleanos(selected.isIntolerancia_glucosa())+ "\n");
             paragraph.add("Antecedentes\n");
             paragraph.add("De infarto:  ");
             paragraph.add(ut.booleanos(selected.isIAM()) + "\n");

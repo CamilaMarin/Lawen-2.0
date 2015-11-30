@@ -103,6 +103,10 @@
                 <h:outputText id="dislipidemico2" rendered="#{pacienteController.selected.dislipidemico == false}" value="No" style="width:60px" />
                 <p:outputLabel styleClass="fa fa-square purple-text"  value=" Pre-Diabético:" for="prediabetico" />
                 <h:outputText id="prediabetico" value="#{utilidadesController.booleanos(pacienteController.selected.prediabetes)}"/>
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Resistencia a la Insulina:" for="resistencia_insulina" />
+                <h:outputText id="resistencia_insulina" value="#{utilidadesController.booleanos(pacienteController.selected.resistencia_insulina)}"/>
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Intolerancia a la Glucosa:" for="intolerancia_glucosa" />
+                <h:outputText id="intolerancia_glucosa" value="#{utilidadesController.booleanos(pacienteController.selected.intolerancia_glucosa)}"/>
                 <p:outputLabel styleClass="fa purple-text" style="margin-bottom: 10px; margin-top: 10px; color: #7642B5;" value=" Antecedentes:"/>
                 <p:outputLabel value=" "/>
                 <p:outputLabel value=" "/>

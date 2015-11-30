@@ -80,7 +80,7 @@ public class CCVNutricionistaController implements Serializable {
      * @param IAM
      * @return 
      */
-     public String crearCCV( CartolaSeguimientoCCVController cont, FichaNutricionistaController fich, PacienteController pac, int edad, boolean diabetico, boolean hipertenso, boolean dilipidemia, boolean ACV, boolean IAM,boolean prediabetes ){
+     public String crearCCV( CartolaSeguimientoCCVController cont, FichaNutricionistaController fich, PacienteController pac, int edad, boolean diabetico, boolean hipertenso, boolean dilipidemia, boolean ACV, boolean IAM,boolean prediabetes, boolean intolerancia_glucosa,boolean resistencia_insulina){
         pac.setSelected(cont.getSelected().getPaciente());
         pac.getSelected().setDiabetico(diabetico);
         pac.getSelected().setDislipidemico(dilipidemia);
@@ -88,6 +88,8 @@ public class CCVNutricionistaController implements Serializable {
         pac.getSelected().setACV(ACV);
         pac.getSelected().setIAM(IAM);
         pac.getSelected().setPrediabetes(prediabetes);
+        pac.getSelected().setIntolerancia_glucosa(intolerancia_glucosa);
+        pac.getSelected().setResistencia_insulina(resistencia_insulina);
         pac.update();
         if(tabaco.equals("Si")){
                     cont.getSelected().setTabaco(tabaco);
