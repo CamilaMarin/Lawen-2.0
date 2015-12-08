@@ -118,7 +118,10 @@
                 <p:outputLabel styleClass="fa fa-square purple-text"  value=" De enfermedad cerebro Cardiovascular:" for="ACV" />
                 <h:outputText id="ACV" rendered="#{pacienteController.selected.ACV == true}" value="Si" style="width:60px" />
                 <h:outputText id="ACV2" rendered="#{pacienteController.selected.ACV == false}" value="No" style="width:60px" />
-
+                
+                <p:outputLabel styleClass="fa fa-square purple-text"  value=" Antecedentes Familiares" for="antecedentes_familiares" />
+                <h:outputText id="antecedentes_familiares" value="#{pacienteController.selected.antecedentes_familiares}" title="#{bundle.CreatePacienteTitle_antecedentes_familiares}" />
+                
 
                 <ui:param name="idPaciente" value="#{pacienteController.selected.id}" />
 

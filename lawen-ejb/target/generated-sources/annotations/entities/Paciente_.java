@@ -16,6 +16,7 @@ public abstract class Paciente_ {
 	public static volatile SingularAttribute<Paciente, String> estadoCivil_paciente;
 	public static volatile SingularAttribute<Paciente, Boolean> drogas_paciente;
 	public static volatile SingularAttribute<Paciente, String> telefono1;
+	public static volatile SingularAttribute<Paciente, String> antecedentes_familiares;
 	public static volatile SingularAttribute<Paciente, String> direccion_paciente;
 	public static volatile SingularAttribute<Paciente, String> tabaco_paciente;
 	public static volatile SingularAttribute<Paciente, String> nacionalidad_paciente;

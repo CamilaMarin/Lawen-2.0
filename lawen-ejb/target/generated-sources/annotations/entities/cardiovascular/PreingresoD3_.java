@@ -24,7 +24,7 @@ public abstract class PreingresoD3_ {
 	public static volatile SingularAttribute<PreingresoD3, Integer> pass1;
 	public static volatile SingularAttribute<PreingresoD3, Usuario> profesional;
 	public static volatile SingularAttribute<PreingresoD3, String> observaciones;
-	public static volatile SingularAttribute<PreingresoD3, Double> peso;
+	public static volatile SingularAttribute<PreingresoD3, Float> peso;
 	public static volatile SingularAttribute<PreingresoD3, Long> id;
 	public static volatile SingularAttribute<PreingresoD3, Integer> pasp2;
 	public static volatile SingularAttribute<PreingresoD3, Integer> pulso;

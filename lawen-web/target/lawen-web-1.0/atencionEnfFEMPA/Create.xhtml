@@ -66,9 +66,9 @@
                         <p:outputLabel value="Item: Ambos géneros de 15 a 64 años" class="subItem"/>
                         <p:outputLabel value=""/>
                         <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_peso_emp}" for="peso" />
-                        <p:inputText id="peso" value="#{atencionEnfFEMPAController.selected.peso_emp}" title="#{bundle.CreateAtencionEnfFEMPATitle_peso_emp}" />
+                        <p:inputText id="peso" placeholder="0.0" value="#{atencionEnfFEMPAController.selected.peso_emp}" title="#{bundle.CreateAtencionEnfFEMPATitle_peso_emp}" />
                         <p:outputLabel value="#{bundle.CreateAtencionEnfFEMPALabel_talla_emp}" for="talla" />
-                        <p:inputText id="talla" value="#{atencionEnfFEMPAController.selected.talla_emp}" title="#{bundle.CreateAtencionEnfFEMPATitle_talla_emp}" />
+                        <p:inputText id="talla" placeholder="0.0" value="#{atencionEnfFEMPAController.selected.talla_emp}" title="#{bundle.CreateAtencionEnfFEMPATitle_talla_emp}" />
                         <p:outputLabel value=""/>
                          <h:commandButton id ="calimc" value="Calcular IMC" action="#" onclick="calcularIMC();" >
                             <f:ajax  />

@@ -125,9 +125,9 @@
                         <h:outputText value="Medidas antropom&eacute;tricas" class="subItem"/>
                         <h:outputText value=""/>
                         <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_talla_morb}" for="talla" />
-                        <p:inputText id="talla" value="#{atencionMedMorbilidadController.selected.talla_morb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_talla_morb}" />
+                        <p:inputText id="talla" placeholder="0.0" value="#{atencionMedMorbilidadController.selected.talla_morb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_talla_morb}" />
                         <p:outputLabel value="#{bundle.CreateAtencionMedMorbilidadLabel_peso_morb}" for="peso" />
-                        <p:inputText id="peso" value="#{atencionMedMorbilidadController.selected.peso_morb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_peso_morb}" />
+                        <p:inputText id="peso" placeholder="0.0" value="#{atencionMedMorbilidadController.selected.peso_morb}" title="#{bundle.CreateAtencionMedMorbilidadTitle_peso_morb}" />
 
                         <h:commandButton id ="calimc" value="Calcular IMC" action="#" onclick="calcularIMC();" >
                             <f:ajax  />

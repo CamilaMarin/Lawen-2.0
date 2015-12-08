@@ -137,6 +137,15 @@ public class Paciente implements Serializable {
       
       private boolean IAM;
       private boolean ACV;
+      private String antecedentes_familiares;
+
+    public String getAntecedentes_familiares() {
+        return antecedentes_familiares;
+    }
+
+    public void setAntecedentes_familiares(String antecedentes_familiares) {
+        this.antecedentes_familiares = antecedentes_familiares;
+    }
       private boolean prediabetes;
       private boolean resistencia_insulina;
       private boolean intolerancia_glucosa;

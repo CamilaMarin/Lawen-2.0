@@ -27,7 +27,7 @@ public abstract class PreingresoD2_ {
 	public static volatile SingularAttribute<PreingresoD2, String> observaciones;
 	public static volatile SingularAttribute<PreingresoD2, Long> id;
 	public static volatile SingularAttribute<PreingresoD2, Integer> pasp2;
-	public static volatile SingularAttribute<PreingresoD2, Double> peso;
+	public static volatile SingularAttribute<PreingresoD2, Float> peso;
 	public static volatile SingularAttribute<PreingresoD2, Integer> pulso;
 	public static volatile SingularAttribute<PreingresoD2, TipoPrograma> tipoprograma;
 	public static volatile SingularAttribute<PreingresoD2, Integer> pasp1;

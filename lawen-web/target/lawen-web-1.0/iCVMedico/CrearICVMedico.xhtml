@@ -175,9 +175,9 @@
                             <p:outputLabel value="Antecedentes familiares" for="icv_antecedentes_familiares" />
                             <h:inputTextarea class="textAreas" rows="10" cols="20" id="icv_antecedentes_familiares" value="#{fichaMedicoController.selected.icv_antecedentes_familiares}" />
                             <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_peso}" for="peso" />
-                            <p:inputText id="peso" value="#{cartolaSeguimientoCCVController.selected.peso}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_peso}" />
+                            <p:inputText id="peso" placeholder="0.0" value="#{cartolaSeguimientoCCVController.selected.peso}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_peso}" />
                             <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_talla}" for="talla" />
-                            <p:inputText id="talla" value="#{cartolaSeguimientoCCVController.selected.talla}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_talla}" />
+                            <p:inputText id="talla" placeholder="0.0" value="#{cartolaSeguimientoCCVController.selected.talla}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_talla}" />
 
                             <h:commandButton id ="calimc" value="Calcular IMC" action="#" onclick="calcularIMC();" >
                                 <f:ajax  />

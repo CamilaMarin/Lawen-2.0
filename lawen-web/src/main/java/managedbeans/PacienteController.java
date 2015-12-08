@@ -286,6 +286,8 @@ public class PacienteController implements Serializable {
             paragraph.add(ut.booleanos(selected.isIAM()) + "\n");
             paragraph.add("De enfermedad cerebro vascular:  ");
             paragraph.add(ut.booleanos(selected.isACV()) + "\n");
+            paragraph.add("Antecedentes familiares:  ");
+            paragraph.add(selected.getAntecedentes_familiares() + "\n");
 
         }
 

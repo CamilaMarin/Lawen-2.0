@@ -29,11 +29,11 @@ public abstract class PreingresoD1_ {
 	public static volatile SingularAttribute<PreingresoD1, Integer> pads1;
 	public static volatile SingularAttribute<PreingresoD1, Integer> pads2;
 	public static volatile SingularAttribute<PreingresoD1, Integer> pass2;
-	public static volatile SingularAttribute<PreingresoD1, Double> talla;
+	public static volatile SingularAttribute<PreingresoD1, Float> talla;
 	public static volatile SingularAttribute<PreingresoD1, Integer> pass1;
 	public static volatile SingularAttribute<PreingresoD1, Usuario> profesional;
 	public static volatile SingularAttribute<PreingresoD1, Integer> pasp2;
-	public static volatile SingularAttribute<PreingresoD1, Double> peso;
+	public static volatile SingularAttribute<PreingresoD1, Float> peso;
 	public static volatile SingularAttribute<PreingresoD1, Integer> pulso;
 	public static volatile SingularAttribute<PreingresoD1, Integer> paref1sentado;
 	public static volatile SingularAttribute<PreingresoD1, String> referido;

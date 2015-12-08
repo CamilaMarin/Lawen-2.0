@@ -1539,9 +1539,9 @@
                         <p:outputLabel value="#{bundle.CreateEsferaClinicaPSAMLabel_pulso}" for="pulso" />
                         <p:inputText id="pulso" value="#{esferaClinicaPSAMController.selected.pulso}" title="#{bundle.CreateEsferaClinicaPSAMTitle_pulso}" />
                         <p:outputLabel  class="obligatorio" value="#{bundle.CreateEsferaClinicaPSAMLabel_peso}" for="peso" />
-                        <p:inputText required="true" requiredMessage="Es necesario ingresar Peso"  id="peso" value="#{esferaClinicaPSAMController.selected.peso}" title="#{bundle.CreateEsferaClinicaPSAMTitle_peso}" />
+                        <p:inputText required="true" requiredMessage="Es necesario ingresar Peso"  id="peso" placeholder="0.0" value="#{esferaClinicaPSAMController.selected.peso}" title="#{bundle.CreateEsferaClinicaPSAMTitle_peso}" />
                         <p:outputLabel  class="obligatorio" value="#{bundle.CreateEsferaClinicaPSAMLabel_talla}" for="talla" />
-                        <p:inputText required="true" requiredMessage="Es necesario ingresar Talla" id="talla" value="#{esferaClinicaPSAMController.selected.talla}" title="#{bundle.CreateEsferaClinicaPSAMTitle_talla}" />
+                        <p:inputText required="true" requiredMessage="Es necesario ingresar Talla" id="talla" placeholder="0.0" value="#{esferaClinicaPSAMController.selected.talla}" title="#{bundle.CreateEsferaClinicaPSAMTitle_talla}" />
                         
                         <h:commandButton id ="calimc" value="Calcular IMC" action="#" onclick="calcularIMC();" >
                             <f:ajax  />
