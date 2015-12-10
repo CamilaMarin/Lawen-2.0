@@ -8,11 +8,11 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(FichaAdultoMayor.class)
 public abstract class FichaAdultoMayor_ {
 
-	public static volatile SingularAttribute<FichaAdultoMayor, EsferaFuncionalPSAM> esferaFu;
-	public static volatile SingularAttribute<FichaAdultoMayor, Long> id;
-	public static volatile SingularAttribute<FichaAdultoMayor, EsferaSocialPSAM> esferaSo;
 	public static volatile SingularAttribute<FichaAdultoMayor, EsferaMentalPSAM> esferaMen;
+	public static volatile SingularAttribute<FichaAdultoMayor, Long> id;
 	public static volatile SingularAttribute<FichaAdultoMayor, EsferaClinicaPSAM> esferaCli;
+	public static volatile SingularAttribute<FichaAdultoMayor, EsferaFuncionalPSAM> esferaFu;
+	public static volatile SingularAttribute<FichaAdultoMayor, EsferaSocialPSAM> esferaSo;
 
 }
 

@@ -8,9 +8,9 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(IngresoPSAM.class)
 public abstract class IngresoPSAM_ {
 
-	public static volatile SingularAttribute<IngresoPSAM, Long> id;
-	public static volatile SingularAttribute<IngresoPSAM, CartolaSeguimientoPSAM> cartolaPSAM;
 	public static volatile SingularAttribute<IngresoPSAM, FichaAdultoMayor> fichaAdultoMayor;
+	public static volatile SingularAttribute<IngresoPSAM, CartolaSeguimientoPSAM> cartolaPSAM;
+	public static volatile SingularAttribute<IngresoPSAM, Long> id;
 
 }
 

@@ -9,9 +9,9 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(TipoPatologia.class)
 public abstract class TipoPatologia_ {
 
+	public static volatile ListAttribute<TipoPatologia, Patologia> patologias;
 	public static volatile SingularAttribute<TipoPatologia, Long> id;
 	public static volatile SingularAttribute<TipoPatologia, String> nombre_patologia;
-	public static volatile ListAttribute<TipoPatologia, Patologia> patologias;
 
 }
 
