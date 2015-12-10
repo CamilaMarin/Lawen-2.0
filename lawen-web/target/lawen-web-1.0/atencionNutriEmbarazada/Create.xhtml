@@ -384,9 +384,12 @@
                         <p:outputLabel value="Referencias:" for="referencias" />
                         <p:inputTextarea class="textAreas" rows="5" cols="20" id="referencias" value="#{atencionNutriEmbarazadaController.selected.referencias}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_referencias}" />
                         <p:outputLabel value="Próximo Control:" for="proximo_control" />
-                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="proximo_control" value="#{atencionNutriEmbarazadaController.selected.proximo_control}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_proximo_control}" />
+                        <p:inputText id="proximo_control" value="#{atencionNutriEmbarazadaController.selected.proximo_control}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_proximo_control}" />
                         <p:outputLabel value="Próximo profesional:" for="proximo_profesional" />
-                        <p:inputTextarea class="textAreas" rows="5" cols="20" id="proximo_profesional" value="#{atencionNutriEmbarazadaController.selected.proximo_profesional}" title="#{bundle.CreateAtencionNutriEmbarazadaTitle_proximo_profesional}" />
+                        <p:selectOneMenu  id="proximo_profesional" value="#{atencionNutriEmbarazadaController.selected.proximo_profesional}"> 
+                             <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true" />
+                             <f:selectItems  value="#{dominiosController.prox_profesional}"/>    
+                        </p:selectOneMenu> 
                     </p:panelGrid>
                     <p:commandButton style="margin-top: 10px!important; margin-bottom: 10px!important;"  actionListener="#{atencionNutriEmbarazadaController.create(atencionNutriEmbarazadaController.edad)}" value="#{bundle.Save}" update="display,:AtencionNutriEmbarazadaListForm:datalist,:growl,:AtencionNutriEmbarazadaViewForm" oncomplete="handleSubmit(args,'AtencionNutriEmbarazadaCreateDialog');"/>
                     <p:commandButton style="margin-left: 10px!important; margin-top: 10px!important; margin-bottom: 10px!important;" actionListener="#{atencionNutriEmbarazadaController.cancel()}"  value="#{bundle.Cancel}" update="display,:growl,:AtencionNutriEmbarazadaViewForm" onclick="AtencionNutriEmbarazadaCreateDialog.hide()" immediate="true" />

@@ -531,10 +531,12 @@
 
 
                         <p:outputLabel value="Próximo control:" for="proximo_control" />
-                        <p:inputTextarea class="textAreas" rows="5" cols="20"  id="proximo_control" value="#{atencionNutriDietoterapiaController.selected.proximo_control}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_proximo_control}" />
-                        <p:outputLabel value="Próximo profesional :" for="profesional_control" />
-                        <p:inputTextarea class="textAreas" rows="5" cols="20"  id="profesional_control" value="#{atencionNutriDietoterapiaController.selected.profesional_control}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_profesional_control}" />
-
+                        <p:inputText  id="proximo_control" value="#{atencionNutriDietoterapiaController.selected.proximo_control}" title="#{bundle.CreateAtencionNutriDietoterapiaTitle_proximo_control}" />
+                        <p:outputLabel value="Próximo Profesional:" for="profesional_control" />
+                        <p:selectOneMenu  id="profesional_control" value="#{atencionNutriDietoterapiaController.selected.profesional_control}"> 
+                             <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true" />
+                             <f:selectItems  value="#{dominiosController.prox_profesional}"/>    
+                        </p:selectOneMenu>      
                     </p:panelGrid>
                     <p:commandButton style="margin-top: 10px!important; margin-bottom: 10px!important;"  actionListener="#{atencionNutriDietoterapiaController.create(atencionNutriDietoterapiaController.edad)}" value="#{bundle.Save}" update="display,:AtencionNutriDietoterapiaListForm:datalist,:growl,:AtencionNutriDietoterapiaViewForm" oncomplete="handleSubmit(args,'AtencionNutriDietoterapiaCreateDialog');"/>
                     <p:commandButton style="margin-left: 10px!important; margin-top: 10px!important; margin-bottom: 10px!important;"  actionListener="#{atencionNutriDietoterapiaController.cancel()}" value="#{bundle.Cancel}" update="display,:growl,:AtencionNutriDietoterapiaViewForm" onclick="AtencionNutriDietoterapiaCreateDialog.hide()" immediate="true" />
