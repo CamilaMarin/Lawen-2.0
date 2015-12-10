@@ -56,6 +56,8 @@ public class dominiosController {
     private List <String> curacionPieDM;
     private List <String> ingresoReingreso;
     private List <String> pertenece_al_programa_mas;
+    private List <String> prox_profesional;
+
     /*
     Init para intanciar valores de las listas
     */
@@ -70,6 +72,11 @@ public class dominiosController {
         sector.add(1, "Rojo");
         sector.add(2, "Azul");
         sector.add(3, "Verde");
+        
+        prox_profesional= new ArrayList<>(3);
+        prox_profesional.add(0,"Medico");
+        prox_profesional.add(1,"Enfermera");
+        prox_profesional.add(2,"Nutricionista");
         
         prevision = new ArrayList<>(5);
         prevision.add(0, "Fonasa A");
@@ -240,6 +247,13 @@ public class dominiosController {
     }
 
     
+    public List<String> getProx_profesional() {
+        return prox_profesional;
+    }
+
+    public void setProx_profesional(List<String> prox_profesional) {
+        this.prox_profesional = prox_profesional;
+    }
     
     public List<String> getRiesgoUlceras() {
         return riesgoUlceras;

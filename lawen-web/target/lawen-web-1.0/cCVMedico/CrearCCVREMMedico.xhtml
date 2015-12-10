@@ -26,7 +26,7 @@
                     $(hola).parent().parent().parent().next().children().hide();
                     $(hola).parent().parent().parent().next().next().children().hide();
                 }                
-            }
+            };
             
             function ocultarBoton(hola){
                 if($(hola).parent().hasClass("ui-state-active")){
@@ -37,7 +37,73 @@
                     $(hola).parent().parent().next().children().hide();
                     $(hola).parent().parent().next().next().children().hide();
                 }                
-            }
+            };
+            
+            function calcularIMC () {
+                    
+                     var peso = $("#peso").val();
+                     var talla = $("#talla").val();
+                     var edad = $("#edad_paciente").val();
+               
+                    if( peso == 0 || talla == 0 || edad == "" ){
+                    
+                        alert("Debe llenar peso, talla y edad");
+                    
+                    }
+                     
+                     var imc = peso/Math.pow(talla,2);
+                     
+                     if(isNaN(imc) || imc == Infinity){
+                            $("#imc").val(0.0);
+                     }
+                     else{
+                        $("#imc").val(imc);
+                        $("#imc").prop('readonly', true);
+                        var diagnosticoNutricional = "";
+                     
+                     if( edad < 65 ){
+                        if( imc < 18.5){
+                            diagnosticoNutricional = "BP";
+                        }
+                        else if( 18.5 <= imc && imc < 25){
+                            diagnosticoNutricional = "N";
+                        }
+                        else if( 25 <= imc  && imc < 30){
+                            diagnosticoNutricional = "SP";
+                        }
+                        else if( 30 <= imc  && imc < 35){
+                            diagnosticoNutricional = "OBI";
+                        }
+                        else if( 35 <= imc  && imc < 40){
+                            diagnosticoNutricional = "OBII";
+                        }
+                        else if( 40 <= imc){
+                            diagnosticoNutricional = "OBIII";
+                        }
+                        }
+                        else if( edad >= 65){
+                            if( imc <= 23){
+                                diagnosticoNutricional = "E";
+                            }
+                            else if( 23 < imc && imc < 28){
+                                diagnosticoNutricional = "N";
+                            }
+                            else if( 28 <= imc  && imc < 32){
+                                diagnosticoNutricional = "SP";
+                            }
+                            else if( 32 <= imc){
+                                diagnosticoNutricional = "OB";
+                            }
+
+                        } 
+                    
+                    
+                     $("#diagnostico_nutricional").val(diagnosticoNutricional);
+                     $("#diagnostico_nutricional").prop('readonly', true);
+                     
+                     }
+                     
+                };
 
 
         //]]>
@@ -88,22 +154,26 @@
                                            itemValue="#{profesionalItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_peso}" for="peso" />
-                        <p:inputText id="peso" value="#{cartolaSeguimientoCCVController.selected.peso}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_peso}" />
+                        <p:inputText id="peso" placeholder="0.0" value="#{cartolaSeguimientoCCVController.selected.peso}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_peso}" />
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_talla}" for="talla" />
-                        <p:inputText id="talla" value="#{cartolaSeguimientoCCVController.selected.talla}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_talla}" />
+                        <p:inputText id="talla" placeholder="0.0" value="#{cartolaSeguimientoCCVController.selected.talla}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_talla}" />
+                        <h:commandButton id ="calimc" value="Calcular IMC" action="#" onclick="calcularIMC();" >
+                            <f:ajax  />
+                        </h:commandButton>
+                        
+                        <p:outputLabel value="" />
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_imc}" for="imc" />
                         <p:inputText  required="false" requiredMessage="Es necesario el calculo del IMC" id="imc" value="#{cartolaSeguimientoCCVController.selected.imc}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_imc}" />
                         <p:outputLabel class="obligatorio" value="#{bundle.CreateCartolaSeguimientoCCVLabel_diagnostico_nutricional}" for="diagnostico_nutricional" />
-                        <p:selectOneMenu  required="true" requiredMessage="Es necesario el diagnóstico nutricional" id="diagnostico_nutricional" value="#{cartolaSeguimientoCCVController.selected.diagnostico_nutricional}" >
-                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true" />
-                            <f:selectItems value="#{dominiosController.diagnosticoLista}" />
-                        </p:selectOneMenu>
+                        <p:inputText  required="true" requiredMessage="Es necesario el diagnóstico nutricional" id="diagnostico_nutricional" value="#{cartolaSeguimientoCCVController.selected.diagnostico_nutricional}" />
 
 
 
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_perimetro_cintura}" for="perimetro_cintura" />
                         <p:inputText id="perimetro_cintura" value="#{cartolaSeguimientoCCVController.selected.perimetro_cintura}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_perimetro_cintura}" />
 
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
                         <p:outputLabel value="" />
                         <p:outputLabel value="" />
                         <p:outputLabel  class="subTitle" value="Régimen:" />
@@ -515,8 +585,12 @@
                         <p:calendar id="fechareingreso" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{cartolaSeguimientoCCVController.selected.fechareingreso}" title="#{bundle.EditCartolaSeguimientoCCVTitle_fechareingreso}" navigator="true" locale="es" yearRange="c-100:c+10" showOn="button"/>
 
                         <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_proximo_control}" for="proximo_control" />
-                        <h:inputTextarea class="textAreas" rows="10" cols="20"   id="proximo_control"  value="#{cartolaSeguimientoCCVController.selected.proximo_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_proximo_control}" />
-
+                        <h:inputText   id="proximo_control"  value="#{cartolaSeguimientoCCVController.selected.proximo_control}" title="#{bundle.EditCartolaSeguimientoCCVTitle_proximo_control}" />
+                        <p:outputLabel  value="Proximo profesional" for="proximo_profesional" />
+                        <p:selectOneMenu  id="proximo_profesional" value="#{cartolaSeguimientoCCVController.selected.proximo_profesional}"> 
+                             <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true" />
+                             <f:selectItems  value="#{dominiosController.prox_profesional}"/>    
+                        </p:selectOneMenu>      
 
 
                     </p:panelGrid>

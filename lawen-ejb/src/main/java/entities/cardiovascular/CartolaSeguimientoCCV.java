@@ -246,8 +246,9 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
     @Temporal(javax.persistence.TemporalType.DATE)
     private java.util.Date fechareingreso;
     private String proximo_control;
+    private String proximo_profesional;
   //Nuevos para censo CCV
-    
+
     private String Det_Prev_ERC;
     //nuevo censo farmaco
     private boolean Acido_acetilsalicilico;
@@ -270,6 +271,17 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
     private boolean nefropatiaInciente;
     private boolean amputacionDiabetica;
 
+
+    public String getProximo_profesional() {
+        return proximo_profesional;
+    }
+
+    public void setProximo_profesional(String proximo_profesional) {
+        this.proximo_profesional = proximo_profesional;
+    }
+        
+    
+    
     public boolean isAtencionPodologica() {
         return atencionPodologica;
     }

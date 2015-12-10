@@ -25,6 +25,7 @@ public abstract class CartolaSeguimientoCCV_ {
 	public static volatile SingularAttribute<CartolaSeguimientoCCV, String> fibratos_texto;
 	public static volatile SingularAttribute<CartolaSeguimientoCCV, String> colesterolLDL_estado;
 	public static volatile SingularAttribute<CartolaSeguimientoCCV, String> bilirrubinaIndirecta_estado;
+	public static volatile SingularAttribute<CartolaSeguimientoCCV, String> proximo_profesional;
 	public static volatile SingularAttribute<CartolaSeguimientoCCV, Boolean> amputacion_no_traumatica;
 	public static volatile SingularAttribute<CartolaSeguimientoCCV, Boolean> reingreso;
 	public static volatile SingularAttribute<CartolaSeguimientoCCV, Integer> pa_de_pie1;
