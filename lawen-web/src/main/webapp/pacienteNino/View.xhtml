@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <h:outputStylesheet library="css" name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputScript library="js" name="js/jsfcrud.js"/>
+    </h:head>
+    
+            <h:form id="PacienteNinoViewForm">
+                <h:panelGroup id="display" styleClass="">
+                    <p:panelGrid id="fichaPacienteNino" style="margin-top: 20px; margin-bottom: 40px;" styleClass="col-md-12 spaceGrid" layout="grid" columns="4" rendered="#{pacienteNinoController.selected != null}">
+                        <p:outputLabel styleClass="fa purple-text"  value=" FICHA NIÑO" style="margin-top: 10px; margin-bottom: 20px; color: #43005D;"/>
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value=" "/>
+                        <p:outputLabel value=" "/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_establecimiento_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.establecimiento_nino}" title="#{bundle.ViewPacienteNinoTitle_establecimiento_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_fichaClinica_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.fichaClinica_nino}" title="#{bundle.ViewPacienteNinoTitle_fichaClinica_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_sector_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.sector_nino}" title="#{bundle.ViewPacienteNinoTitle_sector_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_nombres_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.nombres_nino}" title="#{bundle.ViewPacienteNinoTitle_nombres_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_apellidoPaterno_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.apellidoPaterno_nino}" title="#{bundle.ViewPacienteNinoTitle_apellidoPaterno_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_apellidoMaterno_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.apellidoMaterno_nino}" title="#{bundle.ViewPacienteNinoTitle_apellidoMaterno_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_estado_paciente_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.estado_paciente_nino}" title="#{bundle.ViewPacienteNinoTitle_estado_paciente_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_rut_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.rut_nino}" title="#{bundle.ViewPacienteNinoTitle_rut_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_fechaNacimiento_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.fechaNacimiento_nino}" title="#{bundle.ViewPacienteNinoTitle_fechaNacimiento_nino}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_genero_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.genero_nino}" title="#{bundle.ViewPacienteNinoTitle_genero_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_fechaInscripcion_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.fechaInscripcion_nino}" title="#{bundle.ViewPacienteNinoTitle_fechaInscripcion_nino}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_nombreMadre_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.nombreMadre_nino}" title="#{bundle.ViewPacienteNinoTitle_nombreMadre_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_edadMadre_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.edadMadre_nino}" title="#{bundle.ViewPacienteNinoTitle_edadMadre_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_escolaridadMadre_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.escolaridadMadre_nino}" title="#{bundle.ViewPacienteNinoTitle_escolaridadMadre_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_ocupacionMadre_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.ocupacionMadre_nino}" title="#{bundle.ViewPacienteNinoTitle_ocupacionMadre_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_sistemaSaludMadre_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.sistemaSaludMadre_nino}" title="#{bundle.ViewPacienteNinoTitle_sistemaSaludMadre_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_nombrePadre_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.nombrePadre_nino}" title="#{bundle.ViewPacienteNinoTitle_nombrePadre_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_edadPadre_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.edadPadre_nino}" title="#{bundle.ViewPacienteNinoTitle_edadPadre_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_escolaridadPadre_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.escolaridadPadre_nino}" title="#{bundle.ViewPacienteNinoTitle_escolaridadPadre_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_ocupacionPadre_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.ocupacionPadre_nino}" title="#{bundle.ViewPacienteNinoTitle_ocupacionPadre_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_sistemaSaludPadre_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.sistemaSaludPadre_nino}" title="#{bundle.ViewPacienteNinoTitle_sistemaSaludPadre_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_domicilio_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.domicilio_nino}" title="#{bundle.ViewPacienteNinoTitle_domicilio_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_unidadVecinal_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.unidadVecinal_nino}" title="#{bundle.ViewPacienteNinoTitle_unidadVecinal_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_comuna_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.comuna_nino}" title="#{bundle.ViewPacienteNinoTitle_comuna_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_telefono_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.telefono_nino}" title="#{bundle.ViewPacienteNinoTitle_telefono_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_edadGestacional_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.edadGestacional_nino}" title="#{bundle.ViewPacienteNinoTitle_edadGestacional_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_peso_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.peso_nino}" title="#{bundle.ViewPacienteNinoTitle_peso_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_talla_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.talla_nino}" title="#{bundle.ViewPacienteNinoTitle_talla_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_pCraneano_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.pCraneano_nino}" title="#{bundle.ViewPacienteNinoTitle_pCraneano_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_tipoParto_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.tipoParto_nino}" title="#{bundle.ViewPacienteNinoTitle_tipoParto_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_apgar_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.apgar_nino}" title="#{bundle.ViewPacienteNinoTitle_apgar_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_vitDDosis_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.vitDDosis_nino}" title="#{bundle.ViewPacienteNinoTitle_vitDDosis_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_fechaPeriodo_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.fechaPeriodo_nino}" title="#{bundle.ViewPacienteNinoTitle_fechaPeriodo_nino}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_antecedentesPerinatales_nino}"/>
+                        <h:outputText value="#{pacienteNinoController.selected.antecedentesPerinatales_nino}" title="#{bundle.ViewPacienteNinoTitle_antecedentesPerinatales_nino}"/>
+                    </p:panelGrid>
+                </h:panelGroup>
+            </h:form>
+
+</html>
