@@ -46,8 +46,8 @@
                                  >
                         <p:ajax event="rowDblselect" 
                                 update=":PacienteNinoViewForm"  oncomplete="alertify.success('Ha seleccionado un nuevo niño');" />
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton"/>
 
                         
                         <p:column filterBy="#{item.rut_nino}" headerText="rut_nino" filterMatchMode="contains">
@@ -106,7 +106,6 @@
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{pacienteNinoController.prepareCreate}" update=":PacienteNinoCreateForm" oncomplete="PF('PacienteNinoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PacienteNinoViewForm" disabled="#{empty pacienteNinoController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PacienteNinoEditForm" oncomplete="PF('PacienteNinoEditDialog').show()" disabled="#{empty pacienteNinoController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{pacienteNinoController.destroy}" update=":growl,datalist" disabled="#{empty pacienteNinoController.selected}"/>
                         </f:facet>
                     </p:dataTable>
             </h:form>

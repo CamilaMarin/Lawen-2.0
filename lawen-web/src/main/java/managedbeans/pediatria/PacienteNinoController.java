@@ -56,6 +56,14 @@ public class PacienteNinoController implements Serializable {
     }
 
     public void create() {
+        String rut = selected.getRut_nino();
+        rut = rut.toUpperCase();
+        rut = rut.replace(".", "");
+        rut = rut.replace("-", "");
+
+        rut = rut.substring(0, rut.length() - 1) + "-" + rut.substring(rut.length() - 1, rut.length());
+        selected.setEstado_paciente_nino("Activo");
+        selected.setRut_nino(rut);
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("PacienteNinoCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -64,6 +72,7 @@ public class PacienteNinoController implements Serializable {
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("PacienteNinoUpdated"));
+        selected = null;
     }
 
     public void destroy() {
@@ -75,9 +84,7 @@ public class PacienteNinoController implements Serializable {
     }
 
     public List<PacienteNino> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        items = getFacade().findAll();
         return items;
     }
 
@@ -95,7 +102,7 @@ public class PacienteNinoController implements Serializable {
                 String msg = "";
                 Throwable cause = ex.getCause();
                 if (cause != null) {
-                    msg = cause.getLocalizedMessage();
+                    msg = "Ha ocurrido un error procesando su solicitud.\n Rut repetidos";
                 }
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);

@@ -391,7 +391,7 @@ public class PacienteNino implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.pediatria.PacienteNino[ id=" + id + " ]";
+        return rut_nino  + " - " + nombres_nino +" " + apellidoPaterno_nino;
     }
     
 }

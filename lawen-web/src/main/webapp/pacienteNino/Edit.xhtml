@@ -16,8 +16,12 @@
                         <p:inputText id="establecimiento_nino" value="#{pacienteNinoController.selected.establecimiento_nino}" title="#{bundle.EditPacienteNinoTitle_establecimiento_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_fichaClinica_nino}" for="fichaClinica_nino" />
                         <p:inputText id="fichaClinica_nino" value="#{pacienteNinoController.selected.fichaClinica_nino}" title="#{bundle.EditPacienteNinoTitle_fichaClinica_nino}" />
+                        
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_sector_nino}" for="sector_nino" />
-                        <p:inputText id="sector_nino" value="#{pacienteNinoController.selected.sector_nino}" title="#{bundle.EditPacienteNinoTitle_sector_nino}" />
+                        <p:selectOneMenu id="sector_nino" value="#{pacienteNinoController.selected.sector_nino}">
+                            <f:selectItems value="#{dominiosController.sector}"/>    
+                        </p:selectOneMenu>
+
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_nombres_nino}" for="nombres_nino" />
                         <p:inputText id="nombres_nino" value="#{pacienteNinoController.selected.nombres_nino}" title="#{bundle.EditPacienteNinoTitle_nombres_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_apellidoPaterno_nino}" for="apellidoPaterno_nino" />
@@ -30,8 +34,12 @@
                         <p:inputText id="rut_nino" value="#{pacienteNinoController.selected.rut_nino}" title="#{bundle.EditPacienteNinoTitle_rut_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_fechaNacimiento_nino}" for="fechaNacimiento_nino" />
                         <p:calendar id="fechaNacimiento_nino" pattern="MM/dd/yyyy" value="#{pacienteNinoController.selected.fechaNacimiento_nino}" title="#{bundle.EditPacienteNinoTitle_fechaNacimiento_nino}"  showOn="button"/>
+                        
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_genero_nino}" for="genero_nino" />
-                        <p:inputText id="genero_nino" value="#{pacienteNinoController.selected.genero_nino}" title="#{bundle.EditPacienteNinoTitle_genero_nino}" />
+                        <p:selectOneMenu id="genero_nino" value="#{pacienteNinoController.selected.genero_nino}"> 
+                            <f:selectItems value="#{dominiosController.genero}"/>    
+                        </p:selectOneMenu>
+
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_fechaInscripcion_nino}" for="fechaInscripcion_nino" />
                         <p:calendar id="fechaInscripcion_nino" pattern="MM/dd/yyyy" value="#{pacienteNinoController.selected.fechaInscripcion_nino}" title="#{bundle.EditPacienteNinoTitle_fechaInscripcion_nino}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_nombreMadre_nino}" for="nombreMadre_nino" />
@@ -42,8 +50,12 @@
                         <p:inputText id="escolaridadMadre_nino" value="#{pacienteNinoController.selected.escolaridadMadre_nino}" title="#{bundle.EditPacienteNinoTitle_escolaridadMadre_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_ocupacionMadre_nino}" for="ocupacionMadre_nino" />
                         <p:inputText id="ocupacionMadre_nino" value="#{pacienteNinoController.selected.ocupacionMadre_nino}" title="#{bundle.EditPacienteNinoTitle_ocupacionMadre_nino}" />
+                        
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_sistemaSaludMadre_nino}" for="sistemaSaludMadre_nino" />
-                        <p:inputText id="sistemaSaludMadre_nino" value="#{pacienteNinoController.selected.sistemaSaludMadre_nino}" title="#{bundle.EditPacienteNinoTitle_sistemaSaludMadre_nino}" />
+                        <p:selectOneMenu id="sistemaSaludMadre_nino" value="#{pacienteNinoController.selected.sistemaSaludMadre_nino}">
+                            <f:selectItems value="#{dominiosController.prevision}"/>    
+                        </p:selectOneMenu>
+                        
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_nombrePadre_nino}" for="nombrePadre_nino" />
                         <p:inputText id="nombrePadre_nino" value="#{pacienteNinoController.selected.nombrePadre_nino}" title="#{bundle.EditPacienteNinoTitle_nombrePadre_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_edadPadre_nino}" for="edadPadre_nino" />
@@ -52,8 +64,12 @@
                         <p:inputText id="escolaridadPadre_nino" value="#{pacienteNinoController.selected.escolaridadPadre_nino}" title="#{bundle.EditPacienteNinoTitle_escolaridadPadre_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_ocupacionPadre_nino}" for="ocupacionPadre_nino" />
                         <p:inputText id="ocupacionPadre_nino" value="#{pacienteNinoController.selected.ocupacionPadre_nino}" title="#{bundle.EditPacienteNinoTitle_ocupacionPadre_nino}" />
+                        
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_sistemaSaludPadre_nino}" for="sistemaSaludPadre_nino" />
-                        <p:inputText id="sistemaSaludPadre_nino" value="#{pacienteNinoController.selected.sistemaSaludPadre_nino}" title="#{bundle.EditPacienteNinoTitle_sistemaSaludPadre_nino}" />
+                        <p:selectOneMenu id="sistemaSaludPadre_nino" value="#{pacienteNinoController.selected.sistemaSaludPadre_nino}">
+                            <f:selectItems value="#{dominiosController.prevision}"/>    
+                        </p:selectOneMenu>
+                        
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_domicilio_nino}" for="domicilio_nino" />
                         <p:inputText id="domicilio_nino" value="#{pacienteNinoController.selected.domicilio_nino}" title="#{bundle.EditPacienteNinoTitle_domicilio_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_unidadVecinal_nino}" for="unidadVecinal_nino" />
