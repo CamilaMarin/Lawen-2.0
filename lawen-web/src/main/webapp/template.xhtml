@@ -56,10 +56,7 @@
 
         <b:navBar id="menu" brand="CESFAM Carol Urz&uacute;a - CECOSF Rapa Nui" brandHref="/lawen-web/faces/index.xhtml">
             <b:navbarLinks pull="right">
-                <b:dropMenu value="Pacientes" rendered="#{loginController.verifyLogin()}">
-                    <b:navLink outcome="/paciente/List.xhtml" value="Pacientes" rendered="#{loginController.verifyLogin()}"></b:navLink>
-                    <b:navLink outcome="/pacienteNino/List.xhtml" value="Niños"  rendered="#{loginController.verifyLogin()}"></b:navLink>
-                </b:dropMenu>
+                <b:navLink outcome="/paciente/List.xhtml" value="Pacientes"  rendered="#{loginController.verifyLogin() }"></b:navLink>
                 <b:dropMenu value="Programas" rendered="false" >
                     <b:navLink header="PSCV -  Preingresos"></b:navLink>
                     <b:navLink outcome="/preingresoD1/List" value="Preingreso I"></b:navLink>
