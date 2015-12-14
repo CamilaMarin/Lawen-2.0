@@ -5,6 +5,7 @@
  */
 package managedbeans.descargas;
 
+import static com.arjuna.ats.arjuna.logging.tsLogger.logger;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -47,10 +48,8 @@ public static void main(String[] args) {
 
 			pdfStamper.close();
 
-		  } catch (IOException e) {
-			e.printStackTrace();
-		  } catch (DocumentException e) {
-			e.printStackTrace();
+		  } catch (IOException | DocumentException e) {
+			logger.warn("failed to ...."+e);
 		  }
 		}
 }

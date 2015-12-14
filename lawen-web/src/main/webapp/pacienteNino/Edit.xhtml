@@ -28,8 +28,12 @@
                         <p:inputText id="apellidoPaterno_nino" value="#{pacienteNinoController.selected.apellidoPaterno_nino}" title="#{bundle.EditPacienteNinoTitle_apellidoPaterno_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_apellidoMaterno_nino}" for="apellidoMaterno_nino" />
                         <p:inputText id="apellidoMaterno_nino" value="#{pacienteNinoController.selected.apellidoMaterno_nino}" title="#{bundle.EditPacienteNinoTitle_apellidoMaterno_nino}" />
+                        
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_estado_paciente_nino}" for="estado_paciente_nino" />
-                        <p:inputText id="estado_paciente_nino" value="#{pacienteNinoController.selected.estado_paciente_nino}" title="#{bundle.EditPacienteNinoTitle_estado_paciente_nino}" />
+                        <p:selectOneMenu id="estado_paciente_nino" value="#{pacienteNinoController.selected.estado_paciente_nino}">
+                            <f:selectItems value="#{dominiosController.estado_paciente}"/>    
+                        </p:selectOneMenu>
+                        
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_rut_nino}" for="rut_nino" />
                         <p:inputText id="rut_nino" value="#{pacienteNinoController.selected.rut_nino}" title="#{bundle.EditPacienteNinoTitle_rut_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_fechaNacimiento_nino}" for="fechaNacimiento_nino" />

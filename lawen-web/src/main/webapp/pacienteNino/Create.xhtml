@@ -35,6 +35,7 @@
                         <p:inputText id="rut_nino" value="#{pacienteNinoController.selected.rut_nino}" title="#{bundle.CreatePacienteNinoTitle_rut_nino}" placeholder="Sin puntos y con guión" required="true" requiredMessage="Debe ingresar un rut">
                             <f:validator validatorId="rutValidator" />
                         </p:inputText>
+                        
                         <p:outputLabel class="obligatorio" value="#{bundle.CreatePacienteNinoLabel_fechaNacimiento_nino}" for="fechaNacimiento_nino" />
                         <p:calendar id="fechaNacimiento_nino" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{pacienteNinoController.selected.fechaNacimiento_nino}" title="#{bundle.EditPacienteNinoTitle_fechaNacimiento_nino}"  showOn="button"/>
                         

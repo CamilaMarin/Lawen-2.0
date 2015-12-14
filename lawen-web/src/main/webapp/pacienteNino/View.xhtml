@@ -93,7 +93,9 @@
                         </h:outputText>
                         <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_antecedentesPerinatales_nino}"/>
                         <h:outputText value="#{pacienteNinoController.selected.antecedentesPerinatales_nino}" title="#{bundle.ViewPacienteNinoTitle_antecedentesPerinatales_nino}"/>
+                        <ui:param name="idPacienteNino" value="#{pacienteNinoController.selected.id}" />
                     </p:panelGrid>
+                <p:button style="margin-right: 10px;" rendered="#{idPacienteNino!= null and pacienteNinoController.isActivo(pacienteNinoController.selected)==true}" icon="ui-icon-folder-open" value="Pasar al programa de Pediatría" outcome="/pacienteNino/NinoToPediatria" />
                 </h:panelGroup>
             </h:form>
 

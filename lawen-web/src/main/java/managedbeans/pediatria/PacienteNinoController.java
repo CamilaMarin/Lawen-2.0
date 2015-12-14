@@ -6,6 +6,7 @@ import managedbeans.pediatria.util.JsfUtil.PersistAction;
 import sessionbeans.pediatria.PacienteNinoFacadeLocal;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -27,7 +28,8 @@ public class PacienteNinoController implements Serializable {
     private PacienteNinoFacadeLocal ejbFacade;
     private List<PacienteNino> items = null;
     private PacienteNino selected;
-
+    private List<PacienteNino> allitems = null;
+    
     public PacienteNinoController() {
     }
 
@@ -47,6 +49,14 @@ public class PacienteNinoController implements Serializable {
 
     private PacienteNinoFacadeLocal getFacade() {
         return ejbFacade;
+    }
+    
+    public List<PacienteNino> getAllItems() {
+        allitems = getFacade().findAll();
+        if (allitems == null) {
+            allitems = new ArrayList<PacienteNino>();
+        }
+        return allitems;
     }
 
     public PacienteNino prepareCreate() {
@@ -114,6 +124,39 @@ public class PacienteNinoController implements Serializable {
                 JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             }
         }
+    }
+    
+    public void cancel() {
+        selected = null;
+    }
+    
+    public boolean isActivo(PacienteNino paciente) {
+        try {
+
+            if (paciente.getEstado_paciente_nino().equals("Activo")) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+
+        }
+    }
+    
+    public boolean isExistPaciente(PacienteNino paciente) {
+        try {
+            getAllItems();//todos los items
+            for (PacienteNino item : allitems) {//para cada item de Preingreso de la bd
+                if (paciente.getId() == item.getId()) {//si el objeto a comparar es igual al rut de entrada
+                    return true;//se retorna
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+
+        }
+
     }
 
     public PacienteNino getPacienteNino(java.lang.Long id) {
