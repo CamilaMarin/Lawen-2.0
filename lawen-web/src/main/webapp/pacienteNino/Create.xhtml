@@ -46,7 +46,7 @@
                         </p:selectOneMenu>
                         
                         <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_fechaInscripcion_nino}" for="fechaInscripcion_nino" />
-                        <p:calendar id="fechaInscripcion_nino" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{pacienteNinoController.selected.fechaInscripcion_nino}" title="#{bundle.EditPacienteNinoTitle_fechaInscripcion_nino}"  showOn="button"/>
+                        <p:calendar id="fechaInscripcion_nino" placeholder="dd/MM/yyyy" pattern="dd/mm/yyyy" value="#{pacienteNinoController.selected.fechaInscripcion_nino}" title="#{bundle.EditPacienteNinoTitle_fechaInscripcion_nino}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_nombreMadre_nino}" for="nombreMadre_nino" />
                         <p:inputText id="nombreMadre_nino" value="#{pacienteNinoController.selected.nombreMadre_nino}" title="#{bundle.CreatePacienteNinoTitle_nombreMadre_nino}" />
                         <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_edadMadre_nino}" for="edadMadre_nino" />
@@ -100,7 +100,7 @@
                         <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_vitDDosis_nino}" for="vitDDosis_nino" />
                         <p:inputText id="vitDDosis_nino" value="#{pacienteNinoController.selected.vitDDosis_nino}" title="#{bundle.CreatePacienteNinoTitle_vitDDosis_nino}" />
                         <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_fechaPeriodo_nino}" for="fechaPeriodo_nino" />
-                        <p:calendar id="fechaPeriodo_nino" pattern="MM/dd/yyyy" value="#{pacienteNinoController.selected.fechaPeriodo_nino}" title="#{bundle.EditPacienteNinoTitle_fechaPeriodo_nino}"  showOn="button"/>
+                        <p:calendar id="fechaPeriodo_nino" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{pacienteNinoController.selected.fechaPeriodo_nino}" title="#{bundle.EditPacienteNinoTitle_fechaPeriodo_nino}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_antecedentesPerinatales_nino}" for="antecedentesPerinatales_nino" />
                         <p:inputText id="antecedentesPerinatales_nino" value="#{pacienteNinoController.selected.antecedentesPerinatales_nino}" title="#{bundle.CreatePacienteNinoTitle_antecedentesPerinatales_nino}" />
                     </p:panelGrid>

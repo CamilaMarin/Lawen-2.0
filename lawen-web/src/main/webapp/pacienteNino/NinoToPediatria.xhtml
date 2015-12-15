@@ -31,12 +31,13 @@
                     <h:outputLabel value="Paciente: #{pacienteNinoController.selected.nombres_nino } #{pacienteNinoController.selected.apellidoPaterno_nino} #{pacienteNinoController.selected.apellidoMaterno_nino}"/> 
                     <br/>
                     <h:outputLabel value="Rut: #{pacienteNinoController.selected.rut_nino}"/>
-                </b:alert>
+                </b:alert>                
                 
-                <h:outputLabel value="El niño seleccionado no presenta controles"  rendered = "#{controlNinoController.getObjetobyId(pacienteNinoController.selected.id) ==null}"/> <br/>
                 <p:button icon="fa fa-file-powerpoint-o" value="Ingresar Control"  outcome="/controlNino/CreateControlfromNino"/>  
-                
-                <p:panelGrid columns="2" rendered="#{controlNinoController.getObjetobyId(pacienteNinoController.selected.id) != null}" layout="grid" class="container tab1_controles">
+                <br/>
+                <h:outputLabel value="El niño seleccionado no presenta controles"  rendered = "#{controlNinoController.getObjetobyId(pacienteNinoController.selected.id) ==null}"/> <br/>
+                <p:panelGrid columns="1" rendered="#{controlNinoController.getObjetobyId(pacienteNinoController.selected.id) != null}" layout="grid" class="container tab1_controles">
+                        <br/>
                         <h:outputText value="Posee Controles ingresados"></h:outputText>
                 </p:panelGrid>
                 

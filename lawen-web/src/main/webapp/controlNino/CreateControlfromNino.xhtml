@@ -39,8 +39,8 @@
                 <h:form id="ControlNinoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{controlNinoController.prepareCreate()!= null}">
-                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_cartolaControlesNino}" for="cartolaControlesNino" />
-                        <p:inputText  class="obligatorio" disabled="true" id="cartolaControlesNino" value="#{cartolaControlesNinoController.selected.pacienteNino.cartolas}"/>
+                        <p:outputLabel rendered="#{pacienteNinoController.isExistPaciente(pacienteNinoController.selected)==false}" value="#{bundle.CreateControlNinoLabel_cartolaControlesNino}" for="cartolaControlesNino" />
+                        <p:inputText  rendered="#{pacienteNinoController.isExistPaciente(pacienteNinoController.selected)==false}" class="obligatorio" disabled="true" id="cartolaControlesNino" value="#{cartolaControlesNinoController.selected.pacienteNino.cartolas}"/>
 
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_edadControl}" for="edadControl" />
                         <p:inputText id="edadControl" value="#{controlNinoController.selected.edadControl}" title="#{bundle.CreateControlNinoTitle_edadControl}" />
@@ -68,9 +68,9 @@
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_estadoNutricionalControl}" for="estadoNutricionalControl" />
                         <p:inputText id="estadoNutricionalControl" value="#{controlNinoController.selected.estadoNutricionalControl}" title="#{bundle.CreateControlNinoTitle_estadoNutricionalControl}" />
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaIngresoEstmulacionControl}" for="fechaIngresoEstmulacionControl" />
-                        <p:calendar id="fechaIngresoEstmulacionControl" placeholder="dd/mm/yyyy" pattern="MM/dd/yyyy" value="#{controlNinoController.selected.fechaIngresoEstmulacionControl}" title="#{bundle.EditControlNinoTitle_fechaIngresoEstmulacionControl}"  showOn="button"/>
+                        <p:calendar id="fechaIngresoEstmulacionControl" placeholder="dd/mm/yyyy" pattern="dd/mm/yyyy" value="#{controlNinoController.selected.fechaIngresoEstmulacionControl}" title="#{bundle.EditControlNinoTitle_fechaIngresoEstmulacionControl}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaEgresoEstmulacionControl}" for="fechaEgresoEstmulacionControl" />
-                        <p:calendar id="fechaEgresoEstmulacionControl" placeholder="dd/mm/yyyy" pattern="MM/dd/yyyy" value="#{controlNinoController.selected.fechaEgresoEstmulacionControl}" title="#{bundle.EditControlNinoTitle_fechaEgresoEstmulacionControl}"  showOn="button"/>
+                        <p:calendar id="fechaEgresoEstmulacionControl" placeholder="dd/mm/yyyy" pattern="dd/mm/yyyy" value="#{controlNinoController.selected.fechaEgresoEstmulacionControl}" title="#{bundle.EditControlNinoTitle_fechaEgresoEstmulacionControl}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_figuraPaternaControl}" for="figuraPaternaControl" />
                         <p:selectBooleanCheckbox id="figuraPaternaControl" value="#{controlNinoController.selected.figuraPaternaControl}" />
                         

@@ -37,7 +37,7 @@
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_rut_nino}" for="rut_nino" />
                         <p:inputText id="rut_nino" value="#{pacienteNinoController.selected.rut_nino}" title="#{bundle.EditPacienteNinoTitle_rut_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_fechaNacimiento_nino}" for="fechaNacimiento_nino" />
-                        <p:calendar id="fechaNacimiento_nino" pattern="MM/dd/yyyy" value="#{pacienteNinoController.selected.fechaNacimiento_nino}" title="#{bundle.EditPacienteNinoTitle_fechaNacimiento_nino}"  showOn="button"/>
+                        <p:calendar id="fechaNacimiento_nino" pattern="dd/MM/yyyy" value="#{pacienteNinoController.selected.fechaNacimiento_nino}" title="#{bundle.EditPacienteNinoTitle_fechaNacimiento_nino}"  showOn="button"/>
                         
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_genero_nino}" for="genero_nino" />
                         <p:selectOneMenu id="genero_nino" value="#{pacienteNinoController.selected.genero_nino}"> 
@@ -45,7 +45,7 @@
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_fechaInscripcion_nino}" for="fechaInscripcion_nino" />
-                        <p:calendar id="fechaInscripcion_nino" pattern="MM/dd/yyyy" value="#{pacienteNinoController.selected.fechaInscripcion_nino}" title="#{bundle.EditPacienteNinoTitle_fechaInscripcion_nino}"  showOn="button"/>
+                        <p:calendar id="fechaInscripcion_nino" pattern="dd/MM/yyyy" value="#{pacienteNinoController.selected.fechaInscripcion_nino}" title="#{bundle.EditPacienteNinoTitle_fechaInscripcion_nino}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_nombreMadre_nino}" for="nombreMadre_nino" />
                         <p:inputText id="nombreMadre_nino" value="#{pacienteNinoController.selected.nombreMadre_nino}" title="#{bundle.EditPacienteNinoTitle_nombreMadre_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_edadMadre_nino}" for="edadMadre_nino" />
@@ -85,9 +85,9 @@
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_edadGestacional_nino}" for="edadGestacional_nino" />
                         <p:inputText id="edadGestacional_nino" value="#{pacienteNinoController.selected.edadGestacional_nino}" title="#{bundle.EditPacienteNinoTitle_edadGestacional_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_peso_nino}" for="peso_nino" />
-                        <p:inputText id="peso_nino" value="#{pacienteNinoController.selected.peso_nino}" title="#{bundle.EditPacienteNinoTitle_peso_nino}" />
+                        <p:inputText id="peso_nino" placeholder="0.0" value="#{pacienteNinoController.selected.peso_nino}" title="#{bundle.EditPacienteNinoTitle_peso_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_talla_nino}" for="talla_nino" />
-                        <p:inputText id="talla_nino" value="#{pacienteNinoController.selected.talla_nino}" title="#{bundle.EditPacienteNinoTitle_talla_nino}" />
+                        <p:inputText id="talla_nino" placeholder="0.0" value="#{pacienteNinoController.selected.talla_nino}" title="#{bundle.EditPacienteNinoTitle_talla_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_pCraneano_nino}" for="pCraneano_nino" />
                         <p:inputText id="pCraneano_nino" value="#{pacienteNinoController.selected.pCraneano_nino}" title="#{bundle.EditPacienteNinoTitle_pCraneano_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_tipoParto_nino}" for="tipoParto_nino" />
@@ -97,7 +97,7 @@
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_vitDDosis_nino}" for="vitDDosis_nino" />
                         <p:inputText id="vitDDosis_nino" value="#{pacienteNinoController.selected.vitDDosis_nino}" title="#{bundle.EditPacienteNinoTitle_vitDDosis_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_fechaPeriodo_nino}" for="fechaPeriodo_nino" />
-                        <p:calendar id="fechaPeriodo_nino" pattern="MM/dd/yyyy" value="#{pacienteNinoController.selected.fechaPeriodo_nino}" title="#{bundle.EditPacienteNinoTitle_fechaPeriodo_nino}"  showOn="button"/>
+                        <p:calendar id="fechaPeriodo_nino" pattern="dd/MM/yyyy" value="#{pacienteNinoController.selected.fechaPeriodo_nino}" title="#{bundle.EditPacienteNinoTitle_fechaPeriodo_nino}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_antecedentesPerinatales_nino}" for="antecedentesPerinatales_nino" />
                         <p:inputText id="antecedentesPerinatales_nino" value="#{pacienteNinoController.selected.antecedentesPerinatales_nino}" title="#{bundle.EditPacienteNinoTitle_antecedentesPerinatales_nino}" />
                     </p:panelGrid>
