@@ -57,12 +57,33 @@ public class dominiosController {
     private List <String> ingresoReingreso;
     private List <String> pertenece_al_programa_mas;
     private List <String> prox_profesional;
+    
+    private List <String> alimentacionRecibe;
+    private List <String> examinadorNino;
+    
 
     /*
     Init para intanciar valores de las listas
     */
     @PostConstruct
     public void init() {
+        
+        alimentacionRecibe= new ArrayList<>(6);
+        alimentacionRecibe.add(0,"L.M.E");
+        alimentacionRecibe.add(1,"L.M.Otro");
+        alimentacionRecibe.add(2,"L.M. L.A.");
+        alimentacionRecibe.add(3,"L.M. L.A. Otros.");
+        alimentacionRecibe.add(4,"L.A.");
+        alimentacionRecibe.add(5,"L.A. Otros");
+        
+        examinadorNino= new ArrayList<>(6);
+        examinadorNino.add(0,"Matrona");
+        examinadorNino.add(1,"Nutricionista");
+        examinadorNino.add(2,"Medico");
+        examinadorNino.add(3,"Enfermera");
+        examinadorNino.add(4,"Educadora de Parvulo");
+        examinadorNino.add(5,"Tens");        
+              
         genero = new ArrayList<>(2);
         genero.add(0,"Masculino");
         genero.add(1,"Femenino");
@@ -246,6 +267,24 @@ public class dominiosController {
         this.curacionPieDM = curacionPieDM;
     }
 
+    public List<String> getAlimentacionRecibe() {
+        return alimentacionRecibe;
+    }
+
+    public void setAlimentacionRecibe(List<String> alimentacionRecibe) {
+        this.alimentacionRecibe = alimentacionRecibe;
+    }
+
+    public List<String> getExaminadorNino() {
+        return examinadorNino;
+    }
+
+    public void setExaminadorNino(List<String> examinadorNino) {
+        this.examinadorNino = examinadorNino;
+    }
+
+    
+    
     
     public List<String> getProx_profesional() {
         return prox_profesional;

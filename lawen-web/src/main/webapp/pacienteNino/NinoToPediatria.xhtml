@@ -32,6 +32,14 @@
                     <br/>
                     <h:outputLabel value="Rut: #{pacienteNinoController.selected.rut_nino}"/>
                 </b:alert>
+                
+                <h:outputLabel value="El niño seleccionado no presenta controles"  rendered = "#{controlNinoController.getObjetobyId(pacienteNinoController.selected.id) ==null}"/> <br/>
+                <p:button icon="fa fa-file-powerpoint-o" value="Ingresar Control"  outcome="/controlNino/CreateControlfromNino"/>  
+                
+                <p:panelGrid columns="2" rendered="#{controlNinoController.getObjetobyId(pacienteNinoController.selected.id) != null}" layout="grid" class="container tab1_controles">
+                        <h:outputText value="Posee Controles ingresados"></h:outputText>
+                </p:panelGrid>
+                
             </ui:fragment>
         </ui:define>
         

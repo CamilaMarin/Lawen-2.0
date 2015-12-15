@@ -91,11 +91,11 @@
                         <h:outputText value="#{pacienteNinoController.selected.fechaPeriodo_nino}" title="#{bundle.ViewPacienteNinoTitle_fechaPeriodo_nino}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_antecedentesPerinatales_nino}"/>
+                        <h:outputText styleClass="fa fa-square purple-text" value="#{bundle.ViewPacienteNinoLabel_antecedentesPerinatales_nino}"/>                        
                         <h:outputText value="#{pacienteNinoController.selected.antecedentesPerinatales_nino}" title="#{bundle.ViewPacienteNinoTitle_antecedentesPerinatales_nino}"/>
                         <ui:param name="idPacienteNino" value="#{pacienteNinoController.selected.id}" />
                     </p:panelGrid>
-                <p:button style="margin-right: 10px;" rendered="#{idPacienteNino!= null and pacienteNinoController.isActivo(pacienteNinoController.selected)==true}" icon="ui-icon-folder-open" value="Pasar al programa de Pediatría" outcome="/pacienteNino/NinoToPediatria" />
+                <p:commandButton style="margin-right: 10px;" rendered="#{idPacienteNino!= null and pacienteNinoController.isActivo(pacienteNinoController.selected)==true}"  action="#{cartolaControlesNinoController.create(pacienteNinoController.selected)}" icon="ui-icon-folder-open" value="Pasar al programa de Pediatría"/>
                 </h:panelGroup>
             </h:form>
 

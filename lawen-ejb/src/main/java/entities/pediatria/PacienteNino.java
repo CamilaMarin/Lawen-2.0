@@ -8,12 +8,16 @@ package entities.pediatria;
 import java.io.Serializable;
 import static javax.persistence.CascadeType.ALL;
 import java.util.Date;
+import java.util.List;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.UniqueConstraint;
@@ -87,6 +91,17 @@ public class PacienteNino implements Serializable {
     private String antecedentesPerinatales_nino;
     private String estado_paciente_nino;
 
+    @OneToMany(cascade = ALL, mappedBy ="pacienteNino", fetch = FetchType.LAZY)
+    private List<CartolaControlesNino> cartolas;
+
+    public List<CartolaControlesNino> getCartolas() {
+        return cartolas;
+    }
+
+    public void setCartolas(List<CartolaControlesNino> cartolas) {
+        this.cartolas = cartolas;
+    } 
+    
     public String getEstablecimiento_nino() {
         return establecimiento_nino;
     }
