@@ -27,6 +27,7 @@ public class ControlNino implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    private String controlReevaluacion;
     private Integer edadControl;
         private Float pesoControl;
         private Float tallaControl;
@@ -45,6 +46,61 @@ public class ControlNino implements Serializable {
         private String examinadorControl;
         @Temporal(javax.persistence.TemporalType.DATE)
         private java.util.Date fechaProximaCitacionControl; 
+        private String presionArterialControl;
+        private String controlIRAControl;
+        private String visitaDomiciliaria;
+        private String tallerNadiePerfecto;
+        private String entregaMaterialesEstimulacionControl;
+
+    public String getControlReevaluacion() {
+        return controlReevaluacion;
+    }
+
+    public void setControlReevaluacion(String controlReevaluacion) {
+        this.controlReevaluacion = controlReevaluacion;
+    }
+
+    public String getPresionArterialControl() {
+        return presionArterialControl;
+    }
+
+    public void setPresionArterialControl(String presionArterialControl) {
+        this.presionArterialControl = presionArterialControl;
+    }
+
+    public String getControlIRAControl() {
+        return controlIRAControl;
+    }
+
+    public void setControlIRAControl(String controlIRAControl) {
+        this.controlIRAControl = controlIRAControl;
+    }
+
+    public String getVisitaDomiciliaria() {
+        return visitaDomiciliaria;
+    }
+
+    public void setVisitaDomiciliaria(String visitaDomiciliaria) {
+        this.visitaDomiciliaria = visitaDomiciliaria;
+    }
+
+    public String getTallerNadiePerfecto() {
+        return tallerNadiePerfecto;
+    }
+
+    public void setTallerNadiePerfecto(String tallerNadiePerfecto) {
+        this.tallerNadiePerfecto = tallerNadiePerfecto;
+    }
+
+    public String getEntregaMaterialesEstimulacionControl() {
+        return entregaMaterialesEstimulacionControl;
+    }
+
+    public void setEntregaMaterialesEstimulacionControl(String entregaMaterialesEstimulacionControl) {
+        this.entregaMaterialesEstimulacionControl = entregaMaterialesEstimulacionControl;
+    }
+        
+        
 
     @JoinColumn(nullable = false)
     @ManyToOne

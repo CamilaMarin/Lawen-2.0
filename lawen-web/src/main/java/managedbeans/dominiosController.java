@@ -61,12 +61,46 @@ public class dominiosController {
     private List <String> alimentacionRecibe;
     private List <String> examinadorNino;
     
+    private List <String> tipoControlNino;
+    private List <String> presionArterialNino;
+    private List <String> scoreIRANino;
+    private List <String> visitaDomiciliariaNino;
+    private List <String> nadieEsPerfectoNino;
+    private List <String> materialesEstimulacionNino;
+    
 
     /*
     Init para intanciar valores de las listas
     */
     @PostConstruct
     public void init() {
+        
+        tipoControlNino= new ArrayList<>(2);
+        tipoControlNino.add(0,"Control");
+        tipoControlNino.add(1,"Reevaluación");
+        
+        presionArterialNino= new ArrayList<>(4);
+        presionArterialNino.add(0,"Normal");
+        presionArterialNino.add(1,"Pre-Hipertensión");
+        presionArterialNino.add(2,"Etapa 1");
+        presionArterialNino.add(3,"Etapa 2");
+        
+        scoreIRANino= new ArrayList<>(3);
+        scoreIRANino.add(0,"Leve");
+        scoreIRANino.add(1,"Moderado");
+        scoreIRANino.add(2,"Grave");
+        
+        visitaDomiciliariaNino= new ArrayList<>(2);
+        visitaDomiciliariaNino.add(0,"Si");
+        visitaDomiciliariaNino.add(1,"No");
+        
+        nadieEsPerfectoNino= new ArrayList<>(2);
+        nadieEsPerfectoNino.add(0,"Si");
+        nadieEsPerfectoNino.add(1,"No");
+        
+        materialesEstimulacionNino= new ArrayList<>(2);
+        materialesEstimulacionNino.add(0,"Si");
+        materialesEstimulacionNino.add(1,"No");
         
         alimentacionRecibe= new ArrayList<>(6);
         alimentacionRecibe.add(0,"L.M.E");
@@ -432,6 +466,56 @@ public class dominiosController {
             
         } 
     }
+
+    public List<String> getTipoControlNino() {
+        return tipoControlNino;
+    }
+
+    public void setTipoControlNino(List<String> tipoControlNino) {
+        this.tipoControlNino = tipoControlNino;
+    }
+
+    public List<String> getPresionArterialNino() {
+        return presionArterialNino;
+    }
+
+    public void setPresionArterialNino(List<String> presionArterialNino) {
+        this.presionArterialNino = presionArterialNino;
+    }
+
+    public List<String> getScoreIRANino() {
+        return scoreIRANino;
+    }
+
+    public void setScoreIRANino(List<String> scoreIRANino) {
+        this.scoreIRANino = scoreIRANino;
+    }
+
+    public List<String> getVisitaDomiciliariaNino() {
+        return visitaDomiciliariaNino;
+    }
+
+    public void setVisitaDomiciliariaNino(List<String> visitaDomiciliariaNino) {
+        this.visitaDomiciliariaNino = visitaDomiciliariaNino;
+    }
+
+    public List<String> getNadieEsPerfectoNino() {
+        return nadieEsPerfectoNino;
+    }
+
+    public void setNadieEsPerfectoNino(List<String> nadieEsPerfectoNino) {
+        this.nadieEsPerfectoNino = nadieEsPerfectoNino;
+    }
+
+    public List<String> getMaterialesEstimulacionNino() {
+        return materialesEstimulacionNino;
+    }
+
+    public void setMaterialesEstimulacionNino(List<String> materialesEstimulacionNino) {
+        this.materialesEstimulacionNino = materialesEstimulacionNino;
+    }
+    
+    
 
     public List<String> getPertenece_al_programa_mas() {
         return pertenece_al_programa_mas;
