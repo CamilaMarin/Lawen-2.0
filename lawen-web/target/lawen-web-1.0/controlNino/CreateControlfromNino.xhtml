@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Crear Control"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <ui:fragment rendered="#{pacienteNinoController.isExistPaciente(pacienteNinoController.selected)==false}">
+                <ui:include src="/wrong.xhtml"/>
+            </ui:fragment>
+            <ui:fragment rendered="#{pacienteNinoController.isExistPaciente(pacienteNinoController.selected)==true}">
+                <f:metadata>
+                    <f:viewParam name="idNino" value="#{pacienteNinoController.selected}" />
+                </f:metadata>
+                <b:row>
+                    <b:column span="12">
+                        <p:breadCrumb>
+                            <p:menuitem value="Categories"  title="Inicio" url="/faces/index.xhtml" />
+                            <p:menuitem value="Programa Niño Pediatría" url="/faces/pacienteNino/NinoToPediatria.xhtml?idUsuario=#{pacienteNinoController.selected.id}"/>
+                            <p:menuitem value="Crear control" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                        </p:breadCrumb>
+                    </b:column>
+                </b:row>
+                <br/>
+                <b:alert severity="info" title="Programa Niño Pediatría">
+                    <br/>
+                    <h:outputLabel value="Paciente: #{pacienteNinoController.selected.nombres_nino } #{pacienteNinoController.selected.apellidoPaterno_nino} #{pacienteNinoController.selected.apellidoMaterno_nino}"/> 
+                    <br/>
+                    <h:outputLabel value="Rut: #{pacienteNinoController.selected.rut_nino}"/>
+                </b:alert>
+                
+                <h:form id="ControlNinoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{controlNinoController.prepareCreate()!= null}">
+                        <p:outputLabel rendered="#{pacienteNinoController.isExistPaciente(pacienteNinoController.selected)==false}" value="#{bundle.CreateControlNinoLabel_cartolaControlesNino}" for="cartolaControlesNino" />
+                        <p:inputText  rendered="#{pacienteNinoController.isExistPaciente(pacienteNinoController.selected)==false}" class="obligatorio" disabled="true" id="cartolaControlesNino" value="#{cartolaControlesNinoController.selected.pacienteNino.cartolas}"/>
+                        
+                        <h:outputLabel value="#{bundle.CreateControlNinoLabel_controlReevaluacion}" for="controlReevaluacion" />                        
+                        <p:selectOneMenu id="controlReevaluacion" value="#{controlNinoController.selected.controlReevaluacion}">
+                            <f:selectItems value="#{dominiosController.tipoControlNino}"/>    
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_presionArterialControl}" for="presionArterialControl" />
+                        <p:selectOneMenu id="presionArterialControl" value="#{controlNinoController.selected.presionArterialControl}">
+                            <f:selectItems value="#{dominiosController.presionArterialNino}"/>    
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_edadControl}" for="edadControl" />
+                        <p:inputText id="edadControl" value="#{controlNinoController.selected.edadControl}" title="#{bundle.CreateControlNinoTitle_edadControl}" />
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_pesoControl}" for="pesoControl" />
+                        <p:inputText id="pesoControl" placeholder="0.0" value="#{controlNinoController.selected.pesoControl}" title="#{bundle.CreateControlNinoTitle_pesoControl}" />
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_tallaControl}" for="tallaControl" />
+                        <p:inputText id="tallaControl" placeholder="0.0" value="#{controlNinoController.selected.tallaControl}" title="#{bundle.CreateControlNinoTitle_tallaControl}" />
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_circunferenciaCranealControl}" for="circunferenciaCranealControl" />
+                        <p:inputText id="circunferenciaCranealControl" value="#{controlNinoController.selected.circunferenciaCranealControl}" title="#{bundle.CreateControlNinoTitle_circunferenciaCranealControl}" />
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_pesoEdadControl}" for="pesoEdadControl" />
+                        <p:inputText id="pesoEdadControl"  value="#{controlNinoController.selected.pesoEdadControl}" title="#{bundle.CreateControlNinoTitle_pesoEdadControl}" />
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_pesoTallaControl}" for="pesoTallaControl" />
+                        <p:inputText id="pesoTallaControl" value="#{controlNinoController.selected.pesoTallaControl}" title="#{bundle.CreateControlNinoTitle_pesoTallaControl}" />
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_tallaEdadControl}" for="tallaEdadControl" />
+                        <p:inputText id="tallaEdadControl" value="#{controlNinoController.selected.tallaEdadControl}" title="#{bundle.CreateControlNinoTitle_tallaEdadControl}" />
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_desarrolloPsicomotorControl}" for="desarrolloPsicomotorControl" />
+                        <p:inputText id="desarrolloPsicomotorControl" value="#{controlNinoController.selected.desarrolloPsicomotorControl}" title="#{bundle.CreateControlNinoTitle_desarrolloPsicomotorControl}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_alimentacionRecibeControl}" for="alimentacionRecibeControl" />
+                        <p:selectOneMenu id="alimentacionRecibeControl" value="#{controlNinoController.selected.alimentacionRecibeControl}">
+                            <f:selectItems value="#{dominiosController.alimentacionRecibe}"/>    
+                        </p:selectOneMenu>
+                        
+                       
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_estadoNutricionalControl}" for="estadoNutricionalControl" />
+                        <p:inputText id="estadoNutricionalControl" value="#{controlNinoController.selected.estadoNutricionalControl}" title="#{bundle.CreateControlNinoTitle_estadoNutricionalControl}" />
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaIngresoEstmulacionControl}" for="fechaIngresoEstmulacionControl" />
+                        <p:calendar id="fechaIngresoEstmulacionControl" placeholder="dd/mm/yyyy" pattern="dd/mm/yyyy" value="#{controlNinoController.selected.fechaIngresoEstmulacionControl}" title="#{bundle.EditControlNinoTitle_fechaIngresoEstmulacionControl}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaEgresoEstmulacionControl}" for="fechaEgresoEstmulacionControl" />
+                        <p:calendar id="fechaEgresoEstmulacionControl" placeholder="dd/mm/yyyy" pattern="dd/mm/yyyy" value="#{controlNinoController.selected.fechaEgresoEstmulacionControl}" title="#{bundle.EditControlNinoTitle_fechaEgresoEstmulacionControl}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_figuraPaternaControl}" for="figuraPaternaControl" />
+                        <p:selectBooleanCheckbox id="figuraPaternaControl" value="#{controlNinoController.selected.figuraPaternaControl}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_examinadorControl}" for="examinadorControl" />
+                        <p:selectOneMenu id="examinadorControl" value="#{controlNinoController.selected.examinadorControl}">
+                            <f:selectItems value="#{dominiosController.examinadorNino}"/>    
+                        </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.CreateControlNinoLabel_controlIRAControl}" for="controlIRAControl" />
+                    <p:selectOneMenu id="controlIRAControl" value="#{controlNinoController.selected.controlIRAControl}">
+                            <f:selectItems value="#{dominiosController.scoreIRANino}"/>    
+                        </p:selectOneMenu>
+                    
+                    <p:outputLabel value="#{bundle.CreateControlNinoLabel_visitaDomiciliaria}" for="visitaDomiciliaria" />
+                    <p:selectOneMenu id="visitaDomiciliaria" value="#{controlNinoController.selected.visitaDomiciliaria}">
+                            <f:selectItems value="#{dominiosController.visitaDomiciliariaNino}"/>    
+                        </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.CreateControlNinoLabel_tallerNadiePerfecto}" for="tallerNadiePerfecto" />
+                    <p:selectOneMenu id="tallerNadiePerfecto" value="#{controlNinoController.selected.tallerNadiePerfecto}">
+                            <f:selectItems value="#{dominiosController.nadieEsPerfectoNino}"/>    
+                        </p:selectOneMenu>
+                    
+                    <p:outputLabel value="#{bundle.CreateControlNinoLabel_entregaMaterialesEstimulacionControl}" for="entregaMaterialesEstimulacionControl" />
+                    <p:selectOneMenu id="entregaMaterialesEstimulacionControl" value="#{controlNinoController.selected.entregaMaterialesEstimulacionControl}">
+                            <f:selectItems value="#{dominiosController.materialesEstimulacionNino}"/>    
+                        </p:selectOneMenu>
+                    
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaProximaCitacionControl}" for="fechaProximaCitacionControl" />
+                        <p:calendar id="fechaProximaCitacionControl" placeholder="dd/mm/yyyy" pattern="dd/mm/yyyy" value="#{controlNinoController.selected.fechaProximaCitacionControl}" title="#{bundle.EditControlNinoTitle_fechaProximaCitacionControl}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton style="margin-right: 10px!important;" action="#{controlNinoController.create(cartolaControlesNinoController.selected)}" value="#{bundle.Save}"  iconPos="center" update="growl" />
+                        <p:button outcome="/pacienteNino/NinoToPediatria" value="Volver" />
+                </h:panelGroup>
+            </h:form>
+            </ui:fragment>
+        </ui:define>
+    </ui:composition>
+</html>
+
+

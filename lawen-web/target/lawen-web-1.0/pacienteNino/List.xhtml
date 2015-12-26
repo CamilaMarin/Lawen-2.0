@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Niños"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <b:row>
+                <b:column span="11">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories" title="Inicio" url="/faces/index.xhtml" />
+                        <p:menuitem value="Niños" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                    </p:breadCrumb>
+                </b:column>
+                <b:column span="1">
+                    <button id="btrigger" title="Ayuda" class="btn btn-info btn-xs" data-target="#amodal" data-toggle="modal"><span class="fa fa-question" aria-hidden="true"></span></button>
+                    <b:modal id="amodal" title="Modulo Ayuda - Sección Niños">
+                    <p>
+                        
+                        </p>
+                        <f:facet name="footer">
+                            <b:button value="cerrar" dismiss="modal" onclick="return false;"/>
+                        </f:facet>
+                    </b:modal>
+                </b:column>
+            </b:row>
+            <br/>
+            <h:form id="PacienteNinoListForm">
+                    <p:dataTable id="datalist" value="#{pacienteNinoController.items}" var="item" reflow="true"
+                                 selectionMode="single" selection="#{pacienteNinoController.selected}"
+                                 paginator="true" paginatorPosition="bottom"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 emptyMessage="Sin niños registrados."
+                                 >
+                        <p:ajax event="rowDblselect" 
+                                update=":PacienteNinoViewForm"  oncomplete="alertify.success('Ha seleccionado un nuevo niño');" />
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton"/>
+
+                        
+                        <p:column filterBy="#{item.rut_nino}" headerText="rut_nino" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPacienteNinoTitle_rut_nino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rut_nino}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPacienteNinoTitle_nombres_nino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombres_nino}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPacienteNinoTitle_apellidoPaterno_nino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.apellidoPaterno_nino}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPacienteNinoTitle_apellidoMaterno_nino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.apellidoMaterno_nino}"/>
+                        </p:column>                                             
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPacienteNinoTitle_fechaNacimiento_nino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaNacimiento_nino}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPacienteNinoTitle_fechaInscripcion_nino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaInscripcion_nino}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPacienteNinoTitle_fichaClinica_nino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fichaClinica_nino}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPacienteNinoTitle_estado_paciente_nino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado_paciente_nino}"/>
+                        </p:column>   
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{pacienteNinoController.prepareCreate}" update=":PacienteNinoCreateForm" oncomplete="PF('PacienteNinoCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PacienteNinoViewForm" disabled="#{empty pacienteNinoController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PacienteNinoEditForm" oncomplete="PF('PacienteNinoEditDialog').show()" disabled="#{empty pacienteNinoController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListControlNinoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListControlNinoEmpty}" rendered="#{controlNinoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{controlNinoController.items.rowCount > 0}">
+                    <h:outputText value="#{controlNinoController.pagination.pageFirstItem + 1}..#{controlNinoController.pagination.pageLastItem + 1}/#{controlNinoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{controlNinoController.previous}" value="#{bundle.Previous} #{controlNinoController.pagination.pageSize}" rendered="#{controlNinoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{controlNinoController.next}" value="#{bundle.Next} #{controlNinoController.pagination.pageSize}" rendered="#{controlNinoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{controlNinoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_controlReevaluacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.controlReevaluacion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_presionArterialControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.presionArterialControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_controlIRAControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.controlIRAControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_visitaDomiciliaria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.visitaDomiciliaria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_tallerNadiePerfecto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tallerNadiePerfecto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_entregaMaterialesEstimulacionControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.entregaMaterialesEstimulacionControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_cartolaControlesNino}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cartolaControlesNino}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_edadControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.edadControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_pesoControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pesoControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_tallaControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tallaControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_circunferenciaCranealControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.circunferenciaCranealControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_pesoEdadControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pesoEdadControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_pesoTallaControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pesoTallaControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_tallaEdadControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tallaEdadControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_desarrolloPsicomotorControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.desarrolloPsicomotorControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_alimentacionRecibeControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.alimentacionRecibeControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_estadoNutricionalControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estadoNutricionalControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_fechaIngresoEstmulacionControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaIngresoEstmulacionControl}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_fechaEgresoEstmulacionControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaEgresoEstmulacionControl}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_figuraPaternaControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.figuraPaternaControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_examinadorControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.examinadorControl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_fechaProximaCitacionControl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaProximaCitacionControl}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListControlNinoTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{controlNinoController.prepareView}" value="#{bundle.ListControlNinoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{controlNinoController.prepareEdit}" value="#{bundle.ListControlNinoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{controlNinoController.destroy}" value="#{bundle.ListControlNinoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{controlNinoController.prepareCreate}" value="#{bundle.ListControlNinoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListControlNinoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

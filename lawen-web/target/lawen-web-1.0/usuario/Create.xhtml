@@ -38,13 +38,13 @@
                     <p:panelGrid styleClass="col-md-12 spaceGrid" layout="grid" columns="2" id="matchGrid">                   
                         <h:outputLabel for="pwd1" class="obligatorio" value="Ingrese la Contraseña (5 caracteres):" />
                         <p:password id="pwd1" value="#{usuarioController.selected.password}" match="pwd2" label="Contraseña" required="true" feedback="true" inline="true"
-                                    promptLabel="Ingrese contraseña(5 caracteres mínimo)" weakLabel="Debil"
+                                    promptLabel="Ingrese contraseña(5 caracteres mínimo)" weakLabel="Débil"
                                     goodLabel="Medio" strongLabel="Fuerte">
                             <f:validateLength minimum="5" />
                         </p:password> 
                         <h:outputLabel for="pwd2" class="obligatorio" value="Confirme la contraseña:" />
                         <p:password id="pwd2" value="#{usuarioController.selected.password}" label="Confirme Contraseña" required="true" feedback="true" inline="true"
-                                    promptLabel="Ingrese contraseña (5 caracteres mínimo):" weakLabel="Debil"
+                                    promptLabel="Ingrese contraseña (5 caracteres mínimo):" weakLabel="Débil"
                                     goodLabel="Medio" strongLabel="Fuerte">
                             <f:validateLength minimum="5" />
                         </p:password>

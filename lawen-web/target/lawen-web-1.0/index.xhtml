@@ -72,6 +72,18 @@
                             </b:listLinks>
                         </b:panel>
                     </b:column>
+                    
+                    <b:column span="12">
+                        <b:panel look="censo">
+                            <f:facet name="heading"><i class="fa fa-puzzle-piece"></i> Programa de Pediatría</f:facet>  
+                            <b:listLinks>
+                                <b:column span="12" class="paddinExtra">
+                                    <b:navLink outcome="/pacienteNino/List" value="Ingresar niño"></b:navLink>
+                                </b:column>
+                            </b:listLinks>
+                        </b:panel>
+                    </b:column>
+                    
                     <b:column span="3" rendered="#{loginController.verifyLogin() and tipoUsuarioController.isAdmin(request.remoteUser)==true}">
                         <b:panel look="psam">
                             <f:facet name="heading"><i class="fa fa-medkit"></i> Programa Salud Adulto Mayor</f:facet>   

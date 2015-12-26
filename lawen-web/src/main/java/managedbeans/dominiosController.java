@@ -219,7 +219,7 @@ public class dominiosController {
         clasificacionfolstein.add(3,"Sospecha de demencia");
         profesionales = new ArrayList<>(5);
         profesionales.add("ADMIN");
-        profesionales.add("MEDICO");
+        profesionales.add("MÉDICO");
         profesionales.add("NUTRICIONISTA");
         profesionales.add("ENFERMERO(A)");
         profesionales.add("ADMINISTRATIVO");
