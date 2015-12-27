@@ -289,13 +289,32 @@ label {
     border-color: #139c28;
 }
 
-.panel-censo > .panel-heading {
+.panel-pediatria > .panel-heading {
     background-color: #ED5565;
     border-color: #ED5565;
     color: #fff;
 }
-.panel-censo > .panel-heading + .panel-collapse > .panel-body {
+.panel-pediatria > .panel-heading + .panel-collapse > .panel-body {
     border-top-color: #ED5565;
+}
+.panel-pediatria > .panel-heading .badge {
+    background-color: #ED5565;
+    color: #dff0d8;
+}
+.panel-pediatria > .panel-footer + .panel-collapse > .panel-body {
+    border-bottom-color: #91BEAE;
+}
+.panel-pediatria {
+    border-color: #ED5565;
+}
+
+.panel-censo > .panel-heading {
+    background-color: #179054;
+    border-color: #179054;
+    color: #fff;
+}
+.panel-censo > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: #179054;
 }
 .panel-censo > .panel-heading .badge {
     background-color: #3c763d;
@@ -305,7 +324,7 @@ label {
     border-bottom-color: #91BEAE;
 }
 .panel-censo {
-    border-color: #ED5565;
+    border-color: #179054;
 }
 
 .panel-psam > .panel-heading {
