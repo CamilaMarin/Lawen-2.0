@@ -21,9 +21,9 @@
                 </b:column>
                 <b:column span="1">
                     <button id="btrigger"  title="Ayuda" class="btn btn-info btn-xs" data-target="#amodal" data-toggle="modal"><span class="fa fa-question" aria-hidden="true"></span></button>
-                    <b:modal id="amodal" title="Modulo Ayuda - Sección PSCV CCV M&eacute;dico">
+                    <b:modal id="amodal" title="Modulo Ayuda - Sección controles de pediatría">
                         <p>
-                            En esta sección podrá  ver atenciones del tipo control cardiovascular medico del programa de salud cardiovascular.<br/><br/>
+                            En esta sección podrá  ver atenciones del tipo control pediátrico del programa de salud dle niño sano.<br/><br/>
                             Para <b>ver</b> atenciones, seleccione la atención a visualizar y haga clic en ver.<br/>
                         </p>
                         <f:facet name="footer">
@@ -42,8 +42,12 @@
                              rowKey="#{item.id}"
                              rows="5"
                              rowsPerPageTemplate="5,10,15,20,25,30,35,40,45,50"
-                             emptyMessage="Sin control cardiovascular registrado."
-                             >
+                             emptyMessage="Sin control de pediatría registrado."
+                             > 
+                        <p:ajax event="rowDblselect"
+                                update=":ControlNinoViewForm"  oncomplete="alertify.success('Ha seleccionado un nuevo control');" />
+                        <p:ajax event="rowSelect"   update="viewButton"/>
+                        <p:ajax event="rowUnselect" update="viewButton"/>
                     <p:column filterBy="#{item.cartolaControlesNino.pacienteNino.toString()}" filterMatchMode="contains">
                         <f:facet name="header">
                             <h:outputText value="Cartola por paciente"/>
@@ -64,8 +68,12 @@
                         </f:facet>
                         <h:outputText value="#{item.examinadorControl.toString()}"/>
                     </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ControlNinoViewForm" disabled="#{empty controlNinoController.selected}"/>
+                    </f:facet>
                 </p:dataTable>
             </h:form>
+            <ui:include src="View.xhtml"/>
         </ui:define>
     </ui:composition>
 </html>

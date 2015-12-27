@@ -3,92 +3,79 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ViewControlNinoTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_examinadorControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.examinadorControl}" title="#{bundle.ViewControlNinoTitle_examinadorControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_fechaControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.fechaControl}" title="#{bundle.ViewControlNinoTitle_fechaControl}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_controlReevaluacion}"/>
-                    <h:outputText value="#{controlNinoController.selected.controlReevaluacion}" title="#{bundle.ViewControlNinoTitle_controlReevaluacion}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_presionArterialControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.presionArterialControl}" title="#{bundle.ViewControlNinoTitle_presionArterialControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_controlIRAControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.controlIRAControl}" title="#{bundle.ViewControlNinoTitle_controlIRAControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_visitaDomiciliaria}"/>
-                    <h:outputText value="#{controlNinoController.selected.visitaDomiciliaria}" title="#{bundle.ViewControlNinoTitle_visitaDomiciliaria}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_tallerNadiePerfecto}"/>
-                    <h:outputText value="#{controlNinoController.selected.tallerNadiePerfecto}" title="#{bundle.ViewControlNinoTitle_tallerNadiePerfecto}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_entregaMaterialesEstimulacionControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.entregaMaterialesEstimulacionControl}" title="#{bundle.ViewControlNinoTitle_entregaMaterialesEstimulacionControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_cartolaControlesNino}"/>
-                    <h:outputText value="#{controlNinoController.selected.cartolaControlesNino}" title="#{bundle.ViewControlNinoTitle_cartolaControlesNino}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_edadControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.edadControl}" title="#{bundle.ViewControlNinoTitle_edadControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_pesoControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.pesoControl}" title="#{bundle.ViewControlNinoTitle_pesoControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_tallaControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.tallaControl}" title="#{bundle.ViewControlNinoTitle_tallaControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_circunferenciaCranealControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.circunferenciaCranealControl}" title="#{bundle.ViewControlNinoTitle_circunferenciaCranealControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_pesoEdadControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.pesoEdadControl}" title="#{bundle.ViewControlNinoTitle_pesoEdadControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_pesoTallaControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.pesoTallaControl}" title="#{bundle.ViewControlNinoTitle_pesoTallaControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_tallaEdadControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.tallaEdadControl}" title="#{bundle.ViewControlNinoTitle_tallaEdadControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_desarrolloPsicomotorControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.desarrolloPsicomotorControl}" title="#{bundle.ViewControlNinoTitle_desarrolloPsicomotorControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_alimentacionRecibeControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.alimentacionRecibeControl}" title="#{bundle.ViewControlNinoTitle_alimentacionRecibeControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_estadoNutricionalControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.estadoNutricionalControl}" title="#{bundle.ViewControlNinoTitle_estadoNutricionalControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_fechaIngresoEstmulacionControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.fechaIngresoEstmulacionControl}" title="#{bundle.ViewControlNinoTitle_fechaIngresoEstmulacionControl}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_fechaEgresoEstmulacionControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.fechaEgresoEstmulacionControl}" title="#{bundle.ViewControlNinoTitle_fechaEgresoEstmulacionControl}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_figuraPaternaControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.figuraPaternaControl}" title="#{bundle.ViewControlNinoTitle_figuraPaternaControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_examinadorProximoControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.examinadorProximoControl}" title="#{bundle.ViewControlNinoTitle_examinadorProximoControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_fechaProximaCitacionControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.fechaProximaCitacionControl}" title="#{bundle.ViewControlNinoTitle_fechaProximaCitacionControl}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_id}"/>
-                    <h:outputText value="#{controlNinoController.selected.id}" title="#{bundle.ViewControlNinoTitle_id}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{controlNinoController.destroyAndView}" value="#{bundle.ViewControlNinoDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewControlNinoEditLink}"/>
-                <br />
-                <h:commandLink action="#{controlNinoController.prepareCreate}" value="#{bundle.ViewControlNinoCreateLink}" />
-                <br />
-                <h:commandLink action="#{controlNinoController.prepareList}" value="#{bundle.ViewControlNinoShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewControlNinoIndexLink}"/>
-
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <h:outputStylesheet library="css" name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputScript library="js" name="js/jsfcrud.js"/>
+    </h:head>
+    
+            <h:form id="ControlNinoViewForm">
+                <h:panelGroup id="display" styleClass="">
+                    <h:panelGrid id="fichaControlNino" style="margin-top: 20px; margin-bottom: 40px;" styleClass="col-md-12 spaceGrid" columns="4" rendered="#{controlNinoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_examinadorControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.examinadorControl}" title="#{bundle.ViewControlNinoTitle_examinadorControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_fechaControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.fechaControl}" title="#{bundle.ViewControlNinoTitle_fechaControl}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_controlReevaluacion}"/>
+                        <h:outputText value="#{controlNinoController.selected.controlReevaluacion}" title="#{bundle.ViewControlNinoTitle_controlReevaluacion}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_presionArterialControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.presionArterialControl}" title="#{bundle.ViewControlNinoTitle_presionArterialControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_controlIRAControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.controlIRAControl}" title="#{bundle.ViewControlNinoTitle_controlIRAControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_visitaDomiciliaria}"/>
+                        <h:outputText value="#{controlNinoController.selected.visitaDomiciliaria}" title="#{bundle.ViewControlNinoTitle_visitaDomiciliaria}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_tallerNadiePerfecto}"/>
+                        <h:outputText value="#{controlNinoController.selected.tallerNadiePerfecto}" title="#{bundle.ViewControlNinoTitle_tallerNadiePerfecto}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_entregaMaterialesEstimulacionControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.entregaMaterialesEstimulacionControl}" title="#{bundle.ViewControlNinoTitle_entregaMaterialesEstimulacionControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_cartolaControlesNino}"/>
+                        <h:outputText value="#{controlNinoController.selected.cartolaControlesNino}" title="#{bundle.ViewControlNinoTitle_cartolaControlesNino}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_edadControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.edadControl}" title="#{bundle.ViewControlNinoTitle_edadControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_pesoControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.pesoControl}" title="#{bundle.ViewControlNinoTitle_pesoControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_tallaControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.tallaControl}" title="#{bundle.ViewControlNinoTitle_tallaControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_circunferenciaCranealControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.circunferenciaCranealControl}" title="#{bundle.ViewControlNinoTitle_circunferenciaCranealControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_pesoEdadControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.pesoEdadControl}" title="#{bundle.ViewControlNinoTitle_pesoEdadControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_pesoTallaControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.pesoTallaControl}" title="#{bundle.ViewControlNinoTitle_pesoTallaControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_tallaEdadControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.tallaEdadControl}" title="#{bundle.ViewControlNinoTitle_tallaEdadControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_desarrolloPsicomotorControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.desarrolloPsicomotorControl}" title="#{bundle.ViewControlNinoTitle_desarrolloPsicomotorControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_alimentacionRecibeControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.alimentacionRecibeControl}" title="#{bundle.ViewControlNinoTitle_alimentacionRecibeControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_estadoNutricionalControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.estadoNutricionalControl}" title="#{bundle.ViewControlNinoTitle_estadoNutricionalControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_fechaIngresoEstmulacionControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.fechaIngresoEstmulacionControl}" title="#{bundle.ViewControlNinoTitle_fechaIngresoEstmulacionControl}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_fechaEgresoEstmulacionControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.fechaEgresoEstmulacionControl}" title="#{bundle.ViewControlNinoTitle_fechaEgresoEstmulacionControl}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_figuraPaternaControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.figuraPaternaControl}" title="#{bundle.ViewControlNinoTitle_figuraPaternaControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_examinadorProximoControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.examinadorProximoControl}" title="#{bundle.ViewControlNinoTitle_examinadorProximoControl}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_fechaProximaCitacionControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.fechaProximaCitacionControl}" title="#{bundle.ViewControlNinoTitle_fechaProximaCitacionControl}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_id}"/>
+                        <h:outputText value="#{controlNinoController.selected.id}" title="#{bundle.ViewControlNinoTitle_id}"/>
+                    </h:panelGrid>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
 
 </html>
+
