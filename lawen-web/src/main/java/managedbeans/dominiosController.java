@@ -204,8 +204,8 @@ public class dominiosController {
         clasificacionyesavage = new ArrayList<>(4);
         clasificacionyesavage.add(0,"No se aplica");
         clasificacionyesavage.add(1,"Normal");
-        clasificacionyesavage.add(2,"Depresion leve");
-        clasificacionyesavage.add(3,"Depresion establecida");
+        clasificacionyesavage.add(2,"Depresión leve");
+        clasificacionyesavage.add(3,"Depresión establecida");
         
         clasificacionpfeffer = new ArrayList<>(3);
         clasificacionpfeffer.add(0,"No se aplica");

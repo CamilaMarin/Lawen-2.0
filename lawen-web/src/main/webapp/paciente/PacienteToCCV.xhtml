@@ -59,9 +59,9 @@
                     <h:outputLabel value="Rut: #{pacienteController.selected.rut_paciente}"/>
                 </b:alert>
                 <b:alert severity="warning" title="Indicaciones" closable="true">
-                    * CITAR A MEDICO: PA PROMEDIO DE 115 O MAS EN POSICIÓN SENTADA Y/O SINTOMATICO Y /O CON TRATAMIENTO PREVIO. <br/>
-                    ** CITAR A SEGUNDO CEDAZO: PA PROMEDIO 91 A114 ASINTOMATICO Y SIN TRATAMIENTO.<br/>
-                    *** CONTROL CADA 6 MESES: PA PROMEDIO IGUAL O MENOR A 80, ASINTOMATICO Y SIN TRATAMIENTO.
+                    * CITAR A MÉDICO: PA PROMEDIO DE 115 O MAS EN POSICIÓN SENTADA Y/O SINTOMÁTICO Y /O CON TRATAMIENTO PREVIO. <br/>
+                    ** CITAR A SEGUNDO CEDAZO: PA PROMEDIO 91 A114 ASINTOMÁTICO Y SIN TRATAMIENTO.<br/>
+                    *** CONTROL CADA 6 MESES: PA PROMEDIO IGUAL O MENOR A 80, ASINTOMÁTICO Y SIN TRATAMIENTO.
                 </b:alert>
                 <h:panelGroup>
                     <h:outputLabel value="Estado de avance: "/>
@@ -188,7 +188,7 @@
                     <p:tab title="Ingreso M&eacute;dico">
                         <h:panelGrid columns="1" cellpadding="10"> 
                             <h:outputLabel value="El paciente seleccionado no presenta registros para el Ingreso m&eacute;dico" rendered = "#{iCVMedicoController.getObjetobyRut(pacienteController.selected.id) ==null}" /> 
-                            <p:button icon="fa fa-file-powerpoint-o" value="Crear Ingreso Medico"  outcome="/iCVMedico/CrearICVMedico" rendered = "#{iCVMedicoController.getObjetobyRut(pacienteController.selected.id) ==null}" />
+                            <p:button icon="fa fa-file-powerpoint-o" value="Crear Ingreso Médico"  outcome="/iCVMedico/CrearICVMedico" rendered = "#{iCVMedicoController.getObjetobyRut(pacienteController.selected.id) ==null}" />
                             <p:panelGrid  layout="grid" class="container tab1_preingresod" columns="2" rendered="#{iCVMedicoController.getObjetobyRut(pacienteController.selected.id) !=null}">
                 <h:outputText value="Ingreso o Reingreso:"  />
                 <h:outputText id="ingreso_reingreso" value="#{iCVMedicoController.selected.cartola.ingreso_reingreso}" title="Ingreso o Reingreso" />
