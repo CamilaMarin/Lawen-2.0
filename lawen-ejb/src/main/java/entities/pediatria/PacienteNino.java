@@ -74,6 +74,10 @@ public class PacienteNino implements Serializable {
     private String unidadVecinal_nino;
     private String comuna_nino;
     private String telefono_nino;   
+    private Boolean etnia;
+    private String descripcionEtnia;
+    private Boolean extranjero;
+    private Boolean descripcionExtranjero;
     
     // Datos de Nacimiento
     
@@ -302,6 +306,38 @@ public class PacienteNino implements Serializable {
         this.telefono_nino = telefono_nino;
     }
 
+    public Boolean getEtnia() {
+        return etnia;
+    }
+
+    public void setEtnia(Boolean etnia) {
+        this.etnia = etnia;
+    }
+
+    public String getDescripcionEtnia() {
+        return descripcionEtnia;
+    }
+
+    public void setDescripcionEtnia(String descripcionEtnia) {
+        this.descripcionEtnia = descripcionEtnia;
+    }
+
+    public Boolean getExtranjero() {
+        return extranjero;
+    }
+
+    public void setExtranjero(Boolean extranjero) {
+        this.extranjero = extranjero;
+    }
+
+    public Boolean getDescripcionExtranjero() {
+        return descripcionExtranjero;
+    }
+
+    public void setDescripcionExtranjero(Boolean descripcionExtranjero) {
+        this.descripcionExtranjero = descripcionExtranjero;
+    }    
+    
     public Integer getEdadGestacional_nino() {
         return edadGestacional_nino;
     }

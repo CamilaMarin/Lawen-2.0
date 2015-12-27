@@ -82,6 +82,14 @@
                         <p:inputText id="comuna_nino" value="#{pacienteNinoController.selected.comuna_nino}" title="#{bundle.EditPacienteNinoTitle_comuna_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_telefono_nino}" for="telefono_nino" />
                         <p:inputText id="telefono_nino" value="#{pacienteNinoController.selected.telefono_nino}" title="#{bundle.EditPacienteNinoTitle_telefono_nino}" />
+                        <p:outputLabel value="#{bundle.EditPacienteNinoLabel_etnia}" for="etnia" />
+                        <p:selectBooleanButton id="etnia" value="#{pacienteNinoController.selected.etnia}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="#{bundle.EditPacienteNinoLabel_descripcionEtnia}" for="descripcionEtnia" />
+                        <p:inputText id="descripcionEtnia" value="#{pacienteNinoController.selected.descripcionEtnia}" title="#{bundle.EditPacienteNinoTitle_descripcionEtnia}" />
+                        <p:outputLabel value="#{bundle.EditPacienteNinoLabel_extranjero}" for="extranjero" />
+                        <p:selectBooleanButton id="extranjero" value="#{pacienteNinoController.selected.extranjero}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="#{bundle.EditPacienteNinoLabel_descripcionExtranjero}" for="descripcionExtranjero" />
+                        <p:inputText id="descripcionExtranjero" value="#{pacienteNinoController.selected.descripcionExtranjero}" title="#{bundle.EditPacienteNinoTitle_descripcionExtranjero}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_edadGestacional_nino}" for="edadGestacional_nino" />
                         <p:inputText id="edadGestacional_nino" value="#{pacienteNinoController.selected.edadGestacional_nino}" title="#{bundle.EditPacienteNinoTitle_edadGestacional_nino}" />
                         <p:outputLabel value="#{bundle.EditPacienteNinoLabel_peso_nino}" for="peso_nino" />

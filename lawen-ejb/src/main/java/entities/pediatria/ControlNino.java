@@ -27,6 +27,8 @@ public class ControlNino implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private java.util.Date fechaControl;
     private String controlReevaluacion;
     private Integer edadControl;
         private Float pesoControl;
@@ -51,7 +53,24 @@ public class ControlNino implements Serializable {
         private String visitaDomiciliaria;
         private String tallerNadiePerfecto;
         private String entregaMaterialesEstimulacionControl;
+        private String examinadorProximoControl;
 
+    public String getExaminadorProximoControl() {
+        return examinadorProximoControl;
+    }
+
+    public void setExaminadorProximoControl(String examinadorProximoControl) {
+        this.examinadorProximoControl = examinadorProximoControl;
+    }    
+
+    public Date getFechaControl() {
+        return fechaControl;
+    }
+
+    public void setFechaControl(Date fechaControl) {
+        this.fechaControl = fechaControl;
+    }    
+        
     public String getControlReevaluacion() {
         return controlReevaluacion;
     }

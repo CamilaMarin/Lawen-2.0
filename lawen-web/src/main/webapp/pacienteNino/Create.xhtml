@@ -85,6 +85,14 @@
                         <p:inputText id="comuna_nino" value="#{pacienteNinoController.selected.comuna_nino}" title="#{bundle.CreatePacienteNinoTitle_comuna_nino}" />
                         <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_telefono_nino}" for="telefono_nino" />
                         <p:inputText id="telefono_nino" value="#{pacienteNinoController.selected.telefono_nino}" title="#{bundle.CreatePacienteNinoTitle_telefono_nino}" />
+                        <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_etnia}" for="etnia" />
+                        <p:selectBooleanButton id="etnia" value="#{pacienteNinoController.selected.etnia}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_descripcionEtnia}" for="descripcionEtnia" />
+                        <p:inputText id="descripcionEtnia" value="#{pacienteNinoController.selected.descripcionEtnia}" title="#{bundle.CreatePacienteNinoTitle_descripcionEtnia}" />
+                        <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_extranjero}" for="extranjero" />
+                        <p:selectBooleanButton id="extranjero" value="#{pacienteNinoController.selected.extranjero}" onLabel="Si" offLabel="No" style="width:60px" />
+                        <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_descripcionExtranjero}" for="descripcionExtranjero" />
+                        <p:inputText id="descripcionExtranjero" value="#{pacienteNinoController.selected.descripcionExtranjero}" title="#{bundle.CreatePacienteNinoTitle_descripcionExtranjero}" />
                         <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_edadGestacional_nino}" for="edadGestacional_nino" />
                         <p:inputText id="edadGestacional_nino" value="#{pacienteNinoController.selected.edadGestacional_nino}" title="#{bundle.CreatePacienteNinoTitle_edadGestacional_nino}" />
                         <p:outputLabel value="#{bundle.CreatePacienteNinoLabel_peso_nino}" for="peso_nino" />

@@ -15,6 +15,12 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewControlNinoLabel_examinadorControl}"/>
+                    <h:outputText value="#{controlNinoController.selected.examinadorControl}" title="#{bundle.ViewControlNinoTitle_examinadorControl}"/>
+                    <h:outputText value="#{bundle.ViewControlNinoLabel_fechaControl}"/>
+                    <h:outputText value="#{controlNinoController.selected.fechaControl}" title="#{bundle.ViewControlNinoTitle_fechaControl}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
                     <h:outputText value="#{bundle.ViewControlNinoLabel_controlReevaluacion}"/>
                     <h:outputText value="#{controlNinoController.selected.controlReevaluacion}" title="#{bundle.ViewControlNinoTitle_controlReevaluacion}"/>
                     <h:outputText value="#{bundle.ViewControlNinoLabel_presionArterialControl}"/>
@@ -59,8 +65,8 @@
                     </h:outputText>
                     <h:outputText value="#{bundle.ViewControlNinoLabel_figuraPaternaControl}"/>
                     <h:outputText value="#{controlNinoController.selected.figuraPaternaControl}" title="#{bundle.ViewControlNinoTitle_figuraPaternaControl}"/>
-                    <h:outputText value="#{bundle.ViewControlNinoLabel_examinadorControl}"/>
-                    <h:outputText value="#{controlNinoController.selected.examinadorControl}" title="#{bundle.ViewControlNinoTitle_examinadorControl}"/>
+                    <h:outputText value="#{bundle.ViewControlNinoLabel_examinadorProximoControl}"/>
+                    <h:outputText value="#{controlNinoController.selected.examinadorProximoControl}" title="#{bundle.ViewControlNinoTitle_examinadorProximoControl}"/>
                     <h:outputText value="#{bundle.ViewControlNinoLabel_fechaProximaCitacionControl}"/>
                     <h:outputText value="#{controlNinoController.selected.fechaProximaCitacionControl}" title="#{bundle.ViewControlNinoTitle_fechaProximaCitacionControl}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />

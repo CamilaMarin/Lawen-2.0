@@ -69,12 +69,19 @@ public class dominiosController {
     private List <String> materialesEstimulacionNino;
     
     private List <String> indicadoresPEPTTE;
+    private List <String> desarrolloPsicomotor;
     
     /*
     Init para intanciar valores de las listas
     */
     @PostConstruct
     public void init() {
+        
+        desarrolloPsicomotor= new ArrayList<>(4);
+        desarrolloPsicomotor.add(0,"Normal");
+        desarrolloPsicomotor.add(1,"Riesgo");
+        desarrolloPsicomotor.add(2,"Retraso");
+        desarrolloPsicomotor.add(3,"Rezago");
         
         tipoControlNino= new ArrayList<>(2);
         tipoControlNino.add(0,"Control");
@@ -291,6 +298,16 @@ public class dominiosController {
 
         
     }
+
+    public List<String> getDesarrolloPsicomotor() {
+        return desarrolloPsicomotor;
+    }
+
+    public void setDesarrolloPsicomotor(List<String> desarrolloPsicomotor) {
+        this.desarrolloPsicomotor = desarrolloPsicomotor;
+    }
+    
+    
 
     public List<String> getIndicadoresPEPTTE() {
         return indicadoresPEPTTE;

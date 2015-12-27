@@ -15,6 +15,12 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditControlNinoLabel_examinadorControl}" for="examinadorControl" />
+                    <h:inputText id="examinadorControl" value="#{controlNinoController.selected.examinadorControl}" title="#{bundle.EditControlNinoTitle_examinadorControl}" />
+                    <h:outputLabel value="#{bundle.EditControlNinoLabel_fechaControl}" for="fechaControl" />
+                    <h:inputText id="fechaControl" value="#{controlNinoController.selected.fechaControl}" title="#{bundle.EditControlNinoTitle_fechaControl}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
                     <h:outputLabel value="#{bundle.EditControlNinoLabel_controlReevaluacion}" for="controlReevaluacion" />
                     <h:inputText id="controlReevaluacion" value="#{controlNinoController.selected.controlReevaluacion}" title="#{bundle.EditControlNinoTitle_controlReevaluacion}" />
                     <h:outputLabel value="#{bundle.EditControlNinoLabel_presionArterialControl}" for="presionArterialControl" />
@@ -61,12 +67,12 @@
                     </h:inputText>
                     <h:outputLabel value="#{bundle.EditControlNinoLabel_figuraPaternaControl}" for="figuraPaternaControl" />
                     <h:inputText id="figuraPaternaControl" value="#{controlNinoController.selected.figuraPaternaControl}" title="#{bundle.EditControlNinoTitle_figuraPaternaControl}" />
-                    <h:outputLabel value="#{bundle.EditControlNinoLabel_examinadorControl}" for="examinadorControl" />
-                    <h:inputText id="examinadorControl" value="#{controlNinoController.selected.examinadorControl}" title="#{bundle.EditControlNinoTitle_examinadorControl}" />
                     <h:outputLabel value="#{bundle.EditControlNinoLabel_fechaProximaCitacionControl}" for="fechaProximaCitacionControl" />
                     <h:inputText id="fechaProximaCitacionControl" value="#{controlNinoController.selected.fechaProximaCitacionControl}" title="#{bundle.EditControlNinoTitle_fechaProximaCitacionControl}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:inputText>
+                    <h:outputLabel value="#{bundle.EditControlNinoLabel_examinadorProximoControl}" for="examinadorProximoControl" />
+                    <h:inputText id="examinadorProximoControl" value="#{controlNinoController.selected.examinadorProximoControl}" title="#{bundle.EditControlNinoTitle_examinadorProximoControl}" />
                     <h:outputLabel value="#{bundle.EditControlNinoLabel_id}" for="id" />
                     <h:inputText id="id" value="#{controlNinoController.selected.id}" title="#{bundle.EditControlNinoTitle_id}" />
                 </h:panelGrid>

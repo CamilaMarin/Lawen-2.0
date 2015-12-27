@@ -42,7 +42,15 @@
                         <p:outputLabel rendered="#{pacienteNinoController.isExistPaciente(pacienteNinoController.selected)==false}" value="#{bundle.CreateControlNinoLabel_cartolaControlesNino}" for="cartolaControlesNino" />
                         <p:inputText  rendered="#{pacienteNinoController.isExistPaciente(pacienteNinoController.selected)==false}" class="obligatorio" disabled="true" id="cartolaControlesNino" value="#{cartolaControlesNinoController.selected.pacienteNino.cartolas}"/>
                         
-                        <h:outputLabel value="#{bundle.CreateControlNinoLabel_controlReevaluacion}" for="controlReevaluacion" />                        
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_examinadorControl}" for="examinadorControl" />
+                        <p:selectOneMenu id="examinadorControl" value="#{controlNinoController.selected.examinadorControl}">
+                            <f:selectItems value="#{dominiosController.examinadorNino}"/>    
+                        </p:selectOneMenu>                                                
+                      
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaControl}" for="fechaControl" />
+                        <p:calendar id="fechaControl" placeholder="dd/mm/yyyy" pattern="dd/mm/yyyy" value="#{controlNinoController.selected.fechaControl}" title="#{bundle.CreateControlNinoTitle_fechaControl}"  showOn="button"/>
+                        
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_controlReevaluacion}" for="controlReevaluacion" />                        
                         <p:selectOneMenu id="controlReevaluacion" value="#{controlNinoController.selected.controlReevaluacion}">
                             <f:selectItems value="#{dominiosController.tipoControlNino}"/>    
                         </p:selectOneMenu>
@@ -75,7 +83,9 @@
                             <f:selectItems value="#{dominiosController.indicadoresPEPTTE}"/>    
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_desarrolloPsicomotorControl}" for="desarrolloPsicomotorControl" />
-                        <p:inputText id="desarrolloPsicomotorControl" value="#{controlNinoController.selected.desarrolloPsicomotorControl}" title="#{bundle.CreateControlNinoTitle_desarrolloPsicomotorControl}" />
+                        <p:selectOneMenu id="desarrolloPsicomotorControl" value="#{controlNinoController.selected.desarrolloPsicomotorControl}">
+                            <f:selectItems value="#{dominiosController.desarrolloPsicomotor}"/>    
+                        </p:selectOneMenu>
                         
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_alimentacionRecibeControl}" for="alimentacionRecibeControl" />
                         <p:selectOneMenu id="alimentacionRecibeControl" value="#{controlNinoController.selected.alimentacionRecibeControl}">
@@ -92,10 +102,7 @@
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_figuraPaternaControl}" for="figuraPaternaControl" />
                         <p:selectBooleanCheckbox id="figuraPaternaControl" value="#{controlNinoController.selected.figuraPaternaControl}" />
                         
-                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_examinadorControl}" for="examinadorControl" />
-                        <p:selectOneMenu id="examinadorControl" value="#{controlNinoController.selected.examinadorControl}">
-                            <f:selectItems value="#{dominiosController.examinadorNino}"/>    
-                        </p:selectOneMenu>
+
                     <p:outputLabel value="#{bundle.CreateControlNinoLabel_controlIRAControl}" for="controlIRAControl" />
                     <p:selectOneMenu id="controlIRAControl" value="#{controlNinoController.selected.controlIRAControl}">
                             <f:selectItems value="#{dominiosController.scoreIRANino}"/>    
@@ -115,7 +122,12 @@
                             <f:selectItems value="#{dominiosController.materialesEstimulacionNino}"/>    
                         </p:selectOneMenu>
                     
-                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaProximaCitacionControl}" for="fechaProximaCitacionControl" />
+                    <p:outputLabel value="#{bundle.CreateControlNinoLabel_examinadorProximoControl}" for="examinadorProximoControl" />
+                        <p:selectOneMenu id="examinadorProximoControl" value="#{controlNinoController.selected.examinadorProximoControl}">
+                            <f:selectItems value="#{dominiosController.examinadorNino}"/>    
+                        </p:selectOneMenu>        
+                                      
+                    <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaProximaCitacionControl}" for="fechaProximaCitacionControl" />
                         <p:calendar id="fechaProximaCitacionControl" placeholder="dd/mm/yyyy" pattern="dd/mm/yyyy" value="#{controlNinoController.selected.fechaProximaCitacionControl}" title="#{bundle.EditControlNinoTitle_fechaProximaCitacionControl}"  showOn="button"/>
                     </p:panelGrid>
                     <p:commandButton style="margin-right: 10px!important;" action="#{controlNinoController.create(cartolaControlesNinoController.selected)}" value="#{bundle.Save}"  iconPos="center" update="growl" />
