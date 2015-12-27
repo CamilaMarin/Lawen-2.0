@@ -61,11 +61,19 @@
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_circunferenciaCranealControl}" for="circunferenciaCranealControl" />
                         <p:inputText id="circunferenciaCranealControl" value="#{controlNinoController.selected.circunferenciaCranealControl}" title="#{bundle.CreateControlNinoTitle_circunferenciaCranealControl}" />
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_pesoEdadControl}" for="pesoEdadControl" />
-                        <p:inputText id="pesoEdadControl"  value="#{controlNinoController.selected.pesoEdadControl}" title="#{bundle.CreateControlNinoTitle_pesoEdadControl}" />
+                        <p:selectOneMenu id="pesoEdadControl" value="#{controlNinoController.selected.pesoEdadControl}">
+                            <f:selectItems value="#{dominiosController.indicadoresPEPTTE}"/>    
+                        </p:selectOneMenu>
+                        
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_pesoTallaControl}" for="pesoTallaControl" />
-                        <p:inputText id="pesoTallaControl" value="#{controlNinoController.selected.pesoTallaControl}" title="#{bundle.CreateControlNinoTitle_pesoTallaControl}" />
+                        <p:selectOneMenu id="pesoTallaControl" value="#{controlNinoController.selected.pesoTallaControl}">
+                            <f:selectItems value="#{dominiosController.indicadoresPEPTTE}"/>    
+                        </p:selectOneMenu>
+                        
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_tallaEdadControl}" for="tallaEdadControl" />
-                        <p:inputText id="tallaEdadControl" value="#{controlNinoController.selected.tallaEdadControl}" title="#{bundle.CreateControlNinoTitle_tallaEdadControl}" />
+                        <p:selectOneMenu id="tallaEdadControl" value="#{controlNinoController.selected.tallaEdadControl}">
+                            <f:selectItems value="#{dominiosController.indicadoresPEPTTE}"/>    
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_desarrolloPsicomotorControl}" for="desarrolloPsicomotorControl" />
                         <p:inputText id="desarrolloPsicomotorControl" value="#{controlNinoController.selected.desarrolloPsicomotorControl}" title="#{bundle.CreateControlNinoTitle_desarrolloPsicomotorControl}" />
                         

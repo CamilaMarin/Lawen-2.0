@@ -68,7 +68,8 @@ public class dominiosController {
     private List <String> nadieEsPerfectoNino;
     private List <String> materialesEstimulacionNino;
     
-
+    private List <String> indicadoresPEPTTE;
+    
     /*
     Init para intanciar valores de las listas
     */
@@ -78,6 +79,13 @@ public class dominiosController {
         tipoControlNino= new ArrayList<>(2);
         tipoControlNino.add(0,"Control");
         tipoControlNino.add(1,"Reevaluación");
+        
+        indicadoresPEPTTE= new ArrayList<>(5);
+        indicadoresPEPTTE.add(0,"-2 DE");
+        indicadoresPEPTTE.add(1,"-1 DE");
+        indicadoresPEPTTE.add(2,"Mediana");
+        indicadoresPEPTTE.add(3,"+1 DE");
+        indicadoresPEPTTE.add(4,"+2 DE");
         
         presionArterialNino= new ArrayList<>(4);
         presionArterialNino.add(0,"Normal");
@@ -284,6 +292,15 @@ public class dominiosController {
         
     }
 
+    public List<String> getIndicadoresPEPTTE() {
+        return indicadoresPEPTTE;
+    }
+
+    public void setIndicadoresPEPTTE(List<String> indicadoresPEPTTE) {
+        this.indicadoresPEPTTE = indicadoresPEPTTE;
+    }
+    
+    
     public List<String> getIngresoReingreso() {
         return ingresoReingreso;
     }
