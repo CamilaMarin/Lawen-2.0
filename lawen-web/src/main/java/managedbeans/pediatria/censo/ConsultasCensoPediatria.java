@@ -29,8 +29,9 @@ import sessionbeans.pediatria.ControlNinoFacadeLocal;
 public class ConsultasCensoPediatria implements Serializable {
 
     private List<CensoPediatriaSeccionA> A_elementosPediatria = new ArrayList<>();
-    private List<CensoPediatriaSeccionE> E_elementosPediatria = new ArrayList<>();
+    private List<CensoPediatriaSeccionC> C_elementosPediatria = new ArrayList<>();
     private List<CensoPediatriaSeccionD> D_elementosPediatria = new ArrayList<>();
+    private List<CensoPediatriaSeccionE> E_elementosPediatria = new ArrayList<>();
     private List<CensoPediatriaSeccionG> G_elementosPediatria = new ArrayList<>();
      
     @EJB
@@ -50,8 +51,9 @@ public class ConsultasCensoPediatria implements Serializable {
     
     public void init() {
         A_elementosPediatria = censoPediatriaSeccionA();
-        E_elementosPediatria = censoPediatriaSeccionE();
+        C_elementosPediatria = censoPediatriaSeccionC();
         D_elementosPediatria = censoPediatriaSeccionD();
+        E_elementosPediatria = censoPediatriaSeccionE();        
         G_elementosPediatria = censoPediatriaSeccionG();
     }
 
@@ -63,6 +65,14 @@ public class ConsultasCensoPediatria implements Serializable {
         this.ejbControlNino = ejbControlNino;
     }
 
+    public List<CensoPediatriaSeccionC> getC_elementosPediatria() {
+        return C_elementosPediatria;
+    }
+
+    public void setC_elementosPediatria(List<CensoPediatriaSeccionC> C_elementosPediatria) {
+        this.C_elementosPediatria = C_elementosPediatria;
+    }    
+    
     public List<CensoPediatriaSeccionD> getD_elementosPediatria() {
         return D_elementosPediatria;
     }
@@ -2712,6 +2722,159 @@ public class ConsultasCensoPediatria implements Serializable {
        D_elementosPediatria.add(totalVisitaDomiciliaria);
        
         return D_elementosPediatria;
+    }
+    
+    public List<CensoPediatriaSeccionC> censoPediatriaSeccionC(){
+        CensoPediatriaSeccionC totalResultado = new CensoPediatriaSeccionC();
+        CensoPediatriaSeccionC totalHombres = new CensoPediatriaSeccionC();
+        CensoPediatriaSeccionC totalMujeres = new CensoPediatriaSeccionC();
+        
+        List<PacienteNino> pacientes_habilitados = ejbPacienteNino.findbyPacienteNinoActivo();
+        List<CartolaControlesNino> cped;
+        List<ControlNino> controlesPaciente = null;
+        List<ControlNino> controlUltimo;
+        boolean resultados[];  
+        for (PacienteNino pacientes : pacientes_habilitados) { 
+            boolean fue_censado = false;
+            int edad;
+            boolean registra_unaatencion = false;
+
+            cped = ejbCartolaNino.findByPacienteNino(pacientes);//obtengo todas las cartolas por  pacientes
+            
+            if (cped.size() > 0) {
+                registra_unaatencion = true;
+                controlesPaciente = ejbControlNino.findbyCartola(cped.get(0).getId());
+            }
+                      
+            controlUltimo = ejbControlNino.findLastControl(controlesPaciente);
+            
+            if (controlUltimo.size() > 0) {
+                edad = controlUltimo.get(0).getEdadControl();
+                if(edad<12){
+                    if(controlUltimo.get(0).getDesarrolloPsicomotorControl().equals("Riesgo")){
+                        if(pacientes.getGenero_nino().equals("Masculino")){
+                            totalHombres.setRiesgoMenor12(totalHombres.getRiesgoMenor12()+1);
+                            totalResultado.setRiesgoMenor12(totalResultado.getRiesgoMenor12()+1);
+                        }
+                        else{
+                            totalMujeres.setRiesgoMenor12(totalMujeres.getRiesgoMenor12()+1);
+                            totalResultado.setRiesgoMenor12(totalResultado.getRiesgoMenor12()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getDesarrolloPsicomotorControl().equals("Retraso")){
+                        if(pacientes.getGenero_nino().equals("Masculino")){
+                            totalHombres.setRetrasoMenor12(totalHombres.getRetrasoMenor12()+1);
+                            totalResultado.setRetrasoMenor12(totalResultado.getRetrasoMenor12()+1);
+                        }
+                        else{
+                            totalMujeres.setRetrasoMenor12(totalMujeres.getRetrasoMenor12()+1);
+                            totalResultado.setRetrasoMenor12(totalResultado.getRetrasoMenor12()+1);
+                        }
+                    }
+                }
+                else if(edad>=12 && edad<18){
+                    if(controlUltimo.get(0).getDesarrolloPsicomotorControl().equals("Riesgo")){
+                        if(pacientes.getGenero_nino().equals("Masculino")){
+                            totalHombres.setRiesgo12a17(totalHombres.getRiesgo12a17()+1);
+                            totalResultado.setRiesgo12a17(totalResultado.getRiesgo12a17()+1);
+                        }
+                        else{
+                            totalMujeres.setRiesgo12a17(totalMujeres.getRiesgo12a17()+1);
+                            totalResultado.setRiesgo12a17(totalResultado.getRiesgo12a17()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getDesarrolloPsicomotorControl().equals("Retraso")){
+                        if(pacientes.getGenero_nino().equals("Masculino")){
+                            totalHombres.setRetraso12a17(totalHombres.getRetraso12a17()+1);
+                            totalResultado.setRetraso12a17(totalResultado.getRetraso12a17()+1);
+                        }
+                        else{
+                            totalMujeres.setRetraso12a17(totalMujeres.getRetraso12a17()+1);
+                            totalResultado.setRetraso12a17(totalResultado.getRetraso12a17()+1);
+                        }
+                    }
+                }
+                else if(edad>=18 && edad<24){
+                    if(controlUltimo.get(0).getDesarrolloPsicomotorControl().equals("Riesgo")){
+                        if(pacientes.getGenero_nino().equals("Masculino")){
+                            totalHombres.setRiesgo18a23(totalHombres.getRiesgo18a23()+1);
+                            totalResultado.setRiesgo18a23(totalResultado.getRiesgo18a23()+1);
+                        }
+                        else{
+                            totalMujeres.setRiesgo18a23(totalMujeres.getRiesgo18a23()+1);
+                            totalResultado.setRiesgo18a23(totalResultado.getRiesgo18a23()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getDesarrolloPsicomotorControl().equals("Retraso")){
+                        if(pacientes.getGenero_nino().equals("Masculino")){
+                            totalHombres.setRetraso18a23(totalHombres.getRetraso18a23()+1);
+                            totalResultado.setRetraso18a23(totalResultado.getRetraso18a23()+1);
+                        }
+                        else{
+                            totalMujeres.setRetraso18a23(totalMujeres.getRetraso18a23()+1);
+                            totalResultado.setRetraso18a23(totalResultado.getRetraso18a23()+1);
+                        }
+                    }
+                }
+                else if(edad>=24 && edad<48){
+                    if(controlUltimo.get(0).getDesarrolloPsicomotorControl().equals("Riesgo")){
+                        if(pacientes.getGenero_nino().equals("Masculino")){
+                            totalHombres.setRiesgo24a47(totalHombres.getRiesgo24a47()+1);
+                            totalResultado.setRiesgo24a47(totalResultado.getRiesgo24a47()+1);
+                        }
+                        else{
+                            totalMujeres.setRiesgo24a47(totalMujeres.getRiesgo24a47()+1);
+                            totalResultado.setRiesgo24a47(totalResultado.getRiesgo24a47()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getDesarrolloPsicomotorControl().equals("Retraso")){
+                        if(pacientes.getGenero_nino().equals("Masculino")){
+                            totalHombres.setRetraso24a47(totalHombres.getRetraso24a47()+1);
+                            totalResultado.setRetraso24a47(totalResultado.getRetraso24a47()+1);
+                        }
+                        else{
+                            totalMujeres.setRetraso24a47(totalMujeres.getRetraso24a47()+1);
+                            totalResultado.setRetraso24a47(totalResultado.getRetraso24a47()+1);
+                        }
+                    }
+                }
+                else if(edad>=48 && edad<=59){
+                    if(controlUltimo.get(0).getDesarrolloPsicomotorControl().equals("Riesgo")){
+                        if(pacientes.getGenero_nino().equals("Masculino")){
+                            totalHombres.setRiesgo48a59(totalHombres.getRiesgo48a59()+1);
+                            totalResultado.setRiesgo48a59(totalResultado.getRiesgo48a59()+1);
+                        }
+                        else{
+                            totalMujeres.setRiesgo48a59(totalMujeres.getRiesgo48a59()+1);
+                            totalResultado.setRiesgo48a59(totalResultado.getRiesgo48a59()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getDesarrolloPsicomotorControl().equals("Retraso")){
+                        if(pacientes.getGenero_nino().equals("Masculino")){
+                            totalHombres.setRetraso48a59(totalHombres.getRetraso48a59()+1);
+                            totalResultado.setRetraso48a59(totalResultado.getRetraso48a59()+1);
+                        }
+                        else{
+                            totalMujeres.setRetraso48a59(totalMujeres.getRetraso48a59()+1);
+                            totalResultado.setRetraso48a59(totalResultado.getRetraso48a59()+1);
+                        }
+                    }
+                }
+            }
+            
+        }
+        
+       totalResultado.setColumnName1("Total");
+       totalHombres.setColumnName1("Hombres");
+       totalMujeres.setColumnName1("Mujeres");
+       
+       C_elementosPediatria.clear();
+       
+       C_elementosPediatria.add(totalResultado);
+       C_elementosPediatria.add(totalHombres);
+       C_elementosPediatria.add(totalMujeres);
+        
+       return C_elementosPediatria;
     }
     
     
