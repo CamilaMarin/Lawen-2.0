@@ -21,6 +21,8 @@
                         <p:outputLabel value=" "/>
                         <p:outputLabel class="fa fa-square purple-text" value=" #{bundle.CreateCartolaControlesNinoLabel_pacienteNino}" for="paciente" />
                         <p:outputLabel id="paciente" value="#{controlNinoController.selected.cartolaControlesNino.pacienteNino.toString()}"/>
+                        <h:outputText value="#{bundle.ViewControlNinoLabel_identificadorControl}"/>
+                        <h:outputText value="#{controlNinoController.selected.identificadorControl}" title="#{bundle.ViewControlNinoTitle_identificadorControl}"/>
                         <h:outputText styleClass="fa fa-square purple-text" value=" #{bundle.ViewControlNinoLabel_examinadorControl}" />
                         <h:outputText value="#{controlNinoController.selected.examinadorControl}" title="#{bundle.ViewControlNinoTitle_examinadorControl}"/>
                         <h:outputText styleClass="fa fa-square purple-text" value=" #{bundle.ViewControlNinoLabel_fechaControl}" />

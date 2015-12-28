@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -32,10 +33,11 @@ public class ControlNino implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+    private String identificadorControl;
     @Temporal(javax.persistence.TemporalType.DATE)
     private java.util.Date fechaControl;
     private String controlReevaluacion;
+    @NotNull(message = "Debe ingresar la Edad en meses")
     private Integer edadControl;
         private Float pesoControl;
         private Float tallaControl;
@@ -61,6 +63,14 @@ public class ControlNino implements Serializable {
         private String entregaMaterialesEstimulacionControl;
         private String examinadorProximoControl;
 
+    public String getIdentificadorControl() {
+        return identificadorControl;
+    }
+
+    public void setIdentificadorControl(String identificadorControl) {
+        this.identificadorControl = identificadorControl;
+    }        
+        
     public String getExaminadorProximoControl() {
         return examinadorProximoControl;
     }

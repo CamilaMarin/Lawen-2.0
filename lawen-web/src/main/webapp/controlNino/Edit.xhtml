@@ -15,6 +15,8 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditControlNinoLabel_identificadorControl}" for="identificadorControl" />
+                    <h:inputText id="identificadorControl" value="#{controlNinoController.selected.identificadorControl}" title="#{bundle.EditControlNinoTitle_identificadorControl}" />
                     <h:outputLabel value="#{bundle.EditControlNinoLabel_examinadorControl}" for="examinadorControl" />
                     <h:inputText id="examinadorControl" value="#{controlNinoController.selected.examinadorControl}" title="#{bundle.EditControlNinoTitle_examinadorControl}" />
                     <h:outputLabel value="#{bundle.EditControlNinoLabel_fechaControl}" for="fechaControl" />

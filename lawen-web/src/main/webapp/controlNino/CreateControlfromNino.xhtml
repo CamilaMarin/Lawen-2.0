@@ -42,6 +42,11 @@
                         <p:outputLabel rendered="#{pacienteNinoController.isExistPaciente(pacienteNinoController.selected)==false}" value="#{bundle.CreateControlNinoLabel_cartolaControlesNino}" for="cartolaControlesNino" />
                         <p:inputText  rendered="#{pacienteNinoController.isExistPaciente(pacienteNinoController.selected)==false}" class="obligatorio" disabled="true" id="cartolaControlesNino" value="#{cartolaControlesNinoController.selected.pacienteNino.cartolas}"/>
                         
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_identificadorControl}" for="identificadorControl" />
+                        <p:selectOneMenu id="identificadorControl" value="#{controlNinoController.selected.identificadorControl}">
+                            <f:selectItems value="#{dominiosController.identificadoresControles}"/>    
+                        </p:selectOneMenu>   
+                        
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_examinadorControl}" for="examinadorControl" />
                         <p:selectOneMenu id="examinadorControl" value="#{controlNinoController.selected.examinadorControl}">
                             <f:selectItems value="#{dominiosController.examinadorNino}"/>    
@@ -61,7 +66,7 @@
                         </p:selectOneMenu>
                         
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_edadControl}" for="edadControl" />
-                        <p:inputText id="edadControl" value="#{controlNinoController.selected.edadControl}" title="#{bundle.CreateControlNinoTitle_edadControl}" />
+                        <p:inputText id="edadControl" value="#{controlNinoController.selected.edadControl}" title="#{bundle.CreateControlNinoTitle_edadControl}" required="true" requiredMessage="Debe ingresar una edad "/>
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_pesoControl}" for="pesoControl" />
                         <p:inputText id="pesoControl" placeholder="0.0" value="#{controlNinoController.selected.pesoControl}" title="#{bundle.CreateControlNinoTitle_pesoControl}" />
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_tallaControl}" for="tallaControl" />

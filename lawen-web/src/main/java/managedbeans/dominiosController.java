@@ -71,13 +71,37 @@ public class dominiosController {
     private List <String> indicadoresPEPTTE;
     private List <String> desarrolloPsicomotor;        
     private List <String> diagNutricional;
-    
-    
+    private List <String> identificadoresControles;
     /*
     Init para intanciar valores de las listas
     */
     @PostConstruct
     public void init() {
+        
+        identificadoresControles= new ArrayList<>(23);
+        identificadoresControles.add(0,"1 mes");
+        identificadoresControles.add(1,"2 meses");
+        identificadoresControles.add(2,"3 meses");
+        identificadoresControles.add(3,"4 meses");
+        identificadoresControles.add(4,"5 meses");
+        identificadoresControles.add(5,"6 meses");
+        identificadoresControles.add(6,"7 meses");
+        identificadoresControles.add(7,"8 meses");
+        identificadoresControles.add(8,"10 meses");
+        identificadoresControles.add(9,"1 año");
+        identificadoresControles.add(10,"1 año 3 meses");
+        identificadoresControles.add(11,"1 año 6 meses");
+        identificadoresControles.add(12,"1 año 9 meses");
+        identificadoresControles.add(13,"2 años");
+        identificadoresControles.add(14,"2 años 6 meses");
+        identificadoresControles.add(15,"3 años");
+        identificadoresControles.add(16,"3 años 6 meses");
+        identificadoresControles.add(17,"4 años");
+        identificadoresControles.add(18,"5 años");
+        identificadoresControles.add(19,"6 años");
+        identificadoresControles.add(20,"7 años");
+        identificadoresControles.add(21,"8 años");
+        identificadoresControles.add(22,"9 años");
         
         diagNutricional= new ArrayList<>(6);
         diagNutricional.add(0,"Normal");
@@ -309,6 +333,14 @@ public class dominiosController {
         
     }
 
+    public List<String> getIdentificadoresControles() {
+        return identificadoresControles;
+    }
+
+    public void setIdentificadoresControles(List<String> identificadoresControles) {
+        this.identificadoresControles = identificadoresControles;
+    }
+    
     public List<String> getDiagNutricional() {
         return diagNutricional;
     }

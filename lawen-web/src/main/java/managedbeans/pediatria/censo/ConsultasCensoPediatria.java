@@ -29,6 +29,8 @@ import sessionbeans.pediatria.ControlNinoFacadeLocal;
 public class ConsultasCensoPediatria implements Serializable {
 
     private List<CensoPediatriaSeccionA> A_elementosPediatria = new ArrayList<>();
+    private List<CensoPediatriaSeccionE> E_elementosPediatria = new ArrayList<>();
+    
     @EJB
     private PacienteNinoFacadeLocal ejbPacienteNino;
     @EJB
@@ -46,6 +48,7 @@ public class ConsultasCensoPediatria implements Serializable {
     
     public void init() {
         A_elementosPediatria = censoPediatriaSeccionA();
+        E_elementosPediatria = censoPediatriaSeccionE();
     }
 
     public ControlNinoFacadeLocal getEjbControlNino() {
@@ -55,7 +58,15 @@ public class ConsultasCensoPediatria implements Serializable {
     public void setEjbControlNino(ControlNinoFacadeLocal ejbControlNino) {
         this.ejbControlNino = ejbControlNino;
     }
-    
+
+    public List<CensoPediatriaSeccionE> getE_elementosPediatria() {
+        return E_elementosPediatria;
+    }
+
+    public void setE_elementosPediatria(List<CensoPediatriaSeccionE> E_elementosPediatria) {
+        this.E_elementosPediatria = E_elementosPediatria;
+    }    
+        
     public List<CensoPediatriaSeccionA> getA_elementosPediatria() {
         return A_elementosPediatria;
     }
@@ -2235,6 +2246,46 @@ public class ConsultasCensoPediatria implements Serializable {
 
         }   
    
+    
+    public List<CensoPediatriaSeccionE> censoPediatriaSeccionE(){
+       CensoPediatriaSeccionE totalNinos = new CensoPediatriaSeccionE(); 
+       List<PacienteNino> pacientes_habilitados = ejbPacienteNino.findbyPacienteNinoActivo();
+       List<CartolaControlesNino> cped;
+       List<ControlNino> controlesPaciente = null;
+       
+       for (PacienteNino pacientes : pacientes_habilitados) {  
+            boolean fue_censado = false;
+            int edad;
+            boolean registra_unaatencion = false;
+
+            cped = ejbCartolaNino.findByPacienteNino(pacientes);//obtengo todas las cartolas por  pacientes
+            
+            if (cped.size() > 0) {
+                registra_unaatencion = true;
+                controlesPaciente = ejbControlNino.findbyCartola(cped.get(0).getId());
+            }
+            
+            if (controlesPaciente.size() > 0) {
+                for (ControlNino controles : controlesPaciente){
+                    if (controles.getIdentificadorControl().equals("5 meses") && controles.getExaminadorControl().equals("Nutricionista")){
+                        totalNinos.setNumeroNutriQuintoMes(totalNinos.getNumeroNutriQuintoMes()+1);
+                    }
+                    if (controles.getIdentificadorControl().equals("3 años 6 meses") && controles.getExaminadorControl().equals("Nutricionista")){
+                        totalNinos.setNumeroNutriTresAñosSeisMeses(totalNinos.getNumeroNutriTresAñosSeisMeses()+1);
+                    }
+                }
+            }
+       }       
+       
+       totalNinos.setColumnName1("Total");
+       
+       E_elementosPediatria.clear();
+       E_elementosPediatria.add(totalNinos);
+       
+       return E_elementosPediatria;
+    }
+            
+    
     public ConsultasCensoPediatria() {        
     
     }
