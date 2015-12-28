@@ -65,7 +65,7 @@
                             <f:selectItems value="#{dominiosController.presionArterialNino}"/>    
                         </p:selectOneMenu>
                         
-                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_edadControl}" for="edadControl" />
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateControlNinoLabel_edadControl}" for="edadControl" />
                         <p:inputText id="edadControl" value="#{controlNinoController.selected.edadControl}" title="#{bundle.CreateControlNinoTitle_edadControl}" required="true" requiredMessage="Debe ingresar una edad "/>
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_pesoControl}" for="pesoControl" />
                         <p:inputText id="pesoControl" placeholder="0.0" value="#{controlNinoController.selected.pesoControl}" title="#{bundle.CreateControlNinoTitle_pesoControl}" />
@@ -99,7 +99,9 @@
                         
                        
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_estadoNutricionalControl}" for="estadoNutricionalControl" />
-                        <p:inputText id="estadoNutricionalControl" value="#{controlNinoController.selected.estadoNutricionalControl}" title="#{bundle.CreateControlNinoTitle_estadoNutricionalControl}" />
+                        <p:selectOneMenu id="estadoNutricionalControl" value="#{controlNinoController.selected.estadoNutricionalControl}">
+                            <f:selectItems value="#{dominiosController.diagNutricional}"/>    
+                        </p:selectOneMenu>      
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaIngresoEstmulacionControl}" for="fechaIngresoEstmulacionControl" />
                         <p:calendar id="fechaIngresoEstmulacionControl" placeholder="dd/mm/yyyy" pattern="dd/mm/yyyy" value="#{controlNinoController.selected.fechaIngresoEstmulacionControl}" title="#{bundle.EditControlNinoTitle_fechaIngresoEstmulacionControl}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaEgresoEstmulacionControl}" for="fechaEgresoEstmulacionControl" />

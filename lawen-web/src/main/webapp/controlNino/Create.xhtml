@@ -39,8 +39,8 @@
                     <h:selectOneMenu id="cartolaControlesNino" value="#{controlNinoController.selected.cartolaControlesNino}" title="#{bundle.CreateControlNinoTitle_cartolaControlesNino}" required="true" requiredMessage="#{bundle.CreateControlNinoRequiredMessage_cartolaControlesNino}">
                         <f:selectItems value="#{cartolaControlesNinoController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateControlNinoLabel_edadControl}" for="edadControl" />
-                    <h:inputText id="edadControl" value="#{controlNinoController.selected.edadControl}" title="#{bundle.CreateControlNinoTitle_edadControl}" />
+                    <h:outputLabel class="obligatorio" value="#{bundle.CreateControlNinoLabel_edadControl}" for="edadControl" />
+                    <h:inputText id="edadControl" value="#{controlNinoController.selected.edadControl}" title="#{bundle.CreateControlNinoTitle_edadControl}" required="true" requiredMessage="Debe ingresar una edad "/>
                     <h:outputLabel value="#{bundle.CreateControlNinoLabel_pesoControl}" for="pesoControl" />
                     <h:inputText id="pesoControl" value="#{controlNinoController.selected.pesoControl}" title="#{bundle.CreateControlNinoTitle_pesoControl}" />
                     <h:outputLabel value="#{bundle.CreateControlNinoLabel_tallaControl}" for="tallaControl" />
@@ -58,7 +58,10 @@
                     <h:outputLabel value="#{bundle.CreateControlNinoLabel_alimentacionRecibeControl}" for="alimentacionRecibeControl" />
                     <h:inputText id="alimentacionRecibeControl" value="#{controlNinoController.selected.alimentacionRecibeControl}" title="#{bundle.CreateControlNinoTitle_alimentacionRecibeControl}" />
                     <h:outputLabel value="#{bundle.CreateControlNinoLabel_estadoNutricionalControl}" for="estadoNutricionalControl" />
-                    <h:inputText id="estadoNutricionalControl" value="#{controlNinoController.selected.estadoNutricionalControl}" title="#{bundle.CreateControlNinoTitle_estadoNutricionalControl}" />
+                    <h:selectOneMenu id="estadoNutricionalControl" value="#{controlNinoController.selected.estadoNutricionalControl}">
+                        <f:selectItems value="#{dominiosController.diagNutricional}"/>    
+                    </h:selectOneMenu>      
+                    
                     <h:outputLabel value="#{bundle.CreateControlNinoLabel_fechaIngresoEstmulacionControl}" for="fechaIngresoEstmulacionControl" />
                     <h:inputText id="fechaIngresoEstmulacionControl" value="#{controlNinoController.selected.fechaIngresoEstmulacionControl}" title="#{bundle.CreateControlNinoTitle_fechaIngresoEstmulacionControl}" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
