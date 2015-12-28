@@ -61,6 +61,10 @@
                     <h:selectOneMenu id="estadoNutricionalControl" value="#{controlNinoController.selected.estadoNutricionalControl}">
                         <f:selectItems value="#{dominiosController.diagNutricional}"/>    
                     </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateControlNinoLabel_riesgoMalnutricion}" for="riesgoMalnutricion" />
+                    <h:selectOneMenu id="riesgoMalnutricion" value="#{controlNinoController.selected.riesgoMalnutricion}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditControlNinoLabel_fechaIngresoEstmulacionControl}" for="fechaIngresoEstmulacionControl" />
                     <h:inputText id="fechaIngresoEstmulacionControl" value="#{controlNinoController.selected.fechaIngresoEstmulacionControl}" title="#{bundle.EditControlNinoTitle_fechaIngresoEstmulacionControl}" >
                         <f:convertDateTime pattern="dd/MM/yyyy" />

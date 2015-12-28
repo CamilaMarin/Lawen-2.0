@@ -72,11 +72,16 @@ public class dominiosController {
     private List <String> desarrolloPsicomotor;        
     private List <String> diagNutricional;
     private List <String> identificadoresControles;
+    private List <String> riesgoMalnutricion;
     /*
     Init para intanciar valores de las listas
     */
     @PostConstruct
     public void init() {
+        
+        riesgoMalnutricion= new ArrayList<>(2);
+        riesgoMalnutricion.add(0,"No");
+        riesgoMalnutricion.add(1,"Si");
         
         identificadoresControles= new ArrayList<>(23);
         identificadoresControles.add(0,"1 mes");
@@ -333,6 +338,14 @@ public class dominiosController {
 
         
     }
+
+    public List<String> getRiesgoMalnutricion() {
+        return riesgoMalnutricion;
+    }
+
+    public void setRiesgoMalnutricion(List<String> riesgoMalnutricion) {
+        this.riesgoMalnutricion = riesgoMalnutricion;
+    }       
 
     public List<String> getIdentificadoresControles() {
         return identificadoresControles;

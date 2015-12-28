@@ -101,7 +101,11 @@
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_estadoNutricionalControl}" for="estadoNutricionalControl" />
                         <p:selectOneMenu id="estadoNutricionalControl" value="#{controlNinoController.selected.estadoNutricionalControl}">
                             <f:selectItems value="#{dominiosController.diagNutricional}"/>    
-                        </p:selectOneMenu>      
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_riesgoMalnutricion}" for="riesgoMalnutricion" />
+                        <p:selectOneMenu id="riesgoMalnutricion" value="#{controlNinoController.selected.riesgoMalnutricion}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaIngresoEstmulacionControl}" for="fechaIngresoEstmulacionControl" />
                         <p:calendar id="fechaIngresoEstmulacionControl" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{controlNinoController.selected.fechaIngresoEstmulacionControl}" title="#{bundle.EditControlNinoTitle_fechaIngresoEstmulacionControl}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaEgresoEstmulacionControl}" for="fechaEgresoEstmulacionControl" />

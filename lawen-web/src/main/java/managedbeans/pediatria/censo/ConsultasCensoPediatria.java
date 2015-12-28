@@ -37,7 +37,8 @@ public class ConsultasCensoPediatria implements Serializable {
     private List<CensoPediatriaSeccionE> E_elementosPediatria = new ArrayList<>();
     private List<CensoPediatriaSeccionF> F_elementosPediatria = new ArrayList<>();
     private List<CensoPediatriaSeccionG> G_elementosPediatria = new ArrayList<>();
-     
+    private List<CensoPediatriaSeccionH> H_elementosPediatria = new ArrayList<>();
+    
     @EJB
     private PacienteNinoFacadeLocal ejbPacienteNino;
     @EJB
@@ -60,6 +61,7 @@ public class ConsultasCensoPediatria implements Serializable {
         E_elementosPediatria = censoPediatriaSeccionE();
         F_elementosPediatria = censoPediatriaSeccionF();         
         G_elementosPediatria = censoPediatriaSeccionG();
+        H_elementosPediatria = censoPediatriaSeccionH();
     }
 
     public ControlNinoFacadeLocal getEjbControlNino() {
@@ -70,6 +72,14 @@ public class ConsultasCensoPediatria implements Serializable {
         this.ejbControlNino = ejbControlNino;
     }
 
+    public List<CensoPediatriaSeccionH> getH_elementosPediatria() {
+        return H_elementosPediatria;
+    }
+
+    public void setH_elementosPediatria(List<CensoPediatriaSeccionH> H_elementosPediatria) {
+        this.H_elementosPediatria = H_elementosPediatria;
+    }
+      
     public List<CensoPediatriaSeccionF> getF_elementosPediatria() {
         return F_elementosPediatria;
     }
@@ -2979,6 +2989,147 @@ public class ConsultasCensoPediatria implements Serializable {
        F_elementosPediatria.add(totalResultado);
         
        return F_elementosPediatria;
+    }
+    
+    public List<CensoPediatriaSeccionH> censoPediatriaSeccionH() {
+        CensoPediatriaSeccionH totalResultado = new CensoPediatriaSeccionH();
+        CensoPediatriaSeccionH total4a11 = new CensoPediatriaSeccionH();
+        CensoPediatriaSeccionH total12a23 = new CensoPediatriaSeccionH();
+        CensoPediatriaSeccionH tota24a35 = new CensoPediatriaSeccionH();
+        CensoPediatriaSeccionH total36a47 = new CensoPediatriaSeccionH();
+        CensoPediatriaSeccionH total48a59 = new CensoPediatriaSeccionH();
+        CensoPediatriaSeccionH total60a71 = new CensoPediatriaSeccionH();
+        
+        List<PacienteNino> pacientes_habilitados = ejbPacienteNino.findbyPacienteNinoActivo();
+        List<CartolaControlesNino> cped;
+        List<ControlNino> controlesPaciente = null;
+        List<ControlNino> controlUltimo;
+        boolean resultados[];  
+        for (PacienteNino pacientes : pacientes_habilitados) { 
+            boolean fue_censado = false;
+            int edad;
+            boolean registra_unaatencion = false;
+
+            cped = ejbCartolaNino.findByPacienteNino(pacientes);//obtengo todas las cartolas por  pacientes
+            
+            if (cped.size() > 0) {
+                registra_unaatencion = true;
+                controlesPaciente = ejbControlNino.findbyCartola(cped.get(0).getId());
+            }
+                      
+            controlUltimo = ejbControlNino.findLastControl(controlesPaciente);
+            
+            if (controlUltimo.size() > 0) {
+                edad = controlUltimo.get(0).getEdadControl();
+                if(controlUltimo.get(0).getEstadoNutricionalControl().equals("Normal")){
+                    if(edad>=4 && edad<12){
+                        if(controlUltimo.get(0).getRiesgoMalnutricion().equals("Si")){
+                            total4a11.setConRiesgo(total4a11.getConRiesgo()+1);
+                            totalResultado.setConRiesgo(totalResultado.getConRiesgo()+1);
+                            total4a11.setTotalEutrofica(total4a11.getTotalEutrofica()+1);
+                            totalResultado.setTotalEutrofica(totalResultado.getTotalEutrofica()+1);
+                        }
+                        else{
+                            total4a11.setSinRiesgo(total4a11.getSinRiesgo()+1);
+                            totalResultado.setSinRiesgo(totalResultado.getSinRiesgo()+1);
+                            total4a11.setTotalEutrofica(total4a11.getTotalEutrofica()+1);
+                            totalResultado.setTotalEutrofica(totalResultado.getTotalEutrofica()+1);
+                        }
+                    }
+                    else if (edad>=12 && edad<24){
+                        if(controlUltimo.get(0).getRiesgoMalnutricion().equals("Si")){
+                            total12a23.setConRiesgo(total12a23.getConRiesgo()+1);
+                            totalResultado.setConRiesgo(totalResultado.getConRiesgo()+1);
+                            total12a23.setTotalEutrofica(total12a23.getTotalEutrofica()+1);
+                            totalResultado.setTotalEutrofica(totalResultado.getTotalEutrofica()+1);
+                        }
+                        else{
+                            total12a23.setSinRiesgo(total12a23.getSinRiesgo()+1);
+                            totalResultado.setSinRiesgo(totalResultado.getSinRiesgo()+1);
+                            total12a23.setTotalEutrofica(total12a23.getTotalEutrofica()+1);
+                            totalResultado.setTotalEutrofica(totalResultado.getTotalEutrofica()+1);
+                        }
+                    }
+                    else if (edad>=24 && edad<36){
+                        if(controlUltimo.get(0).getRiesgoMalnutricion().equals("Si")){
+                            tota24a35.setConRiesgo(tota24a35.getConRiesgo()+1);
+                            totalResultado.setConRiesgo(totalResultado.getConRiesgo()+1);
+                            tota24a35.setTotalEutrofica(tota24a35.getTotalEutrofica()+1);
+                            totalResultado.setTotalEutrofica(totalResultado.getTotalEutrofica()+1);
+                        }
+                        else{
+                            tota24a35.setSinRiesgo(tota24a35.getSinRiesgo()+1);
+                            totalResultado.setSinRiesgo(totalResultado.getSinRiesgo()+1);
+                            tota24a35.setTotalEutrofica(tota24a35.getTotalEutrofica()+1);
+                            totalResultado.setTotalEutrofica(totalResultado.getTotalEutrofica()+1);
+                        }
+                    }
+                    else if (edad>=36 && edad<48){
+                        if(controlUltimo.get(0).getRiesgoMalnutricion().equals("Si")){
+                            total36a47.setConRiesgo(total36a47.getConRiesgo()+1);
+                            totalResultado.setConRiesgo(totalResultado.getConRiesgo()+1);
+                            total36a47.setTotalEutrofica(total36a47.getTotalEutrofica()+1);
+                            totalResultado.setTotalEutrofica(totalResultado.getTotalEutrofica()+1);
+                        }
+                        else{
+                            total36a47.setSinRiesgo(total36a47.getSinRiesgo()+1);
+                            totalResultado.setSinRiesgo(totalResultado.getSinRiesgo()+1);
+                            total36a47.setTotalEutrofica(total36a47.getTotalEutrofica()+1);
+                            totalResultado.setTotalEutrofica(totalResultado.getTotalEutrofica()+1);
+                        }
+                    }
+                    else if (edad>=48 && edad<60){
+                        if(controlUltimo.get(0).getRiesgoMalnutricion().equals("Si")){
+                            total48a59.setConRiesgo(total48a59.getConRiesgo()+1);
+                            totalResultado.setConRiesgo(totalResultado.getConRiesgo()+1);
+                            total48a59.setTotalEutrofica(total48a59.getTotalEutrofica()+1);
+                            totalResultado.setTotalEutrofica(totalResultado.getTotalEutrofica()+1);
+                        }
+                        else{
+                            total48a59.setSinRiesgo(total48a59.getSinRiesgo()+1);
+                            totalResultado.setSinRiesgo(totalResultado.getSinRiesgo()+1);
+                            total48a59.setTotalEutrofica(total48a59.getTotalEutrofica()+1);
+                            totalResultado.setTotalEutrofica(totalResultado.getTotalEutrofica()+1);
+                        }
+                    }
+                    else if (edad>=60 && edad<=71){
+                        if(controlUltimo.get(0).getRiesgoMalnutricion().equals("Si")){
+                            total60a71.setConRiesgo(total60a71.getConRiesgo()+1);
+                            totalResultado.setConRiesgo(totalResultado.getConRiesgo()+1);
+                            total60a71.setTotalEutrofica(total60a71.getTotalEutrofica()+1);
+                            totalResultado.setTotalEutrofica(totalResultado.getTotalEutrofica()+1);
+                        }
+                        else{
+                            total60a71.setSinRiesgo(total60a71.getSinRiesgo()+1);
+                            totalResultado.setSinRiesgo(totalResultado.getSinRiesgo()+1);
+                            total60a71.setTotalEutrofica(total60a71.getTotalEutrofica()+1);
+                            totalResultado.setTotalEutrofica(totalResultado.getTotalEutrofica()+1);
+                        }
+                    }
+                }
+            }
+        
+        }
+        
+       totalResultado.setColumnName1("Total");
+       total4a11.setColumnName1("4 a 11 meses");
+       total12a23.setColumnName1("12 a 23 meses");
+       tota24a35.setColumnName1("24 a 35 meses");
+       total36a47.setColumnName1("36 a 47 meses");
+       total48a59.setColumnName1("48 a 59 meses");
+       total60a71.setColumnName1("60 a 71 meses");
+       
+       H_elementosPediatria.clear();
+       
+       H_elementosPediatria.add(totalResultado);
+       H_elementosPediatria.add(total4a11);
+       H_elementosPediatria.add(total12a23);
+       H_elementosPediatria.add(tota24a35);
+       H_elementosPediatria.add(total36a47);
+       H_elementosPediatria.add(total48a59);
+       H_elementosPediatria.add(total60a71);
+       
+       return H_elementosPediatria;
     }
     
     
