@@ -30,7 +30,8 @@ public class ConsultasCensoPediatria implements Serializable {
 
     private List<CensoPediatriaSeccionA> A_elementosPediatria = new ArrayList<>();
     private List<CensoPediatriaSeccionE> E_elementosPediatria = new ArrayList<>();
-    
+    private List<CensoPediatriaSeccionG> G_elementosPediatria = new ArrayList<>();
+     
     @EJB
     private PacienteNinoFacadeLocal ejbPacienteNino;
     @EJB
@@ -49,6 +50,7 @@ public class ConsultasCensoPediatria implements Serializable {
     public void init() {
         A_elementosPediatria = censoPediatriaSeccionA();
         E_elementosPediatria = censoPediatriaSeccionE();
+        G_elementosPediatria = censoPediatriaSeccionG();
     }
 
     public ControlNinoFacadeLocal getEjbControlNino() {
@@ -59,6 +61,14 @@ public class ConsultasCensoPediatria implements Serializable {
         this.ejbControlNino = ejbControlNino;
     }
 
+    public List<CensoPediatriaSeccionG> getG_elementosPediatria() {
+        return G_elementosPediatria;
+    }
+
+    public void setG_elementosPediatria(List<CensoPediatriaSeccionG> G_elementosPediatria) {
+        this.G_elementosPediatria = G_elementosPediatria;
+    }  
+    
     public List<CensoPediatriaSeccionE> getE_elementosPediatria() {
         return E_elementosPediatria;
     }
@@ -2285,6 +2295,130 @@ public class ConsultasCensoPediatria implements Serializable {
        return E_elementosPediatria;
     }
             
+    
+    public List<CensoPediatriaSeccionG> censoPediatriaSeccionG(){
+        
+        CensoPediatriaSeccionG totalClas = new CensoPediatriaSeccionG();
+        CensoPediatriaSeccionG grupo36a47 = new CensoPediatriaSeccionG();
+        CensoPediatriaSeccionG grupo48a71 = new CensoPediatriaSeccionG();
+        CensoPediatriaSeccionG grupo6a9 = new CensoPediatriaSeccionG();        
+        List<PacienteNino> pacientes_habilitados = ejbPacienteNino.findbyPacienteNinoActivo();
+        List<CartolaControlesNino> cped;
+        List<ControlNino> controlesPaciente = null;
+        List<ControlNino> controlUltimo;
+        boolean resultados[];       
+        for (PacienteNino pacientes : pacientes_habilitados) {            
+            boolean fue_censado = false;
+            int edad;
+            boolean registra_unaatencion = false;
+
+            cped = ejbCartolaNino.findByPacienteNino(pacientes);//obtengo todas las cartolas por  pacientes
+            
+            if (cped.size() > 0) {
+                registra_unaatencion = true;
+                controlesPaciente = ejbControlNino.findbyCartola(cped.get(0).getId());
+            }
+                      
+            controlUltimo = ejbControlNino.findLastControl(controlesPaciente);
+            
+            if (controlUltimo.size() > 0) {
+                edad = controlUltimo.get(0).getEdadControl();                
+                if (edad>=36 && edad < 48){
+                    if(controlUltimo.get(0).getPresionArterialControl().equals("Normal")){
+                        grupo36a47.setClasificacionNormal(grupo36a47.getClasificacionNormal()+1);
+                        totalClas.setClasificacionNormal(totalClas.getClasificacionNormal()+1);
+                        grupo36a47.setTotalClasificacion(grupo36a47.getTotalClasificacion()+1);
+                        totalClas.setTotalClasificacion(totalClas.getTotalClasificacion()+1);
+                    }
+                    else if(controlUltimo.get(0).getPresionArterialControl().equals("Pre-Hipertensión")){
+                        grupo36a47.setClasificacionPreHiper(grupo36a47.getClasificacionPreHiper()+1);
+                        totalClas.setClasificacionPreHiper(totalClas.getClasificacionPreHiper()+1);
+                        grupo36a47.setTotalClasificacion(grupo36a47.getTotalClasificacion()+1);
+                        totalClas.setTotalClasificacion(totalClas.getTotalClasificacion()+1);
+                    }
+                    else if(controlUltimo.get(0).getPresionArterialControl().equals("Etapa 1")){
+                        grupo36a47.setClasificacionEtapaUno(grupo36a47.getClasificacionEtapaUno()+1);
+                        totalClas.setClasificacionEtapaUno(totalClas.getClasificacionEtapaUno()+1);
+                        grupo36a47.setTotalClasificacion(grupo36a47.getTotalClasificacion()+1);
+                        totalClas.setTotalClasificacion(totalClas.getTotalClasificacion()+1);
+                    }
+                    else if(controlUltimo.get(0).getPresionArterialControl().equals("Etapa 2")){
+                        grupo36a47.setClasificacionEtapaDos(grupo36a47.getClasificacionEtapaDos()+1);
+                        totalClas.setClasificacionEtapaDos(totalClas.getClasificacionEtapaDos()+1);
+                        grupo36a47.setTotalClasificacion(grupo36a47.getTotalClasificacion()+1);
+                        totalClas.setTotalClasificacion(totalClas.getTotalClasificacion()+1);
+                    }
+                }
+                else if (edad>=48 && edad < 72){
+                    if(controlUltimo.get(0).getPresionArterialControl().equals("Normal")){
+                        grupo48a71.setClasificacionNormal(grupo48a71.getClasificacionNormal()+1);
+                        totalClas.setClasificacionNormal(totalClas.getClasificacionNormal()+1);
+                        grupo48a71.setTotalClasificacion(grupo48a71.getTotalClasificacion()+1);
+                        totalClas.setTotalClasificacion(totalClas.getTotalClasificacion()+1);
+                    }
+                    else if(controlUltimo.get(0).getPresionArterialControl().equals("Pre-Hipertensión")){
+                        grupo48a71.setClasificacionPreHiper(grupo48a71.getClasificacionPreHiper()+1);
+                        totalClas.setClasificacionPreHiper(totalClas.getClasificacionPreHiper()+1);
+                        grupo48a71.setTotalClasificacion(grupo48a71.getTotalClasificacion()+1);
+                        totalClas.setTotalClasificacion(totalClas.getTotalClasificacion()+1);
+                    }
+                    else if(controlUltimo.get(0).getPresionArterialControl().equals("Etapa 1")){
+                        grupo48a71.setClasificacionEtapaUno(grupo48a71.getClasificacionEtapaUno()+1);
+                        totalClas.setClasificacionEtapaUno(totalClas.getClasificacionEtapaUno()+1);
+                        grupo48a71.setTotalClasificacion(grupo48a71.getTotalClasificacion()+1);
+                        totalClas.setTotalClasificacion(totalClas.getTotalClasificacion()+1);
+                    }
+                    else if(controlUltimo.get(0).getPresionArterialControl().equals("Etapa 2")){
+                        grupo48a71.setClasificacionEtapaDos(grupo48a71.getClasificacionEtapaDos()+1);
+                        totalClas.setClasificacionEtapaDos(totalClas.getClasificacionEtapaDos()+1);
+                        grupo48a71.setTotalClasificacion(grupo48a71.getTotalClasificacion()+1);
+                        totalClas.setTotalClasificacion(totalClas.getTotalClasificacion()+1);
+                    }
+                }
+                else if (edad>=72 && edad <= 108){
+                    if(controlUltimo.get(0).getPresionArterialControl().equals("Normal")){
+                        grupo6a9.setClasificacionNormal(grupo6a9.getClasificacionNormal()+1);
+                        totalClas.setClasificacionNormal(totalClas.getClasificacionNormal()+1);
+                        grupo6a9.setTotalClasificacion(grupo6a9.getTotalClasificacion()+1);
+                        totalClas.setTotalClasificacion(totalClas.getTotalClasificacion()+1);
+                    }
+                    else if(controlUltimo.get(0).getPresionArterialControl().equals("Pre-Hipertensión")){
+                        grupo6a9.setClasificacionPreHiper(grupo6a9.getClasificacionPreHiper()+1);
+                        totalClas.setClasificacionPreHiper(totalClas.getClasificacionPreHiper()+1);
+                        grupo6a9.setTotalClasificacion(grupo6a9.getTotalClasificacion()+1);
+                        totalClas.setTotalClasificacion(totalClas.getTotalClasificacion()+1);
+                    }
+                    else if(controlUltimo.get(0).getPresionArterialControl().equals("Etapa 1")){
+                        grupo6a9.setClasificacionEtapaUno(grupo6a9.getClasificacionEtapaUno()+1);
+                        totalClas.setClasificacionEtapaUno(totalClas.getClasificacionEtapaUno()+1);
+                        grupo6a9.setTotalClasificacion(grupo6a9.getTotalClasificacion()+1);
+                        totalClas.setTotalClasificacion(totalClas.getTotalClasificacion()+1);
+                    }
+                    else if(controlUltimo.get(0).getPresionArterialControl().equals("Etapa 2")){
+                        grupo6a9.setClasificacionEtapaDos(grupo6a9.getClasificacionEtapaDos()+1);
+                        totalClas.setClasificacionEtapaDos(totalClas.getClasificacionEtapaDos()+1);
+                        grupo6a9.setTotalClasificacion(grupo6a9.getTotalClasificacion()+1);
+                        totalClas.setTotalClasificacion(totalClas.getTotalClasificacion()+1);
+                    }
+                }
+            }
+        }
+       
+       totalClas.setColumnName1("Total");
+       grupo36a47.setColumnName1("Grupo de edad 36 a 47 meses");
+       grupo48a71.setColumnName1("Grupo de edad 48 a 71 meses");
+       grupo6a9.setColumnName1("Grupo de edad 6 a 9 años");
+       
+       G_elementosPediatria.clear();
+       
+       G_elementosPediatria.add(totalClas);
+       G_elementosPediatria.add(grupo36a47);
+       G_elementosPediatria.add(grupo48a71);
+       G_elementosPediatria.add(grupo6a9);
+       
+        return G_elementosPediatria;
+    }
+    
     
     public ConsultasCensoPediatria() {        
     
