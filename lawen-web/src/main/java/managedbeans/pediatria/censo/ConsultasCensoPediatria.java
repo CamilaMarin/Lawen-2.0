@@ -18,6 +18,9 @@ import sessionbeans.pediatria.PacienteNinoFacadeLocal;
 import entities.pediatria.PacienteNino;
 import entities.pediatria.CartolaControlesNino;
 import entities.pediatria.ControlNino;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import sessionbeans.pediatria.ControlNinoFacadeLocal;
 
 /**
@@ -32,6 +35,7 @@ public class ConsultasCensoPediatria implements Serializable {
     private List<CensoPediatriaSeccionC> C_elementosPediatria = new ArrayList<>();
     private List<CensoPediatriaSeccionD> D_elementosPediatria = new ArrayList<>();
     private List<CensoPediatriaSeccionE> E_elementosPediatria = new ArrayList<>();
+    private List<CensoPediatriaSeccionF> F_elementosPediatria = new ArrayList<>();
     private List<CensoPediatriaSeccionG> G_elementosPediatria = new ArrayList<>();
      
     @EJB
@@ -53,7 +57,8 @@ public class ConsultasCensoPediatria implements Serializable {
         A_elementosPediatria = censoPediatriaSeccionA();
         C_elementosPediatria = censoPediatriaSeccionC();
         D_elementosPediatria = censoPediatriaSeccionD();
-        E_elementosPediatria = censoPediatriaSeccionE();        
+        E_elementosPediatria = censoPediatriaSeccionE();
+        F_elementosPediatria = censoPediatriaSeccionF();         
         G_elementosPediatria = censoPediatriaSeccionG();
     }
 
@@ -65,6 +70,14 @@ public class ConsultasCensoPediatria implements Serializable {
         this.ejbControlNino = ejbControlNino;
     }
 
+    public List<CensoPediatriaSeccionF> getF_elementosPediatria() {
+        return F_elementosPediatria;
+    }
+
+    public void setF_elementosPediatria(List<CensoPediatriaSeccionF> F_elementosPediatria) {
+        this.F_elementosPediatria = F_elementosPediatria;
+    }   
+    
     public List<CensoPediatriaSeccionC> getC_elementosPediatria() {
         return C_elementosPediatria;
     }
@@ -2875,6 +2888,97 @@ public class ConsultasCensoPediatria implements Serializable {
        C_elementosPediatria.add(totalMujeres);
         
        return C_elementosPediatria;
+    }
+    
+    public List<CensoPediatriaSeccionF> censoPediatriaSeccionF(){
+        CensoPediatriaSeccionF totalResultado = new CensoPediatriaSeccionF();
+        
+        List<PacienteNino> pacientes_habilitados = ejbPacienteNino.findbyPacienteNinoActivo();
+        List<CartolaControlesNino> cped;
+        List<ControlNino> controlesPaciente = null;
+        List<ControlNino> controlUltimo;
+        boolean resultados[];
+        for (PacienteNino pacientes : pacientes_habilitados) { 
+            boolean fue_censado = false;
+            int edad;
+            boolean registra_unaatencion = false;
+
+            cped = ejbCartolaNino.findByPacienteNino(pacientes);//obtengo todas las cartolas por  pacientes
+            
+            if (cped.size() > 0) {
+                registra_unaatencion = true;
+                controlesPaciente = ejbControlNino.findbyCartola(cped.get(0).getId());
+            }
+                      
+            controlUltimo = ejbControlNino.findLastControl(controlesPaciente);
+            
+            if (controlUltimo.size() > 0) {
+                edad = controlUltimo.get(0).getEdadControl();
+                Date fecha_sistema = new Date();                
+                Long dias = (fecha_sistema.getTime() - controlUltimo.get(0).getFechaProximaCitacionControl().getTime())/(1000*60*60*24);
+                if(edad<12){
+                    if(dias>60){
+                        if (edad<6){
+                            totalResultado.setInasistenteMenor6(totalResultado.getInasistenteMenor6()+1);
+                            totalResultado.setTotalInasistente(totalResultado.getTotalInasistente()+1);
+                        }
+                        else if (edad>=6 && edad<12){
+                            totalResultado.setInasistente6a11(totalResultado.getInasistente6a11()+1);
+                            totalResultado.setTotalInasistente(totalResultado.getTotalInasistente()+1);
+                        }
+                    }
+                }
+                else if (edad>=12 && edad<25){
+                    if(dias>180){
+                        if (edad>=12 && edad<18){
+                            totalResultado.setInasistente12a17(totalResultado.getInasistente12a17()+1);
+                            totalResultado.setTotalInasistente(totalResultado.getTotalInasistente()+1);
+                        }
+                        else if (edad>=18 && edad<23){
+                            totalResultado.setInasistente18a23(totalResultado.getInasistente18a23()+1);
+                            totalResultado.setTotalInasistente(totalResultado.getTotalInasistente()+1);
+                        }
+                        else if (edad>=23 && edad<25){
+                            totalResultado.setInasistente24a35(totalResultado.getInasistente24a35()+1);
+                            totalResultado.setTotalInasistente(totalResultado.getTotalInasistente()+1);
+                        }
+                    }
+                }
+                else if (edad>=25 && edad<=108){
+                    if(dias>360){
+                        if (edad>=25 && edad<36){
+                            totalResultado.setInasistente24a35(totalResultado.getInasistente24a35()+1);
+                            totalResultado.setTotalInasistente(totalResultado.getTotalInasistente()+1);
+                        }
+                        else if (edad>=36 && edad<48){
+                            totalResultado.setInasistente36a47(totalResultado.getInasistente36a47()+1);
+                            totalResultado.setTotalInasistente(totalResultado.getTotalInasistente()+1);
+                        }
+                        else if (edad>=48 && edad<60){
+                            totalResultado.setInasistente48a59(totalResultado.getInasistente48a59()+1);
+                            totalResultado.setTotalInasistente(totalResultado.getTotalInasistente()+1);
+                        }
+                        else if (edad>=60 && edad<72){
+                            totalResultado.setInasistente60a71(totalResultado.getInasistente60a71()+1);
+                            totalResultado.setTotalInasistente(totalResultado.getTotalInasistente()+1);
+                        }
+                        else if (edad>=72 && edad<=108){
+                            totalResultado.setInasistente6a9(totalResultado.getInasistente6a9()+1);
+                            totalResultado.setTotalInasistente(totalResultado.getTotalInasistente()+1);
+                        }
+                    }
+                }
+            }
+            
+        }    
+        
+       totalResultado.setColumnName1("Total");
+       
+       F_elementosPediatria.clear();
+       
+       F_elementosPediatria.add(totalResultado);
+        
+       return F_elementosPediatria;
     }
     
     
