@@ -30,6 +30,7 @@ public class ConsultasCensoPediatria implements Serializable {
 
     private List<CensoPediatriaSeccionA> A_elementosPediatria = new ArrayList<>();
     private List<CensoPediatriaSeccionE> E_elementosPediatria = new ArrayList<>();
+    private List<CensoPediatriaSeccionD> D_elementosPediatria = new ArrayList<>();
     private List<CensoPediatriaSeccionG> G_elementosPediatria = new ArrayList<>();
      
     @EJB
@@ -50,6 +51,7 @@ public class ConsultasCensoPediatria implements Serializable {
     public void init() {
         A_elementosPediatria = censoPediatriaSeccionA();
         E_elementosPediatria = censoPediatriaSeccionE();
+        D_elementosPediatria = censoPediatriaSeccionD();
         G_elementosPediatria = censoPediatriaSeccionG();
     }
 
@@ -60,6 +62,14 @@ public class ConsultasCensoPediatria implements Serializable {
     public void setEjbControlNino(ControlNinoFacadeLocal ejbControlNino) {
         this.ejbControlNino = ejbControlNino;
     }
+
+    public List<CensoPediatriaSeccionD> getD_elementosPediatria() {
+        return D_elementosPediatria;
+    }
+
+    public void setD_elementosPediatria(List<CensoPediatriaSeccionD> D_elementosPediatria) {
+        this.D_elementosPediatria = D_elementosPediatria;
+    }    
 
     public List<CensoPediatriaSeccionG> getG_elementosPediatria() {
         return G_elementosPediatria;
@@ -2417,6 +2427,291 @@ public class ConsultasCensoPediatria implements Serializable {
        G_elementosPediatria.add(grupo6a9);
        
         return G_elementosPediatria;
+    }
+    
+    public List<CensoPediatriaSeccionD> censoPediatriaSeccionD(){
+        CensoPediatriaSeccionD totalScore = new CensoPediatriaSeccionD();
+        CensoPediatriaSeccionD totalMenor1 = new CensoPediatriaSeccionD();
+        CensoPediatriaSeccionD total1 = new CensoPediatriaSeccionD();
+        CensoPediatriaSeccionD total2 = new CensoPediatriaSeccionD();      
+        CensoPediatriaSeccionD total3 = new CensoPediatriaSeccionD();      
+        CensoPediatriaSeccionD total4 = new CensoPediatriaSeccionD();      
+        CensoPediatriaSeccionD total5 = new CensoPediatriaSeccionD();      
+        CensoPediatriaSeccionD total6 = new CensoPediatriaSeccionD();      
+        CensoPediatriaSeccionD totalVisitaDomiciliaria = new CensoPediatriaSeccionD();    
+        
+        List<PacienteNino> pacientes_habilitados = ejbPacienteNino.findbyPacienteNinoActivo();
+        List<CartolaControlesNino> cped;
+        List<ControlNino> controlesPaciente = null;
+        List<ControlNino> controlUltimo;
+        boolean resultados[];   
+        for (PacienteNino pacientes : pacientes_habilitados) { 
+            boolean fue_censado = false;
+            int edad;
+            boolean registra_unaatencion = false;
+
+            cped = ejbCartolaNino.findByPacienteNino(pacientes);//obtengo todas las cartolas por  pacientes
+            
+            if (cped.size() > 0) {
+                registra_unaatencion = true;
+                controlesPaciente = ejbControlNino.findbyCartola(cped.get(0).getId());
+            }
+                      
+            controlUltimo = ejbControlNino.findLastControl(controlesPaciente);
+            
+            if (controlUltimo.size() > 0) {
+                edad = controlUltimo.get(0).getEdadControl();                
+                if(edad<1){
+                    if(controlUltimo.get(0).getControlIRAControl().equals("Leve")){
+                        totalMenor1.setScoreRiesgoLeve(totalMenor1.getScoreRiesgoLeve()+1);
+                        totalScore.setScoreRiesgoLeve(totalScore.getScoreRiesgoLeve()+1);
+                        totalMenor1.setScoreTotal(totalMenor1.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoLeve(totalVisitaDomiciliaria.getScoreRiesgoLeve()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Moderado")){
+                        totalMenor1.setScoreRiesgoModerado(totalMenor1.getScoreRiesgoModerado()+1);
+                        totalScore.setScoreRiesgoModerado(totalScore.getScoreRiesgoModerado()+1);
+                        totalMenor1.setScoreTotal(totalMenor1.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoModerado(totalVisitaDomiciliaria.getScoreRiesgoModerado()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Grave")){
+                        totalMenor1.setScoreRiesgoGrave(totalMenor1.getScoreRiesgoGrave()+1);
+                        totalScore.setScoreRiesgoGrave(totalScore.getScoreRiesgoGrave()+1);
+                        totalMenor1.setScoreTotal(totalMenor1.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoGrave(totalVisitaDomiciliaria.getScoreRiesgoGrave()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                }
+                else if (edad==1){
+                    if(controlUltimo.get(0).getControlIRAControl().equals("Leve")){
+                        total1.setScoreRiesgoLeve(total1.getScoreRiesgoLeve()+1);
+                        totalScore.setScoreRiesgoLeve(totalScore.getScoreRiesgoLeve()+1);
+                        total1.setScoreTotal(total1.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoLeve(totalVisitaDomiciliaria.getScoreRiesgoLeve()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Moderado")){
+                        total1.setScoreRiesgoModerado(total1.getScoreRiesgoModerado()+1);
+                        totalScore.setScoreRiesgoModerado(totalScore.getScoreRiesgoModerado()+1);
+                        total1.setScoreTotal(total1.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoModerado(totalVisitaDomiciliaria.getScoreRiesgoModerado()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Grave")){
+                        total1.setScoreRiesgoGrave(total1.getScoreRiesgoGrave()+1);
+                        totalScore.setScoreRiesgoGrave(totalScore.getScoreRiesgoGrave()+1);
+                        total1.setScoreTotal(total1.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoGrave(totalVisitaDomiciliaria.getScoreRiesgoGrave()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                }
+                else if (edad==2){
+                    if(controlUltimo.get(0).getControlIRAControl().equals("Leve")){
+                        total2.setScoreRiesgoLeve(total2.getScoreRiesgoLeve()+1);
+                        totalScore.setScoreRiesgoLeve(totalScore.getScoreRiesgoLeve()+1);
+                        total2.setScoreTotal(total2.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoLeve(totalVisitaDomiciliaria.getScoreRiesgoLeve()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Moderado")){
+                        total2.setScoreRiesgoModerado(total2.getScoreRiesgoModerado()+1);
+                        totalScore.setScoreRiesgoModerado(totalScore.getScoreRiesgoModerado()+1);
+                        total2.setScoreTotal(total2.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoModerado(totalVisitaDomiciliaria.getScoreRiesgoModerado()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Grave")){
+                        total2.setScoreRiesgoGrave(total2.getScoreRiesgoGrave()+1);
+                        totalScore.setScoreRiesgoGrave(totalScore.getScoreRiesgoGrave()+1);
+                        total2.setScoreTotal(total2.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoGrave(totalVisitaDomiciliaria.getScoreRiesgoGrave()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                }
+                else if (edad==3){
+                    if(controlUltimo.get(0).getControlIRAControl().equals("Leve")){
+                        total3.setScoreRiesgoLeve(total3.getScoreRiesgoLeve()+1);
+                        totalScore.setScoreRiesgoLeve(totalScore.getScoreRiesgoLeve()+1);
+                        total3.setScoreTotal(total3.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoLeve(totalVisitaDomiciliaria.getScoreRiesgoLeve()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Moderado")){
+                        total3.setScoreRiesgoModerado(total3.getScoreRiesgoModerado()+1);
+                        totalScore.setScoreRiesgoModerado(totalScore.getScoreRiesgoModerado()+1);
+                        total3.setScoreTotal(total3.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoModerado(totalVisitaDomiciliaria.getScoreRiesgoModerado()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Grave")){
+                        total3.setScoreRiesgoGrave(total3.getScoreRiesgoGrave()+1);
+                        totalScore.setScoreRiesgoGrave(totalScore.getScoreRiesgoGrave()+1);
+                        total3.setScoreTotal(total3.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoGrave(totalVisitaDomiciliaria.getScoreRiesgoGrave()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                }
+                else if (edad==4){
+                    if(controlUltimo.get(0).getControlIRAControl().equals("Leve")){
+                        total4.setScoreRiesgoLeve(total4.getScoreRiesgoLeve()+1);
+                        totalScore.setScoreRiesgoLeve(totalScore.getScoreRiesgoLeve()+1);
+                        total4.setScoreTotal(total4.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoLeve(totalVisitaDomiciliaria.getScoreRiesgoLeve()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Moderado")){
+                        total4.setScoreRiesgoModerado(total4.getScoreRiesgoModerado()+1);
+                        totalScore.setScoreRiesgoModerado(totalScore.getScoreRiesgoModerado()+1);
+                        total4.setScoreTotal(total4.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoModerado(totalVisitaDomiciliaria.getScoreRiesgoModerado()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Grave")){
+                        total4.setScoreRiesgoGrave(total4.getScoreRiesgoGrave()+1);
+                        totalScore.setScoreRiesgoGrave(totalScore.getScoreRiesgoGrave()+1);
+                        total4.setScoreTotal(total4.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoGrave(totalVisitaDomiciliaria.getScoreRiesgoGrave()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                }
+                else if (edad==5){
+                    if(controlUltimo.get(0).getControlIRAControl().equals("Leve")){
+                        total5.setScoreRiesgoLeve(total5.getScoreRiesgoLeve()+1);
+                        totalScore.setScoreRiesgoLeve(totalScore.getScoreRiesgoLeve()+1);
+                        total5.setScoreTotal(total5.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoLeve(totalVisitaDomiciliaria.getScoreRiesgoLeve()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Moderado")){
+                        total5.setScoreRiesgoModerado(total5.getScoreRiesgoModerado()+1);
+                        totalScore.setScoreRiesgoModerado(totalScore.getScoreRiesgoModerado()+1);
+                        total5.setScoreTotal(total5.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoModerado(totalVisitaDomiciliaria.getScoreRiesgoModerado()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Grave")){
+                        total5.setScoreRiesgoGrave(total5.getScoreRiesgoGrave()+1);
+                        totalScore.setScoreRiesgoGrave(totalScore.getScoreRiesgoGrave()+1);
+                        total5.setScoreTotal(total5.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoGrave(totalVisitaDomiciliaria.getScoreRiesgoGrave()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                }
+                else if (edad==6){
+                    if(controlUltimo.get(0).getControlIRAControl().equals("Leve")){
+                        total6.setScoreRiesgoLeve(total6.getScoreRiesgoLeve()+1);
+                        totalScore.setScoreRiesgoLeve(totalScore.getScoreRiesgoLeve()+1);
+                        total6.setScoreTotal(total6.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoLeve(totalVisitaDomiciliaria.getScoreRiesgoLeve()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Moderado")){
+                        total6.setScoreRiesgoModerado(total6.getScoreRiesgoModerado()+1);
+                        totalScore.setScoreRiesgoModerado(totalScore.getScoreRiesgoModerado()+1);
+                        total6.setScoreTotal(total6.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoModerado(totalVisitaDomiciliaria.getScoreRiesgoModerado()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                    else if(controlUltimo.get(0).getControlIRAControl().equals("Grave")){
+                        total6.setScoreRiesgoGrave(total6.getScoreRiesgoGrave()+1);
+                        totalScore.setScoreRiesgoGrave(totalScore.getScoreRiesgoGrave()+1);
+                        total6.setScoreTotal(total6.getScoreTotal()+1);
+                        totalScore.setScoreTotal(totalScore.getScoreTotal()+1);
+                        if(controlUltimo.get(0).getVisitaDomiciliaria().equals("Si")){
+                            totalVisitaDomiciliaria.setScoreRiesgoGrave(totalVisitaDomiciliaria.getScoreRiesgoGrave()+1);
+                            totalVisitaDomiciliaria.setScoreTotal(totalVisitaDomiciliaria.getScoreTotal()+1);
+                        }
+                    }
+                }
+            }
+        
+        }
+        
+       totalScore.setColumnName1("Total");
+       totalMenor1.setColumnName1("Diada, < 10 días");
+       total1.setColumnName1("1 mes");
+       total2.setColumnName1("2 meses");
+       total3.setColumnName1("3 meses");
+       total4.setColumnName1("4 meses");
+       total5.setColumnName1("5 meses");
+       total6.setColumnName1("6 meses");
+       totalVisitaDomiciliaria.setColumnName1("Total de niños que han recibido VDI");
+       
+       D_elementosPediatria.clear();
+       
+       D_elementosPediatria.add(totalScore);
+       D_elementosPediatria.add(totalMenor1);
+       D_elementosPediatria.add(total1);
+       D_elementosPediatria.add(total2);
+       D_elementosPediatria.add(total3);
+       D_elementosPediatria.add(total4);
+       D_elementosPediatria.add(total5);
+       D_elementosPediatria.add(total6);
+       D_elementosPediatria.add(totalVisitaDomiciliaria);
+       
+        return D_elementosPediatria;
     }
     
     

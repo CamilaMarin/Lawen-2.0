@@ -134,10 +134,11 @@ public class dominiosController {
         presionArterialNino.add(2,"Etapa 1");
         presionArterialNino.add(3,"Etapa 2");
         
-        scoreIRANino= new ArrayList<>(3);
-        scoreIRANino.add(0,"Leve");
-        scoreIRANino.add(1,"Moderado");
-        scoreIRANino.add(2,"Grave");
+        scoreIRANino= new ArrayList<>(4);
+        scoreIRANino.add(0,"Ninguno");
+        scoreIRANino.add(1,"Leve");
+        scoreIRANino.add(2,"Moderado");
+        scoreIRANino.add(3,"Grave");
         
         visitaDomiciliariaNino= new ArrayList<>(2);
         visitaDomiciliariaNino.add(0,"Si");
