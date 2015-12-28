@@ -6,9 +6,11 @@
 package sessionbeans.pediatria;
 
 import entities.pediatria.PacienteNino;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +31,12 @@ public class PacienteNinoFacade extends AbstractFacade<PacienteNino> implements 
         super(PacienteNino.class);
     }
     
+    @Override
+    public List<PacienteNino> findbyPacienteNinoActivo() {
+        Query query;
+        query = em.createNamedQuery("PacienteNino.findByEstado")
+                .setParameter("estado", "Activo");
+        return query.getResultList();  
+                
+    }
 }

@@ -30,4 +30,5 @@ public interface PacienteNinoFacadeLocal {
 
     int count();
     
+    List<PacienteNino> findbyPacienteNinoActivo();    
 }

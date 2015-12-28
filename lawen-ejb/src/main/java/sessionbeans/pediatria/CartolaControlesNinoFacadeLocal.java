@@ -32,5 +32,7 @@ public interface CartolaControlesNinoFacadeLocal {
     int count();
        
     public void crearCartola(PacienteNino nino, CartolaControlesNino cartolaControl);
+    
+    List<CartolaControlesNino> findByPacienteNino(PacienteNino paciente);
 
 }

@@ -227,6 +227,28 @@ public class CensoPediatriaSeccionA {
 
     
     public CensoPediatriaSeccionA() {
+        this.diagnosticoNutricionalIntegradoDesnutricionSecundaria = 0;
+        this.diagnosticoNutricionalIntegradoDesnutrido = 0;
+        this.diagnosticoNutricionalIntegradoNormal = 0;
+        this.diagnosticoNutricionalIntegradoObeso = 0;
+        this.diagnosticoNutricionalIntegradoRiesgoBajoPeso = 0;
+        this.diagnosticoNutricionalIntegradoSobrePesoObesidad = 0;
+        this.diagnosticoNutricionalIntegradoSubtotal = 0;
+        this.diagnosticoNutricionalIntegradoTotal = 0;
+        this.numerodeNinosPediatria = 0;
+  
+        this.pesoEdadMenosDos = 0;
+        this.pesoEdadMenosTotal = 0;
+        this.pesoEdadMenosUno = 0;
+        this.pesoTallaMasDos = 0;
+        this.pesoTallaMasTotal = 0;
+        this.pesoTallaMasUno = 0;
+        this.pesoTallaMenosDos = 0;
+        this.pesoTallaMenosTotal = 0;
+        this.pesoTallaMenosUno = 0;
+        this.tallaEdadMenosDos=0;
+        this.tallaEdadMenosTotal=0;                
+        this.tallaEdadMenosUno=0;
     }
     
 }

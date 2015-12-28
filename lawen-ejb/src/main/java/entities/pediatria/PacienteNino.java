@@ -17,6 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,6 +30,9 @@ import javax.validation.constraints.NotNull;
  * @author Francisco Avello
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "PacienteNino.findByEstado", query = "SELECT p FROM PacienteNino p WHERE p.estado_paciente_nino = :estado")
+})
 @Table(uniqueConstraints={@UniqueConstraint(columnNames={"rut_nino"} )})
 public class PacienteNino implements Serializable {
 

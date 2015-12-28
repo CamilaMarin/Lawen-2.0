@@ -7,9 +7,11 @@ package sessionbeans.pediatria;
 
 import entities.pediatria.CartolaControlesNino;
 import entities.pediatria.PacienteNino;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -35,6 +37,14 @@ public class CartolaControlesNinoFacade extends AbstractFacade<CartolaControlesN
     }
     
     @Override
+    public List<CartolaControlesNino> findByPacienteNino(PacienteNino paciente) {
+        Query query;
+        query = em.createNamedQuery("CartolaControlesNino.findbyPacienteNino")
+                .setParameter("paciente", paciente);
+        return query.getResultList();
+    }
+    
+    @Override
     public void crearCartola(PacienteNino nino, CartolaControlesNino cartolaControl) {
         
         cartolaControl.setPacienteNino(nino);     
@@ -42,5 +52,7 @@ public class CartolaControlesNinoFacade extends AbstractFacade<CartolaControlesN
         persist(cartolaControl);
         
     }
+    
+
     
 }

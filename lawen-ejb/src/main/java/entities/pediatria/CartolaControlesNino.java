@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -22,6 +24,9 @@ import javax.persistence.OneToMany;
  * @author Francisco Avello
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "CartolaControlesNino.findbyPacienteNino", query = "SELECT c FROM CartolaControlesNino c WHERE c.pacienteNino = :paciente")
+})
 public class CartolaControlesNino implements Serializable {
 
     private static final long serialVersionUID = 1L;

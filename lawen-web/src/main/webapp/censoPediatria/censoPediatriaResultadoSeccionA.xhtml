@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:body>
+<br/>
+            <b:alert severity="warning">SECCIÓN A</b:alert>  
+            <h:panelGroup id="display">
+            <h:form id="CensoPediatriaFormAA" class="col-md-6 movedA">
+            <p:panelGrid columns="1" columnClasses="colClassCondiciones">
+                    <h:outputLabel value="" style="height: 11px;width:500px;"/>
+                    <h:outputLabel value="TOTAL DE NIÑOS EN CONTROL" style="width:500px;" />                 
+                    <h:outputLabel value="INDICADOR PESO/EDAD -1DS" style="width:500px;" /> 
+                    <h:outputLabel value="INDICADOR PESO/EDAD -2DS" style="width:500px;" /> 
+                    <h:outputLabel value="INDICADOR PESO/EDAD TOTAL" style="width:500px;" /> 
+                    <h:outputLabel value="INDICADOR PESO/TALLA +2DS" style="width:500px;" /> 
+                    <h:outputLabel value="INDICADOR PESO/TALLA +1DS" style="width:500px;" /> 
+                    <h:outputLabel value="INDICADOR PESO/TALLA TOTAL+" style="width:500px;" />
+                    <h:outputLabel value="INDICADOR PESO/TALLA -1DS" style="width:500px;" /> 
+                    <h:outputLabel value="INDICADOR PESO/TALLA -2DS" style="width:500px;" /> 
+                    <h:outputLabel value="INDICADOR PESO/TALLA TOTAL-" style="width:500px;" /> 
+                    <h:outputLabel value="INDICADOR TALLA/EDAD -1DS" style="width:500px;" /> 
+                    <h:outputLabel value="INDICADOR TALLA/EDAD -2DS" style="width:500px;" /> 
+                    <h:outputLabel value="INDICADOR TALLA/EDAD TOTAL" style="width:500px;" /> 
+                    <h:outputLabel value="DIAGNOSTICO NUTRICIONAL RIESGO/BAJO PESO" style="width:500px;" /> 
+                    <h:outputLabel value="DIAGNOSTICO NUTRICIONAL DESNUTRIDO" style="width:500px;" /> 
+                    <h:outputLabel value="DIAGNOSTICO NUTRICIONAL SOBREPESO/RIESGO OBESIDAD" style="width:500px;" /> 
+                    <h:outputLabel value="DIAGNOSTICO NUTRICIONAL OBESO" style="width:500px;" /> 
+                    <h:outputLabel value="DIAGNOSTICO NUTRICIONAL NORMAL" style="width:500px;" /> 
+                    <h:outputLabel value="DIAGNOSTICO NUTRICIONAL SUBTOTAL" style="width:500px;" /> 
+                    <h:outputLabel value="DIAGNOSTICO NUTRICIONAL DESNUTRICION SECUNDARIA" style="width:500px;" /> 
+                    <h:outputLabel value="DIAGNOSTICO NUTRICIONAL TOTAL" style="width:500px;" /> 
+                </p:panelGrid>
+            </h:form>
+            <h:form id="CensoPediatriaFormA" class="moved  col-md-6">
+                <p:panelGrid columns="0">
+                <td>                               
+                </td>
+                   <ui:repeat value="#{consultasCensoPediatria.a_elementosPediatria}" var="t">
+                    <td>        
+                    <p:panelGrid columns="1"  style="text-align: center;">
+                        <h:outputLabel value="#{t.columnName1}"/> 
+                        <h:outputLabel value="#{t.numerodeNinosPediatria}" style="font-weight:bold"/>
+                        <h:outputLabel value="#{t.pesoEdadMenosUno}" style="width:180px;"/>          
+                        <h:outputLabel value="#{t.pesoEdadMenosDos}" /> 
+                        <h:outputLabel value="#{t.pesoEdadMenosTotal}" style="font-weight:bold"/> 
+                        <h:outputLabel value="#{t.pesoTallaMasDos}" /> 
+
+                        <h:outputLabel value="#{t.pesoTallaMasUno}" /> 
+                        <h:outputLabel value="#{t.pesoTallaMasTotal}" style="font-weight:bold"/> 
+                        <h:outputLabel value="#{t.pesoTallaMenosUno}" /> 
+                        <h:outputLabel value="#{t.pesoTallaMenosDos}" /> 
+                       
+                        <h:outputLabel value="#{t.pesoTallaMenosTotal}" style="font-weight:bold"/> 
+                        <h:outputLabel value="#{t.tallaEdadMenosUno}" /> 
+                        <h:outputLabel value="#{t.tallaEdadMenosDos}" /> 
+                        <h:outputLabel value="#{t.tallaEdadMenosTotal}" style="font-weight:bold"/> 
+                        <h:outputLabel value="#{t.diagnosticoNutricionalIntegradoRiesgoBajoPeso}" /> 
+                        <h:outputLabel value="#{t.diagnosticoNutricionalIntegradoDesnutrido}" /> 
+                        <h:outputLabel value="#{t.diagnosticoNutricionalIntegradoSobrePesoObesidad}" /> 
+                        <h:outputLabel value="#{t.diagnosticoNutricionalIntegradoObeso}" /> 
+                        <h:outputLabel value="#{t.diagnosticoNutricionalIntegradoNormal}" />
+                        <h:outputLabel value="#{t.diagnosticoNutricionalIntegradoSubtotal}" /> 
+                        <h:outputLabel value="#{t.diagnosticoNutricionalIntegradoDesnutricionSecundaria}" /> 
+                        <h:outputLabel value="#{t.diagnosticoNutricionalIntegradoTotal}" style="font-weight:bold"/>
+                    </p:panelGrid>
+                    </td>
+                </ui:repeat>
+                </p:panelGrid>
+                
+<br/>
+                
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="CENSO SECCION A"/>
+                            </f:facet>
+                            <h:outputText value="#{item}"/>
+                        </p:column>
+                       
+                        <f:facet name="footer">
+                        </f:facet>
+              
+            
+            </h:form>
+</h:panelGroup>
+</h:body>
+</html>

@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 
 /**
@@ -20,6 +22,10 @@ import javax.persistence.Temporal;
  * @author Francisco Avello
  */
 @Entity
+@NamedQueries({
+      @NamedQuery(name = "ControlNino.findbyCartola", query = "SELECT c FROM ControlNino c WHERE c.cartolaControlesNino.id = :cartola_id"),
+      @NamedQuery(name = "ControlNino.findLastControl", query = "SELECT c FROM ControlNino c ORDER BY c.id DESC")
+})
 public class ControlNino implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -117,8 +123,7 @@ public class ControlNino implements Serializable {
 
     public void setEntregaMaterialesEstimulacionControl(String entregaMaterialesEstimulacionControl) {
         this.entregaMaterialesEstimulacionControl = entregaMaterialesEstimulacionControl;
-    }
-        
+    }        
         
 
     @JoinColumn(nullable = false)

@@ -30,4 +30,9 @@ public interface ControlNinoFacadeLocal {
     List<ControlNino> findRange(int[] range);
 
     int count();
+    
+    List<ControlNino> findbyCartola(long id);
+    
+    List<ControlNino> findLastControl(List<ControlNino> controles);
+            
 }

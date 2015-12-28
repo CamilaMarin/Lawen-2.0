@@ -69,13 +69,23 @@ public class dominiosController {
     private List <String> materialesEstimulacionNino;
     
     private List <String> indicadoresPEPTTE;
-    private List <String> desarrolloPsicomotor;
+    private List <String> desarrolloPsicomotor;        
+    private List <String> diagNutricional;
+    
     
     /*
     Init para intanciar valores de las listas
     */
     @PostConstruct
     public void init() {
+        
+        diagNutricional= new ArrayList<>(6);
+        diagNutricional.add(0,"Normal");
+        diagNutricional.add(1,"Riesgo/Bajo Peso");
+        diagNutricional.add(2,"Desnutrido");
+        diagNutricional.add(3,"Sobrepeso/Riesgo Obesidad");
+        diagNutricional.add(4,"Obeso");
+        diagNutricional.add(5,"Desnutricion Secundaria");
         
         desarrolloPsicomotor= new ArrayList<>(4);
         desarrolloPsicomotor.add(0,"Normal");
@@ -299,6 +309,14 @@ public class dominiosController {
         
     }
 
+    public List<String> getDiagNutricional() {
+        return diagNutricional;
+    }
+
+    public void setDiagNutricional(List<String> diagNutricional) {
+        this.diagNutricional = diagNutricional;
+    }
+    
     public List<String> getDesarrolloPsicomotor() {
         return desarrolloPsicomotor;
     }
