@@ -48,6 +48,7 @@ public class ControlNino implements Serializable {
         private String desarrolloPsicomotorControl;
         private String alimentacionRecibeControl;
         private String estadoNutricionalControl;
+        private String riesgoMalnutricion;
         @Temporal(javax.persistence.TemporalType.DATE)
         private java.util.Date fechaIngresoEstmulacionControl;
         @Temporal(javax.persistence.TemporalType.DATE)
@@ -63,6 +64,14 @@ public class ControlNino implements Serializable {
         private String entregaMaterialesEstimulacionControl;
         private String examinadorProximoControl;
 
+    public String getRiesgoMalnutricion() {
+        return riesgoMalnutricion;
+    }
+
+    public void setRiesgoMalnutricion(String riesgoMalnutricion) {
+        this.riesgoMalnutricion = riesgoMalnutricion;
+    }    
+        
     public String getIdentificadorControl() {
         return identificadorControl;
     }
