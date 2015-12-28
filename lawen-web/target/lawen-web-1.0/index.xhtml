@@ -74,11 +74,20 @@
                     </b:column>
                     
                     <b:column span="12">
-                        <b:panel look="censo">
+                        <b:panel look="pediatria">
                             <f:facet name="heading"><i class="fa fa-puzzle-piece"></i> Programa de Pediatría</f:facet>  
-                            <b:listLinks>
-                                <b:column span="12" class="paddinExtra">
-                                    <b:navLink outcome="/pacienteNino/List" value="Ingresar niño"></b:navLink>
+                            <b:listLinks>       
+                                <b:column span="4" class="psc1">
+                                    <i class="fa fa-caret-right"></i> <h:outputText id="p4" value=" Ingreso" style="color: #ED5565;"/>
+                                    <p:tooltip id="toolTipFade4" for="p4" value="Realizar ingreso de un paciente niño."  trackMouse="true" />
+                                    <b:navLink outcome="/pacienteNino/List" value=" Ingresar niño"></b:navLink>
+                                </b:column>
+                                <b:column span="4" class="paddinExtra">
+                                </b:column>
+                                <b:column span="4" class="psc3">
+                                    <i class="fa fa-caret-right"></i> <h:outputText id="p5" value=" Control del niño sano" style="color: #ED5565;"/>
+                                    <p:tooltip id="toolTipFade5" for="p5" value="Realizar controles de pediatría."  trackMouse="true" />  
+                                    <b:navLink outcome="/controlNino/List" value="  Controles de pediatría"></b:navLink>
                                 </b:column>
                             </b:listLinks>
                         </b:panel>
