@@ -33,6 +33,6 @@ public interface ControlNinoFacadeLocal {
     
     List<ControlNino> findbyCartola(long id);
     
-    List<ControlNino> findLastControl(List<ControlNino> controles);
+    List<ControlNino> findLastControl(long id);
             
 }

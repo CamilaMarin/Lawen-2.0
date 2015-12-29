@@ -3893,6 +3893,7 @@ public class documentsController {
         HSSFSheet hoja1 = libro.createSheet("Censo Pediatria");
         
         List<CensoPediatriaSeccionA> censo = consCPed.getA_elementosPediatria();
+        
         List<CensoPediatriaSeccionC> censoC= consCPed.getC_elementosPediatria();
         List<CensoPediatriaSeccionD> censoD = consCPed.getD_elementosPediatria();
         List<CensoPediatriaSeccionE> censoE = consCPed.getE_elementosPediatria();
@@ -5137,7 +5138,7 @@ public class documentsController {
             
             filas7++;            
         }               
-       
+           
         try {
            // FileOutputStream archivo = new FileOutputStream("resources/documents/censos/CensoPSAM.xlsx");
             

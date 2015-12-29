@@ -46,9 +46,10 @@ public class ControlNinoFacade extends AbstractFacade<ControlNino> implements Co
     }
     
     @Override
-    public List<ControlNino> findLastControl(List<ControlNino> controles) {
+    public List<ControlNino> findLastControl(long id) {
         Query query;
-        query = em.createNamedQuery("ControlNino.findLastControl");
+        query = em.createNamedQuery("ControlNino.findLastControl")
+                .setParameter("cartola_id", id);
         return query.getResultList();                
     }
     
