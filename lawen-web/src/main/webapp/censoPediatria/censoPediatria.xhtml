@@ -50,6 +50,19 @@
                 <p:tab title="Seccion H">
                     <ui:include src="/censoPediatria/censoPediatriaResultadoSeccionH.xhtml" />    
                 </p:tab>
+                <p:tab title="Exportar a excel" >
+
+                    <h:form>
+
+                        <b:alert severity="warning">
+                            Descargar archivo:<p:spacer width="10" height="10" />                                                        
+                            <h:commandLink actionListener="#{documentsController.preProcessExcelPediatria()}">
+                                <h:graphicImage title="Descargar archivo excel" url="/resources/images/excel.png"/>
+                            </h:commandLink>
+                        </b:alert>  
+
+                    </h:form>    
+                </p:tab>
             </p:tabView>
         </ui:define>
 
