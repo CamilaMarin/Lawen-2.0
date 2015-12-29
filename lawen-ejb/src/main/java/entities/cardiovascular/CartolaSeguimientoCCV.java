@@ -8,8 +8,14 @@ package entities.cardiovascular;
 
 import entities.Paciente;
 import entities.Usuario;
+import entities.Medicamentos;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
+import java.util.Collection;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.SortedMap;
 import java.util.List;
 import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Column;
@@ -76,7 +82,11 @@ public class CartolaSeguimientoCCV implements Serializable {
     private boolean hipocalorico;
     private Float calorias;
     
-    // FARMACOS
+   @JoinColumn(nullable = false)
+   @OneToMany
+   private List<Medicamentos> medicamento;
+   
+// FARMACOS
     private boolean sulfonilureas_bool;
     private String sulfonilureas_texto;
     private boolean biguanidas_bool;
@@ -446,7 +456,15 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
         this.profesional = profesional;
     }
 
-  
+    public List<Medicamentos> getMedicamento() {
+        return medicamento;
+    }
+
+    public void setMedicamento(List<Medicamentos> medicamento) {
+        this.medicamento = medicamento;
+    }
+
+   
     public Float getPeso() {
         return peso;
     }
