@@ -25,7 +25,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NamedQueries({
       @NamedQuery(name = "ControlNino.findbyCartola", query = "SELECT c FROM ControlNino c WHERE c.cartolaControlesNino.id = :cartola_id"),
-      @NamedQuery(name = "ControlNino.findLastControl", query = "SELECT c FROM ControlNino c ORDER BY c.id DESC")
+      @NamedQuery(name = "ControlNino.findLastControl", query = "SELECT c FROM ControlNino c WHERE c.cartolaControlesNino.id = :cartola_id ORDER BY c.id DESC")
 })
 public class ControlNino implements Serializable {
 

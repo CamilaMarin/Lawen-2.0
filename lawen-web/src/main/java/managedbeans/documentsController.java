@@ -39,6 +39,14 @@ import managedbeans.cardiovascular.censo.CensoCCVSeccionC;
 import managedbeans.cardiovascular.censo.ConsultasCensoCCV;
 import managedbeans.cardiovascular.censonorem.CensoCCVnoREM;
 import managedbeans.cardiovascular.censonorem.ConsultasCensoCCVnoREM;
+import managedbeans.pediatria.censo.CensoPediatriaSeccionA;
+import managedbeans.pediatria.censo.CensoPediatriaSeccionC;
+import managedbeans.pediatria.censo.CensoPediatriaSeccionD;
+import managedbeans.pediatria.censo.CensoPediatriaSeccionE;
+import managedbeans.pediatria.censo.CensoPediatriaSeccionF;
+import managedbeans.pediatria.censo.CensoPediatriaSeccionG;
+import managedbeans.pediatria.censo.CensoPediatriaSeccionH;
+import managedbeans.pediatria.censo.ConsultasCensoPediatria;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
@@ -65,6 +73,9 @@ public class documentsController {
     
     @Inject
     private  ConsultasCensoCCVnoREM consCVVnoREM;
+    
+    @Inject
+    private  ConsultasCensoPediatria consCPed;
     
     private StreamedContent file;
 
@@ -1312,7 +1323,7 @@ public class documentsController {
             response.reset();
             response.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
             response.setHeader("Content-Disposition",
-                    "attachment; filename=CensoPsam.xlsx");
+                    "attachment; filename=CensoPsam.xls");
 
             ServletOutputStream out = response.getOutputStream();
             libro.write(out);
@@ -2754,7 +2765,7 @@ public class documentsController {
             response.reset();
             response.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
             response.setHeader("Content-Disposition",
-                    "attachment; filename=CensoPCV.xlsx");
+                    "attachment; filename=CensoPCV.xls");
 
             ServletOutputStream out = response.getOutputStream();
             libro.write(out);
@@ -3861,7 +3872,7 @@ public class documentsController {
             response.reset();
             response.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
             response.setHeader("Content-Disposition",
-                    "attachment; filename=CensoNoREMPCV.xlsx");
+                    "attachment; filename=CensoNoREMPCV.xls");
 
             ServletOutputStream out = response.getOutputStream();
             libro.write(out);
@@ -3876,6 +3887,1284 @@ public class documentsController {
         }
     
     }
+    
+     public void preProcessExcelPediatria(){
+        HSSFWorkbook libro = new HSSFWorkbook();
+        HSSFSheet hoja1 = libro.createSheet("Censo Pediatria");
+        
+        List<CensoPediatriaSeccionA> censo = consCPed.getA_elementosPediatria();
+        
+        List<CensoPediatriaSeccionC> censoC= consCPed.getC_elementosPediatria();
+        List<CensoPediatriaSeccionD> censoD = consCPed.getD_elementosPediatria();
+        List<CensoPediatriaSeccionE> censoE = consCPed.getE_elementosPediatria();
+        List<CensoPediatriaSeccionF> censoF = consCPed.getF_elementosPediatria();
+        List<CensoPediatriaSeccionG> censoG = consCPed.getG_elementosPediatria();
+        List<CensoPediatriaSeccionH> censoH = consCPed.getH_elementosPediatria();
+
+        // Censo Pediatria Sección A
+        
+        HSSFRow fila = hoja1.createRow(0);
+        HSSFCell celda = fila.createCell(0);
+        String txt = "REM-P2.  POBLACIÓN EN CONTROL PROGRAMA DE SALUD DEL NIÑO";
+        celda.setCellValue(txt);
+       
+        
+        HSSFCellStyle cellStyle = libro.createCellStyle();
+        cellStyle = libro.createCellStyle();
+        HSSFFont hSSFFont = libro.createFont();
+        hSSFFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+        cellStyle.setFont(hSSFFont);
+        celda.setCellStyle(cellStyle);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(0,0,0,31));
+        
+        fila = hoja1.createRow(1);
+        celda = fila.createCell(0);
+        txt = "SECCION A: POBLACIÓN EN CONTROL, SEGÚN ESTADO NUTRICIONAL";
+        celda.setCellValue(txt);
+        celda.setCellStyle(cellStyle);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_LEFT);
+        hoja1.addMergedRegion(new CellRangeAddress(1,1,0,17));
+        // Columna 1
+        fila = hoja1.createRow(2);
+        celda = fila.createCell(0);
+        txt = "INDICADOR NUTRICIONAL Y PARÁMETROS DE MEDICIÓN";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(2,4,0,1));
+        
+        fila = hoja1.createRow(5);
+        celda = fila.createCell(0);
+        txt = "TOTAL DE NIÑOS EN CONTROL";
+        celda.setCellValue(txt);
+        celda.setCellStyle(cellStyle);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(5,5,0,1));
+        
+        fila = hoja1.createRow(6);
+        celda = fila.createCell(0);
+        txt = "INDICADOR PESO/EDAD";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(6,8,0,0));
+        
+        fila = hoja1.createRow(9);
+        celda = fila.createCell(0);
+        txt = "INDICADOR PESO/TALLA";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(9,14,0,0));
+        
+        fila = hoja1.createRow(15);
+        celda = fila.createCell(0);
+        txt = "INDICADOR TALLA/EDAD";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(15,17,0,0));
+        
+        fila = hoja1.createRow(18);
+        celda = fila.createCell(0);
+        txt = "DIAGNOSTICO NUTRICIONAL INTEGRADO";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(18,25,0,0));
+        
+        fila = hoja1.createRow(26);
+        celda = fila.createCell(0);
+        txt = "NOTA(*): La clasificación del Diagnóstico Nutricional Integrado para niños (as) de 6 a 9 años es Bajo Peso, Riesgo de Obesidad, Obeso y Normal.";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_LEFT);
+        hoja1.addMergedRegion(new CellRangeAddress(26,26,0,10));
+
+                
+        // Columna 2
+        
+        fila = hoja1.getRow(6);
+        celda = fila.createCell(1);
+        txt = "-1 D.S.";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(7);
+        celda = fila.createCell(1);
+        txt = "-2 D.S.";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(8);
+        celda = fila.createCell(1);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.getRow(9);
+        celda = fila.createCell(1);
+        txt = "+2 D.S.";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(10);
+        celda = fila.createCell(1);
+        txt = "+1 D.S.";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(11);
+        celda = fila.createCell(1);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(12);
+        celda = fila.createCell(1);
+        txt = "-1 D.S.";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(13);
+        celda = fila.createCell(1);
+        txt = "-2 D.S.";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(14);
+        celda = fila.createCell(1);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.getRow(15);
+        celda = fila.createCell(1);
+        txt = "-1 D.S.";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(16);
+        celda = fila.createCell(1);
+        txt = "-2 D.S.";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(17);
+        celda = fila.createCell(1);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        
+        
+        fila = hoja1.getRow(18);
+        celda = fila.createCell(1);
+        txt = "RIESGO/BAJO PESO*";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(19);
+        celda = fila.createCell(1);
+        txt = "DESNUTRIDO";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(20);
+        celda = fila.createCell(1);
+        txt = "SOBREPESO/RIESGO OBESIDAD*";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(21);
+        celda = fila.createCell(1);
+        txt = "OBESO";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(22);
+        celda = fila.createCell(1);
+        txt = "NORMAL";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(23);
+        celda = fila.createCell(1);
+        txt = "SUBTOTAL";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(24);
+        celda = fila.createCell(1);
+        txt = "DESNUTRICION SECUNDARIA";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(25);
+        celda = fila.createCell(1);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        celda.setCellStyle(cellStyle);
+        
+        //Primera fila tabla
+        
+        fila = hoja1.getRow(2);
+        celda = fila.createCell(2);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(2,3,2,4));
+        
+        celda = fila.createCell(5);
+        txt = "GRUPOS DE EDAD (en meses - años) Y SEXO";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(2,2,5,36));
+        
+        fila = hoja1.createRow(3);
+        celda = fila.createCell(5);
+        txt = "Menor 1 mes";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,5,6));
+        
+        fila = hoja1.getRow(3);
+        celda = fila.createCell(7);
+        txt = "1 mes";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,7,8));
+        
+        celda = fila.createCell(9);
+        txt = "2 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,9,10));
+        
+        celda = fila.createCell(11);
+        txt = "3 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,11,12));
+        
+        celda = fila.createCell(13);
+        txt = "4 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,13,14));
+        
+        celda = fila.createCell(15);
+        txt = "5 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,15,16));
+        
+        celda = fila.createCell(17);
+        txt = "6 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,17,18));
+        
+        celda = fila.createCell(19);
+        txt = "7 a 11 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,19,20));
+        
+        celda = fila.createCell(21);
+        txt = "12 a 17 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,21,22));
+        
+        celda = fila.createCell(23);
+        txt = "18 a 23 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,23,24));
+        
+        celda = fila.createCell(25);
+        txt = "24 a 35 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,25,26));
+        
+        celda = fila.createCell(27);
+        txt = "36 a 41 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,27,28));
+        
+        celda = fila.createCell(29);
+        txt = "42 a 47 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,29,30));
+        
+        celda = fila.createCell(31);
+        txt = "48 a 59 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,31,32));
+        
+        celda = fila.createCell(33);
+        txt = "60 a 71 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,33,34));
+        
+        celda = fila.createCell(35);
+        txt = "6 a 9 años";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(3,3,35,36));
+        
+        fila = hoja1.getRow(2);
+        celda = fila.createCell(37);
+        txt = "Pueblos Originarios";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(2,3,37,38));
+        
+        celda = fila.createCell(39);
+        txt = "Población Inmigrantes";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(2,3,39,40));
+        
+        // Fila Sexos
+        
+        fila = hoja1.createRow(4);
+        celda = fila.createCell(2);
+        txt = "Ambos sexos";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        fila = hoja1.getRow(4);
+        celda = fila.createCell(3);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(4);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(5);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(6);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(7);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(8);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(9);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(10);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(11);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(12);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(13);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(14);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(15);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(16);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(17);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(18);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(19);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(20);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(21);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(22);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(23);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(24);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(25);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(26);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(27);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(28);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(29);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(30);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(31);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(32);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(33);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(34);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(35);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(36);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(37);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(38);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(39);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        celda = fila.createCell(40);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        hoja1.autoSizeColumn(1);              
+        hoja1.autoSizeColumn(2);              
+
+        int filas=2;
+        for (CensoPediatriaSeccionA censoIt : censo) {
+            
+            fila = hoja1.getRow(5);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getNumerodeNinosPediatria());            
+            
+            fila = hoja1.getRow(6);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getPesoEdadMenosUno());
+            
+            fila = hoja1.getRow(7);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getPesoEdadMenosDos());
+            
+            fila = hoja1.getRow(8);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getPesoEdadMenosTotal());
+            
+            fila = hoja1.getRow(9);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getPesoTallaMasDos());
+            
+            fila = hoja1.getRow(10);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getPesoTallaMasUno());
+            
+            
+            fila = hoja1.getRow(11);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getPesoTallaMasTotal());
+            
+            fila = hoja1.getRow(12);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getPesoTallaMenosUno());
+            
+            
+            fila = hoja1.getRow(13);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getPesoTallaMenosDos());
+            
+            fila = hoja1.getRow(14);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getPesoTallaMenosTotal());
+            
+            
+            fila = hoja1.getRow(15);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getTallaEdadMenosUno());
+            
+            fila = hoja1.getRow(16);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getTallaEdadMenosDos());
+            
+            fila = hoja1.getRow(17);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getTallaEdadMenosTotal());
+            
+            fila = hoja1.getRow(18);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getDiagnosticoNutricionalIntegradoRiesgoBajoPeso());
+            
+            fila = hoja1.getRow(19);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getDiagnosticoNutricionalIntegradoDesnutrido());
+            
+            fila = hoja1.getRow(20);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getDiagnosticoNutricionalIntegradoSobrePesoObesidad());
+            
+            fila = hoja1.getRow(21);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getDiagnosticoNutricionalIntegradoObeso());
+            
+            fila = hoja1.getRow(22);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getDiagnosticoNutricionalIntegradoNormal());
+            
+            fila = hoja1.getRow(23);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getDiagnosticoNutricionalIntegradoSubtotal());
+            
+            fila = hoja1.getRow(24);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getDiagnosticoNutricionalIntegradoDesnutricionSecundaria());
+            
+            fila = hoja1.getRow(25);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getDiagnosticoNutricionalIntegradoTotal());
+            
+            filas++;
+            
+        }
+        
+        //Censo Pediatria Sección C        
+      
+        fila = hoja1.createRow(28);
+        celda = fila.createCell(0);
+        txt = "SECCION B: POBLACION EN CONTROL SEGÚN RESULTADO DE PAUTA DE OBSERVACIÓN DE LA RELACIÓN VINCULAR";
+        celda.setCellValue(txt);
+        celda.setCellStyle(cellStyle);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_LEFT);
+        hoja1.addMergedRegion(new CellRangeAddress(28,28,0,17));
+        
+        // Columna 1
+        fila = hoja1.createRow(29);
+        celda = fila.createCell(0);
+        txt = "RESULTADO Y GRUPOS DE EDAD";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(29,29,0,1));
+        
+        fila = hoja1.createRow(30);
+        celda = fila.createCell(0);
+        txt = "RIESGO";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(30,34,0,0));
+        
+        fila = hoja1.createRow(35);
+        celda = fila.createCell(0);
+        txt = "RETRASO";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(35,39,0,0));
+        
+        // Columna 2
+        fila = hoja1.getRow(30);
+        celda = fila.createCell(1);
+        txt = "Menor de 12 meses";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(31);
+        celda = fila.createCell(1);
+        txt = "12 a 17 meses";
+        celda.setCellValue(txt); 
+        
+        fila = hoja1.createRow(32);
+        celda = fila.createCell(1);
+        txt = "18 a 23 meses";
+        celda.setCellValue(txt); 
+        
+        fila = hoja1.createRow(33);
+        celda = fila.createCell(1);
+        txt = "24 a 47 meses";
+        celda.setCellValue(txt); 
+        
+        fila = hoja1.createRow(34);
+        celda = fila.createCell(1);
+        txt = "48 a 59 meses";
+        celda.setCellValue(txt);
+        
+        
+        fila = hoja1.getRow(35);
+        celda = fila.createCell(1);
+        txt = "Menor de 12 meses";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(36);
+        celda = fila.createCell(1);
+        txt = "12 a 17 meses";
+        celda.setCellValue(txt); 
+        
+        fila = hoja1.createRow(37);
+        celda = fila.createCell(1);
+        txt = "18 a 23 meses";
+        celda.setCellValue(txt); 
+        
+        fila = hoja1.createRow(38);
+        celda = fila.createCell(1);
+        txt = "24 a 47 meses";
+        celda.setCellValue(txt); 
+        
+        fila = hoja1.createRow(39);
+        celda = fila.createCell(1);
+        txt = "48 a 59 meses";
+        celda.setCellValue(txt); 
+               
+        // Arriba
+        
+        fila = hoja1.getRow(29);
+        celda = fila.createCell(2);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(3);
+        txt = "Hombres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(4);
+        txt = "Mujeres";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+              
+        int filas2=2;
+        for (CensoPediatriaSeccionC censoIt : censoC) {
+            
+            fila = hoja1.getRow(30);
+            celda = fila.createCell(filas2);
+            celda.setCellValue(censoIt.getRiesgoMenor12());
+            
+            fila = hoja1.getRow(31);
+            celda = fila.createCell(filas2);
+            celda.setCellValue(censoIt.getRiesgo12a17());
+            
+            fila = hoja1.getRow(32);
+            celda = fila.createCell(filas2);
+            celda.setCellValue(censoIt.getRiesgo18a23());
+            
+            fila = hoja1.getRow(33);
+            celda = fila.createCell(filas2);
+            celda.setCellValue(censoIt.getRiesgo24a47());
+            
+            fila = hoja1.getRow(34);
+            celda = fila.createCell(filas2);
+            celda.setCellValue(censoIt.getRiesgo48a59());
+
+            fila = hoja1.getRow(35);
+            celda = fila.createCell(filas2);
+            celda.setCellValue(censoIt.getRetrasoMenor12());
+            
+            fila = hoja1.getRow(36);
+            celda = fila.createCell(filas2);
+            celda.setCellValue(censoIt.getRetraso12a17());
+            
+            fila = hoja1.getRow(37);
+            celda = fila.createCell(filas2);
+            celda.setCellValue(censoIt.getRetraso18a23());
+            
+            fila = hoja1.getRow(38);
+            celda = fila.createCell(filas2);
+            celda.setCellValue(censoIt.getRetraso24a47());
+            
+            fila = hoja1.getRow(39);
+            celda = fila.createCell(filas2);
+            celda.setCellValue(censoIt.getRetraso48a59());              
+            
+            filas2++;
+            
+        }
+        
+        //Censo Pediatria Sección D       
+      
+        fila = hoja1.createRow(41);
+        celda = fila.createCell(0);
+        txt = "SECCION D: POBLACIÓN MENOR DE 1 AÑO EN CONTROL, SEGÚN SCORE RIESGO EN IRA Y VISITA DOMICILIARIA INTEGRAL EN EL SEMESTRE";
+        celda.setCellValue(txt);
+        celda.setCellStyle(cellStyle);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_LEFT);
+        hoja1.addMergedRegion(new CellRangeAddress(41,41,0,17));
+        
+        // Columna 1
+        fila = hoja1.createRow(42);
+        celda = fila.createCell(0);
+        txt = "RESULTADO";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(42,42,0,1));
+        
+        fila = hoja1.createRow(43);
+        celda = fila.createCell(0);
+        txt = "SCORE DE RIESGO";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(43,46,0,0));
+        
+        // Columna 2
+        fila = hoja1.getRow(43);
+        celda = fila.createCell(1);
+        txt = "LEVE";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(44);
+        celda = fila.createCell(1);
+        txt = "MODERADO";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.createRow(45);
+        celda = fila.createCell(1);
+        txt = "GRAVE";
+        celda.setCellValue(txt);
+       
+        fila = hoja1.createRow(46);
+        celda = fila.createCell(1);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        // Arriba
+        fila = hoja1.getRow(42);
+        celda = fila.createCell(2);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+
+        celda = fila.createCell(3);
+        txt = "Diada, menor de 10 días";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(4);
+        txt = "1 mes";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(5);
+        txt = "2 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(6);
+        txt = "3 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(7);
+        txt = "4 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(8);
+        txt = "5 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(9);
+        txt = "6 meses";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        celda = fila.createCell(10);
+        txt = "NIÑOS CON VDI";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        
+        hoja1.autoSizeColumn(3);
+        hoja1.autoSizeColumn(10);
+       
+        
+        int filas3=2;
+        for (CensoPediatriaSeccionD censoIt : censoD) {            
+          
+            fila = hoja1.getRow(43);
+            celda = fila.createCell(filas3);
+            celda.setCellValue(censoIt.getScoreRiesgoLeve());
+            
+            fila = hoja1.getRow(44);
+            celda = fila.createCell(filas3);
+            celda.setCellValue(censoIt.getScoreRiesgoModerado());
+            
+            fila = hoja1.getRow(45);
+            celda = fila.createCell(filas3);
+            celda.setCellValue(censoIt.getScoreRiesgoGrave());
+            
+            fila = hoja1.getRow(46);
+            celda = fila.createCell(filas3);
+            celda.setCellValue(censoIt.getScoreTotal());
+            
+            filas3++;            
+        }
+        
+        //Censo Pediatria Sección E      
+      
+        fila = hoja1.createRow(48);
+        celda = fila.createCell(0);
+        txt = "SECCION E: POBLACIÓN EN CONTROL EN EL SEMESTRE CON CONSULTA NUTRICIONAL, SEGÚN ESTRATEGIA";
+        celda.setCellValue(txt);
+        celda.setCellStyle(cellStyle);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_LEFT);
+        hoja1.addMergedRegion(new CellRangeAddress(48,48,0,17));
+        
+        // Columna 1
+        fila = hoja1.createRow(49);
+        celda = fila.createCell(0);
+        txt = "NIÑO/A CON CONSULTA NUTRICIONAL EN";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(49,49,0,1));
+        
+        fila = hoja1.createRow(50);
+        celda = fila.createCell(0);
+        txt = "Del 5to mes";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(50,50,0,1));
+        
+        fila = hoja1.createRow(51);
+        celda = fila.createCell(0);
+        txt = "De los 3 años y 6 meses";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(51,51,0,1));
+        
+        // Arriba
+       
+        fila = hoja1.getRow(49);
+        celda = fila.createCell(2);
+        txt = "TOTAL";
+        celda.setCellValue(txt);       
+        
+        int filas4=2;
+        for (CensoPediatriaSeccionE censoIt : censoE) {            
+          
+            fila = hoja1.getRow(50);
+            celda = fila.createCell(filas4);
+            celda.setCellValue(censoIt.getNumeroNutriQuintoMes());
+            
+            fila = hoja1.getRow(51);
+            celda = fila.createCell(filas4);
+            celda.setCellValue(censoIt.getNumeroNutriTresAñosSeisMeses());
+            
+            filas4++;            
+        }
+        
+        
+        //Censo Pediatria Sección F      
+      
+        fila = hoja1.createRow(53);
+        celda = fila.createCell(0);
+        txt = "SECCION F: POBLACIÓN INASISTENTE A CONTROL DEL NIÑO SANO (AL CORTE)";
+        celda.setCellValue(txt);
+        celda.setCellStyle(cellStyle);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_LEFT);
+        hoja1.addMergedRegion(new CellRangeAddress(53,53,0,17));
+        
+        // Columna 1
+        fila = hoja1.createRow(54);
+        celda = fila.createCell(0);
+        txt = "EDAD";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(54,54,0,1));
+        
+        fila = hoja1.createRow(55);
+        celda = fila.createCell(0);
+        txt = "Menor de 6 meses";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(55,55,0,1));
+        
+        fila = hoja1.createRow(56);
+        celda = fila.createCell(0);
+        txt = "De 6 a 11 meses";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(56,56,0,1));
+        
+        fila = hoja1.createRow(57);
+        celda = fila.createCell(0);
+        txt = "12 - 17 meses";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(57,57,0,1));
+        
+        fila = hoja1.createRow(58);
+        celda = fila.createCell(0);
+        txt = "18 - 23 meses";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(58,58,0,1));
+        
+        fila = hoja1.createRow(59);
+        celda = fila.createCell(0);
+        txt = "24 - 35 meses";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(59,59,0,1));
+        
+        fila = hoja1.createRow(60);
+        celda = fila.createCell(0);
+        txt = "36 - 47 meses";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(60,60,0,1));
+        
+        fila = hoja1.createRow(61);
+        celda = fila.createCell(0);
+        txt = "48 - 59 meses";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(61,61,0,1));
+        
+        fila = hoja1.createRow(62);
+        celda = fila.createCell(0);
+        txt = "60 - 71 meses";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(62,62,0,1));
+        
+        fila = hoja1.createRow(63);
+        celda = fila.createCell(0);
+        txt = "De 6 a 9 años";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(63,63,0,1));
+        
+        fila = hoja1.createRow(64);
+        celda = fila.createCell(0);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(64,64,0,1));
+        
+        // Columna 2
+        
+        fila = hoja1.getRow(54);
+        celda = fila.createCell(2);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        
+        int filas5=2;
+        for (CensoPediatriaSeccionF censoIt : censoF) {            
+          
+            fila = hoja1.getRow(55);
+            celda = fila.createCell(filas5);
+            celda.setCellValue(censoIt.getInasistenteMenor6());
+            
+            fila = hoja1.getRow(56);
+            celda = fila.createCell(filas5);
+            celda.setCellValue(censoIt.getInasistente6a11());
+            
+            fila = hoja1.getRow(57);
+            celda = fila.createCell(filas5);
+            celda.setCellValue(censoIt.getInasistente12a17());
+            
+            fila = hoja1.getRow(58);
+            celda = fila.createCell(filas5);
+            celda.setCellValue(censoIt.getInasistente18a23());
+            
+            fila = hoja1.getRow(59);
+            celda = fila.createCell(filas5);
+            celda.setCellValue(censoIt.getInasistente24a35());
+            
+            fila = hoja1.getRow(60);
+            celda = fila.createCell(filas5);
+            celda.setCellValue(censoIt.getInasistente36a47());
+            
+            fila = hoja1.getRow(61);
+            celda = fila.createCell(filas5);
+            celda.setCellValue(censoIt.getInasistente48a59());
+            
+            fila = hoja1.getRow(62);
+            celda = fila.createCell(filas5);
+            celda.setCellValue(censoIt.getInasistente60a71());
+            
+            fila = hoja1.getRow(63);
+            celda = fila.createCell(filas5);
+            celda.setCellValue(censoIt.getInasistente6a9());
+            
+            fila = hoja1.getRow(64);
+            celda = fila.createCell(filas5);
+            celda.setCellValue(censoIt.getTotalInasistente());
+            
+            filas5++;            
+        }
+        
+        
+        //Censo Pediatria Sección G     
+      
+        fila = hoja1.createRow(66);
+        celda = fila.createCell(0);
+        txt = "SECCION G: POBLACIÓN INFANTIL SEGÚN DIAGNÓSTICO DE PRESIÓN ARTERIAL (Incluida en sección A)";
+        celda.setCellValue(txt);
+        celda.setCellStyle(cellStyle);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_LEFT);
+        hoja1.addMergedRegion(new CellRangeAddress(66,66,0,17));
+        
+        // Columna 1
+        fila = hoja1.createRow(67);
+        celda = fila.createCell(0);
+        txt = "CLASIFICACIÓN";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(67,68,0,1));
+        
+        fila = hoja1.createRow(69);
+        celda = fila.createCell(0);
+        txt = "NORMAL (PA menor al percentil 90)";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(69,69,0,1));
+        
+        fila = hoja1.createRow(70);
+        celda = fila.createCell(0);
+        txt = "PRE-HIPERTENSIÓN (PA entre percentil 90 al 95)";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(70,70,0,1));
+        
+        fila = hoja1.createRow(71);
+        celda = fila.createCell(0);
+        txt = "ETAPA 1 (PA entre percentil 95 al 99)";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(71,71,0,1));
+        
+        fila = hoja1.createRow(72);
+        celda = fila.createCell(0);
+        txt = "ETAPA 2 (PA mayor al percentil 99)";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(72,72,0,1));
+        
+        fila = hoja1.createRow(73);
+        celda = fila.createCell(0);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(73,73,0,1));        
+             
+        // Columna 2
+        
+        fila = hoja1.getRow(67);
+        celda = fila.createCell(2);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(67,68,2,2));
+        
+        // Arriba
+        
+        celda = fila.createCell(3);
+        txt = "GRUPOS DE EDAD (en meses)";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(67,67,3,5));
+        
+        fila = hoja1.createRow(68);
+        celda = fila.createCell(3);
+        txt = "36 a 47 meses";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.getRow(68);
+        celda = fila.createCell(4);
+        txt = "48 a 71 meses";
+        celda.setCellValue(txt);
+        
+        celda = fila.createCell(5);
+        txt = "6-9 años";
+        celda.setCellValue(txt);
+        
+        
+        int filas6=2;
+        for (CensoPediatriaSeccionG censoIt : censoG) {            
+          
+            fila = hoja1.getRow(69);
+            celda = fila.createCell(filas6);
+            celda.setCellValue(censoIt.getClasificacionNormal());
+            
+            fila = hoja1.getRow(70);
+            celda = fila.createCell(filas6);
+            celda.setCellValue(censoIt.getClasificacionPreHiper());
+            
+            fila = hoja1.getRow(71);
+            celda = fila.createCell(filas6);
+            celda.setCellValue(censoIt.getClasificacionEtapaUno());
+            
+            fila = hoja1.getRow(72);
+            celda = fila.createCell(filas6);
+            celda.setCellValue(censoIt.getClasificacionEtapaDos());
+            
+            fila = hoja1.getRow(73);
+            celda = fila.createCell(filas6);
+            celda.setCellValue(censoIt.getTotalClasificacion());
+            
+            filas6++;            
+        }
+        
+        
+        //Censo Pediatria Sección H     
+      
+        fila = hoja1.createRow(75);
+        celda = fila.createCell(0);
+        txt = "SECCION H: POBLACIÓN INFANTIL EUTRÓFICA, SEGÚN RIESGO DE MALNUTRICIÓN POR EXCESO (Incluida en sección A)";
+        celda.setCellValue(txt);
+        celda.setCellStyle(cellStyle);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_LEFT);
+        hoja1.addMergedRegion(new CellRangeAddress(75,75,0,17));
+        
+        // Columna 1
+        fila = hoja1.createRow(76);
+        celda = fila.createCell(0);
+        txt = "RESULTADO";
+        celda.setCellValue(txt);
+        CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_CENTER);
+        hoja1.addMergedRegion(new CellRangeAddress(76,77,0,1));
+        
+        fila = hoja1.createRow(78);
+        celda = fila.createCell(0);
+        txt = "SIN RIESGO";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(78,78,0,1));
+        
+        fila = hoja1.createRow(79);
+        celda = fila.createCell(0);
+        txt = "CON RIESGO";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(79,79,0,1));
+        
+        fila = hoja1.createRow(80);
+        celda = fila.createCell(0);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(80,80,0,1));                
+           
+        // Columna 2
+        
+        fila = hoja1.getRow(76);
+        celda = fila.createCell(2);
+        txt = "TOTAL";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(76,77,2,2));
+        
+        // Arriba
+        
+        celda = fila.createCell(3);
+        txt = "GRUPOS DE EDAD (en meses)";
+        celda.setCellValue(txt);
+        hoja1.addMergedRegion(new CellRangeAddress(76,76,3,8));
+        
+        fila = hoja1.createRow(77);
+        celda = fila.createCell(3);
+        txt = "4 a 11 meses";
+        celda.setCellValue(txt);
+        
+        fila = hoja1.getRow(77);
+        celda = fila.createCell(4);
+        txt = "12 a 23 meses";
+        celda.setCellValue(txt);
+        
+        celda = fila.createCell(5);
+        txt = "24 a 35 meses";
+        celda.setCellValue(txt);
+        
+        celda = fila.createCell(6);
+        txt = "36 a 47 meses";
+        celda.setCellValue(txt);
+        
+        celda = fila.createCell(7);
+        txt = "48 a 59 meses";
+        celda.setCellValue(txt);
+        
+        celda = fila.createCell(8);
+        txt = "60 a 71 meses";
+        celda.setCellValue(txt);
+        
+        
+        int filas7=2;
+        for (CensoPediatriaSeccionH censoIt : censoH) {            
+          
+            fila = hoja1.getRow(78);
+            celda = fila.createCell(filas7);
+            celda.setCellValue(censoIt.getSinRiesgo());
+            
+            fila = hoja1.getRow(79);
+            celda = fila.createCell(filas7);
+            celda.setCellValue(censoIt.getConRiesgo());
+            
+            fila = hoja1.getRow(80);
+            celda = fila.createCell(filas7);
+            celda.setCellValue(censoIt.getTotalEutrofica());           
+            
+            filas7++;            
+        }               
+           
+        try {
+           // FileOutputStream archivo = new FileOutputStream("resources/documents/censos/CensoPSAM.xlsx");
+            
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            HttpServletResponse response = (HttpServletResponse) facesContext
+                    .getExternalContext().getResponse();
+
+            response.reset();
+            response.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+            response.setHeader("Content-Disposition",
+                    "attachment; filename=CensoPediatria.xls");
+
+            ServletOutputStream out = response.getOutputStream();
+            libro.write(out);
+
+            facesContext.responseComplete();
+
+         //   libro.write(archivo);
+           // archivo.close();
+            
+        } catch (Exception e) {
+        
+        }
+        
+    }
+    
     
     public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
         final Document pdf = (Document) document;
