@@ -4,12 +4,12 @@
     <parent>
     <artifactId>lawen</artifactId>
     <groupId>pingeso</groupId>
-    <version>1.6.0</version>
+    <version>1.2.0</version>
   </parent>
 
     <groupId>pingeso</groupId>
     <artifactId>lawen-ejb</artifactId>
-    <version>1.6.0</version>
+    <version>1.0</version>
     <packaging>ejb</packaging>
 
     <name>lawen-ejb</name>
