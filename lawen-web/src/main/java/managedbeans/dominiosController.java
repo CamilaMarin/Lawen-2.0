@@ -169,9 +169,9 @@ public class dominiosController {
         examinadorNino= new ArrayList<>(6);
         examinadorNino.add(0,"Matrona");
         examinadorNino.add(1,"Nutricionista");
-        examinadorNino.add(2,"Medico");
+        examinadorNino.add(2,"Médico");
         examinadorNino.add(3,"Enfermera");
-        examinadorNino.add(4,"Educadora de Parvulo");
+        examinadorNino.add(4,"Educadora de Párvulo");
         examinadorNino.add(5,"Tens");        
               
         genero = new ArrayList<>(2);
