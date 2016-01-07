@@ -106,6 +106,30 @@
                         <p:selectOneMenu id="riesgoMalnutricion" value="#{controlNinoController.selected.riesgoMalnutricion}">
                             <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_padreObeso}" for="padreObeso" />
+                    <p:selectOneMenu id="padreObeso" value="#{controlNinoController.selected.padreObeso}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.CreateControlNinoLabel_padreFumador}" for="padreFumador" />
+                    <p:selectOneMenu id="padreFumador" value="#{controlNinoController.selected.padreFumador}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.CreateControlNinoLabel_padreAlcohol}" for="padreAlcohol" />
+                    <p:selectOneMenu id="padreAlcohol" value="#{controlNinoController.selected.padreAlcohol}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.CreateControlNinoLabel_madreObesa}" for="madreObesa" />
+                    <p:selectOneMenu id="madreObesa" value="#{controlNinoController.selected.madreObesa}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.CreateControlNinoLabel_madreFumadora}" for="madreFumadora" />
+                    <p:selectOneMenu id="madreFumadora" value="#{controlNinoController.selected.madreFumadora}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </p:selectOneMenu>
+                    <p:outputLabel value="#{bundle.CreateControlNinoLabel_madreAlcohol}" for="madreAlcohol" />
+                    <p:selectOneMenu id="madreAlcohol" value="#{controlNinoController.selected.madreAlcohol}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaIngresoEstmulacionControl}" for="fechaIngresoEstmulacionControl" />
                         <p:calendar id="fechaIngresoEstmulacionControl" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{controlNinoController.selected.fechaIngresoEstmulacionControl}" title="#{bundle.EditControlNinoTitle_fechaIngresoEstmulacionControl}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaEgresoEstmulacionControl}" for="fechaEgresoEstmulacionControl" />

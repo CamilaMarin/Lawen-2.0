@@ -64,7 +64,62 @@ public class ControlNino implements Serializable {
         private String tallerNadiePerfecto;
         private String entregaMaterialesEstimulacionControl;
         private String examinadorProximoControl;
+        
+        private String padreObeso;
+        private String padreFumador;
+        private String padreAlcohol;
+        private String madreObesa;
+        private String madreFumadora;
+        private String madreAlcohol;
 
+    public String getPadreObeso() {
+        return padreObeso;
+    }
+
+    public void setPadreObeso(String padreObeso) {
+        this.padreObeso = padreObeso;
+    }
+
+    public String getPadreFumador() {
+        return padreFumador;
+    }
+
+    public void setPadreFumador(String padreFumador) {
+        this.padreFumador = padreFumador;
+    }
+
+    public String getPadreAlcohol() {
+        return padreAlcohol;
+    }
+
+    public void setPadreAlcohol(String padreAlcohol) {
+        this.padreAlcohol = padreAlcohol;
+    }
+
+    public String getMadreObesa() {
+        return madreObesa;
+    }
+
+    public void setMadreObesa(String madreObesa) {
+        this.madreObesa = madreObesa;
+    }
+
+    public String getMadreFumadora() {
+        return madreFumadora;
+    }
+
+    public void setMadreFumadora(String madreFumadora) {
+        this.madreFumadora = madreFumadora;
+    }
+
+    public String getMadreAlcohol() {
+        return madreAlcohol;
+    }
+
+    public void setMadreAlcohol(String madreAlcohol) {
+        this.madreAlcohol = madreAlcohol;
+    }   
+        
     public String getRiesgoMalnutricion() {
         return riesgoMalnutricion;
     }
