@@ -2206,10 +2206,10 @@ public class ConsultasCensoPediatria implements Serializable {
         totalhombres_1.setColumnName1("Hombres 1 mes");
         totalmujeres_1.setColumnName1("Mujeres 1 mes");
         totalhombres_2.setColumnName1("Hombres 2 meses");
-        totalhombres_2.setColumnName1("Mujeres 2 meses");
-        totalmujeres_3.setColumnName1("Hombres 3 meses");
-        totalhombres_3.setColumnName1("Mujeres 3 meses");
-        totalmujeres_4.setColumnName1("Hombres 4 meses");
+        totalmujeres_2.setColumnName1("Mujeres 2 meses");
+        totalhombres_3.setColumnName1("Hombres 3 meses");
+        totalmujeres_3.setColumnName1("Mujeres 3 meses");
+        totalhombres_4.setColumnName1("Hombres 4 meses");
         totalmujeres_4.setColumnName1("Mujeres 4 meses");
         totalhombres_5.setColumnName1("Hombres 5 meses");
         totalmujeres_5.setColumnName1("Mujeres 5 meses");

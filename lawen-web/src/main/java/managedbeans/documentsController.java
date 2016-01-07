@@ -4488,7 +4488,7 @@ public class documentsController {
       
         fila = hoja1.createRow(28);
         celda = fila.createCell(0);
-        txt = "SECCION B: POBLACION EN CONTROL SEGÚN RESULTADO DE PAUTA DE OBSERVACIÓN DE LA RELACIÓN VINCULAR";
+        txt = "SECCION C: POBLACION EN CONTROL SEGÚN RESULTADO DE EVALUACIÓN DEL DESARROLLO PSICOMOTOR";
         celda.setCellValue(txt);
         celda.setCellStyle(cellStyle);
         CellUtil.setAlignment(celda, libro, CellStyle.ALIGN_LEFT);

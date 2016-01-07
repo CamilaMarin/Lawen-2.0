@@ -52,8 +52,8 @@
                             <f:selectItems value="#{dominiosController.examinadorNino}"/>    
                         </p:selectOneMenu>                                                
                       
-                        <p:outputLabel value="#{bundle.CreateControlNinoLabel_fechaControl}" for="fechaControl" />
-                        <p:calendar id="fechaControl" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{controlNinoController.selected.fechaControl}" title="#{bundle.CreateControlNinoTitle_fechaControl}"  showOn="button"/>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateControlNinoLabel_fechaControl}" for="fechaControl" />
+                        <p:calendar id="fechaControl" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{controlNinoController.selected.fechaControl}" title="#{bundle.CreateControlNinoTitle_fechaControl}"  showOn="button" required="true" requiredMessage="Debe ingresar una fecha de control"/>
                         
                         <p:outputLabel value="#{bundle.CreateControlNinoLabel_controlReevaluacion}" for="controlReevaluacion" />                        
                         <p:selectOneMenu id="controlReevaluacion" value="#{controlNinoController.selected.controlReevaluacion}">
