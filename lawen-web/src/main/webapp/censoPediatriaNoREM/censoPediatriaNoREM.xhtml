@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{consultasCensoPediatriaNoREM.init()}" />
+        </f:metadata>
+        <ui:define name="title">
+            <h:outputText value="POBLACIÓN EN CONTROL PROGRAMA DE PEDIATRIA NO REM"></h:outputText>
+        </ui:define>
+        <h:outputText  value="CONSOLIDADO ESTABLECIMIENTO" style="font-weight:bold" ></h:outputText>
+        <ui:define name="body"  >
+            <b:row>
+                <b:column span="11">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories"  title="Inicio" url="/faces/index.xhtml" />
+                        <p:menuitem value="Pediatria Censo No REM" url="#{FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()}" />
+                    </p:breadCrumb>
+                </b:column>
+            </b:row>
+            <br/>
+            <b:alert severity="success">Censo realizado en: <h:outputText value="#{utilidadesController.fechaSistema}" /></b:alert>  
+
+            <p:tabView id="tab"  class="container">
+                <p:tab title="Censo Pediatria No REM">
+                    <ui:include src="/censoPediatriaNoREM/censoPediatriaResultadoNoREM.xhtml" />    
+                </p:tab>               
+                <p:tab title="Exportar a excel" >
+
+                    <h:form>
+
+                        <b:alert severity="warning">
+                            Descargar archivo:<p:spacer width="10" height="10" />                                                        
+                            <h:commandLink actionListener="#{documentsController.preProcessExcelPediatria()}">
+                                <h:graphicImage title="Descargar archivo excel" url="/resources/images/excel.png"/>
+                            </h:commandLink>
+                        </b:alert>  
+
+                    </h:form>    
+                </p:tab>
+            </p:tabView>
+        </ui:define>
+
+
+    </ui:composition>
+</html>

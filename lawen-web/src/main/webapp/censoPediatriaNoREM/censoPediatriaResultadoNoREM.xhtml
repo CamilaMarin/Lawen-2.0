@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:body>
+<br/>
+            <b:alert severity="warning">Censo de Pediatria No REM</b:alert>  
+            <h:panelGroup id="display">
+            <h:form id="CensoPediatriaNoREMFormAA" class="col-md-6 movedA">
+            <p:panelGrid columns="1" columnClasses="colClassCondiciones">
+                    <h:outputLabel value="" style="height: 11px;width:500px;"/>
+                    <h:outputLabel value="TOTAL DE NIÑOS EN CONTROL" style="width:500px;" />                 
+                    <h:outputLabel value="LACTANCIA MATERNA L.M.E" style="width:500px;" /> 
+                    <h:outputLabel value="LACTANCIA MATERNA L.M OTRO" style="width:500px;" /> 
+                    <h:outputLabel value="LACTANCIA MATERNA L.M L.A" style="width:500px;" /> 
+                    <h:outputLabel value="LACTANCIA MATERNA L.M L.A OTROS" style="width:500px;" /> 
+                    <h:outputLabel value="LACTANCIA MATERNA L.A" style="width:500px;" /> 
+                    <h:outputLabel value="LACTANCIA MATERNA L.A OTROS" style="width:500px;" />
+                    <h:outputLabel value="CON MADRE OBESA" style="width:500px;" /> 
+                    <h:outputLabel value="CON MADRE FUMADORA" style="width:500px;" /> 
+                    <h:outputLabel value="CON MADRE ALCOHÓLICA" style="width:500px;" /> 
+                    <h:outputLabel value="CON PADRE OBESO" style="width:500px;" /> 
+                    <h:outputLabel value="CON PADRE FUMADOR" style="width:500px;" /> 
+                    <h:outputLabel value="CON PADRE ALCOHÓLICO" style="width:500px;" /> 
+                    <h:outputLabel value="ASISTENTES A TALLER NADIE ES PERFECTO" style="width:500px;" /> 
+                    <h:outputLabel value="CON MATERIALES DE ESTIMULACIÓN" style="width:500px;" /> 
+                    <h:outputLabel value="PADRE PRESENTE EN EL ÚLTIMO CONTROL" style="width:500px;" /> 
+                </p:panelGrid>
+            </h:form>
+            <h:form id="CensoPediatriaNoREMFormA" class="moved  col-md-6">
+                <p:panelGrid columns="0">
+                <td>                               
+                </td>
+                    <ui:repeat value="#{consultasCensoPediatriaNoREM.elementosPediatriaNoREM}" var="t">
+                    <td>        
+                    <p:panelGrid columns="1"  style="text-align: center;">
+                        <h:outputLabel value="#{t.columnName1}"/> 
+                        <h:outputLabel value="#{t.numerodeNinosPediatria}" style="font-weight:bold"/>
+                        <h:outputLabel value="#{t.lactanciaLME}" style="width:180px;"/>          
+                        <h:outputLabel value="#{t.lactanciaLMOtro}" /> 
+                        <h:outputLabel value="#{t.lactanciaLMLA}"/> 
+                        <h:outputLabel value="#{t.lactanciaLMLAOtros}" /> 
+                        <h:outputLabel value="#{t.lactanciaLA}" /> 
+                        <h:outputLabel value="#{t.lactanciaLAOtros}"/> 
+                        <h:outputLabel value="#{t.madreObesa}" /> 
+                        <h:outputLabel value="#{t.madreFumadora}" /> 
+                       
+                        <h:outputLabel value="#{t.madreAlcholica}"/> 
+                        <h:outputLabel value="#{t.padreObeso}" /> 
+                        <h:outputLabel value="#{t.padreFumador}" /> 
+                        <h:outputLabel value="#{t.padreAlcholico}"/> 
+                        <h:outputLabel value="#{t.asistNadiePerfecto}" /> 
+                        <h:outputLabel value="#{t.conMaterialesEstimulacion}" /> 
+                        <h:outputLabel value="#{t.padrePresente}" /> 
+                    </p:panelGrid>
+                    </td>
+                </ui:repeat>
+                </p:panelGrid>
+                
+<br/>
+                
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="CENSO PEDIATRÍA NO REM"/>
+                            </f:facet>
+                            <h:outputText value="#{item}"/>
+                        </p:column>
+                       
+                        <f:facet name="footer">
+                        </f:facet>
+              
+            
+            </h:form>
+</h:panelGroup>
+</h:body>
+</html>
