@@ -4,65 +4,26 @@
     <parent>
     <artifactId>lawen</artifactId>
     <groupId>pingeso</groupId>
-    <version>1.6.0</version>
+    <version>1.2.0</version>
   </parent>
 
     <groupId>pingeso</groupId>
-    <artifactId>lawen-web</artifactId>
-    <version>1.6.0</version>
-    <packaging>war</packaging>
+    <artifactId>lawen-ejb</artifactId>
+    <version>1.0</version>
+    <packaging>ejb</packaging>
 
-    <name>lawen-web</name>
+    <name>lawen-ejb</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
     <dependencies>
         <dependency>
-            <groupId>net.bootsfaces</groupId>
-            <artifactId>bootsfaces</artifactId>
-            <version>0.6.6</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.7</version>
-        </dependency>
-        <dependency>
-	<groupId>org.apache.poi</groupId>
-	<artifactId>poi</artifactId>
-	<version>3.12</version>
-</dependency>
-<dependency>
-	<groupId>com.lowagie</groupId>
-	<artifactId>itext</artifactId>
-	<version>2.1.7</version>
-    <type>jar</type>
-</dependency>
-<dependency>
-	<groupId>com.itextpdf</groupId>
-	<artifactId>itextpdf</artifactId>
-	<version>5.0.6</version>
-</dependency>        
-<dependency>
-	<groupId>com.itextpdf.tool</groupId>
-	<artifactId>xmlworker</artifactId>
-	<version>5.4.1</version>
-</dependency>
-
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>lawen-ejb</artifactId>
-            <version>${project.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>5.2</version>
+            <groupId>org.jboss.as</groupId>
+            <artifactId>jboss-as-security</artifactId>
+            <version>7.1.1.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -78,7 +39,7 @@
         </dependency>
         <dependency>
             <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
+            <artifactId>javaee-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
@@ -112,10 +73,10 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
+                <artifactId>maven-ejb-plugin</artifactId>
                 <version>2.3</version>
                 <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <ejbVersion>3.1</ejbVersion>
                 </configuration>
             </plugin>
             <plugin>
@@ -143,22 +104,9 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                  <failOnError>false</failOnError>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
     <repositories>
-        <repository>
-            <url>http://repository.primefaces.org/</url>
-            <id>PrimeFaces-maven-lib</id>
-            <layout>default</layout>
-            <name>Repository for library PrimeFaces-maven-lib</name>
-        </repository>
         <repository>
             <id>unknown-jars-temp-repo</id>
             <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
