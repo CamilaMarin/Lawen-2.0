@@ -61,8 +61,32 @@
                     <h:selectOneMenu id="estadoNutricionalControl" value="#{controlNinoController.selected.estadoNutricionalControl}">
                         <f:selectItems value="#{dominiosController.diagNutricional}"/>    
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateControlNinoLabel_riesgoMalnutricion}" for="riesgoMalnutricion" />
+                    <h:outputLabel value="#{bundle.EditControlNinoLabel_riesgoMalnutricion}" for="riesgoMalnutricion" />
                     <h:selectOneMenu id="riesgoMalnutricion" value="#{controlNinoController.selected.riesgoMalnutricion}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditControlNinoLabel_padreObeso}" for="padreObeso" />
+                    <h:selectOneMenu id="padreObeso" value="#{controlNinoController.selected.padreObeso}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditControlNinoLabel_padreFumador}" for="padreFumador" />
+                    <h:selectOneMenu id="padreFumador" value="#{controlNinoController.selected.padreFumador}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditControlNinoLabel_padreAlcohol}" for="padreAlcohol" />
+                    <h:selectOneMenu id="padreAlcohol" value="#{controlNinoController.selected.padreAlcohol}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditControlNinoLabel_madreObesa}" for="madreObesa" />
+                    <h:selectOneMenu id="madreObesa" value="#{controlNinoController.selected.madreObesa}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditControlNinoLabel_madreFumadora}" for="madreFumadora" />
+                    <h:selectOneMenu id="madreFumadora" value="#{controlNinoController.selected.madreFumadora}">
+                            <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditControlNinoLabel_madreAlcohol}" for="madreAlcohol" />
+                    <h:selectOneMenu id="madreAlcohol" value="#{controlNinoController.selected.madreAlcohol}">
                             <f:selectItems value="#{dominiosController.riesgoMalnutricion}"/>    
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditControlNinoLabel_fechaIngresoEstmulacionControl}" for="fechaIngresoEstmulacionControl" />

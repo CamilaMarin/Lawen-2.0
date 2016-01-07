@@ -12,3 +12,8 @@ lawen-ear/target/lawen-ear-1.0.ear
 lawen-web/target/maven-archiver/pom.properties
 lawen-ear/target/test-classes/.netbeans_automatic_build
 lawen-web/target/maven-archiver/pom.properties
+*.txt
+lawen-ear/target/application.xml
+lawen-ear/target/*
+lawen-ejb/target/*
+lawen-web/target/*
