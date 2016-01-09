@@ -71,6 +71,16 @@
             <description/>
             <url-pattern>/faces/censoPCCVnoREM/*</url-pattern>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>censoPediatria</web-resource-name>
+            <description/>
+            <url-pattern>/faces/censoPediatria/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>censoPediatriaNoREM</web-resource-name>
+            <description/>
+            <url-pattern>/faces/censoPediatriaNoREM/*</url-pattern>
+        </web-resource-collection>
         <auth-constraint>
             <description/>
             <role-name>ADMIN</role-name>
@@ -230,6 +240,21 @@
             <web-resource-name>ingresoPSAM</web-resource-name>
             <description/>
             <url-pattern>/faces/ingresoPSAM/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>pacienteNino</web-resource-name>
+            <description/>
+            <url-pattern>/faces/pacienteNino/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>pacienteNino</web-resource-name>
+            <description/>
+            <url-pattern>/faces/pacienteNino/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>controlNino</web-resource-name>
+            <description/>
+            <url-pattern>/faces/controlNino/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
