@@ -144,6 +144,15 @@
                     <h:outputText value="#{programa.programa.nombre_programa}"/>
                 </p:column>                            
             </p:dataTable>
+            <p:dataTable var="subprograma" rendered="#{idPaciente!=null }" value="#{subprogramaController.itemsAvailableSelectOne}" emptyMessage="Paciente no registra subprogramas de salud asociados.">
+                <f:facet name="header" rendered="#{subprograma.paciente.id == idPaciente }">
+                    <h:outputText value="Subprogramas de salud asociados"/>
+                </f:facet>
+
+                <p:column rendered="#{subprograma.paciente.id == idPaciente }">
+                    <h:outputText value="#{subprograma.subprograma.nombre_subprograma}"/>
+                </p:column>                            
+            </p:dataTable>
             <br/>
             <p:button style="margin-right: 10px;" rendered="#{idPaciente!= null }" icon="fa fa-file-powerpoint-o" value="Asociar Patología"  outcome="/patologia/CreateFromPaciente">
                 <f:param name="idUsuario" value="#{ idPaciente }" />
@@ -152,6 +161,7 @@
                 <f:param name="idUsuario" value="#{ idPaciente }" />
             </p:button>
             <p:button style="margin-right: 10px;" rendered="#{idPaciente!= null and pacienteController.isActivo(pacienteController.selected)==true}" icon="ui-icon-folder-open" value="Pasar al programa Cardiovascular" outcome="/paciente/PacienteToCCV" />
+            <p:button style="margin-right: 10px;" rendered="#{idPaciente!= null and pacienteController.isActivo(pacienteController.selected)==true}" icon="ui-icon-folder-open" value="Asignar a subprogramas" outcome="/paciente/PacienteToSubprograma" />
             <p:commandButton styleClass="noPrintButton" value="Imprimir ficha paciente" ajax="false" rendered="#{pacienteController.selected != null}">
                 <p:dataExporter type="pdf" target="tableVacia" fileName="#{pacienteController.selected.toString()}" preProcessor="#{pacienteController.preProcessPDF}"/>                    
             </p:commandButton>

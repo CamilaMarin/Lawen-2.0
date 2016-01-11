@@ -57,6 +57,11 @@
             <url-pattern>/faces/tipoPatologia/*</url-pattern>
         </web-resource-collection>
         <web-resource-collection>
+            <web-resource-name>tiposubpro</web-resource-name>
+            <description/>
+            <url-pattern>/faces/tipoSubprograma/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
             <web-resource-name>tipopro</web-resource-name>
             <description/>
             <url-pattern>/faces/tipoPrograma/*</url-pattern>
@@ -80,6 +85,11 @@
             <web-resource-name>censoPediatriaNoREM</web-resource-name>
             <description/>
             <url-pattern>/faces/censoPediatriaNoREM/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>subprograma</web-resource-name>
+            <description/>
+            <url-pattern>/faces/subprograma/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>

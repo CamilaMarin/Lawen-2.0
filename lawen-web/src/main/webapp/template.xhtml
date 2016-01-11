@@ -22,7 +22,7 @@
 
     <h:body>
 
-        <p:growl id="growl" life="2000" />
+        <p:growl id="growl" life="4000" />
 
         <b:container id="headerContainer">
             <b:row id="headerTop" styleClass="show-grid">
@@ -81,6 +81,7 @@
                     <b:navLink outcome="/usuario/List" value="Usuarios" rendered="#{loginController.verifyLogin()}"></b:navLink>
                     <b:navLink outcome="/tipoPatologia/List.xhtml" value="Patolog&iacute;as"  rendered="#{loginController.verifyLogin()}"></b:navLink>
                     <b:navLink outcome="/tipoPrograma/List.xhtml" value="Programas"  rendered="#{loginController.verifyLogin()}"></b:navLink>
+                    <b:navLink outcome="/tipoSubprograma/List.xhtml" value="Subprogramas"  rendered="#{loginController.verifyLogin()}"></b:navLink>
                 </b:dropMenu>
                 <b:navLink outcome="/programasdesalud.xhtml" value="Programas de Salud"></b:navLink>
                 <b:navLink outcome="/directorio.xhtml" value="Directorio Profesional"></b:navLink>

@@ -115,6 +115,10 @@ public class Paciente implements Serializable {
       
       @OneToMany(cascade = ALL, mappedBy ="paciente", fetch = FetchType.LAZY)
       private List<Programa> programas;
+      
+      @OneToMany(cascade = ALL, mappedBy ="paciente", fetch = FetchType.LAZY)
+      private List<Subprograma> subprogramas;
+      
       //Hospitalizaciones anteriores
       ///Alergias
       private String hospitalizaciones_paciente;
@@ -395,6 +399,14 @@ public class Paciente implements Serializable {
 
     public void setProgramas(List<Programa> programas) {
         this.programas = programas;
+    }
+
+    public List<Subprograma> getSubprogramas() {
+        return subprogramas;
+    }
+
+    public void setSubprogramas(List<Subprograma> subprogramas) {
+        this.subprogramas = subprogramas;
     }
 
     public String getHospitalizaciones_paciente() {

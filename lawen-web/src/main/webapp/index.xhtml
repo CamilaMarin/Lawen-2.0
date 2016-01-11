@@ -73,21 +73,32 @@
                         </b:panel>
                     </b:column>
                     
-                    <b:column span="12">
+                    <b:column span="6">
                         <b:panel look="pediatria">
                             <f:facet name="heading"><i class="fa fa-puzzle-piece"></i> Programa de Pediatría</f:facet>  
                             <b:listLinks>       
-                                <b:column span="4" class="psc1">
+                                <b:column span="6" class="psc1">
                                     <i class="fa fa-caret-right"></i> <h:outputText id="p4" value=" Ingreso" style="color: #ED5565;"/>
                                     <p:tooltip id="toolTipFade4" for="p4" value="Realizar ingreso de un paciente niño."  trackMouse="true" />
                                     <b:navLink outcome="/pacienteNino/List" value=" Ingresar niño"></b:navLink>
                                 </b:column>
-                                <b:column span="4" class="paddinExtra">
-                                </b:column>
-                                <b:column span="4" class="psc3">
+                                <b:column span="6" class="psc3">
                                     <i class="fa fa-caret-right"></i> <h:outputText id="p5" value=" Control del niño sano" style="color: #ED5565;"/>
                                     <p:tooltip id="toolTipFade5" for="p5" value="Realizar controles de pediatría."  trackMouse="true" />  
                                     <b:navLink outcome="/controlNino/List" value="  Controles de pediatría"></b:navLink>
+                                </b:column>
+                            </b:listLinks>
+                        </b:panel>
+                    </b:column>
+                    
+                    <b:column span="6">
+                        <b:panel look="atenciones">
+                            <f:facet name="heading"><i class="fa fa-puzzle-piece"></i> Subprogramas</f:facet>  
+                            <b:listLinks>       
+                                <b:column span="6" class="sub1">
+                                    <i class="fa fa-caret-right"></i> <h:outputText id="p8" value=" Ingreso" style="color: #6b7ab2;"/>
+                                    <p:tooltip id="toolTipFade8" for="p8" value="Realizar ingreso de un paciente a algún subprograma." trackMouse="true" />
+                                    <b:navLink outcome="/subprograma/Create" value="  Ingresar a subprograma"></b:navLink>
                                 </b:column>
                             </b:listLinks>
                         </b:panel>
@@ -103,7 +114,7 @@
                             </b:listLinks>
                         </b:panel> 
                     </b:column>
-                    <b:column span="12" rendered="#{loginController.verifyLogin() and tipoUsuarioController.isAdmin(request.remoteUser)!=true}">
+                    <b:column span="3" rendered="#{loginController.verifyLogin() and tipoUsuarioController.isAdmin(request.remoteUser)!=true}">
                         <b:panel look="warning">
                             <f:facet name="heading"><i class="fa fa-medkit"></i> Programa Salud Adulto Mayor</f:facet>   
                             <b:listLinks>

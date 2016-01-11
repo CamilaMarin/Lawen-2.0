@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+                <b:row>
+                    <b:column span="12">
+                        <p:breadCrumb>
+                            <p:menuitem value="Categories"  title="Inicio" url="/faces/index.xhtml" />
+                        </p:breadCrumb>
+                    </b:column>
+                </b:row>
+                <br/>
+
+                <h:form id="SubprogramaForPacienteCreateForm">
+                    <h:panelGroup id="display">
+                        <h2><h:outputText value="Asociar subprograma"/></h2>
+                        <br/>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Paciente:" for="paciente" />
+                            <p:selectOneMenu id="paciente" value="#{subprogramaController.seleccionado}" required="true" requiredMessage="Es necesario ingresar un paciente" panelStyle="width:250px"
+                                         effect="fade" style="width:160px" filter="true" filterMatchMode="startsWith">
+                            <f:selectItem itemLabel="Ninguno" noSelectionOption="true" itemDisabled="true"/>
+                            <f:selectItems value="#{pacienteController.itemsAvailableSelectOne}"
+                                           var="pacienteItem"
+                                           itemValue="#{pacienteItem}"/>  
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                        <p:commandButton action="#{subprogramaController.prueba(pacienteItem)}" value="Siguiente" update="display"/>
+                        <p:button outcome="/index" value="Volver" />
+                    </h:panelGroup>
+                </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
