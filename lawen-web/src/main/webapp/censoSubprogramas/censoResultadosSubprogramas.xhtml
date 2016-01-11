@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:body>
+<br/>
+            <b:alert severity="warning">Censo de Subprogramas de salud</b:alert>  
+            <h:panelGroup id="display">
+            <h:form id="CensoSubprogramasFormAA" class="col-md-6 movedA">
+            <p:panelGrid columns="1" columnClasses="colClassCondiciones">
+                    <h:outputLabel value="" style="height: 11px;width:500px;"/>
+                    <h:outputLabel value="TOTAL DE PACIENTES EN CONTROL" style="width:400px;" />                 
+                    <h:outputLabel value="TOTAL DE PACIENTES EN SUBPROGRAMA DE ARTROSIS" style="width:400px;" /> 
+                    <h:outputLabel value="TOTAL DE PACIENTES EN SUBPROGRAMA DE EPILEPSIA" style="width:400px;" /> 
+                    <h:outputLabel value="TOTAL DE PACIENTES EN SUBPROGRAMA DE HIPOTIROIDISMO" style="width:400px;" /> 
+                    <h:outputLabel value="TOTAL DE PACIENTES EN SUBPROGRAMA DE PARKINSON" style="width:400px;" /> 
+                </p:panelGrid>
+            </h:form>
+            <h:form id="CensoSubprogramasFormA" class="moved  col-md-6">
+                <p:panelGrid columns="0">
+                <td>                               
+                </td>
+                    <ui:repeat value="#{consultasCensoSubprogramas.censoSubprogramas}" var="t">
+                    <td>        
+                    <p:panelGrid columns="1"  style="text-align: center;">
+                        <h:outputLabel value="#{t.columnName1}"/> 
+                        <h:outputLabel value="#{t.totalPacientesSubprogramas}" style="width:180px;"/>
+                        <h:outputLabel value="#{t.subprogramaArtrosis}"/>          
+                        <h:outputLabel value="#{t.subprogramaEpilepsia}" /> 
+                        <h:outputLabel value="#{t.subprogramaHipotiroidismo}"/> 
+                        <h:outputLabel value="#{t.subprogramaParkinson}" />                         
+                    </p:panelGrid>
+                    </td>
+                </ui:repeat>
+                </p:panelGrid>
+                
+<br/>
+                
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="CENSO SUBPROGRAMAS"/>
+                            </f:facet>
+                            <h:outputText value="#{item}"/>
+                        </p:column>
+                       
+                        <f:facet name="footer">
+                        </f:facet>
+              
+            
+            </h:form>
+</h:panelGroup>
+</h:body>
+</html>
