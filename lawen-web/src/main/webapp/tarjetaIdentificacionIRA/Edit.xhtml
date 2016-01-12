@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TarjetaIdentificacionIRAEditDlg" width="700px" height="700px" widgetVar="TarjetaIdentificacionIRAEditDialog" width="500px" height="700px" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTarjetaIdentificacionIRATitle}">
+            <h:form id="TarjetaIdentificacionIRAEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tarjetaIdentificacionIRAController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTarjetaIdentificacionIRALabel_paciente}" for="paciente" />
+                        <p:selectOneMenu id="paciente" value="#{tarjetaIdentificacionIRAController.selected.paciente}" required="true" requiredMessage="#{bundle.EditTarjetaIdentificacionIRARequiredMessage_paciente}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pacienteController.obtenerTodosHasta19anos()}"
+                                           var="pacienteItem"
+                                           itemValue="#{pacienteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel value="Historia personal" class="subItem"/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_numEpisodiosUltAno}" for="numEpisodiosUltAno" />
+                        <p:inputText id="numEpisodiosUltAno" value="#{tarjetaIdentificacionIRAController.selected.numEpisodiosUltAno}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_numEpisodiosUltAno}" required="true" requiredMessage="Debe ingresar el número de episodios en el último año"/>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_rotacionEstacionalPrimavera}" for="rotacionEstacionalPrimavera" />
+                        <p:selectOneMenu id="rotacionEstacionalPrimavera" value="#{tarjetaIdentificacionIRAController.selected.rotacionEstacionalPrimavera}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu> 
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_rotacionEstacionalVerano}" for="rotacionEstacionalVerano" />
+                        <p:selectOneMenu id="rotacionEstacionalVerano" value="#{tarjetaIdentificacionIRAController.selected.rotacionEstacionalVerano}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu> 
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_numHospitalizacionesAbeviadas}" for="numHospitalizacionesAbeviadas" />
+                        <p:inputText id="numHospitalizacionesAbeviadas" value="#{tarjetaIdentificacionIRAController.selected.numHospitalizacionesAbeviadas}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_numHospitalizacionesAbeviadas}" required="true" requiredMessage="Debe ingresar el número de hospitalizaciones abreviadas"/>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_numHospitalizacionesPrevias}" for="numHospitalizacionesPrevias" />
+                        <p:inputText id="numHospitalizacionesPrevias" value="#{tarjetaIdentificacionIRAController.selected.numHospitalizacionesPrevias}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_numHospitalizacionesPrevias}" required="true" requiredMessage="Debe ingresar el número de hospitalizaciones previas"/>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_sintomasPeriodosIntercrisisTosConEjercicios}" for="sintomasPeriodosIntercrisisTosConEjercicios" />
+                        <p:selectOneMenu id="sintomasPeriodosIntercrisisTosConEjercicios" value="#{tarjetaIdentificacionIRAController.selected.sintomasPeriodosIntercrisisTosConEjercicios}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu> 
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_sintomasPeriodosIntercrisisTosNocturna}" for="sintomasPeriodosIntercrisisTosNocturna" />
+                        <p:selectOneMenu id="sintomasPeriodosIntercrisisTosNocturna" value="#{tarjetaIdentificacionIRAController.selected.sintomasPeriodosIntercrisisTosNocturna}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu> 
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_numCurasEsteroidalesUltAno}" for="numCurasEsteroidalesUltAno" />
+                        <p:inputText id="numCurasEsteroidalesUltAno" value="#{tarjetaIdentificacionIRAController.selected.numCurasEsteroidalesUltAno}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_numCurasEsteroidalesUltAno}" required="true" requiredMessage="Debe ingresar el número de curas esteroidales del último año"/>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_edadInicioCorticoidesInhalados}" for="edadInicioCorticoidesInhalados" />
+                        <p:inputText id="edadInicioCorticoidesInhalados" value="#{tarjetaIdentificacionIRAController.selected.edadInicioCorticoidesInhalados}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_edadInicioCorticoidesInhalados}" required="true" requiredMessage="Debe ingresar la edad de inicio de uso de corticoides inhalados"/>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_numBNMPrevias}" for="numBNMPrevias" />
+                        <p:inputText id="numBNMPrevias" value="#{tarjetaIdentificacionIRAController.selected.numBNMPrevias}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_numBNMPrevias}" required="true" requiredMessage="Debe ingresar el número de BNM Previas"/>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_numHospitPreviasBNM}" for="numHospitPreviasBNM" />
+                        <p:inputText id="numHospitPreviasBNM" value="#{tarjetaIdentificacionIRAController.selected.numHospitPreviasBNM}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_numHospitPreviasBNM}" required="true" requiredMessage="Debe ingresar el número de hospitalizaciones BNM Previas"/>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_scoreRiesgo}" for="scoreRiesgo" />
+                        <p:selectOneMenu id="scoreRiesgo" value="#{tarjetaIdentificacionIRAController.selected.scoreRiesgo}">
+                            <f:selectItems value="#{dominiosController.scoreIRANino}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_atopiaRinitis}" for="atopiaRinitis" />
+                        <p:selectOneMenu id="atopiaRinitis" value="#{tarjetaIdentificacionIRAController.selected.atopiaRinitis}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu> 
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_atopiaDermatitis}" for="atopiaDermatitis" />
+                        <p:selectOneMenu id="atopiaDermatitis" value="#{tarjetaIdentificacionIRAController.selected.atopiaDermatitis}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu> 
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_atopiaAlimentos}" for="atopiaAlimentos" />
+                        <p:selectOneMenu id="atopiaAlimentos" value="#{tarjetaIdentificacionIRAController.selected.atopiaAlimentos}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel value="Antecedentes familiares" class="subItem"/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_papaAsmaSBO}" for="papaAsmaSBO" />
+                        <p:selectOneMenu id="papaAsmaSBO" value="#{tarjetaIdentificacionIRAController.selected.papaAsmaSBO}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_papaRinitis}" for="papaRinitis" />
+                        <p:selectOneMenu id="papaRinitis" value="#{tarjetaIdentificacionIRAController.selected.papaRinitis}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_papaDermatitis}" for="papaDermatitis" />
+                        <p:selectOneMenu id="papaDermatitis" value="#{tarjetaIdentificacionIRAController.selected.papaDermatitis}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_papaOtros}" for="papaOtros" />
+                        <p:selectOneMenu id="papaOtros" value="#{tarjetaIdentificacionIRAController.selected.papaOtros}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_mamaAsmaSBO}" for="mamaAsmaSBO" />
+                        <p:selectOneMenu id="mamaAsmaSBO" value="#{tarjetaIdentificacionIRAController.selected.mamaAsmaSBO}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_mamaRinitis}" for="mamaRinitis" />
+                        <p:selectOneMenu id="mamaRinitis" value="#{tarjetaIdentificacionIRAController.selected.mamaRinitis}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_mamaDermatitis}" for="mamaDermatitis" />
+                        <p:selectOneMenu id="mamaDermatitis" value="#{tarjetaIdentificacionIRAController.selected.mamaDermatitis}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_mamaOtros}" for="mamaOtros" />
+                        <p:selectOneMenu id="mamaOtros" value="#{tarjetaIdentificacionIRAController.selected.mamaOtros}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_hnosAsmaSBO}" for="hnosAsmaSBO" />
+                        <p:selectOneMenu id="hnosAsmaSBO" value="#{tarjetaIdentificacionIRAController.selected.hnosAsmaSBO}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_hnosRinitis}" for="hnosRinitis" />
+                        <p:selectOneMenu id="hnosRinitis" value="#{tarjetaIdentificacionIRAController.selected.hnosRinitis}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_hnosDermatitis}" for="hnosDermatitis" />
+                        <p:selectOneMenu id="hnosDermatitis" value="#{tarjetaIdentificacionIRAController.selected.hnosDermatitis}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_hnosOtros}" for="hnosOtros" />
+                        <p:selectOneMenu id="hnosOtros" value="#{tarjetaIdentificacionIRAController.selected.hnosOtros}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_hnosFallecidosBNM}" for="hnosFallecidosBNM" />
+                        <p:inputText id="hnosFallecidosBNM" value="#{tarjetaIdentificacionIRAController.selected.hnosFallecidosBNM}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_hnosFallecidosBNM}" required="true" requiredMessage="Debe ingresar el número hermanos fallecidos BNM" />
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel value="Condiciones vivienda" class="subItem"/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_materialCasaSolido}" for="materialCasaSolido" />
+                        <p:selectOneMenu id="materialCasaSolido" value="#{tarjetaIdentificacionIRAController.selected.materialCasaSolido}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_materialCasaMediaAgua}" for="materialCasaMediaAgua" />
+                        <p:selectOneMenu id="materialCasaMediaAgua" value="#{tarjetaIdentificacionIRAController.selected.materialCasaMediaAgua}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_materialCasaMixto}" for="materialCasaMixto" />
+                        <p:selectOneMenu id="materialCasaMixto" value="#{tarjetaIdentificacionIRAController.selected.materialCasaMixto}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_calefaccionBrasero}" for="calefaccionBrasero" />
+                        <p:selectOneMenu id="calefaccionBrasero" value="#{tarjetaIdentificacionIRAController.selected.calefaccionBrasero}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_calefaccionParafina}" for="calefaccionParafina" />
+                        <p:selectOneMenu id="calefaccionParafina" value="#{tarjetaIdentificacionIRAController.selected.calefaccionParafina}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_calefaccionGas}" for="calefaccionGas" />
+                        <p:selectOneMenu id="calefaccionGas" value="#{tarjetaIdentificacionIRAController.selected.calefaccionGas}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_calefaccionElectrica}" for="calefaccionElectrica" />
+                        <p:selectOneMenu id="calefaccionElectrica" value="#{tarjetaIdentificacionIRAController.selected.calefaccionElectrica}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_hacinamientoNumPersonas}" for="hacinamientoNumPersonas" />
+                        <p:inputText id="hacinamientoNumPersonas" value="#{tarjetaIdentificacionIRAController.selected.hacinamientoNumPersonas}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_hacinamientoNumPersonas}" required="true" requiredMessage="Debe ingresar el número de personas en hacinamiento"/>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_hacinamientoNumHabitaciones}" for="hacinamientoNumHabitaciones" />
+                        <p:inputText id="hacinamientoNumHabitaciones" value="#{tarjetaIdentificacionIRAController.selected.hacinamientoNumHabitaciones}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_hacinamientoNumHabitaciones}" required="true" requiredMessage="Debe ingresar el número de habitaciones en hacinamiento"/>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_hacinamientoNumCamas}" for="hacinamientoNumCamas" />
+                        <p:inputText id="hacinamientoNumCamas" value="#{tarjetaIdentificacionIRAController.selected.hacinamientoNumCamas}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_hacinamientoNumCamas}" required="true" requiredMessage="Debe ingresar el número de camas en hacinamiento"/>
+                        <p:outputLabel value="Contaminación intradomiciliaria" class="subItem"/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_tabaquismoPadre}" for="tabaquismoPadre" />
+                        <p:selectOneMenu id="tabaquismoPadre" value="#{tarjetaIdentificacionIRAController.selected.tabaquismoPadre}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_tabaquismoMadre}" for="tabaquismoMadre" />
+                        <p:selectOneMenu id="tabaquismoMadre" value="#{tarjetaIdentificacionIRAController.selected.tabaquismoMadre}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_tabaquismoOtros}" for="tabaquismoOtros" />
+                        <p:selectOneMenu id="tabaquismoOtros" value="#{tarjetaIdentificacionIRAController.selected.tabaquismoOtros}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_numPerros}" for="numPerros" />
+                        <p:inputText id="numPerros" value="#{tarjetaIdentificacionIRAController.selected.numPerros}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_numPerros}" required="true" requiredMessage="Debe ingresar el número de perros"/>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_numGatos}" for="numGatos" />
+                        <p:inputText id="numGatos" value="#{tarjetaIdentificacionIRAController.selected.numGatos}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_numGatos}" required="true" requiredMessage="Debe ingresar el número de gatos"/>
+                        <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_numAves}" for="numAves" />
+                        <p:inputText id="numAves" value="#{tarjetaIdentificacionIRAController.selected.numAves}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_numAves}" required="true" requiredMessage="Debe ingresar el número de aves"/>
+                        <p:outputLabel value="Contaminación extradomiciliaria" class="subItem"/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel/>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_tallerIndustriaCercana}" for="tallerIndustriaCercana" />
+                        <p:selectOneMenu id="tallerIndustriaCercana" value="#{tarjetaIdentificacionIRAController.selected.tallerIndustriaCercana}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_callesSinPavimentar}" for="callesSinPavimentar" />
+                        <p:selectOneMenu id="callesSinPavimentar" value="#{tarjetaIdentificacionIRAController.selected.callesSinPavimentar}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_educacionIRA}" for="educacionIRA" />
+                        <p:selectOneMenu id="educacionIRA" value="#{tarjetaIdentificacionIRAController.selected.educacionIRA}">
+                            <f:selectItems value="#{dominiosController.ingresoIRAOpciones}"/>    
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTarjetaIdentificacionIRALabel_impresionMadre}" for="impresionMadre" />
+                        <p:selectOneMenu id="impresionMadre" value="#{tarjetaIdentificacionIRAController.selected.impresionMadre}">
+                            <f:selectItems value="#{dominiosController.impresionMadre}"/>    
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tarjetaIdentificacionIRAController.update}" value="#{bundle.Save}" update="display,:TarjetaIdentificacionIRAListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TarjetaIdentificacionIRAEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TarjetaIdentificacionIRAEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

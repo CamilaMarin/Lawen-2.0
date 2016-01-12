@@ -97,7 +97,6 @@ public class SubprogramaController implements Serializable {
     
     public String prueba(Paciente paciente) {
         pacienteProg.setSelected(seleccionado);
-        System.out.println("ESTOY CON " + pacienteProg.getSelected().getNombres_paciente());
         return "/faces/paciente/PacienteToSubprograma.xhtml?faces-redirect=true";
     }
     

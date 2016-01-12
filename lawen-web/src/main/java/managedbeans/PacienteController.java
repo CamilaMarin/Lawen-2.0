@@ -97,6 +97,19 @@ public class PacienteController implements Serializable {
         }
         return allitems;
     }
+    
+    public List<Paciente> obtenerTodosHasta19anos() {
+        List<Paciente> sirvenIRA = new ArrayList<Paciente>();
+        getAllItems();
+        for (Paciente item : allitems) {
+            if (Age(item.getFechaNacimiento_paciente())<=19){
+                if(isActivo(item)){
+                    sirvenIRA.add(item);          
+                }              
+            }
+        }
+        return sirvenIRA;
+    }
 
     public Paciente FindObjetbyRut(String rut) {
         getAllItems();//todos los items

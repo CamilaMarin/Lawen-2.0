@@ -73,11 +73,24 @@ public class dominiosController {
     private List <String> diagNutricional;
     private List <String> identificadoresControles;
     private List <String> riesgoMalnutricion;
+    private List <String> ingresoIRAOpciones;
+    private List <String> impresionMadre;
     /*
     Init para intanciar valores de las listas
     */
     @PostConstruct
     public void init() {
+        
+        impresionMadre= new ArrayList<>(5);
+        impresionMadre.add(0,"MB");
+        impresionMadre.add(1,"B");
+        impresionMadre.add(2,"R");
+        impresionMadre.add(3,"M");
+        
+        ingresoIRAOpciones= new ArrayList<>(3);
+        ingresoIRAOpciones.add(0,"No sabe/ No responde");
+        ingresoIRAOpciones.add(1,"Si");
+        ingresoIRAOpciones.add(2,"No");
         
         riesgoMalnutricion= new ArrayList<>(2);
         riesgoMalnutricion.add(0,"No");
@@ -335,9 +348,25 @@ public class dominiosController {
         pertenece_al_programa_mas.add(1,"No");
         pertenece_al_programa_mas.add(2,"Si");
         
-
-
         
+   
+        
+    }
+
+    public List<String> getImpresionMadre() {
+        return impresionMadre;
+    }
+
+    public void setImpresionMadre(List<String> impresionMadre) {
+        this.impresionMadre = impresionMadre;
+    }
+
+    public List<String> getIngresoIRAOpciones() {
+        return ingresoIRAOpciones;
+    }
+
+    public void setIngresoIRAOpciones(List<String> ingresoIRAOpciones) {
+        this.ingresoIRAOpciones = ingresoIRAOpciones;
     }
 
     public List<String> getRiesgoMalnutricion() {

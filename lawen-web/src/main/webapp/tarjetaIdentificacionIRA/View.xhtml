@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TarjetaIdentificacionIRAViewDlg" widgetVar="TarjetaIdentificacionIRAViewDialog" width="500px" height="700px" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTarjetaIdentificacionIRATitle}">
+            <h:form id="TarjetaIdentificacionIRAViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tarjetaIdentificacionIRAController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_paciente}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.paciente.nombres_paciente}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_paciente}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_numEpisodiosUltAno}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.numEpisodiosUltAno}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_numEpisodiosUltAno}"/>
+                        
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_rotacionEstacionalPrimavera}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.rotacionEstacionalPrimavera}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_rotacionEstacionalPrimavera}" />
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_rotacionEstacionalVerano}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.rotacionEstacionalVerano}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_rotacionEstacionalVerano}" />
+                        
+                        
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_numHospitalizacionesAbeviadas}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.numHospitalizacionesAbeviadas}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_numHospitalizacionesAbeviadas}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_numHospitalizacionesPrevias}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.numHospitalizacionesPrevias}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_numHospitalizacionesPrevias}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_sintomasPeriodosIntercrisisTosConEjercicios}" />
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.sintomasPeriodosIntercrisisTosConEjercicios}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_sintomasPeriodosIntercrisisTosConEjercicios}" />
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_sintomasPeriodosIntercrisisTosNocturna}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.sintomasPeriodosIntercrisisTosNocturna}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_sintomasPeriodosIntercrisisTosNocturna}" />
+                        
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_numCurasEsteroidalesUltAno}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.numCurasEsteroidalesUltAno}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_numCurasEsteroidalesUltAno}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_edadInicioCorticoidesInhalados}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.edadInicioCorticoidesInhalados}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_edadInicioCorticoidesInhalados}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_numBNMPrevias}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.numBNMPrevias}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_numBNMPrevias}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_numHospitPreviasBNM}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.numHospitPreviasBNM}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_numHospitPreviasBNM}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_scoreRiesgo}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.scoreRiesgo}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_scoreRiesgo}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_atopiaRinitis}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.atopiaRinitis}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_atopiaRinitis}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_atopiaDermatitis}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.atopiaDermatitis}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_atopiaDermatitis}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_atopiaAlimentos}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.atopiaAlimentos}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_atopiaAlimentos}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_papaAsmaSBO}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.papaAsmaSBO}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_papaAsmaSBO}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_papaRinitis}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.papaRinitis}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_papaRinitis}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_papaDermatitis}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.papaDermatitis}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_papaDermatitis}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_papaOtros}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.papaOtros}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_papaOtros}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_mamaAsmaSBO}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.mamaAsmaSBO}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_mamaAsmaSBO}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_mamaRinitis}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.mamaRinitis}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_mamaRinitis}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_mamaDermatitis}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.mamaDermatitis}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_mamaDermatitis}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_mamaOtros}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.mamaOtros}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_mamaOtros}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_hnosAsmaSBO}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.hnosAsmaSBO}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_hnosAsmaSBO}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_hnosRinitis}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.hnosRinitis}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_hnosRinitis}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_hnosDermatitis}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.hnosDermatitis}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_hnosDermatitis}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_hnosOtros}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.hnosOtros}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_hnosOtros}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_hnosFallecidosBNM}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.hnosFallecidosBNM}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_hnosFallecidosBNM}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_materialCasaSolido}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.materialCasaSolido}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_materialCasaSolido}" />
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_materialCasaMediaAgua}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.materialCasaMediaAgua}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_materialCasaMediaAgua}" />
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_materialCasaMixto}" />
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.materialCasaMixto}" title="#{bundle.EViewTarjetaIdentificacionIRATitle_materialCasaMixto}" />
+                        
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_calefaccionBrasero}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.calefaccionBrasero}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_calefaccionBrasero}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_calefaccionParafina}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.calefaccionParafina}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_calefaccionParafina}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_calefaccionGas}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.calefaccionGas}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_calefaccionGas}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_calefaccionElectrica}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.calefaccionElectrica}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_calefaccionElectrica}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_hacinamientoNumPersonas}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.hacinamientoNumPersonas}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_hacinamientoNumPersonas}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_hacinamientoNumHabitaciones}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.hacinamientoNumHabitaciones}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_hacinamientoNumHabitaciones}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_hacinamientoNumCamas}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.hacinamientoNumCamas}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_hacinamientoNumCamas}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_tabaquismoPadre}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.tabaquismoPadre}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_tabaquismoPadre}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_tabaquismoMadre}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.tabaquismoMadre}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_tabaquismoMadre}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_tabaquismoOtros}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.tabaquismoOtros}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_tabaquismoOtros}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_numPerros}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.numPerros}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_numPerros}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_numGatos}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.numGatos}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_numGatos}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_numAves}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.numAves}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_numAves}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_tallerIndustriaCercana}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.tallerIndustriaCercana}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_tallerIndustriaCercana}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_callesSinPavimentar}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.callesSinPavimentar}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_callesSinPavimentar}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_educacionIRA}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.educacionIRA}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_educacionIRA}"/>
+                        <h:outputText value="#{bundle.ViewTarjetaIdentificacionIRALabel_impresionMadre}"/>
+                        <h:outputText value="#{tarjetaIdentificacionIRAController.selected.impresionMadre}" title="#{bundle.ViewTarjetaIdentificacionIRATitle_impresionMadre}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TarjetaIdentificacionIRAViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
