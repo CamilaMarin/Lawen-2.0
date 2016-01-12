@@ -5,8 +5,11 @@
  */
 package entities;
 
+import entities.cardiovascular.CartolaSeguimientoCCV;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +18,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -44,6 +49,19 @@ public class Medicamentos implements Serializable {
     @Column(name = "Nombre")
     private String nombre;
 
+    
+    @OneToMany(cascade = ALL,mappedBy ="idMedicamentosCartola")
+    private List<MedicamentosCartola> medicamentosCartola;
+
+    public List<MedicamentosCartola> getMedicamentosCartola() {
+        return medicamentosCartola;
+    }
+
+    public void setMedicamentosCartola(List<MedicamentosCartola> medicamentosCartola) {
+        this.medicamentosCartola = medicamentosCartola;
+    }
+    
+    
     public Medicamentos() {
     }
 
@@ -96,7 +114,5 @@ public class Medicamentos implements Serializable {
     public String toString() {
         return "entities.Medicamentos[ idMedicamento=" + idMedicamento + " ]";
     }
-
-   
     
 }
