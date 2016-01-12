@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="TarjetaIdentificacionIRAEditDlg" width="700px" height="700px" widgetVar="TarjetaIdentificacionIRAEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTarjetaIdentificacionIRATitle}">
+        <p:dialog id="TarjetaIdentificacionIRAEditDlg" width="750px" height="600px" widgetVar="TarjetaIdentificacionIRAEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTarjetaIdentificacionIRATitle}">
             <h:form id="TarjetaIdentificacionIRAEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tarjetaIdentificacionIRAController.selected != null}">
@@ -19,8 +19,8 @@
                                            var="pacienteItem"
                                            itemValue="#{pacienteItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel/>
-                        <p:outputLabel/>
+                         <p:outputLabel class="obligatorio" value="#{bundle.CreateTarjetaIdentificacionIRALabel_fechaIngresoIRA}" for="fechaIngresoIRA" />
+                        <p:calendar id="fechaIngresoIRA" placeholder="dd/mm/yyyy" pattern="dd/MM/yyyy" value="#{tarjetaIdentificacionIRAController.selected.fechaIngresoIRA}" title="#{bundle.CreateTarjetaIdentificacionIRATitle_fechaIngresoIRA}"  showOn="button" required="true" requiredMessage="Debe ingresar una fecha de ingreso"/>
                         <p:outputLabel value="Historia personal" class="subItem"/>
                         <p:outputLabel/>
                         <p:outputLabel/>

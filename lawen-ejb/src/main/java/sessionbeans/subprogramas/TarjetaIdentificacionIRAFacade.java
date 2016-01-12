@@ -5,10 +5,13 @@
  */
 package sessionbeans.subprogramas;
 
+import entities.Paciente;
 import entities.subprogramas.TarjetaIdentificacionIRA;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,4 +32,11 @@ public class TarjetaIdentificacionIRAFacade extends AbstractFacade<TarjetaIdenti
         super(TarjetaIdentificacionIRA.class);
     }
     
+    @Override
+    public List<TarjetaIdentificacionIRA> findbyPaciente(Paciente paciente) {
+        Query query;
+        query = em.createNamedQuery("TarjetaIdentificacionIRA.findbyPaciente")
+                .setParameter("paciente", paciente);
+        return query.getResultList();                  
+    }  
 }

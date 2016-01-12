@@ -5820,7 +5820,7 @@ public class documentsController {
         celda = fila.createCell(1);
         txt = "IRA";
         celda.setCellValue(txt);
-        
+               
         
         
         
@@ -6094,6 +6094,14 @@ public class documentsController {
             fila = hoja1.getRow(9);
             celda = fila.createCell(filas);
             celda.setCellValue(censoIt.getSubprogramaParkinson());
+            
+            fila = hoja1.getRow(10);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getSubprogramaERA());
+            
+            fila = hoja1.getRow(11);
+            celda = fila.createCell(filas);
+            celda.setCellValue(censoIt.getSubprogramaIRA());
             
             filas++;
             

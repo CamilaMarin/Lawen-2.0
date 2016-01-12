@@ -23,6 +23,8 @@ public class CensoSubprogramas {
     private int subprogramaEpilepsia    ; 
     private int subprogramaHipotiroidismo;
     private int subprogramaParkinson; 
+    private int subprogramaERA;
+    private int subprogramaIRA;
 
     public String getColumnName1() {
         return columnName1;
@@ -79,13 +81,31 @@ public class CensoSubprogramas {
     public void setTotalPacientesSubprogramas(int totalPacientesSubprogramas) {
         this.totalPacientesSubprogramas = totalPacientesSubprogramas;
     }
+
+    public int getSubprogramaERA() {
+        return subprogramaERA;
+    }
+
+    public void setSubprogramaERA(int subprogramaERA) {
+        this.subprogramaERA = subprogramaERA;
+    }
+
+    public int getSubprogramaIRA() {
+        return subprogramaIRA;
+    }
+
+    public void setSubprogramaIRA(int subprogramaIRA) {
+        this.subprogramaIRA = subprogramaIRA;
+    }
     
     public CensoSubprogramas() {
         this.subprogramaArtrosis=0; 
         this.subprogramaEpilepsia=0; 
         this.subprogramaHipotiroidismo=0;
         this.subprogramaParkinson=0; 
-        this.totalPacientesSubprogramas=0;
+        this.subprogramaERA=0;
+        this.subprogramaIRA=0;
+        this.totalPacientesSubprogramas=0;        
     }
     
 }

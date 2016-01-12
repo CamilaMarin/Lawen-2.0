@@ -5,6 +5,7 @@
  */
 package sessionbeans.subprogramas;
 
+import entities.Paciente;
 import entities.subprogramas.TarjetaIdentificacionIRA;
 import java.util.List;
 import javax.ejb.Local;
@@ -30,4 +31,5 @@ public interface TarjetaIdentificacionIRAFacadeLocal {
 
     int count();
     
+    List<TarjetaIdentificacionIRA> findbyPaciente(Paciente paciente);
 }

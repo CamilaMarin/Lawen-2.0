@@ -7,6 +7,7 @@ package managedbeans.subprogramas;
 
 import entities.Paciente;
 import entities.Subprograma;
+import entities.subprogramas.TarjetaIdentificacionIRA;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -19,6 +20,7 @@ import javax.inject.Inject;
 import managedbeans.PacienteController;
 import sessionbeans.PacienteFacadeLocal;
 import sessionbeans.SubprogramaFacadeLocal;
+import sessionbeans.subprogramas.TarjetaIdentificacionIRAFacadeLocal;
 
 /**
  *
@@ -34,6 +36,8 @@ public class ConsultasCensoSubprogramas implements Serializable {
     private PacienteFacadeLocal ejbPaciente;
     @EJB
     private SubprogramaFacadeLocal ejbSubprograma;
+    @EJB
+    private TarjetaIdentificacionIRAFacadeLocal ejbIRA;
     @Inject
     private PacienteController pacienteProg;
     
@@ -72,6 +76,22 @@ public class ConsultasCensoSubprogramas implements Serializable {
     public void setEjbSubprograma(SubprogramaFacadeLocal ejbSubprograma) {
         this.ejbSubprograma = ejbSubprograma;
     }
+
+    public TarjetaIdentificacionIRAFacadeLocal getEjbIRA() {
+        return ejbIRA;
+    }
+
+    public void setEjbIRA(TarjetaIdentificacionIRAFacadeLocal ejbIRA) {
+        this.ejbIRA = ejbIRA;
+    }
+
+    public PacienteController getPacienteProg() {
+        return pacienteProg;
+    }
+
+    public void setPacienteProg(PacienteController pacienteProg) {
+        this.pacienteProg = pacienteProg;
+    }
     
     public List<CensoSubprogramas> censoSubprogramas() {
         
@@ -109,6 +129,7 @@ public class ConsultasCensoSubprogramas implements Serializable {
         
         List<Paciente> pacientes_habilitados = ejbPaciente.findbyPacienteActivo();
         List<Subprograma> subProg;
+        List<TarjetaIdentificacionIRA> subIRA;
         for (Paciente pacientes : pacientes_habilitados) {
             boolean fue_censado = false;
             int edad;
@@ -466,10 +487,216 @@ public class ConsultasCensoSubprogramas implements Serializable {
                             }
                         }
                     }
-                }               
-                
                     
+                    if (subprograma.getSubprograma().getNombre_subprograma().equals("ERA")) {//Era
+                        //siempre actualizar variable fue censado:
+                        fue_censado = true;
+                        totalAmbosSexos.setSubprogramaERA(totalAmbosSexos.getSubprogramaERA()+ 1);
+                        if (pacientes.getGenero_paciente().equals("Masculino")) {
+                            totalhombres.setSubprogramaERA(totalhombres.getSubprogramaERA()+ 1);
+                            //Dependiendo de la edad las condiciones son:
+                            if (edad >= 15 && edad <= 19) {
+                                totalhombres_15a19.setSubprogramaERA(totalhombres_15a19.getSubprogramaERA() + 1);
+                            } else if (edad >= 20 && edad <= 24) {
+                                totalhombres_20a24.setSubprogramaERA(totalhombres_20a24.getSubprogramaERA() + 1);
+                            } else if (edad >= 25 && edad <= 29) {
+                                totalhombres_25a29.setSubprogramaERA(totalhombres_25a29.getSubprogramaERA() + 1);
+                            } else if (edad >= 30 && edad <= 34) {
+                                totalhombres_30a34.setSubprogramaERA(totalhombres_30a34.getSubprogramaERA() + 1);
+                            } else if (edad >= 35 && edad <= 39) {
+                                totalhombres_35a39.setSubprogramaERA(totalhombres_35a39.getSubprogramaERA() + 1);
+                            } else if (edad >= 40 && edad <= 44) {
+                                totalhombres_40a44.setSubprogramaERA(totalhombres_40a44.getSubprogramaERA() + 1);
+                            } else if (edad >= 45 && edad <= 49) {
+                                totalhombres_45a49.setSubprogramaERA(totalhombres_45a49.getSubprogramaERA() + 1);
+                            } else if (edad >= 50 && edad <= 54) {
+                                totalhombres_50a54.setSubprogramaERA(totalhombres_50a54.getSubprogramaERA() + 1);
+                            } else if (edad >= 55 && edad <= 59) {
+                                totalhombres_55a59.setSubprogramaERA(totalhombres_55a59.getSubprogramaERA() + 1);
+                            } else if (edad >= 60 && edad <= 64) {
+                                totalhombres_60a64.setSubprogramaERA(totalhombres_60a64.getSubprogramaERA() + 1);
+                            } else if (edad >= 65 && edad <= 69) {
+                                totalhombres_65a69.setSubprogramaERA(totalhombres_65a69.getSubprogramaERA() + 1);
+                            } else if (edad >= 70 && edad <= 74) {
+                                totalhombres_70a74.setSubprogramaERA(totalhombres_70a74.getSubprogramaERA() + 1);
+                            } else if (edad >= 75 && edad <= 79) {
+                                totalhombres_75a79.setSubprogramaERA(totalhombres_75a79.getSubprogramaERA() + 1);
+                            } else if (edad >= 80) {
+                                totalhombres_80amas.setSubprogramaERA(totalhombres_80amas.getSubprogramaERA() + 1);
+                            }
+                        } else {//Genero Femenino
+                            totalmujeres.setSubprogramaERA(totalmujeres.getSubprogramaERA()+ 1);
+                            //Dependiendo de la edad las condiciones son:
+                            if (edad >= 15 && edad <= 19) {
+                                totalmujeres_15a19.setSubprogramaERA(totalmujeres_15a19.getSubprogramaERA() + 1);
+                            } else if (edad >= 20 && edad <= 24) {
+                                totalmujeres_20a24.setSubprogramaERA(totalmujeres_20a24.getSubprogramaERA() + 1);
+                            } else if (edad >= 25 && edad <= 29) {
+                                totalmujeres_25a29.setSubprogramaERA(totalmujeres_25a29.getSubprogramaERA() + 1);
+                            } else if (edad >= 30 && edad <= 34) {
+                                totalmujeres_30a34.setSubprogramaERA(totalmujeres_30a34.getSubprogramaERA() + 1);
+                            } else if (edad >= 35 && edad <= 39) {
+                                totalmujeres_35a39.setSubprogramaERA(totalmujeres_35a39.getSubprogramaERA() + 1);
+                            } else if (edad >= 40 && edad <= 44) {
+                                totalmujeres_40a44.setSubprogramaERA(totalmujeres_40a44.getSubprogramaERA() + 1);
+                            } else if (edad >= 45 && edad <= 49) {
+                                totalmujeres_45a49.setSubprogramaERA(totalmujeres_45a49.getSubprogramaERA() + 1);
+                            } else if (edad >= 50 && edad <= 54) {
+                                totalmujeres_50a54.setSubprogramaERA(totalmujeres_50a54.getSubprogramaERA() + 1);
+                            } else if (edad >= 55 && edad <= 59) {
+                                totalmujeres_55a59.setSubprogramaERA(totalmujeres_55a59.getSubprogramaERA() + 1);
+                            } else if (edad >= 60 && edad <= 64) {
+                                totalmujeres_60a64.setSubprogramaERA(totalmujeres_60a64.getSubprogramaERA() + 1);
+                            } else if (edad >= 65 && edad <= 69) {
+                                totalmujeres_65a69.setSubprogramaERA(totalmujeres_65a69.getSubprogramaERA() + 1);
+                            } else if (edad >= 70 && edad <= 74) {
+                                totalmujeres_70a74.setSubprogramaERA(totalmujeres_70a74.getSubprogramaERA() + 1);
+                            } else if (edad >= 75 && edad <= 79) {
+                                totalmujeres_75a79.setSubprogramaERA(totalmujeres_75a79.getSubprogramaERA() + 1);
+                            } else if (edad >= 80) {
+                                totalmujeres_80amas.setSubprogramaERA(totalmujeres_80amas.getSubprogramaERA() + 1);
+                            }
+                        }
+                    }
+                }
+            }
+            subIRA = ejbIRA.findbyPaciente(pacientes);
+            if(subIRA.size()>0){
+                edad = pacienteProg.Age(pacientes.getFechaNacimiento_paciente());
                 
+                totalAmbosSexos.setTotalPacientesSubprogramas(totalAmbosSexos.getTotalPacientesSubprogramas()+1);                
+                if (pacientes.getGenero_paciente().equals("Masculino")) {                    
+                        totalhombres.setTotalPacientesSubprogramas(totalhombres.getTotalPacientesSubprogramas()+1);
+                        if (edad >= 15 && edad <= 19) {
+                            totalhombres_15a19.setTotalPacientesSubprogramas(totalhombres_15a19.getTotalPacientesSubprogramas()+1);
+                        } else if (edad >= 20 && edad <= 24) {
+                            totalhombres_20a24.setTotalPacientesSubprogramas(totalhombres_20a24.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 25 && edad <= 29) {
+                            totalhombres_25a29.setTotalPacientesSubprogramas(totalhombres_25a29.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 30 && edad <= 34) {
+                            totalhombres_30a34.setTotalPacientesSubprogramas(totalhombres_30a34.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 35 && edad <= 39) {
+                            totalhombres_35a39.setTotalPacientesSubprogramas(totalhombres_35a39.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 40 && edad <= 44) {
+                            totalhombres_40a44.setTotalPacientesSubprogramas(totalhombres_40a44.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 45 && edad <= 49) {
+                            totalhombres_45a49.setTotalPacientesSubprogramas(totalhombres_45a49.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 50 && edad <= 54) {
+                            totalhombres_50a54.setTotalPacientesSubprogramas(totalhombres_50a54.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 55 && edad <= 59) {
+                            totalhombres_55a59.setTotalPacientesSubprogramas(totalhombres_55a59.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 60 && edad <= 64) {
+                            totalhombres_60a64.setTotalPacientesSubprogramas(totalhombres_60a64.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 65 && edad <= 69) {
+                            totalhombres_65a69.setTotalPacientesSubprogramas(totalhombres_65a69.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 70 && edad <= 74) {
+                            totalhombres_70a74.setTotalPacientesSubprogramas(totalhombres_70a74.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 75 && edad <= 79) {
+                            totalhombres_75a79.setTotalPacientesSubprogramas(totalhombres_75a79.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 80) {
+                            totalhombres_80amas.setTotalPacientesSubprogramas(totalhombres_80amas.getTotalPacientesSubprogramas()+ 1);
+                        }
+                    } else {//Genero Femenino
+                        totalmujeres.setTotalPacientesSubprogramas(totalmujeres.getTotalPacientesSubprogramas()+ 1);
+                        //Dependiendo de la edad las condiciones son:
+                        if (edad >= 15 && edad <= 19) {
+                            totalmujeres_15a19.setTotalPacientesSubprogramas(totalmujeres_15a19.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 20 && edad <= 24) {
+                            totalmujeres_20a24.setTotalPacientesSubprogramas(totalmujeres_20a24.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 25 && edad <= 29) {
+                            totalmujeres_25a29.setTotalPacientesSubprogramas(totalmujeres_25a29.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 30 && edad <= 34) {
+                            totalmujeres_30a34.setTotalPacientesSubprogramas(totalmujeres_30a34.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 35 && edad <= 39) {
+                            totalmujeres_35a39.setTotalPacientesSubprogramas(totalmujeres_35a39.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 40 && edad <= 44) {
+                            totalmujeres_40a44.setTotalPacientesSubprogramas(totalmujeres_40a44.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 45 && edad <= 49) {
+                            totalmujeres_45a49.setTotalPacientesSubprogramas(totalmujeres_45a49.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 50 && edad <= 54) {
+                            totalmujeres_50a54.setTotalPacientesSubprogramas(totalmujeres_50a54.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 55 && edad <= 59) {
+                            totalmujeres_55a59.setTotalPacientesSubprogramas(totalmujeres_55a59.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 60 && edad <= 64) {
+                            totalmujeres_60a64.setTotalPacientesSubprogramas(totalmujeres_60a64.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 65 && edad <= 69) {
+                            totalmujeres_65a69.setTotalPacientesSubprogramas(totalmujeres_65a69.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 70 && edad <= 74) {
+                            totalmujeres_70a74.setTotalPacientesSubprogramas(totalmujeres_70a74.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 75 && edad <= 79) {
+                            totalmujeres_75a79.setTotalPacientesSubprogramas(totalmujeres_75a79.getTotalPacientesSubprogramas() + 1);
+                        } else if (edad >= 80) {
+                            totalmujeres_80amas.setTotalPacientesSubprogramas(totalmujeres_80amas.getTotalPacientesSubprogramas() + 1);
+                        }
+                    }
+
+                        fue_censado = true;
+                        totalAmbosSexos.setSubprogramaIRA(totalAmbosSexos.getSubprogramaIRA()+ 1);
+                        if (pacientes.getGenero_paciente().equals("Masculino")) {
+                            totalhombres.setSubprogramaIRA(totalhombres.getSubprogramaIRA()+ 1);
+                            //Dependiendo de la edad las condiciones son:
+                            if (edad >= 15 && edad <= 19) {
+                                totalhombres_15a19.setSubprogramaIRA(totalhombres_15a19.getSubprogramaIRA() + 1);
+                            } else if (edad >= 20 && edad <= 24) {
+                                totalhombres_20a24.setSubprogramaIRA(totalhombres_20a24.getSubprogramaIRA() + 1);
+                            } else if (edad >= 25 && edad <= 29) {
+                                totalhombres_25a29.setSubprogramaIRA(totalhombres_25a29.getSubprogramaIRA() + 1);
+                            } else if (edad >= 30 && edad <= 34) {
+                                totalhombres_30a34.setSubprogramaIRA(totalhombres_30a34.getSubprogramaIRA() + 1);
+                            } else if (edad >= 35 && edad <= 39) {
+                                totalhombres_35a39.setSubprogramaIRA(totalhombres_35a39.getSubprogramaIRA() + 1);
+                            } else if (edad >= 40 && edad <= 44) {
+                                totalhombres_40a44.setSubprogramaIRA(totalhombres_40a44.getSubprogramaIRA() + 1);
+                            } else if (edad >= 45 && edad <= 49) {
+                                totalhombres_45a49.setSubprogramaIRA(totalhombres_45a49.getSubprogramaIRA() + 1);
+                            } else if (edad >= 50 && edad <= 54) {
+                                totalhombres_50a54.setSubprogramaIRA(totalhombres_50a54.getSubprogramaIRA() + 1);
+                            } else if (edad >= 55 && edad <= 59) {
+                                totalhombres_55a59.setSubprogramaIRA(totalhombres_55a59.getSubprogramaIRA() + 1);
+                            } else if (edad >= 60 && edad <= 64) {
+                                totalhombres_60a64.setSubprogramaIRA(totalhombres_60a64.getSubprogramaIRA() + 1);
+                            } else if (edad >= 65 && edad <= 69) {
+                                totalhombres_65a69.setSubprogramaIRA(totalhombres_65a69.getSubprogramaIRA() + 1);
+                            } else if (edad >= 70 && edad <= 74) {
+                                totalhombres_70a74.setSubprogramaIRA(totalhombres_70a74.getSubprogramaIRA() + 1);
+                            } else if (edad >= 75 && edad <= 79) {
+                                totalhombres_75a79.setSubprogramaIRA(totalhombres_75a79.getSubprogramaIRA() + 1);
+                            } else if (edad >= 80) {
+                                totalhombres_80amas.setSubprogramaIRA(totalhombres_80amas.getSubprogramaIRA() + 1);
+                            }
+                        } else {//Genero Femenino
+                            totalmujeres.setSubprogramaIRA(totalmujeres.getSubprogramaIRA()+ 1);
+                            //Dependiendo de la edad las condiciones son:
+                            if (edad >= 15 && edad <= 19) {
+                                totalmujeres_15a19.setSubprogramaIRA(totalmujeres_15a19.getSubprogramaIRA() + 1);
+                            } else if (edad >= 20 && edad <= 24) {
+                                totalmujeres_20a24.setSubprogramaIRA(totalmujeres_20a24.getSubprogramaIRA() + 1);
+                            } else if (edad >= 25 && edad <= 29) {
+                                totalmujeres_25a29.setSubprogramaIRA(totalmujeres_25a29.getSubprogramaIRA() + 1);
+                            } else if (edad >= 30 && edad <= 34) {
+                                totalmujeres_30a34.setSubprogramaIRA(totalmujeres_30a34.getSubprogramaIRA() + 1);
+                            } else if (edad >= 35 && edad <= 39) {
+                                totalmujeres_35a39.setSubprogramaIRA(totalmujeres_35a39.getSubprogramaIRA() + 1);
+                            } else if (edad >= 40 && edad <= 44) {
+                                totalmujeres_40a44.setSubprogramaIRA(totalmujeres_40a44.getSubprogramaIRA() + 1);
+                            } else if (edad >= 45 && edad <= 49) {
+                                totalmujeres_45a49.setSubprogramaIRA(totalmujeres_45a49.getSubprogramaIRA() + 1);
+                            } else if (edad >= 50 && edad <= 54) {
+                                totalmujeres_50a54.setSubprogramaIRA(totalmujeres_50a54.getSubprogramaIRA() + 1);
+                            } else if (edad >= 55 && edad <= 59) {
+                                totalmujeres_55a59.setSubprogramaIRA(totalmujeres_55a59.getSubprogramaIRA() + 1);
+                            } else if (edad >= 60 && edad <= 64) {
+                                totalmujeres_60a64.setSubprogramaIRA(totalmujeres_60a64.getSubprogramaIRA() + 1);
+                            } else if (edad >= 65 && edad <= 69) {
+                                totalmujeres_65a69.setSubprogramaIRA(totalmujeres_65a69.getSubprogramaIRA() + 1);
+                            } else if (edad >= 70 && edad <= 74) {
+                                totalmujeres_70a74.setSubprogramaIRA(totalmujeres_70a74.getSubprogramaIRA() + 1);
+                            } else if (edad >= 75 && edad <= 79) {
+                                totalmujeres_75a79.setSubprogramaIRA(totalmujeres_75a79.getSubprogramaIRA() + 1);
+                            } else if (edad >= 80) {
+                                totalmujeres_80amas.setSubprogramaIRA(totalmujeres_80amas.getSubprogramaIRA() + 1);
+                            }
+                        }
             }
             
         }

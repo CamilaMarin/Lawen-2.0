@@ -2,15 +2,18 @@ package entities.subprogramas;
 
 import entities.Paciente;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -18,6 +21,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="tarjetaidentificacionira")
+@NamedQueries({
+      @NamedQuery(name = "TarjetaIdentificacionIRA.findbyPaciente", query = "SELECT c FROM TarjetaIdentificacionIRA c WHERE c.paciente = :paciente ORDER BY c.fechaIngresoIRA DESC")
+})
 public class TarjetaIdentificacionIRA implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,6 +35,9 @@ public class TarjetaIdentificacionIRA implements Serializable {
     @JoinColumn(nullable = false)
     @ManyToOne
     private Paciente paciente;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private java.util.Date fechaIngresoIRA;
     
     //Historia Personal
     
@@ -103,6 +112,14 @@ public class TarjetaIdentificacionIRA implements Serializable {
         this.id = id;
     }
 
+    public Date getFechaIngresoIRA() {
+        return fechaIngresoIRA;
+    }
+
+    public void setFechaIngresoIRA(Date fechaIngresoIRA) {
+        this.fechaIngresoIRA = fechaIngresoIRA;
+    }
+    
     public Paciente getPaciente() {
         return paciente;
     }
