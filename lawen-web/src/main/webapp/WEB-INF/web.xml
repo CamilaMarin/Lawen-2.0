@@ -91,6 +91,11 @@
             <description/>
             <url-pattern>/faces/subprograma/*</url-pattern>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>tarjetaIdentificacionIRA</web-resource-name>
+            <description/>
+            <url-pattern>/faces/tarjetaIdentificacionIRA/*</url-pattern>
+        </web-resource-collection>        
         <auth-constraint>
             <description/>
             <role-name>ADMIN</role-name>
