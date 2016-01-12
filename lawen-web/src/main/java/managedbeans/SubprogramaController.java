@@ -21,10 +21,11 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 @Named("subprogramaController")
-@SessionScoped 
+@ViewScoped 
 public class SubprogramaController implements Serializable {
     
     @EJB
@@ -113,9 +114,9 @@ public class SubprogramaController implements Serializable {
                 if (!JsfUtil.isValidationFailed()) {
                     items = null;    // Invalidate list of items to trigger re-query.
                 }                
-                context.addMessage("", new FacesMessage("Ingresado correctamente al subprograma de " + subprog.getNombre_subprograma()));
             }            
         }
+        context.getExternalContext().getFlash().setKeepMessages(true);
         return "/faces/paciente/List.xhtml?faces-redirect=true";
     }
     
