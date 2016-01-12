@@ -14,17 +14,20 @@ import javax.ejb.Local;
  * @author Beban
  */
 @Local
-public interface MedicamentoFacadeLocal {
+public interface MedicamentosFacadeLocal {
 
-    void create(Medicamentos medicamento);
+    void create(Medicamentos medicamentos);
 
-    void edit(Medicamentos medicamento);
+    void edit(Medicamentos medicamentos);
 
-    void remove(Medicamentos medicamento);
+    void remove(Medicamentos medicamentos);
 
     Medicamentos find(Object id);
 
     List<Medicamentos> findAll();
 
+    List<Medicamentos> findRange(int[] range);
+
+    int count();
     
 }

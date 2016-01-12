@@ -1,5 +1,6 @@
 package managedbeans.cardiovascular;
 
+import entities.Medicamentos;
 import entities.Paciente;
 import entities.cardiovascular.CartolaSeguimientoCCV;
 import managedbeans.util.JsfUtil;
@@ -44,7 +45,17 @@ public class CartolaSeguimientoCCVController implements Serializable {
     private boolean prediabetes;
     private boolean resistencia_insulina;
     private boolean intolerancia_glucosa;
+    private List<Medicamentos> guardar_medicamentos =null;
 
+    public List<Medicamentos> getGuardar_medicamentos() {
+        return guardar_medicamentos;
+    }
+
+    public void setGuardar_medicamentos(List<Medicamentos> guardar_medicamentos) {
+        this.guardar_medicamentos = guardar_medicamentos;
+    }
+
+    
     public boolean isResistencia_insulina() {
         return resistencia_insulina;
     }

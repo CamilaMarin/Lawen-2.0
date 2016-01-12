@@ -12,33 +12,20 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author matias
+ * @author Beban
  */
 @Stateless
-public class MedicamentoFacade extends AbstractFacade<Medicamentos> implements MedicamentoFacadeLocal {
+public class MedicamentosFacade extends AbstractFacade<Medicamentos> implements MedicamentosFacadeLocal {
+
     @PersistenceContext(unitName = "pingeso_lawen-ejb_ejb_1.0PU")
     private EntityManager em;
 
     @Override
-     /**
-     * Retorna el entity manager
-     */
     protected EntityManager getEntityManager() {
         return em;
     }
 
-    public void setEm(EntityManager em) {
-        this.em = em;
-    }
-    
-    
-    public void persist(Object object) {
-        em.persist(object);
-    }
-    /**
-     * Super: obtener subclass
-     */
-    public MedicamentoFacade() {
+    public MedicamentosFacade() {
         super(Medicamentos.class);
     }
     

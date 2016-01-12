@@ -143,7 +143,8 @@
                                 <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
                                                var="profesionalItem"
                                                itemValue="#{profesionalItem}"/>
-                            </p:selectOneMenu>                
+                            </p:selectOneMenu>                       
+                            
                             <p:outputLabel value="#{bundle.CreateFichaMedicoLabel_anamnesis_medico}" for="anamnesis_medico" />
                             <h:inputTextarea class="textAreas" rows="10" cols="20" id="anamnesis_medico" value="#{fichaMedicoController.selected.anamnesis_medico}" title="#{bundle.CreateFichaMedicoTitle_anamnesis_medico}" />
 
@@ -227,7 +228,8 @@
                             <p:outputLabel value="Curación Pie DM:" for="curacionPie_DM" />
                             <p:selectOneMenu id="curacionPie_DM" value="#{cartolaSeguimientoCCVController.selected.curacionPie_DM}"> 
                                 <f:selectItems value="#{dominiosController.curacionPieDM}"/>    
-                            </p:selectOneMenu>                     
+                            </p:selectOneMenu>    
+                            
                             <p:outputLabel value="Sintomatología" />
                             <p:outputLabel value=" " />
 
@@ -279,7 +281,16 @@
                             <p:inputText id="examenFisico_eeii" value="#{fichaMedicoController.selected.examenFisico_eeii}" title="#{bundle.CreateFichaMedicoTitle_examenFisico_eeii}" />
                             <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_otros_examenes}" for="otros_examenes" />
                             <p:inputText id="otros_examenes" value="#{cartolaSeguimientoCCVController.selected.otros_examenes}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_otros_examenes}" />
-                            <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_sulfonilureas_texto}" for="sulfonilureas_texto" />
+                            
+                            
+                            <p:outputLabel  value="Medicamentos" for="medicamentos" />
+                            <p:selectManyMenu id="medicamentos" value="#{medicamentosController.selectedIds}" style="width:300px" filter="true" filterMatchMode="startsWith" showCheckbox="true">
+                                <f:selectItems value="#{medicamentosController.allitems}" var="medicamentos" itemLabel="#{medicamentos.nombre}" itemValue="#{medicamentos.idMedicamento}"/>
+                            </p:selectManyMenu>
+                            <p:commandButton style="margin-left: 20px; margin-right: 10px;" action="#{medicamentosCartolaController.create(cartolaSeguimientoCCVController.selected.id, medicamentosController.selectedIds)}" value="Ingresar">
+                                     <f:ajax  />
+                            </p:commandButton>
+                        <p:outputLabel value="#{bundle.CreateCartolaSeguimientoCCVLabel_sulfonilureas_texto}" for="sulfonilureas_texto" />                         
                         <p:selectBooleanButton id="sulfonilureas_bool" value="#{cartolaSeguimientoCCVController.selected.sulfonilureas_bool}" onLabel="Si" offLabel="No" style="width:60px" onchange="ocultarBoton(this);"/>
                         <p:inputText id="sulfonilureas_texto" value="#{cartolaSeguimientoCCVController.selected.sulfonilureas_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_sulfonilureas_texto}" style="display:none;"/>
                         <p:outputLabel value="Llene el texto solo si marca la casilla" style="display:none;"/>

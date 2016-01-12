@@ -6,10 +6,12 @@
 package entities.cardiovascular;
 
 
+import entities.Medicamentos;
+import entities.MedicamentosCartola;
 import entities.Paciente;
 import entities.Usuario;
-import entities.Medicamentos;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 import java.util.Collection;
@@ -19,7 +21,9 @@ import java.util.SortedMap;
 import java.util.List;
 import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import static javax.persistence.GenerationType.IDENTITY;
@@ -82,10 +86,21 @@ public class CartolaSeguimientoCCV implements Serializable {
     private boolean hipocalorico;
     private Float calorias;
     
-   @JoinColumn(nullable = false)
-   @OneToMany
-   private List<Medicamentos> medicamento;
-   
+    //@JoinColumn(name="medicamentos")
+    //@Embedded
+   // private List<String> medicamentos;
+    @OneToMany(cascade = ALL,mappedBy ="idMedicamentosCartola")
+    private List<MedicamentosCartola> medicamentosCartola;
+
+    public List<MedicamentosCartola> getMedicamentosCartola() {
+        return medicamentosCartola;
+    }
+
+    public void setMedicamentosCartola(List<MedicamentosCartola> medicamentosCartola) {
+        this.medicamentosCartola = medicamentosCartola;
+    }
+    
+    
 // FARMACOS
     private boolean sulfonilureas_bool;
     private String sulfonilureas_texto;
@@ -406,13 +421,6 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
     }
     
     
-    
-    
-    
-    
-    
-    
-    
     public Paciente getPaciente() {
         return paciente;
     }
@@ -455,16 +463,7 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
     public void setProfesional(Usuario profesional) {
         this.profesional = profesional;
     }
-
-    public List<Medicamentos> getMedicamento() {
-        return medicamento;
-    }
-
-    public void setMedicamento(List<Medicamentos> medicamento) {
-        this.medicamento = medicamento;
-    }
-
-   
+  
     public Float getPeso() {
         return peso;
     }
@@ -1264,12 +1263,6 @@ Para los siguientes examenes el segundo atributo debe tener un char selecionable
     public void setProximo_control(String proximo_control) {
         this.proximo_control = proximo_control;
     }
-
- 
-    
-    
-    
- 
 
     @Override
     public int hashCode() {

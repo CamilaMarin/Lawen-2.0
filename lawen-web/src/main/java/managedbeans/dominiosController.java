@@ -334,10 +334,7 @@ public class dominiosController {
         pertenece_al_programa_mas.add(0,"No se evalúa");
         pertenece_al_programa_mas.add(1,"No");
         pertenece_al_programa_mas.add(2,"Si");
-        
-
-
-        
+       
     }
 
     public List<String> getRiesgoMalnutricion() {
@@ -734,8 +731,7 @@ public class dominiosController {
     public void setEmpaDom(List<String> empaDom) {
         this.empaDom = empaDom;
     }
-    
-    
-    
-    
+
+   
+        
 }
