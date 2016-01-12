@@ -12,8 +12,8 @@
             <h:form id="TipoSubprogramaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoSubprogramaController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditTipoSubprogramaLabel_nombre_subprograma}" for="nombre_subprograma" />
-                        <p:inputText id="nombre_subprograma" value="#{tipoSubprogramaController.selected.nombre_subprograma}" title="#{bundle.EditTipoSubprogramaTitle_nombre_subprograma}" />
+                        <p:outputLabel class="obligatorio" value="#{bundle.EditTipoSubprogramaLabel_nombre_subprograma}" for="nombre_subprograma" />
+                        <p:inputText required="true" requiredMessage="Debe ingresar un nombre al subprograma" id="nombre_subprograma" value="#{tipoSubprogramaController.selected.nombre_subprograma}" title="#{bundle.EditTipoSubprogramaTitle_nombre_subprograma}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{tipoSubprogramaController.update}" value="#{bundle.Save}" update="display,:TipoSubprogramaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoSubprogramaEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="TipoSubprogramaEditDialog.hide()"/>
