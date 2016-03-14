@@ -308,13 +308,18 @@
                         <p:selectBooleanButton id="fibratos_bool" value="#{cartolaSeguimientoCCVController.selected.fibratos_bool}" onLabel="Si" offLabel="No" style="width:60px" onchange="ocultarBoton(this);"/>
                         <p:inputText id="fibratos_texto" value="#{cartolaSeguimientoCCVController.selected.fibratos_texto}" title="#{bundle.CreateCartolaSeguimientoCCVTitle_fibratos_texto}" style="display:none;"/>
                         <p:outputLabel value="Llene el texto solo si marca la casilla" style="display:none;"/>
-                        <p:outputLabel  value="Medicamentos" for="medicamentos" />
+                        <p:outputLabel class="subTitle" value="Medicamentos genéricos" for="medicamentos" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        
                         <p:selectManyMenu id="medicamentos" value="#{medicamentosController.selectedIds}" style="width:300px" filter="true" filterMatchMode="startsWith" showCheckbox="true">
                             <f:selectItems value="#{medicamentosController.allitems}" var="medicamentos" itemLabel="#{medicamentos.nombre}" itemValue="#{medicamentos.idMedicamento}"/>
                         </p:selectManyMenu>
-                        <p:commandButton style="margin-left: 20px; margin-right: 10px;" action="#{medicamentosCartolaController.create(cartolaSeguimientoCCVController.selected.id, medicamentosController.selectedIds)}" value="Ingresar">
-                                 <f:ajax  />
-                        </p:commandButton>
+                   
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
+                        <p:outputLabel value="" />
                             
                         <p:outputLabel  class="subTitle" value="Exámenes:" />
                         <p:outputLabel value="" />
